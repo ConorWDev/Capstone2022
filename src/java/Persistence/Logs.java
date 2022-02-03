@@ -6,7 +6,7 @@
 package Persistence;
 
 /**
- *
+ * Hello there
  * @author 816601
  */
 public class Logs {
