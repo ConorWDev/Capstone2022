@@ -9,9 +9,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Course</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div>
+            <!-- Header Fragment will be inserted here -->
+        </div>
+        <div>
+            <!-- Current Course will be inserted here -->
+        </div>
+        <div>
+            <!-- Announcements will be inserted here -->
+        </div>
+        <div>
+            <!-- Footer Fragment will be inserted here -->
+        </div>
     </body>
 </html>

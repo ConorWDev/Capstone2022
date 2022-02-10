@@ -9,9 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Course Grades</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div>
+            <!-- Header Fragment will be inserted here -->
+        </div>
+        <div>
+            <!-- Grades for the course table will be inserted here -->
+        </div>
+        <div>
+            <!-- Footer Fragment will be inserted here -->
+        </div>
     </body>
 </html>
