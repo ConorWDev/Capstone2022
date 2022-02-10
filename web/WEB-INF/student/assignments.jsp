@@ -15,6 +15,15 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div>
+         <!-- Header Fragment will be inserted here -->
+        </div>
+        <div>
+          <!-- Assignments table will be inserted here -->
+        </div>
+        <div>
+          <!-- Footer Fragment will be inserted here -->
+        </div>
         <%@include file="headerfragment.jspf" %>
     </body>
 </html>
