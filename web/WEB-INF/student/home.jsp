@@ -15,9 +15,9 @@
         <title>Home</title>
     </head>
     <body>
-        <%@include file="headerfragment.jspf" %>
+        
         <div>
-            <-<!-- Landing page -->
+            <%@include file="headerfragment.jspf" %>
         </div>
         <div>
             <!-- comment -->

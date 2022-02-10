@@ -16,7 +16,7 @@
     </head>
     <body>
         <div>
-         <!-- Header Fragment will be inserted here -->
+         <%@include file="headerfragment.jspf" %>
         </div>
         <div>
           <!-- Assignments table will be inserted here -->
@@ -24,6 +24,6 @@
         <div>
           <!-- Footer Fragment will be inserted here -->
         </div>
-        <%@include file="headerfragment.jspf" %>
+        
     </body>
 </html>

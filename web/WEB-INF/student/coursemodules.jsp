@@ -17,9 +17,9 @@
         <title>Modules</title>
     </head>
     <body>
-        <%@include file="headerfragment.jspf" %>
+
        <div>
-            <!-- Header Fragment will be inserted here -->
+                    <%@include file="headerfragment.jspf" %>
         </div>
         <div>
             <!-- Modules Table will be inserted here -->
