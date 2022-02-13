@@ -16,9 +16,10 @@
     </head>
     <body>
         
-        <div>
-            <%@include file="headerfragment.jspf" %>
-        </div>
+    
+    <div class="container-fluid mt-3 bg-primary"><!-- Nav Bar -->
+    
+    </div>
         <div>
             <!-- comment -->
         </div>
