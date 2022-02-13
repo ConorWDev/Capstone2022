@@ -30,8 +30,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="h1">146 - Assignments</p>
-                    
+                    <p class="h1">146 - Assignments</p> 
                 </div>
                 <hr>
             </div>

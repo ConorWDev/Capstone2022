@@ -15,6 +15,80 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%@include file="headerfragment.jspf" %>
+        <!-- Header -->
+        <div class="container">
+            <div class="row">
+                <%@include file="headerfragment.jspf" %>
+            </div>
+        </div>
+        
+        <!-- Main -->
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="h1">Report Card</p>
+                </div>
+                <hr>
+            </div>
+            
+            <div class="row">
+                <div class="col-8">
+                    <p class="h5">Course</p>
+                </div>
+                <div class="col-2">
+                    <p class="h5">GPA</p>
+                </div>
+                <div class="col-2">
+                    <p class="h5">Grade</p>
+                </div>
+                <hr>
+            </div>
+            <!-- Note: This will become a JSTL Loop -->
+            <div class="row">
+                <div class="col-8">
+                    <a class="h5 col" href="">###-Code</a>
+                </div>
+                <div class="col-2">
+                    <p class="h5">##%</p>
+                </div>
+                <div class="col-2">
+                    <p class="h5">A+</p>
+                </div>
+                <hr>
+            </div>
+            
+            <div class="row">
+                <div class="col-8">
+                    <a class="h5 col" href="">###-Code</a>
+                </div>
+                <div class="col-2">
+                    <p class="h5">##%</p>
+                </div>
+                <div class="col-2">
+                    <p class="h5">A+</p>
+                </div>
+                <hr>
+            </div>
+            
+            <div class="row">
+                <div class="col-8">
+                    <a class="h5 col" href="">###-Code</a>
+                </div>
+                <div class="col-2">
+                    <p class="h5">##%</p>
+                </div>
+                <div class="col-2">
+                    <p class="h5">A+</p>
+                </div>
+                <hr>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="container">
+            <div class="row">
+                <%@include file="footerfragment.jspf" %>
+            </div>
+        </div>
     </body>
 </html>
