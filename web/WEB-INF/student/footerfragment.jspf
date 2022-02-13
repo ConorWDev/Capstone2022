@@ -1,5 +1,52 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
-<div>
-    Foot Links
+<div class="container-fluid" style="background-color: #e2e6ea;height: 100px">
+
+
+
+</div>
+<div class="row">
+    <div class="col-4">
+
+    </div>
+    <div class="col-4 bg-white ">
+        <div class="row">
+
+            <div class="col-6">
+                <a href="#">Foot Link</a>
+            </div>
+            <div class="col-6">
+                <a href="#">Foot Link</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <a href="#">Foot Link</a>
+            </div>
+            <div class="col-6">
+                <a href="#">Foot Link</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <a href="#">Foot Link</a>
+            </div>
+            <div class="col-6">
+                <a href="#">Foot Link</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 content-center">
+                <a href="#">Foot Link</a>
+            </div>
+            <div class="col-6">
+                <a href="#">Foot Link</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+
+    </div>
 </div>
