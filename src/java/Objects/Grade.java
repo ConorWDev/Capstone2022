@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.GradeServices;
+package Objects;
 
 /**
- * altamish wrote this, did Seulgi receive this?
- * @author Administrator
+ *
+ * @author massvm
  */
-public class Test {
+public class Grade {
+    
+    
     
 }

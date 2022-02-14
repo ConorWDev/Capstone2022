@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Navigation;
+package Controller.GradeServices;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author massvm
  */
-@WebServlet(name = "SiteNavigation", urlPatterns = {"/SiteNavigation"})
-public class SiteNavigation extends HttpServlet {
+@WebServlet(name = "courseGradeController", urlPatterns = {"/courseGradeController"})
+public class courseGradeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,8 +31,7 @@ public class SiteNavigation extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //pushing request straight to reportcard for testing purposess
-        request.getRequestDispatcher("WEB-INF/student/coursegrade.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

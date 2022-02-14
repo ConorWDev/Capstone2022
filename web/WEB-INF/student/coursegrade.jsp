@@ -17,9 +17,62 @@
         <title>Course Grades</title>
     </head>
     <body>
-        <%@include file="headerfragment.jspf" %>
+        <!-- Header -->
+        <div class="container">
+            <div class="row">
+                <%@include file="headerfragment.jspf" %>
+            </div>
+        </div>
         
-         CODE GOES HERE!!!
-        <%@include file="headerfragment.jspf" %>
+            <form action="courseGradeController" style="border-style: solid">
+                This form is a place holder. Data will be fed into page dynamically<br>
+                enter student id:<input type="text" name="username"><br>
+                enter course id: <input type="text" name="courseID"><br>
+                <input type="submit" value="get grades">
+            </form>
+            
+        <!-- Main -->
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="h1">Course Grade</p>
+                </div>
+                <hr>
+            </div>
+            
+            <div class="row">
+                <div class="col-2">
+                    <p class="h5">Module</p>
+                </div>
+                <div class="col-2">
+                    <p class="h5">Assignment</p>
+                </div>
+                <div class="col-2">
+                    <p class="h5">Grade</p>
+                </div>
+                <hr>
+            </div>
+            <!-- Note: This will become a JSTL Loop -->
+            <div class="row">
+                <div class="col-2">
+                    <p class="h5">Module name</p>
+                </div>
+                <div class="col-2">
+                    <p class="h5">Lesson Name</p>
+                </div>
+                <div class="col-2">
+                    <p class="h5">Grade</p>
+                </div>
+                <hr>
+            </div>
+            
+        </div>
+        
+        <!-- Footer -->
+        <div class="container">
+            <div class="row">
+                <%@include file="footerfragment.jspf" %>
+            </div>
+        </div>
     </body>
 </html>

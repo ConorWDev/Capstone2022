@@ -23,6 +23,11 @@
             </div>
         </div>
         
+            <form action="reportcardController">
+                enter student id:<input type="text" name="username">
+                <input type="submit" value="get grades">
+            </form>
+            
         <!-- Main -->
         <div class="container">
             <div class="row">
