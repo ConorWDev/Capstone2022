@@ -34,49 +34,29 @@
             </div> 
 
 
-            <div class="col-5 bg-white rounded" style="height: 400px">
+            <div class="col-5 bg-white rounded p-2" >
+                <p class="h3 " style="color: #0069d9">Courses</p>
                 <div class="row">
-                    <p class="h3 mb-3 " style=" color: #0069d9">Courses</p>
+                    
+                <div class="col-6">
+                        <div class="card border-0" >
+                    <img class="card-body p-0 align-content-center" width="100%" src="tall.png" alt="tall"/>
+                    
                 </div>
-
-                <div class="row"> 
-                    <div class="col-1"></div>
-                    <div class="col-4 ">
-
-                        <div class="card border-0 rounded pl-1" style="background-color: #0069d9;height: 300px">
-                            <p class="h4 " style=" color: white">Card 1</p>
-
-
-                        </div>
-
-
+                </div>
+                
+                    <div class="col-6 align-content-center">
+                        <div class="card border-0 mb-4" >
+                <img class="card-body p-0" width="100%" src="short.png" alt="short"/>
+                </div>
+                <div class="card border-0 " >
+                <img class="card-body p-0 " width="100%" src="short.png" alt="short"/>
+                </div>
                     </div>
-
-
-                    <div class="col-1"></div>
-
-                    <div class="col-4 ">
-                        <div class="row">
-                            <div class="card border-0 rounded text-white mb-3" style="background-color: #58aaff;height: 142px">
-                                <p class="h4" style=" color: white">Card 2</p>
-
-                            </div> 
-                        </div>
-                        <div class="row">
-                            <div class="card border-0 rounded" style="background-color: #58aaff; height: 142px">
-                                <p class="h4" style=" color: white">Card 3</p>
-
-                            </div> 
-                        </div>
-
-                    </div>
-
-
-                    <div class="col-1"></div>
                 </div>
             </div> 
 
-
+            
 
 
             <div class="col-1">
