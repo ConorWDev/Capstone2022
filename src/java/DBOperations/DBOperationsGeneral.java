@@ -7,6 +7,8 @@ package DBOperations;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -19,7 +21,7 @@ import java.sql.SQLException;
  */
 public class DBOperationsGeneral {
     
-    private Connection getConnection(){
+    public static Connection getConnection(){
         Connection conn = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -33,7 +35,26 @@ public class DBOperationsGeneral {
         }
         return conn;
     }
-    
-   
+      
+    public String getName(String username){
+        String result ="";
+        String sql = "select first_name, last_name from ma_student where username = ?;";
+        
+         try{
+            Connection conn = getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, username);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                result = rs.getString(1) + " " + rs.getString(2);
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+         
+        return result;
+    }
     
 }

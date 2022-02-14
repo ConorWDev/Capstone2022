@@ -5,8 +5,10 @@
  */
 package Controller.GradeServices;
 
+import DBOperations.DBOperationsGrade;
+import Objects.Grade;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,6 +34,15 @@ public class courseGradeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        DBOperationsGrade dbOps = new DBOperationsGrade();
+        
+        String username = request.getParameter("username");
+        String courseID = request.getParameter("courseID");
+        
+        ArrayList<Grade> courseGrades = dbOps.getCourseGrades(username,courseID);
+        
+        request.setAttribute("courseGrades", courseGrades);
+        request.getRequestDispatcher("WEB-INF/student/coursegrade.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

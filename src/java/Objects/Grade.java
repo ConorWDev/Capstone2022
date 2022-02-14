@@ -5,6 +5,7 @@
  */
 package Objects;
 
+import DBOperations.DBOperationsGeneral;
 import DBOperations.DBOperationsGrade;
 
 /**
@@ -13,13 +14,14 @@ import DBOperations.DBOperationsGrade;
  */
 public class Grade {
     
-    DBOperationsGrade dbOps = new DBOperationsGrade();
+    DBOperationsGrade dbOpsGrade = new DBOperationsGrade();
+    DBOperationsGeneral dbOpsGen = new DBOperationsGeneral();
     
     private String studentName;
     private String assignmentName;
+    private String lessonName;
     
-    //TODO add lessonName courseName attributes via further DB queries
-    //private String lessonName;
+    //TODO add courseName attributes via further DB queries
     //private String courseName;
     
     private double mark;
@@ -29,8 +31,9 @@ public class Grade {
     
     public Grade(String studentUsername, String assignmentID, String mark, String isVisible){
         
-        this.studentName =  dbOps.getName(studentUsername);
-        this.assignmentName = dbOps.getAssignmentName(assignmentID);
+        this.studentName =  dbOpsGen.getName(studentUsername);
+        this.assignmentName = dbOpsGrade.getAssignmentName(assignmentID);
+        this.lessonName = dbOpsGrade.getLessonName(assignmentID);
         
         this.mark = Double.parseDouble(mark);
         if (isVisible.equalsIgnoreCase("Y")){
@@ -41,12 +44,12 @@ public class Grade {
         }
     }
 
-    public TestDBOperations getDbOps() {
-        return dbOps;
+    public String getLessonName() {
+        return lessonName;
     }
 
-    public void setDbOps(TestDBOperations dbOps) {
-        this.dbOps = dbOps;
+    public void setLessonName(String lessonName) {
+        this.lessonName = lessonName;
     }
 
     public String getStudentName() {

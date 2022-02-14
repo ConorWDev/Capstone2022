@@ -33,10 +33,7 @@ public class reportcardController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        DBOperationsGrade dbOps = new DBOperationsGrade();
         
-        String username = request.getParameter("username");
-        String courseID = request.getParameter("courseID");
         
         
     }
