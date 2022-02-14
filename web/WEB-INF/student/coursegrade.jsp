@@ -29,6 +29,7 @@
                 enter student id:<input type="text" name="username"><br>
                 enter course id: <input type="text" name="courseID"><br>
                 <input type="submit" value="get grades">
+                ${sessionScope.courseGrades}
             </form>
             
         <!-- Main -->
@@ -53,18 +54,24 @@
                 <hr>
             </div>
             <!-- Note: This will become a JSTL Loop -->
+            <c:forEach var="courseGrade" items="${sessionScope.courseGrades}">
+            
             <div class="row">
                 <div class="col-2">
-                    <p class="h5">Module name</p>
+                    <p class="h5">${courseGrade.lessonName}</p>
                 </div>
                 <div class="col-2">
-                    <p class="h5">Lesson Name</p>
+                    <p class="h5">${courseGrade.assignmentName}</p>
                 </div>
                 <div class="col-2">
-                    <p class="h5">Grade</p>
+                    <p class="h5">${courseGrade.mark}</p>
                 </div>
                 <hr>
             </div>
+                
+            </c:forEach>
+            
+            
             
         </div>
         
