@@ -1,29 +1,27 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
-
-<div class="row">
-    <div class="container-fluid bg-white mb-0 pl-3">
-        <h4>MGT</h4>
+<nav class="navbar navbar-expand-m navbar-light bg-white p-0" >
+  <div class="container-fluid">
+    <a href="#" class="navbar-brand">MGT</a>
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" aria-current="page" href="#">Student Name</a>
+      
+      
     </div>
-</div>
-
-
-<div class="container-fluid" style=" background-color: #0069d9">   
-
-    <ul class="nav mb-5 p-0">
-        <li class="nav-item ">
-            <a href="NavCon?h=true" class="nav-link text-white m-0 pl-0">Home</a>
-        </li>
-        <li class="nav-item ">
-            <a href="NavCon?s=true" class="nav-link text-white m-0 ">Schedule<a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="NavCon?g=true" class="nav-link text-white" ">Grades</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link text-white">Courses</a>
-                    </li>
-                    </ul>     
-
-                    </div>    
-                    
+  </div>
+</nav>
+<nav class="navbar navbar-dark p-0 mb-5" id="navbottom">
+  <div class="container-fluid pr-5">
+      <div class="align-self-left" id="navbottomlinks">
+      <a href="/NavCon?nav=home" class="navbar-item">Home</a>
+      <a href="/NavCon?nav=course" class="navbar-item">Courses</a>
+      <a href="/NavCon?nav=grades" class="navbar-item">Grades</a>
+      <a href="/NavCon?nav=schedule" class="navbar-item">Schedule</a>
+      </div>
+      <div class="navbar-nav">
+      <a class="nav-item nav-link active" aria-current="page" href="/NavCon?logout=true">Log Out?</a>
+      
+      
+    </div>
+  </div>
+</nav>
