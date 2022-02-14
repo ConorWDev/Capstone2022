@@ -12,10 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author massvm
+ * @author Conor
  */
 @WebServlet(name = "NavCon", urlPatterns = {"/NavCon"})
 public class NavCon extends HttpServlet {
@@ -31,25 +32,33 @@ public class NavCon extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String h = request.getParameter("h");
-        String g = request.getParameter("g");
-        String c = request.getParameter("c");
-        String s = request.getParameter("s");
+        String h = request.getParameter("home");
+        String g = request.getParameter("grades");
+        String c = request.getParameter("course");
+        String s = request.getParameter("schedule");
+        String logout = request.getParameter("logout");
+        HttpSession session = request.getSession();
+        
+        
+        if(logout!=null&&!logout.equals("")){
+          session.invalidate();
+          request.getRequestDispatcher("/WEB-INF/student/login.jsp").forward(request, response); 
+        }
         
         if(h!=null&&!h.equals("")){
-        request.getRequestDispatcher("home.jsp").forward(request, response);    
+        request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response);    
         }
         else if(g!=null&&!g.equals("")){
-        request.getRequestDispatcher("reportcard.jsp").forward(request, response);    
+        request.getRequestDispatcher("/WEB-INF/student/reportcard.jsp").forward(request, response);    
         }
         else if(c!=null&&!c.equals("")){
-        request.getRequestDispatcher("courselist.jsp").forward(request, response);    
+        request.getRequestDispatcher("/WEB-INF/student/courselist.jsp").forward(request, response);    
         }
         else if(s!=null&&!s.equals("")){
-        request.getRequestDispatcher("schedule.jsp").forward(request, response);    
+        request.getRequestDispatcher("/WEB-INF/student/schedule.jsp").forward(request, response);    
         }
         else{
-        request.getRequestDispatcher("home.jsp").forward(request, response);    
+        request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response);    
         }
         
     }
