@@ -5,24 +5,34 @@
  */
 package Interface.Users;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Altamish Lalani
  * Student.java
  * 
- * The student object is a transitory object that helps 
+ * The student object is a transitory Java Bean object that helps 
  * a user call specific information based on their unique identity.
  */
-public class Student {
+public class Student implements Serializable {
     
+    //Fields
     private String userID = "";
-    private String email = "";
+    private String email;
     private String firstName = "";
     private String lastName = "";
 
-    //Constructor
-    Student(String userID){
     
+    //Java Bean rule
+    Student(){}
+    
+    //Overloaded Constructor
+    Student(String userID){
+        this.email = "";
+        this.firstName = "";
+        this.lastName = "";
+       
         //*********Write DBops methods
         /*
         Need to set email, firstname, lastname from DB.
@@ -37,8 +47,7 @@ public class Student {
         this.userID = userID;
        
     }
-    
-    
+
     public String getUserID() {
         return userID;
     }
@@ -54,7 +63,5 @@ public class Student {
     public String getLastName() {
         return lastName;
     }
-
-    
     
 }
