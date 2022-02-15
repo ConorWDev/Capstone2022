@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Navigation;
+package Controller.GradeServices;
 
+import DBOperations.DBOperationsGrade;
+import Objects.Grade;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author massvm
  */
-@WebServlet(name = "SiteNavigation", urlPatterns = {"/SiteNavigation"})
-public class SiteNavigation extends HttpServlet {
+@WebServlet(name = "courseGradeController", urlPatterns = {"/courseGradeController"})
+public class courseGradeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,7 +33,15 @@ public class SiteNavigation extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //pushing request straight to reportcard for testing purposess
+        
+        DBOperationsGrade dbOps = new DBOperationsGrade();
+        
+        String username = request.getParameter("username");
+        String courseID = request.getParameter("courseID");
+        
+        ArrayList<Grade> courseGrades = dbOps.getCourseGrades(username,courseID);
+        
+        request.setAttribute("courseGrades", courseGrades);
         request.getRequestDispatcher("WEB-INF/student/coursegrade.jsp").forward(request, response);
     }
 
