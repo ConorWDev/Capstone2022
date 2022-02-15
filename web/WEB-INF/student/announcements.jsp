@@ -35,6 +35,7 @@
         
         <div class="container">
             <div class="row">
+                <!-- Note: This will eventually need an "on Select" function that'll reload the cards in the order specified -->
                 <div class="col-3">
                     <p>Sort By:
                         <select name="sortby" id="sortby" >
@@ -48,68 +49,66 @@
                     <p>Filter:
                         <select name="sortby" id="sortby" >
                             <option value="all">All</option>
-                            <option value="courseA">Course A</option>
-                            <option value="courseB">Course B</option>
-                            <option value="courseC">Course C</option>
+                            <!-- JSTL Filter Loop Notes:
+                                
+                                Summary: 
+                                    Adds new elements to the select dropdown in accordance to the students available courses.
+                                
+                                What Will it Call:
+                                    An Arraylist containing each course the student is enrolled in
+                                
+                                Attributes:
+                                    courseID    : The ID of the course to choose from.
+                                    courseName  : The Human Language name of the course.
+                            
+                                Potential Changes:
+                                    - CourseID and courseName might be the same item, so it may not be necessary to separate them.
+                            -->
+                            <c:forEach items="courses" var="course">
+                                <option value="${course.courseID}">${course.courseName}</option>
+                            </c:forEach>
                         </select>
                     </p>
                 </div>
             </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <p class="h4" style="float:left">New Assignment - Course A</p>
-                    <span style="float:right;">
-                        <p class="h5">2022-02-12 | 11:19 pm</p>
-                    </span>
-                </div>
-                <div class="card-body">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet lacus sed justo finibus, vitae dapibus felis efficitur. Ut id mollis justo, in tincidunt enim. Aenean ornare, urna ac rhoncus aliquam, mi enim fringilla mauris, in accumsan arcu augue ut orci. Praesent ullamcorper viverra sapien in blandit. Donec consectetur, mi in rhoncus imperdiet, augue urna dictum nisi, sed lobortis nulla est laoreet tellus. Cras aliquam, lacus non dictum suscipit, dolor eros congue nunc, a pretium urna turpis ac sapien. Duis nibh nunc, pellentesque id ultricies quis, posuere sollicitudin risus. Praesent nec erat id quam bibendum accumsan. Suspendisse id convallis justo.
-                    </p>
-                    <span style="float:right">
-                        <a href="#" class="btn btn-primary">Read More...</a>
-                    </span>
-                </div>
-            </div>
+            <!-- 
+                Announcement Page JSTL Loop Notes:
+                
+                Summary: 
+                    Calls the announcements given the order and filters from above.
+                
+                List Name: announcement
             
-            <br>
+                What Will it Call:
+                    - An ArrayList Containing all the announcements pulled from DB
             
-            <div class="card">
-                <div class="card-header">
-                    <p class="h4" style="float:left">New Test - Course B</p>
-                    <span style="float:right;">
-                        <p class="h5">2022-01-27 | 2:24 pm</p>
-                    </span>
-                </div>
-                <div class="card-body">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet lacus sed justo finibus, vitae dapibus felis efficitur. Ut id mollis justo, in tincidunt enim. Aenean ornare, urna ac rhoncus aliquam, mi enim fringilla mauris, in accumsan arcu augue ut orci. Praesent ullamcorper viverra sapien in blandit. Donec consectetur, mi in rhoncus imperdiet, augue urna dictum nisi, sed lobortis nulla est laoreet tellus. Cras aliquam, lacus non dictum suscipit, dolor eros congue nunc, a pretium urna turpis ac sapien. Duis nibh nunc, pellentesque id ultricies quis, posuere sollicitudin risus. Praesent nec erat id quam bibendum accumsan. Suspendisse id convallis justo.
-                    </p>
-                    <span style="float:right">
-                        <a href="#" class="btn btn-primary">Read More...</a>
-                    </span>
-                </div>
-            </div>
+                The Attributes of each announcement:
+                    - title     : The title of the announcement.
+                    - courseID  : The ID of the course it came from (if blank, will be considered as "all").
+                    - date      : The date the Announcement was published.
+                    - body      : The body text of the announcement, clipped to a specific character length -OR- Line number.
+                    - url       : A URL leading to the announcement in full.
             
-            <br>
-            
-            <div class="card">
-                <div class="card-header">
-                    <p class="h4" style="float:left">Closed for New Years Day</p>
-                    <span style="float:right;">
-                        <p class="h5">2021-12-18 | 8:00 am</p>
-                    </span>
+                Potential Changes:
+                    - Could also do a maximum word count, could be weird to shorten the body.
+                    - Instead of leading to a URL of just a single announcement, we could have announcements in their full on this page.
+            -->
+            <c:forEach items="${announcement}" var="announcement">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="h4" style="float:left;">${announcement.title} - ${announcement.courseID}</p>
+                        <span style="float:right;">
+                            <p class="h5">${announcement.date}</p>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <p>${announcement.body}</p>
+                        <span style="float:right">
+                            <a href="${announcement.url}" class="btn btn-primary">Read More...</a>
+                        </span>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet lacus sed justo finibus, vitae dapibus felis efficitur. Ut id mollis justo, in tincidunt enim. Aenean ornare, urna ac rhoncus aliquam, mi enim fringilla mauris, in accumsan arcu augue ut orci. Praesent ullamcorper viverra sapien in blandit. Donec consectetur, mi in rhoncus imperdiet, augue urna dictum nisi, sed lobortis nulla est laoreet tellus. Cras aliquam, lacus non dictum suscipit, dolor eros congue nunc, a pretium urna turpis ac sapien. Duis nibh nunc, pellentesque id ultricies quis, posuere sollicitudin risus. Praesent nec erat id quam bibendum accumsan. Suspendisse id convallis justo.
-                    </p>
-                    <span style="float:right">
-                        <a href="#" class="btn btn-primary">Read More...</a>
-                    </span>
-                </div>
-            </div>
+            </c:forEach>
             
         </div>
         
@@ -119,8 +118,6 @@
                 <%@include file="footerfragment.jspf" %>
             </div>
         </div>
-        
-        
         
     </body>
 </html>

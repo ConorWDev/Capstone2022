@@ -36,67 +36,45 @@
                 </div>
                 <hr>
             </div>
-            <!-- Note: This will eventually become a JSTL loop that will load in each assignment entry from the DB -->
+            
             <div class="row">
-                <div class="col-8">
-                    <a class="h5 col" href="">Assignment #</a>
-                </div>
-                <div class="col-2">
-                    <p class="h5">100%</p>
-                </div>
-                <div class="col-2">
-                    <p class="h5">A+</p>
-                </div>
+                <div class="col-4"><p class="h5">Assignment</p></div>
+                <div class="col-2"><p class="h5">Status</p></div>
+                <div class="col-3"><p class="h5">Grade</p></div>
+                <div class="col-3"><p class="h5">Due Date</p></div>
                 <hr>
             </div>
-            <div class="row">
-                <div class="col-8">
-                    <a class="h5 col" href="">Assignment #</a>
+            
+            <!-- 
+                JSTL Assignment loop notes:
+                
+                Summary:
+                    Loads every assignment from the course into rows
+            
+                List Name: assignments
+                
+                What Will it Call:
+                    - An ArrayList containing all the assignments the student has in the course
+            
+                Attributes List:
+                    url     : the URL that will download the assignment file
+                    status  : The current status of the assignment (incomplete, complete, marked, etc.)
+                    grade   : Shows the grade recieved and/or it's marks worth (format: a/b - ##%)
+                    dueDate : The Date and time the assignment must be handed in prior to (format: Month-Day-Year | HH:MM am/pm)
+            
+                Potential Changes:
+                    <TBD>
+            -->
+            <c:forEach items="${assignments}" var="assignment">
+                <div class="row">
+                    <div class="col-4"><a class="h5" href="${assignment.url}">${assignment.name}</p></div>
+                    <div class="col-2"><p class="h5">${assignment.status}</p></div>
+                    <div class="col-3"><p class="h5">${assignment.grade}</p></div>
+                    <div class="col-3"><p class="h5">${assignment.dueDate}</p></div>
+                    <hr>
                 </div>
-                <div class="col-2">
-                    <p class="h5">100%</p>
-                </div>
-                <div class="col-2">
-                    <p class="h5">A+</p>
-                </div>
-                <hr>
-            </div>
-            <div class="row">
-                <div class="col-8">
-                    <a class="h5 col" href="">Assignment #</a>
-                </div>
-                <div class="col-2">
-                    <p class="h5">100%</p>
-                </div>
-                <div class="col-2">
-                    <p class="h5">A+</p>
-                </div>
-                <hr>
-            </div>
-            <div class="row">
-                <div class="col-8">
-                    <a class="h5 col" href="">Assignment #</a>
-                </div>
-                <div class="col-2">
-                    <p class="h5">100%</p>
-                </div>
-                <div class="col-2">
-                    <p class="h5">A+</p>
-                </div>
-                <hr>
-            </div>
-            <div class="row">
-                <div class="col-8">
-                    <a class="h5 col" href="">Assignment #</a>
-                </div>
-                <div class="col-2">
-                    <p class="h5">100%</p>
-                </div>
-                <div class="col-2">
-                    <p class="h5">A+</p>
-                </div>
-                <hr>
-            </div>
+            </c:forEach>
+            
         </div>
             
         <!-- Footer -->
