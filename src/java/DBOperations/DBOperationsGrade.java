@@ -7,6 +7,7 @@ package DBOperations;
 
 import DBOperations.DBOperationsGeneral;
 import Objects.Grade;
+import Objects.StudentCourse;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,6 +46,11 @@ public class DBOperationsGrade {
                 
                 grades.add(grade);
             }
+            
+            st.close();
+            rs.close();
+            conn.close();
+            
         }
         catch(SQLException ex){
             ex.printStackTrace();
@@ -82,9 +88,11 @@ public class DBOperationsGrade {
                 
                 Grade grade = new Grade(studentUsername,assignmentID,mark,isVisible);
                 courseGrades.add(grade);
-                System.out.println("course grade query was successful");
             }
             
+            st.close();
+            rs.close();
+            conn.close();
             
           }
           catch(SQLException ex){
@@ -94,56 +102,66 @@ public class DBOperationsGrade {
           return courseGrades;
       }
       
-        public String getAssignmentName(String assignmentID){
-        String result ="";
-        String sql = "select name from ma_assignment where assignment_id = ?;";
-        
-         try{
-            Connection conn = DBOperationsGeneral.getConnection();
-            PreparedStatement st = conn.prepareStatement(sql);
-            st.setString(1, assignmentID);
-            ResultSet rs = st.executeQuery();
-            
-            while (rs.next()){
-                result = rs.getString(1);
-            }
-        }
-        catch(SQLException ex){
-            ex.printStackTrace();
-        }
-         
-        return result;
-    }
-        
-        /*
-        getLessonName
-        This method obtains the lesson name associated with a given assignment
-        */
-        public String getLessonName(String assignmentID){
-            String lessonName = "";
-            String sql = "select l.name from " +
-            "ma_assignment a, ma_lesson_assignment la, ma_lesson l " +
-            "where a.assignment_id  = la.assignment_id " +
-            "and la.lesson_id  = l.lesson_id " +
-            "and a.assignment_id = ?;";
-            
-            try{
-                Connection conn = DBOperationsGeneral.getConnection();
-                PreparedStatement st = conn.prepareStatement(sql);
-                st.setString(1, assignmentID);
-                ResultSet rs = st.executeQuery();
+      public String getWeight (String assignmentID){
+          String weight = "";
+          String sql = "select weight from ma_assignment where assignment_id = ?;";
+          try{
+             Connection conn = DBOperationsGeneral.getConnection();
+             PreparedStatement st = conn.prepareStatement(sql);
+             st.setString(1,assignmentID);
+             ResultSet rs = st.executeQuery();
+             
+             while (rs.next()){
+                 weight = rs.getString(1);
+             }
+             
+             st.close();
+             rs.close();
+             conn.close();
+          }
+          catch(SQLException ex){
+              ex.printStackTrace();
+          }
+          
+          
+          return weight;
+      }
+      
+      public ArrayList<StudentCourse> getStudentCourses (String studentUsername){
+          ArrayList<StudentCourse> courses = new ArrayList<>();
+          String sql = "select cou.name, cou.course_id from\n" +
+                        "ma_student s, ma_student_cohort sc, ma_cohort c, ma_cohort_course cc, ma_course cou\n" +
+                        "where s.username = ?\n" +
+                        "and s.username = sc.username\n" +
+                        "and sc.cohort_id = c.cohort_id\n" +
+                        "and c.cohort_id = cc.cohort_id\n" +
+                        "and cc.course_id = cou.course_id;";
+          
+          try{
+              
+             Connection conn = DBOperationsGeneral.getConnection();
+             PreparedStatement st = conn.prepareStatement(sql);
+             st.setString(1,studentUsername);
+             ResultSet rs = st.executeQuery();
+              
+             while (rs.next()){
+                String courseName = rs.getString(1);
+                String courseID = rs.getString(2);
+                StudentCourse course = new StudentCourse(studentUsername, courseName, courseID);
                 
-                while (rs.next()){
-                lessonName = rs.getString(1);
-                 System.out.println("assignment name query was successful");
-                }
-                
-            }
-            catch(SQLException ex){
-                ex.printStackTrace();
-            }
-            
-            return lessonName;
-        }
-    
+                courses.add(course);
+             }
+              
+             st.close();
+             rs.close();
+             conn.close();
+          }
+          catch(SQLException ex){
+              ex.printStackTrace();
+          }
+          
+          
+          return courses;
+      }
+       
 }

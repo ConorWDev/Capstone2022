@@ -36,13 +36,15 @@ public class StudentCourse {
         double gradeXweights = 0;
         double weightTotal = 0;
         for (int x = 0; x < grades.size(); x++){
-            double mark = grades.get(x).getMark();
-            double weight = grades.get(x).getWeight();
-            double weightDec = weight/100.00;
-            
-            double gradeXweight = mark * weightDec;
-            gradeXweights += gradeXweight;
-            weightTotal += weight;
+            if (grades.get(x).isIsVisible()){
+                double mark = grades.get(x).getMark();
+                double weight = grades.get(x).getWeight();
+                double weightDec = weight/100.00;
+
+                double gradeXweight = mark * weightDec;
+                gradeXweights += gradeXweight;
+                weightTotal += weight;
+            }
         }
         DecimalFormat df = new DecimalFormat("###.##");
         courseAvg = gradeXweights/weightTotal * 100;

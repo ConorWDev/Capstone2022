@@ -36,7 +36,7 @@ public class DBOperationsGeneral {
         return conn;
     }
       
-    public String getName(String username){
+    public String getStudentName(String username){
         String result ="";
         String sql = "select first_name, last_name from ma_student where username = ?;";
         
@@ -49,6 +49,10 @@ public class DBOperationsGeneral {
             while (rs.next()){
                 result = rs.getString(1) + " " + rs.getString(2);
             }
+            
+            st.close();
+            rs.close();
+            conn.close();
         }
         catch(SQLException ex){
             ex.printStackTrace();
@@ -56,5 +60,74 @@ public class DBOperationsGeneral {
          
         return result;
     }
+    
+    /*
+    *getAssignmentName
+    *This method returns an assignment name from a given assignmentID
+    */
+      public String getAssignmentName(String assignmentID){
+        String result ="";
+        String sql = "select name from ma_assignment where assignment_id = ?;";
+        
+         try{
+            Connection conn = DBOperationsGeneral.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, assignmentID);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                result = rs.getString(1);
+            }
+            
+            st.close();
+            rs.close();
+            conn.close();
+            
+            
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+         
+        return result;
+    }
+      
+       /*
+        getLessonName
+        This method obtains the lesson name associated with a given assignment
+        */
+        public String getLessonName(String assignmentID){
+            String lessonName = "";
+            String sql = "select l.name from " +
+            "ma_assignment a, ma_lesson_assignment la, ma_lesson l " +
+            "where a.assignment_id  = la.assignment_id " +
+            "and la.lesson_id  = l.lesson_id " +
+            "and a.assignment_id = ?;";
+            
+            try{
+                Connection conn = DBOperationsGeneral.getConnection();
+                PreparedStatement st = conn.prepareStatement(sql);
+                st.setString(1, assignmentID);
+                ResultSet rs = st.executeQuery();
+                
+                while (rs.next()){
+                lessonName = rs.getString(1);
+                 System.out.println("assignment name query was successful");
+                }
+                
+                st.close();
+                rs.close();
+                conn.close();
+                
+            }
+            catch(SQLException ex){
+                ex.printStackTrace();
+            }
+            
+            return lessonName;
+        }
+        
+        
+    
     
 }

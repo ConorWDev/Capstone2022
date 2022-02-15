@@ -23,9 +23,11 @@
             </div>
         </div>
         
-            <form action="reportcardController">
-                enter student id:<input type="text" name="username">
-                <input type="submit" value="get grades">
+             <form action="reportcardController" style="border-style: solid">
+                This form is a place holder. When app is complete the data will be fed into page dynamically. Try student_id: cmc21-00001<br>
+                enter student username:<input type="text" name="username"><br>
+                <input type="submit" value="get report">
+                
             </form>
             
         <!-- Main -->
@@ -42,53 +44,21 @@
                     <p class="h5">Course</p>
                 </div>
                 <div class="col-2">
-                    <p class="h5">GPA</p>
-                </div>
-                <div class="col-2">
                     <p class="h5">Grade</p>
                 </div>
                 <hr>
             </div>
-            <!-- Note: This will become a JSTL Loop -->
+            <c:forEach var="courses" items="${requestScope.courses}">
             <div class="row">
                 <div class="col-8">
-                    <a class="h5 col" href="">###-Code</a>
+                    <a class="h5 col" href="reportcardController?link=yes">${courses.courseName}</a>
                 </div>
                 <div class="col-2">
-                    <p class="h5">##%</p>
-                </div>
-                <div class="col-2">
-                    <p class="h5">A+</p>
+                    <p class="h5">${courses.courseAvg}</p>
                 </div>
                 <hr>
             </div>
-            
-            <div class="row">
-                <div class="col-8">
-                    <a class="h5 col" href="">###-Code</a>
-                </div>
-                <div class="col-2">
-                    <p class="h5">##%</p>
-                </div>
-                <div class="col-2">
-                    <p class="h5">A+</p>
-                </div>
-                <hr>
-            </div>
-            
-            <div class="row">
-                <div class="col-8">
-                    <a class="h5 col" href="">###-Code</a>
-                </div>
-                <div class="col-2">
-                    <p class="h5">##%</p>
-                </div>
-                <div class="col-2">
-                    <p class="h5">A+</p>
-                </div>
-                <hr>
-            </div>
-        </div>
+            </c:forEach>
         
         <!-- Footer -->
         <div class="container">
