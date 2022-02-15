@@ -48,18 +48,41 @@
                 </div>
                 <hr>
             </div>
+
+            
+            <!-- 
+                JSTL Report Card loop notes:
+                
+                Summary:
+                    Loads the grades from each course into separate rows in a container.
+            
+                List Name: courseReport
+                
+                What Will it Call:
+                    - An ArrayList containing both the course name and it's average.
+            
+                Attributes List:
+                    courseName       : The name of the course.
+                    courseAvg        : The average calculated grade from the course.
+            
+                Potential Changes:
+                    - Variables can be adjusted to fit a common ground.
+                    - Potentially could be adding a URL that will take you to the Courses grade page.
+            -->
+       
             <c:forEach var="courses" items="${requestScope.courses}">
-            <div class="row">
-                <div class="col-8">
-                    <a class="h5 col" href="reportcardController?link=yes">${courses.courseName}</a>
-                </div>
-                <div class="col-2">
-                    <p class="h5">${courses.courseAvg}</p>
-                </div>
-                <hr>
-            </div>
+              <div class="row">
+                  <div class="col-10">
+                      <a class="h5 col" href="reportcardController?link=yes">${courses.courseName}</a>
+                  </div>
+                  <div class="col-2">
+                      <p class="h5">${courses.courseAvg}</p>
+                  </div>
+                  <hr>
+              </div>
             </c:forEach>
-        
+
+        </div>
         <!-- Footer -->
         <div class="container">
             <div class="row">
