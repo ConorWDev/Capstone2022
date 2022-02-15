@@ -6,8 +6,10 @@
 package Controller.GradeServices;
 
 import DBOperations.DBOperationsGrade;
+import Objects.StudentCourse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +35,19 @@ public class reportcardController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        DBOperationsGrade dbOps = new DBOperationsGrade();
+        String username = request.getParameter("username");
+        String link = request.getParameter("link");
         
+        if (link != null){
+            //TODO add functionallity to assign course attribute so course grade page will dynamically pull up grades from that given courses
+            request.getRequestDispatcher("WEB-INF/student/coursegrade.jsp").forward(request, response);
+        }
+        
+        ArrayList<StudentCourse> courses = dbOps.getStudentCourses(username);
+        
+        request.setAttribute("courses", courses);
+        request.getRequestDispatcher("WEB-INF/student/reportcard.jsp").forward(request, response);
         
         
     }
