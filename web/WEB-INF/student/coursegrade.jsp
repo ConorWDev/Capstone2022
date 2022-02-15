@@ -27,7 +27,7 @@
         
             <form action="courseGradeController" style="border-style: solid">
                 This form is a place holder. When app is complete the data will be fed into page dynamically. Try student: cmc21-00001 course_id: 1<br>
-                enter student id:<input type="text" name="username"><br>
+                enter student username:<input type="text" name="username"><br>
                 enter course id: <input type="text" name="courseID"><br>
                 <input type="submit" value="get grades">
                 

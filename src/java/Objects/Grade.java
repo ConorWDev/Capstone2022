@@ -21,27 +21,40 @@ public class Grade {
     private String assignmentName;
     private String lessonName;
     
-    //TODO add courseName attributes via further DB queries
+    //possible TODO add courseName attributes via further DB queries
     //private String courseName;
     
     private double mark;
+    private double weight;
     
     private boolean isVisible;
     
     
     public Grade(String studentUsername, String assignmentID, String mark, String isVisible){
         
-        this.studentName =  dbOpsGen.getName(studentUsername);
-        this.assignmentName = dbOpsGrade.getAssignmentName(assignmentID);
-        this.lessonName = dbOpsGrade.getLessonName(assignmentID);
+        this.studentName =  dbOpsGen.getStudentName(studentUsername);
+        this.assignmentName = dbOpsGen.getAssignmentName(assignmentID);
+        this.lessonName = dbOpsGen.getLessonName(assignmentID);
+        this.weight = Double.parseDouble(dbOpsGrade.getWeight(assignmentID));
         
         this.mark = Double.parseDouble(mark);
+        
+        
+        
         if (isVisible.equalsIgnoreCase("Y")){
             this.isVisible = true;
         }
         else{
             this.isVisible = false;
         }
+    }
+    
+     public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
     public String getLessonName() {
