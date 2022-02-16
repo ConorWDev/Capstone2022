@@ -6,8 +6,8 @@
 package Controller.GradeServices;
 
 /**
- * altamish wrote this, did Seulgi receive this?
- * @author Administrator
+ *
+ * @author massvm
  */
 public class Test {
     //Seulgi

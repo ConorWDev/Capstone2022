@@ -9,6 +9,16 @@ and open the template in the editor.
 */
 
 
-body {
-    background-color: #e2e6ea
+
+    body {
+    background-color: #e2e6ea;
 }
+#navbottom {
+    background-color: #0069d9;
+}
+
+#navbottomlinks a{
+    color: white;
+    text-decoration: none;
+}
+

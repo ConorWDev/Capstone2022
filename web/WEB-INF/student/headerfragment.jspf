@@ -4,7 +4,7 @@
   <div class="container-fluid">
     <a href="#" class="navbar-brand">MGT</a>
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" aria-current="page" href="#">Student Name</a>
+      <a class="nav-item nav-link active" aria-current="page" href="#">${sessionScope.username}Student Name</a>
       
       
     </div>
@@ -13,13 +13,13 @@
 <nav class="navbar navbar-dark p-0 mb-5" id="navbottom">
   <div class="container-fluid pr-5">
       <div class="align-self-left" id="navbottomlinks">
-      <a href="/NavCon?nav=home" class="navbar-item">Home</a>
-      <a href="/NavCon?nav=course" class="navbar-item">Courses</a>
-      <a href="/NavCon?nav=grades" class="navbar-item">Grades</a>
-      <a href="/NavCon?nav=schedule" class="navbar-item">Schedule</a>
+      <a href="SiteNavigation?nav=home" class="navbar-item">Home</a>
+      <a href="SiteNavigation?nav=course" class="navbar-item">Courses</a>
+      <a href="SiteNavigation?nav=reportcard" class="navbar-item">Grades</a>
+      <a href="SiteNavigation?nav=schedule" class="navbar-item">Schedule</a>
       </div>
       <div class="navbar-nav">
-      <a class="nav-item nav-link active" aria-current="page" href="/NavCon?logout=true">Log Out?</a>
+      <a class="nav-item nav-link active" aria-current="page" href="SiteNavigation?logout=true">Log Out?</a>
       
       
     </div>

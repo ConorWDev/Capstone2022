@@ -3,23 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Navigation;
+package Controller.GradeServices;
 
+import DBOperations.DBOperationsGrade;
+import Objects.Grade;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Conor
+ * @author massvm
  */
-@WebServlet(name = "NavCon", urlPatterns = {"/NavCon"})
-public class NavCon extends HttpServlet {
+@WebServlet(name = "courseGradeController", urlPatterns = {"/courseGradeController"})
+public class courseGradeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,45 +33,17 @@ public class NavCon extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nav = request.getParameter("nav");
-        String logout = request.getParameter("logout");
-        HttpSession session = request.getSession();
         
+        DBOperationsGrade dbOps = new DBOperationsGrade();
         
-        if(logout!=null&&!logout.equals("")){
-          session.invalidate();
-          request.getRequestDispatcher("/WEB-INF/student/loginV2.jsp").forward(request, response); 
-        }
-        else if(nav!=null&&!nav.equals("")){
-            
-            if(nav.equals("home")){
-                request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
-            }
-            else if(nav.equals("course")){
-                request.getRequestDispatcher("/WEB-INF/student/course.jsp").forward(request, response); 
-            }
-            else if(nav.equals("reportcard")){
-                request.getRequestDispatcher("/WEB-INF/student/reportcard.jsp").forward(request, response); 
-            }
-            else if(nav.equals("schedule")){
-                request.getRequestDispatcher("/WEB-INF/student/schedule.jsp").forward(request, response); 
-            }
-            else{
-              request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response);   
-            }
-        }
-        else{
+        String username = request.getParameter("username");
+        String courseID = request.getParameter("courseID");
         
-         
-          request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
-        }
+        ArrayList<Grade> courseGrades = dbOps.getCourseGrades(username,courseID);
         
-        
-        
-        }
-        
-        
-    
+        request.setAttribute("courseGrades", courseGrades);
+        request.getRequestDispatcher("WEB-INF/student/coursegrade.jsp").forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

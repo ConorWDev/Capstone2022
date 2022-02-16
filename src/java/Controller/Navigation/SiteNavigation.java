@@ -6,12 +6,13 @@
 package Controller.Navigation;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +32,48 @@ public class SiteNavigation extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String nav = request.getParameter("nav");
+        String logout = request.getParameter("logout");
+        HttpSession session = request.getSession();
+        
+        
+        if(logout!=null&&!logout.equals("")){
+          session.invalidate();
+          request.getRequestDispatcher("/WEB-INF/student/login.jsp").forward(request, response); 
+        }
+        else if(nav!=null&&!nav.equals("")){
+            
+            if(nav.equals("home")){
+                request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
+            }
+            else if(nav.equals("course")){
+                request.getRequestDispatcher("/WEB-INF/student/course.jsp").forward(request, response); 
+            }
+            else if(nav.equals("reportcard")){
+                request.getRequestDispatcher("/WEB-INF/student/reportcard.jsp").forward(request, response); 
+            }
+            else if(nav.equals("schedule")){
+                request.getRequestDispatcher("/WEB-INF/student/schedule.jsp").forward(request, response); 
+            }
+            else{
+              request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response);   
+            }
+        }
+        else{
+        
+         
+          request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
