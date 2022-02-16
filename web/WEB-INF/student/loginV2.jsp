@@ -34,16 +34,16 @@
 
             <!--CHANGE THE # in "action='#'" HERE TO THE CORRECT SERVLET ADDRESS WHICH IS ACCEPTING THE FORM-->
 
-                            <form action="LogonCon" class="signin-form">
+                            <form action="LogonCon" method="Get" class="signin-form">
                                 <div class="form-group">
-                                    <input id="username" type="text" class="form-control" placeholder="Username" required>
+                                    <input id="username" type="text" class="form-control" placeholder="Username">
                                 </div>
                                 <div class="form-group">
-                                    <input id="password" type="password" class="form-control" placeholder="Password" required>
+                                    <input id="password" type="password" class="form-control" placeholder="Password">
                                     <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+                                    <button type="submit" name="submit" value="Sign In" class="form-control btn btn-primary submit px-3">Sign In</button>>
                                 </div>
                                 <div class="form-group d-md-flex">
                                     <div class="w-50">
