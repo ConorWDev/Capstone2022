@@ -39,7 +39,7 @@ public class NavCon extends HttpServlet {
         
         if(logout!=null&&!logout.equals("")){
           session.invalidate();
-          request.getRequestDispatcher("/WEB-INF/student/login.jsp").forward(request, response); 
+          request.getRequestDispatcher("/WEB-INF/student/loginV2.jsp").forward(request, response); 
         }
         else if(nav!=null&&!nav.equals("")){
             

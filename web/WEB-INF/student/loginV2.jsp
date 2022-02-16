@@ -3,7 +3,7 @@
     
     Author     : Altamish Lalani
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,7 @@
 
             <!--CHANGE THE # in "action='#'" HERE TO THE CORRECT SERVLET ADDRESS WHICH IS ACCEPTING THE FORM-->
 
-                            <form action="#" class="signin-form">
+                            <form action="LogonCon" class="signin-form">
                                 <div class="form-group">
                                     <input id="username" type="text" class="form-control" placeholder="Username" required>
                                 </div>
@@ -53,6 +53,11 @@
                                             <input type="checkbox" checked>
                                             <span class="checkmark"></span>
                                         </label>
+                                      <!--//Error Message 
+                                      Seek Service message for errors
+                                      
+                                      -->  
+                                       ${requestScope.message}
                                     </div>
                                     <div class="w-50 text-md-right">
                <!-- Change Href to point to Forgot Password Page -->

@@ -17,11 +17,14 @@ import java.sql.SQLException;
  * I have created the DBOperationsGeneral class to handle all general database operations. At this point i believe  that we will
  * create other more specific dbOperations within other specific db classes (i.e. grade db operations, announcement db operations)
  * to allow for greater organization.
+ *
+ * Altamish Lalani has changed the connection to be non-static to be used in LogonController. 
  * 
  */
 public class DBOperationsGeneral {
-    
-    public static Connection getConnection(){
+   
+    public Connection getConnection(){
+
         Connection conn = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");

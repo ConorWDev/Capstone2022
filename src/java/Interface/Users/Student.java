@@ -28,7 +28,7 @@ public class Student implements Serializable {
     Student(){}
     
     //Overloaded Constructor
-    Student(String userID){
+    public Student(String userID){
         this.email = "";
         this.firstName = "";
         this.lastName = "";
