@@ -19,7 +19,7 @@
         <p>Mass</p><br>
         </div>
         <div>
-        <form action="login" method="POST">
+        <form action="LogonCon" method="POST">
              <c:if test="${LogOut}">
                 <p>You have successfully logged out.</p>
             </c:if>
@@ -30,6 +30,7 @@
             <input type="password" name="password" Placeholder="Password" value="${password}"><br>
             <a href="forgotpass">Forgot Password?</a><br>
             <input type="submit" name="submit" value="Login"><br>
+            ${requestScope.message}
         </form>
         </div>
     </body>
