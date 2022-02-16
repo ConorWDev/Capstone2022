@@ -34,9 +34,9 @@
             </div> 
 
 
-            <div class="col-5 bg-white rounded p-2" >
+            <div class="col-5 bg-white rounded " style="height: 390px; width: 525px;">
                 <p class="h3 " style="color: #0069d9">Courses</p>
-                <div class="row">
+                <div class="row " style="align-content: center">
                     
                 <div class="col-6">
                         <div class="card border-0" >
@@ -45,14 +45,22 @@
                 </div>
                 </div>
                 
-                    <div class="col-6 align-content-center">
-                        <div class="card border-0 mb-4" >
+                    <div class="col-6 align-content-center mr-5">
+                        <div class="card border-0 mb-4 mr-3" >
                 <img class="card-body p-0" width="100%" src="short.png" alt="short"/>
                 </div>
-                <div class="card border-0 " >
-                <img class="card-body p-0 " width="100%" src="short.png" alt="short"/>
+                <div class="card border-0 " style="align-content: center">
+                <img class="card-body p-0 bottom-0" width="100%" src="short.png" alt="short"/>
+                
+                
                 </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-8"></div>
+                    <div class="col-4">    
+                    <a href="#" class="">See full course list</a>
+                </div>
                 </div>
             </div> 
 

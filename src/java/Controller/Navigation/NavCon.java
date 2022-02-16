@@ -32,10 +32,7 @@ public class NavCon extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String h = request.getParameter("home");
-        String g = request.getParameter("grades");
-        String c = request.getParameter("course");
-        String s = request.getParameter("schedule");
+        String nav = request.getParameter("nav");
         String logout = request.getParameter("logout");
         HttpSession session = request.getSession();
         
@@ -44,24 +41,36 @@ public class NavCon extends HttpServlet {
           session.invalidate();
           request.getRequestDispatcher("/WEB-INF/student/login.jsp").forward(request, response); 
         }
-        
-        if(h!=null&&!h.equals("")){
-        request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response);    
-        }
-        else if(g!=null&&!g.equals("")){
-        request.getRequestDispatcher("/WEB-INF/student/reportcard.jsp").forward(request, response);    
-        }
-        else if(c!=null&&!c.equals("")){
-        request.getRequestDispatcher("/WEB-INF/student/courselist.jsp").forward(request, response);    
-        }
-        else if(s!=null&&!s.equals("")){
-        request.getRequestDispatcher("/WEB-INF/student/schedule.jsp").forward(request, response);    
+        else if(nav!=null&&!nav.equals("")){
+            
+            if(nav.equals("home")){
+                request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
+            }
+            else if(nav.equals("course")){
+                request.getRequestDispatcher("/WEB-INF/student/course.jsp").forward(request, response); 
+            }
+            else if(nav.equals("reportcard")){
+                request.getRequestDispatcher("/WEB-INF/student/reportcard.jsp").forward(request, response); 
+            }
+            else if(nav.equals("schedule")){
+                request.getRequestDispatcher("/WEB-INF/student/schedule.jsp").forward(request, response); 
+            }
+            else{
+              request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response);   
+            }
         }
         else{
-        request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response);    
+        
+         
+          request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
         }
         
-    }
+        
+        
+        }
+        
+        
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
