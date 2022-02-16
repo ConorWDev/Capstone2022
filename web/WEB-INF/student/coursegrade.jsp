@@ -30,7 +30,6 @@
                 enter student username:<input type="text" name="username"><br>
                 enter course id: <input type="text" name="courseID"><br>
                 <input type="submit" value="get grades">
-                
             </form>
             
         <!-- Main -->

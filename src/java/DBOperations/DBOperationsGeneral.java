@@ -18,12 +18,12 @@ import java.sql.SQLException;
  * create other more specific dbOperations within other specific db classes (i.e. grade db operations, announcement db operations)
  * to allow for greater organization.
  *
- * Altamish Lalani has changed the connection to be non-static to be used in LogonController. 
+ * 
  * 
  */
 public class DBOperationsGeneral {
    
-    public Connection getConnection(){
+    public static Connection getConnection(){
 
         Connection conn = null;
         try{
