@@ -18,8 +18,8 @@ import java.sql.SQLException;
  * 
  */
 public class DBOperationsGeneral {
-    
-    private Connection getConnection(){
+   
+    public Connection getConnection(){
         Connection conn = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
