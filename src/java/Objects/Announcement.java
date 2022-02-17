@@ -26,7 +26,22 @@ public class Announcement {
     private String endDate;
     private boolean isVisible;
     
-    public Announcement (String announcementId,String cohortI,String startDate,String endDate,String text,String isVisible) throws SQLException{
+     public Announcement (String cohortId,String startDate,String endDate,String text,String isVisible) throws SQLException{
+        this.announcementId = "ann";
+        this.cohortId = cohortId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.text = text;
+       
+        if (isVisible.equalsIgnoreCase("Y")) {
+            this.isVisible = true;
+        } else {
+            this.isVisible = false;
+        }
+    }
+    
+    
+    public Announcement (String announcementId,String cohortId,String startDate,String endDate,String text,String isVisible) throws SQLException{
         this.announcementId = dbOpsAnnoun.getAnnouncementId(announcementId);
         this.cohortId = dbOpsAnnoun.getCohortId(announcementId);
         this.startDate = dbOpsAnnoun.getStartDate(announcementId);
