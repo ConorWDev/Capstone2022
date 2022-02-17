@@ -10,7 +10,7 @@ import DBOperations.DBOperationsModule;
 import java.io.Serializable;
 import java.sql.SQLException;
 
-public class Modules implements Serializable {
+public class Module implements Serializable {
     
     DBOperationsModule dbOpsMod = new DBOperationsModule();
     DBOperationsGeneral dbOpsGen = new DBOperationsGeneral();
@@ -18,10 +18,10 @@ public class Modules implements Serializable {
     private String name;
     private String description;
 
-    public Modules() {
+    public Module() {
     }
 
-    public Modules(String lessonId, String name, String description) throws SQLException {
+    public Module(String lessonId, String name, String description) throws SQLException {
         this.lessonId = dbOpsMod.getLessonId(lessonId);
         this.name = dbOpsMod.getName(lessonId);
         this.description = dbOpsMod.getDescription(lessonId);

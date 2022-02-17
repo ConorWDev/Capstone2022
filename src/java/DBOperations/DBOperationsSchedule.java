@@ -9,35 +9,35 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import Objects.Module;
+import Objects.Schedule;
 import java.sql.SQLException;
 
-public class DBOperationsModule {
+public class DBOperationsSchedule {
 
-    public ArrayList<Module> getAllModules(String lessonId){
+    public ArrayList<Schedule> getSchedules(String scheduleId){
         
-        ArrayList<Module> modules = new ArrayList<>();
-        String sql = "select * from ma_lesson where lesson_id = ?;";
+        ArrayList<Schedule> schedules = new ArrayList<>();
+        String sql = "select * from ma_schedule where schedule_id = ?;";
         
         try {
             Connection conn = DBOperationsGeneral.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
-            st.setString(1, lessonId);
+            st.setString(1, scheduleId);
             ResultSet rs = st.executeQuery();
             
            
-            String name;
-            String description;
+            String cohortId;
+            String url;
            
             
             while(rs.next()) {
-                lessonId = rs.getString(1);
-                name = rs.getString(2);
-                description = rs.getString(3);
+                scheduleId = rs.getString(1);
+                cohortId = rs.getString(2);
+                url = rs.getString(3);
                 
-                Module module = new Module(lessonId, name, description);
+                Schedule schedule = new Schedule(scheduleId, cohortId, url);
                 
-                modules.add(module);
+                schedules.add(schedule);
             }
             st.close();
             rs.close();
@@ -45,19 +45,19 @@ public class DBOperationsModule {
         } catch (Exception e) {
             }
           
-        return modules;
+        return schedules;
     }    
 
     
     
-    public String getLessonId (String lessonId) throws SQLException{
+    public String getScheduleId (String scheduleId) throws SQLException{
         String result = "";
-        String sql = "select lesson_id from ma_lesson where lesson_id=?;";
+        String sql = "select schedule_id from ma_schedule where schedule_id=?;";
         
                 try{
                     Connection conn = DBOperationsGeneral.getConnection();
                     PreparedStatement st = conn.prepareStatement(sql);
-                    st.setString(1, lessonId);
+                    st.setString(1, scheduleId);
                     ResultSet rs = st.executeQuery(sql);
                     
                     while (rs.next()) {
@@ -73,14 +73,14 @@ public class DBOperationsModule {
                 return result;
     }
     
-    public String getName (String lessonId) throws SQLException{
+    public String getCohortId (String scheduleId) throws SQLException{
         String result = "";
-        String sql = "select name from ma_lesson where lesson_id = ?;";
+        String sql = "select cohort_id from ma_schedule where schedule_id = ?;";
         
                 try{
                     Connection conn = DBOperationsGeneral.getConnection();
                     PreparedStatement st = conn.prepareStatement(sql);
-                    st.setString(1, lessonId);
+                    st.setString(1, scheduleId);
                     ResultSet rs = st.executeQuery(sql);
                     
                     while (rs.next()) {
@@ -96,14 +96,14 @@ public class DBOperationsModule {
                 return result;
     }
     
-    public String getDescription (String lessonId) throws SQLException{
+    public String getUrl (String scheduleId) throws SQLException{
         String result = "";
-        String sql = "select description from ma_lesson where lesson_id = ?;";
+        String sql = "select url from ma_schedule where schedule_id = ?;";
         
                 try{
                     Connection conn = DBOperationsGeneral.getConnection();
                     PreparedStatement st = conn.prepareStatement(sql);
-                    st.setString(1, lessonId);
+                    st.setString(1, scheduleId);
                     ResultSet rs = st.executeQuery(sql);
                     
                     while (rs.next()) {

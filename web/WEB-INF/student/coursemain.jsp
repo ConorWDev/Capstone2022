@@ -34,19 +34,19 @@
                     
                 <div class="col-6">
                         <div class="card border-0" >
-                    <img class="card-body p-0 align-content-center" width="100%" src="tall.png" alt="tall"/>
-                    <p class="h3" style="color:white">Grades</p>
+                    <a href="#"><img class="card-body p-0 align-content-center" width="100%" src="tall.png" alt="tall"/>
+                        <span class="h5">Grades</span></a>
                     
                 </div>
                 </div>
                 
                     <div class="col-6 align-content-center mr-5">
                         <div class="card border-0 mb-4 mr-3" >
-                <img class="card-body p-0" width="100%" src="short.png" alt="short"/>
-                </div>
+                <a href="#"><img class="card-body p-0" width="100%" src="short.png" alt="short"/>
+                <span id ="assignments" class="h5">Assignments</span></a></div>
                 <div class="card border-0" style="align-content: center">
-                <img class="card-body p-0" width="100%" src="short.png" alt="short"/>
-                
+                <a href="#"><img class="card-body p-0" width="100%" src="short.png" alt="short"/>
+                <span id="modules" class="h5">Modules</span></a>
                 
                 </div>
                     </div>
