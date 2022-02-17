@@ -5,7 +5,6 @@
  */
 package DBOperations;
 
-import DBOperations.DBOperationsGeneral;
 import Objects.Announcement;
 import java.util.ArrayList;
 import java.sql.*;

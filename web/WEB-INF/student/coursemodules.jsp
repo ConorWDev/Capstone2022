@@ -14,17 +14,36 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <link href="style.css" rel="stylesheet"/>
         <title>Modules</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Modules</title>
     </head>
     <body>
-
-       
-                    <%@include file="headerfragment.jspf" %>
-        
-        
-            <!-- Modules Table will be inserted here -->
+       <div>
+            <!-- Header Fragment will be inserted here -->
+            <%@include file="headerfragment.jspf" %>
         </div>
+        
+        <form action="modules" method="POST">
+            <div class="row">
+            <div class="col-1">
+
+            </div> 
+
+        <div id="modules" class="col-5 bg-white rounded" style="height: 425px; width: 350px;">
+                <p class="h3 " style="color: #0069d9">${courseid} - Modules</p>
+                <div class="row " style="align-content: center">
+             <table>
+                <c:forEach items="${module}" var="module">
+                    <tr>
+                        <td>${module.name}</td>
+                    </tr>
+                </c:forEach>
+                </table>
+        </div>
+        </div>
+                 <div class="col-1">
+
+            </div> 
+        </div>
+        </form>
         <div>
             <!-- Footer Fragment will be inserted here -->
             <%@include file="footerfragment.jspf" %>
