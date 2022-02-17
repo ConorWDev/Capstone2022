@@ -38,6 +38,28 @@ public class DBOperationsGeneral {
         }
         return conn;
     }
+
+    public String  login(String webUsername,String webPassword) {
+        
+        String result = "";
+            String sql = "SELECT COUNT(username) FROM ma_student WHERE username = ? AND password = ? ;";
+
+            try {
+                Connection conn = getConnection();
+                PreparedStatement st = conn.prepareStatement(sql);
+                st.setString(1, webUsername);
+                st.setString(2, webPassword);
+                ResultSet rs = st.executeQuery();
+
+                while (rs.next()) {
+                    result = rs.getString(1);
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return result;
+            
+    }
       
     public String getStudentName(String username){
         String result ="";

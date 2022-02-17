@@ -48,42 +48,28 @@ public class LogonCon extends HttpServlet {
 
         String webUsername = request.getParameter("username");
         String webPassword = request.getParameter("password");
-        
-        //BACKDOOR VULNERABLILITY
-        String backdoor = request.getParameter("b");
-        
-                
-                
+
         boolean login = false;
 
         if (webUsername == null && webPassword == null) {
-            request.getRequestDispatcher("WEB-INF/student/loginV2.jsp").forward(request, response);
+            //TESTING********************************************************************
+            request.setAttribute("message", "TestPASSED!");
+
+            request.getRequestDispatcher("WEB-INF/student/login.jsp").forward(request, response);
+
         } else if (webUsername.equals("") || webPassword.equals("")) {
             request.setAttribute("message", "Both values are required!");
-            request.getRequestDispatcher("WEB-INF/student/loginV2.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/student/login.jsp").forward(request, response);
         } //Check a valid entry
         else {
-            HttpSession session = request.getSession();
 
             DBOperationsGeneral dbOps = new DBOperationsGeneral();
-            String result = "";
-            String sql = "SELECT COUNT(username) FROM ma_student WHERE username = ? AND password = ? ;";
 
-            try {
-                Connection conn = dbOps.getConnection();
-                PreparedStatement st = conn.prepareStatement(sql);
-                st.setString(1, webUsername);
-                st.setString(2, webPassword);
-                ResultSet rs = st.executeQuery();
+            HttpSession session = request.getSession();
 
-                while (rs.next()) {
-                    result = rs.getString(1);
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            String result = dbOps.login(webUsername, webPassword);
 
-            if (result.equalsIgnoreCase("1")) {
+            if (result.equals("1")) {
                 login = true;
             }
 //PASSED

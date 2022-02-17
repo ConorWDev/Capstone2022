@@ -19,7 +19,7 @@ public class DBOperationsAnnouncement {
     public ArrayList<Announcement> getAnnouncements(String announcementId){
         
         ArrayList<Announcement> announcements = new ArrayList<>();
-        String sql = "select * from ma_announcement where announcement_id = ?;";
+        String sql = "select * from ma_announcement where announcement_id=?;";
         
         try {
             Connection conn = DBOperationsGeneral.getConnection();
@@ -54,12 +54,12 @@ public class DBOperationsAnnouncement {
           
         return announcements;
     }    
-
-    public ArrayList<Announcement> getCohortAnnouncements (String announcementId, String cohortId) throws SQLException {
+    
+        public ArrayList<Announcement> getCohortAnnouncements (String announcementId, String cohortId) throws SQLException {
         ArrayList<Announcement> cohortAnnouncements = new ArrayList<>();
         
 //      String result = "";
-        String sql = "select a.announcement_id, a.text, a.is_visible from ma_announcement a, ma_cohort c where a.cohort_id = c.cohort_id;";
+        String sql = "select a.text, a.is_visible from ma_announcement a, ma_cohort c where a.cohort_id = c.cohort_id;";
         
         try {
             Connection conn = DBOperationsGeneral.getConnection();
@@ -82,6 +82,47 @@ public class DBOperationsAnnouncement {
                 Announcement announcement = new Announcement(announcementId,cohortId,startDate,endDate,text,isVisible);
                 cohortAnnouncements.add(announcement);
             }
+            st.close();
+            rs.close();
+            conn.close();
+        } catch(Exception e){}
+            return cohortAnnouncements;
+    } 
+    
+    
+    public ArrayList<Announcement> getCohortAnnouncements (String cohortId)  {
+        ArrayList<Announcement> cohortAnnouncements = new ArrayList<>();
+        
+//      String result = "";
+        String sql = "select * from ma_announcement where cohort_id=?;";
+        
+        try {
+            Connection conn = DBOperationsGeneral.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortId);
+//            st.setString(2, cohortId);
+            ResultSet rs = st.executeQuery();
+            
+//            String announcementId ="";
+            String startDate ="";
+            String endDate = "";
+            String text = "";
+            String isVisible = "";
+            
+            while (rs.next()) {
+                startDate = rs.getString(3);
+                endDate = rs.getString(4);
+                text = rs.getString(5);
+                isVisible = rs.getString(6);
+                
+                Announcement announcement = new Announcement(cohortId,startDate,endDate,text,isVisible);
+                cohortAnnouncements.add(announcement);
+                
+                System.out.print("Succeed");
+                
+            }
+            
+            System.out.print("Outside");
             st.close();
             rs.close();
             conn.close();
