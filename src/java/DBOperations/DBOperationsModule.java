@@ -14,28 +14,31 @@ import java.sql.SQLException;
 
 public class DBOperationsModule {
 
-    public ArrayList<Module> getAllModules(String lessonId){
+    public ArrayList<Module> getAllModules(String courseID){
         
         ArrayList<Module> modules = new ArrayList<>();
-        String sql = "select * from ma_lesson where lesson_id = ?;";
+        String sql = "select l.lesson_id, l.name, l.description  \n" +
+                     "from ma_lesson l, ma_course_lesson cl where\n" +
+                     "l.lesson_id = cl.lesson_id \n" +
+                      "and cl.course_id = ?;";
         
         try {
             Connection conn = DBOperationsGeneral.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
-            st.setString(1, lessonId);
+            st.setString(1, courseID);
             ResultSet rs = st.executeQuery();
             
            
             String name;
             String description;
-           
+            String lessonID;
             
             while(rs.next()) {
-                lessonId = rs.getString(1);
+                lessonID = rs.getString(1);
                 name = rs.getString(2);
                 description = rs.getString(3);
                 
-                Module module = new Module(lessonId, name, description);
+                Module module = new Module(courseID, name, description);
                 
                 modules.add(module);
             }

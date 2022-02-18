@@ -36,7 +36,7 @@ public class courseModulesController extends HttpServlet {
         
         DBOperationsModule dbOpsMod = new DBOperationsModule();
         String link = request.getParameter("link");
-        String name = request.getParameter("name");
+        String name = request.getParameter("courseNum");
         
         
         if (link != null){
@@ -46,7 +46,7 @@ public class courseModulesController extends HttpServlet {
         
         ArrayList<Module> modules = dbOpsMod.getAllModules(name);
         
-        request.setAttribute("module", modules);
+        request.setAttribute("modules", modules);
         request.getRequestDispatcher("WEB-INF/student/coursemodules.jsp").forward(request, response);
         
     }
