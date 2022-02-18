@@ -39,7 +39,7 @@
                                     <input name="username" type="text" class="form-control" placeholder="Username">
                                 </div>
                                 <div class="form-group">
-                                    <input name="password" type="password" class="form-control" placeholder="Password">
+                                    <input id="password" name="password" type="password" class="form-control" placeholder="Password">
                                     <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
                                 <div class="form-group">
