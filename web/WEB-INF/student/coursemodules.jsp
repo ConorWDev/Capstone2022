@@ -26,17 +26,19 @@
             <div class="col-1">
 
             </div> 
+                 
 
         <div id="modules" class="col-5 bg-white rounded" style="height: 425px; width: 350px;">
                 <p class="h3 " style="color: #0069d9">${courseid} - Modules</p>
                 <div class="row " style="align-content: center">
-             <table>
-                <c:forEach items="${module}" var="module">
-                    <tr>
-                        <td>${module.name}</td>
-                    </tr>
+             
+                <c:forEach items="${requestScope.module}" var="modules">
+                    <div class="row">
+                  <div class="col-10">
+                      <a class="h5 col" href="courseModulesController?link=yes">${module.name}</a>
+                  </div>
+                    </div>
                 </c:forEach>
-                </table>
         </div>
         </div>
                  <div class="col-1">

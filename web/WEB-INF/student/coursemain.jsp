@@ -34,7 +34,7 @@
                     
                 <div class="col-6">
                         <div class="card border-0" >
-                    <a href="#"><img class="card-body p-0 align-content-center" width="100%" src="tall.png" alt="tall"/>
+                    <a href="SiteNavigation?nav=coursegrade"><img class="card-body p-0 align-content-center" width="100%" src="tall.png" alt="tall"/>
                         <span class="h5">Grades</span></a>
                     
                 </div>
@@ -42,10 +42,10 @@
                 
                     <div class="col-6 align-content-center mr-5">
                         <div class="card border-0 mb-4 mr-3" >
-                <a href="#"><img class="card-body p-0" width="100%" src="short.png" alt="short"/>
+                <a href="SiteNavigation?nav=assignments"><img class="card-body p-0" width="100%" src="short.png" alt="short"/>
                 <span id ="assignments" class="h5">Assignments</span></a></div>
                 <div class="card border-0" style="align-content: center">
-                <a href="#"><img class="card-body p-0" width="100%" src="short.png" alt="short"/>
+                <a href="SiteNavigation?nav=coursemodules"><img class="card-body p-0" width="100%" src="short.png" alt="short"/>
                 <span id="modules" class="h5">Modules</span></a>
                 
                 </div>
