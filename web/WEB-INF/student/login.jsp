@@ -1,7 +1,7 @@
 <%-- 
     Document   : login
-    Created on : Feb 8, 2022, 10:38:12 PM
     Author     : 816601
+    Suggestions and Title Contributer: Altamish Lalani 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>login</title>
+        <title>Mass Login - MTG Healthcare</title>
     </head>
     <body>
         <div>
