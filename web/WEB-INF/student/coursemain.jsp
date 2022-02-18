@@ -42,7 +42,7 @@
                 
                     <div class="col-6 align-content-center mr-5">
                         <div class="card border-0 mb-4 mr-3" >
-                <a href="SiteNavigation?nav=assignments"><img class="card-body p-0" width="100%" src="short.png" alt="short"/>
+                <a href="SiteNavigation?nav=assignments?assignment=#"><img class="card-body p-0" width="100%" src="short.png" alt="short"/>
                 <span id ="assignments" class="h5">Assignments</span></a></div>
                 <div class="card border-0" style="align-content: center">
                 <a href="SiteNavigation?nav=coursemodules"><img class="card-body p-0" width="100%" src="short.png" alt="short"/>
@@ -62,22 +62,30 @@
             </div> 
             <div class="col-3 bg-white rounded">
                 <p class="h3" style=" color: #0069d9">Announcements</p>
-                <c:forEach items="${announcement}" var="announcement">
-                <div class="card">
-                    <div class="card-header">
-                        <p class="h4" style="float:left;">${announcement.title} - ${announcement.courseID}</p>
-                        <span style="float:right;">
-                            <p class="h5">${announcement.date}</p>
-                        </span>
+                <c:forEach items="${requestScope.announcements}" var="announcements">
+                    <div class="row border-bottom">
+                        <!-- 7 annoucement should be the final output update file after -->
+                            <%--> <p class="h4" style="float:left;">${announcement.title} - ${announcement.courseID}</p> <--%>
+                            
+
+
+
+                            
+                            <p class=" d-inline">${announcements.startDate} <b>-</b> ${announcements.text}</p>
+                            
+                            
+                                
+                            
+                        
+
                     </div>
-                    <div class="card-body">
-                        <p>${announcement.body}</p>
-                        <span style="float:right">
-                            <a href="${announcement.url}" class="btn btn-primary">Read More...</a>
-                        </span>
+                    </c:forEach>
+                    <div class="row mt-0 pt-0 pb-3">
+                        <div class="col-5 align-content-end">
+                            <a href="SiteNavigation?nav=announcements" class="h6" style=" color: #0069d9; float: right">See All Announcements</a>
+                        </div>
                     </div>
                 </div>
-            </c:forEach>
                 <div class="row">
                     <div class="col-5">
                         <a href="SiteNavigation?nav=announcements" class="h6" style=" color: #0069d9">See All Announcements</a>

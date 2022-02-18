@@ -24,10 +24,12 @@
                 <p class="h3 " style="color: #0069d9">Courses</p>
                 <div class="row " style="align-content: center">
                     <div class="col-6">
-                        <div class="card border-0" >
-                            <img class="card-body p-0 align-content-center" width="100%" src="tall.png" alt="tall"/>
-                            <div class="card-img-overlay">
-                                <a hef="SiteNavigation?nav=coursemain" class="card-title h4" Style="color: white;">Course One</a>
+                        <div class="card border-0 stretched-link" >
+                            <img class="card-body p-0 align-content-cente stretched-link" width="100%" src="tall.png" alt="tall"/>
+                            
+                            <div class="card-img-overlay stretched-link card-link">
+                                
+                                <a href="SiteNavigation?courseNumber=1" class="card-title h4 stretched-link" Style="color: white;">Course One</a>
                                 <p Style="color: white;">Health Care Aide Role and Responsibility</p>
                             </div>
                         </div>
@@ -36,15 +38,15 @@
                         <div class="card border-0 mb-4 mr-3" >
                             <img class="card-body p-0 card-img" width="100%" src="short.png" alt="short"/>
                             <div class="card-img-overlay">
-                                <a hef="#" class="card-title h5" Style="color: white;">Course Two</a>
+                                <a hef="SiteNavigation?courseNumber=2" class="card-title h5 stretched-link" Style="color: white;">Course Two</a>
                                 <p Style="color: white;">The Human Body, Health and Chronic Illness</p>
                             </div>
 
                         </div>
                         <div class="card border-0 " style="align-content: center">
-                            <img class="card-body p-0 bottom-0" width="100%" src="short.png" alt="short"/>
+                            <img class="card-body p-0 bottom-0 a" width="100%" src="short.png" alt="short"/>
                             <div class="card-img-overlay">
-                                <a hef="#" class="card-title h5" Style="color: white;">Course Three</a>
+                                <a hef="SiteNavigation?courseNumber=3" class="card-title h5 stretched-link" Style="color: white;">Course Three</a>
                                 <p Style="color: white;">Communication and Documentation in the Health Care Environment </p>
                             </div>
                         </div>
@@ -54,6 +56,10 @@
                     <div class="col-8"></div>
                     <div class="col-4">
                         <a href="SiteNavigation?nav=courselist" class="">See full course list</a>
+                    </div>
+                    <div class="col-8"></div>
+                    <div class="col-4">
+                        <a href="SiteNavigation?courseNumber=1" class="danger">To course Main</a>
                     </div>
                 </div>
             </div>

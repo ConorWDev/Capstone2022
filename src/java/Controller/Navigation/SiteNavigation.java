@@ -7,9 +7,11 @@ package Controller.Navigation;
 import DBOperations.DBOperationsAnnouncement;
 import DBOperations.DBOperationsGeneral;
 import DBOperations.DBOperationsGrade;
+import DBOperations.DBOperationsModule;
 import Interface.Users.Student;
 import Objects.Announcement;
 import Objects.Grade;
+import Objects.Module;
 import Objects.StudentCourse;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -44,7 +46,7 @@ public class SiteNavigation extends HttpServlet {
         String nav = request.getParameter("nav");
         String logout = request.getParameter("logout");
         HttpSession session = request.getSession();
-        String course = request.getParameter("course#");
+        String courseNumber = request.getParameter("courseNumber");
         String username = (String)(session.getAttribute("username")); 
         Student student = (Student)(session.getAttribute("student"));
         
@@ -72,9 +74,18 @@ public class SiteNavigation extends HttpServlet {
           request.setAttribute("message", "User successfully logged out.");
           request.getRequestDispatcher("/WEB-INF/student/loginV2.jsp").forward(request, response); 
         }
+        else if(courseNumber!=null&&!courseNumber.equals("")){
+            DBOperationsModule dbOpsMod = new DBOperationsModule();
+            ArrayList<Module> modules = dbOpsMod.getAllModules(cohortID);
+            
+            request.setAttribute("modules", modules);
+            request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response);  
+          
+          
+            
+        }
         
-        
-        //Navigation Block 
+        //Navigation Block for Nav Bar Most of home page
         else if(nav!=null&&!nav.equals("")){
             if(nav.equals("home")){
                 request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
@@ -98,7 +109,7 @@ public class SiteNavigation extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/student/courselist.jsp").forward(request, response); 
             
             }
-            
+            //Leaving for now - possible deprecation
             else if(nav.equals("coursemain")){
                 request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response); 
             
