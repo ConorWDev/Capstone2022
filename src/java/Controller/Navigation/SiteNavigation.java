@@ -114,11 +114,17 @@ public class SiteNavigation extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response); 
             
             }
-            
-            
-            
             else if(nav.equals("announcements")){
                 request.getRequestDispatcher("/WEB-INF/student/announcements.jsp").forward(request, response); 
+            }
+            else if(nav.equals("coursegrade")){
+                request.getRequestDispatcher("/WEB-INF/student/coursegrade.jsp").forward(request, response); 
+            }
+            else if(nav.equals("coursemodules")){
+                request.getRequestDispatcher("/WEB-INF/student/coursemodules.jsp").forward(request, response); 
+            }
+            else if(nav.equals("assignments")){
+                request.getRequestDispatcher("/WEB-INF/student/assignments.jsp").forward(request, response); 
             }
             else{
               request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response);   
