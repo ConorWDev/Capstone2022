@@ -43,18 +43,18 @@ public class SiteNavigation extends HttpServlet {
         HttpSession session = request.getSession();
         String course = request.getParameter("course#");
         //Needs to change to get this from 
-        session.setAttribute("studentname", "Adam Ascot");
-        session.setAttribute("username", "cmc21-00001");
-        Student student = new Student("cmc21-00001");
+        
+        
+       //Landing at navigation services work
         DBOperationsAnnouncement dbOpsAn = new DBOperationsAnnouncement();
-       /*
+         
         try {
             ArrayList<Announcement> homeAnnoucements=dbOpsAn.getCohortAnnouncements("1");
             request.setAttribute("Announcements", homeAnnoucements);
         } catch (Exception ex) {
             Logger.getLogger(SiteNavigation.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
+        
         if(logout!=null&&!logout.equals("")){
           session.invalidate();
           request.setAttribute("message", "User successfully logged out.");
@@ -81,10 +81,16 @@ public class SiteNavigation extends HttpServlet {
             }
             else if(nav.equals("courselist")){
                 request.getRequestDispatcher("/WEB-INF/student/courselist.jsp").forward(request, response); 
+            
             }
+            
             else if(nav.equals("coursemain")){
                 request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response); 
+            
             }
+            
+            
+            
             else if(nav.equals("announcements")){
                 request.getRequestDispatcher("/WEB-INF/student/announcements.jsp").forward(request, response); 
             }
