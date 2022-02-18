@@ -26,15 +26,27 @@
                     <div class="col-6">
                         <div class="card border-0" >
                             <img class="card-body p-0 align-content-center" width="100%" src="tall.png" alt="tall"/>
-                            <div></div>
+                            <div class="card-img-overlay">
+                                <a hef="SiteNavigation?nav=coursemain" class="card-title h4" Style="color: white;">Course One</a>
+                                <p Style="color: white;">Health Care Aide Role and Responsibility</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-6 align-content-center mr-5">
                         <div class="card border-0 mb-4 mr-3" >
-                            <img class="card-body p-0" width="100%" src="short.png" alt="short"/>
+                            <img class="card-body p-0 card-img" width="100%" src="short.png" alt="short"/>
+                            <div class="card-img-overlay">
+                                <a hef="#" class="card-title h5" Style="color: white;">Course Two</a>
+                                <p Style="color: white;">The Human Body, Health and Chronic Illness</p>
+                            </div>
+                        
                         </div>
                         <div class="card border-0 " style="align-content: center">
                             <img class="card-body p-0 bottom-0" width="100%" src="short.png" alt="short"/>
+                            <div class="card-img-overlay">
+                                <a hef="#" class="card-title h5" Style="color: white;">Course Three</a>
+                                <p Style="color: white;">Communication and Documentation in the Health Care Environment </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -66,7 +78,7 @@
                 </div>
             </c:forEach>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-5">
                         <a href="SiteNavigation?nav=announcements" class="h6" style=" color: #0069d9">See All Announcements</a>
                     </div>
                 </div>
