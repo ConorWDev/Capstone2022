@@ -12,7 +12,7 @@
   <div class="container-fluid pr-5">
       <div class="align-self-left" id="navbottomlinks">
       <a href="SiteNavigation?nav=home" class="navbar-item">Home</a>
-      <a href="SiteNavigation?nav=course" class="navbar-item">Courses</a>
+      <a href="SiteNavigation?nav=courses" class="navbar-item">Courses</a>
       <a href="SiteNavigation?nav=reportcard" class="navbar-item">Grades</a>
       <a href="SiteNavigation?nav=schedule" class="navbar-item">Schedule</a>
       </div>

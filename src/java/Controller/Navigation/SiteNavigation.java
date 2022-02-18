@@ -64,11 +64,13 @@ public class SiteNavigation extends HttpServlet {
             if(nav.equals("home")){
                 request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
             }
-            else if(nav.equals("course")){
+            else if(nav.equals("courses")){
+                
                 request.getRequestDispatcher("/WEB-INF/student/courselist.jsp").forward(request, response); 
             }
             else if(nav.equals("reportcard")){
                 String username = (String)(session.getAttribute("username"));
+                
                 DBOperationsGrade dbOps = new DBOperationsGrade();
                 ArrayList<StudentCourse> courses = dbOps.getStudentCourses(username);
                 request.setAttribute("courses", courses);
