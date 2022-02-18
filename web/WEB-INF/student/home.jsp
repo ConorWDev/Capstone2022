@@ -38,7 +38,7 @@
                         <div class="card border-0 mb-4 mr-3" >
                             <img class="card-body p-0 card-img" width="100%" src="short.png" alt="short"/>
                             <div class="card-img-overlay">
-                                <a hef="SiteNavigation?courseNumber=2" class="card-title h5 stretched-link" Style="color: white;">Course Two</a>
+                                <a hef="SiteNavigation?nav=coursemain&courseNumber=2" class="card-title h5 stretched-link" Style="color: white;">Course Two</a>
                                 <p Style="color: white;">The Human Body, Health and Chronic Illness</p>
                             </div>
 
@@ -46,7 +46,7 @@
                         <div class="card border-0 " style="align-content: center">
                             <img class="card-body p-0 bottom-0 a" width="100%" src="short.png" alt="short"/>
                             <div class="card-img-overlay">
-                                <a hef="SiteNavigation?courseNumber=3" class="card-title h5 stretched-link" Style="color: white;">Course Three</a>
+                                <a hef="SiteNavigation?nav=coursemain&courseNumber=3" class="card-title h5 stretched-link" Style="color: white;">Course Three</a>
                                 <p Style="color: white;">Communication and Documentation in the Health Care Environment </p>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-8"></div>
                     <div class="col-4">
-                        <a href="SiteNavigation?courseNumber=1" class="danger">To course Main</a>
+                        <a href="SiteNavigation?nav=coursemain&courseNumber=1" class="bg-warning">To course Main</a>
                     </div>
                 </div>
             </div>
