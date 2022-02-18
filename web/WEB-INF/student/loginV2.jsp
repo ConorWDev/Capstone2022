@@ -32,40 +32,38 @@
                         <div class="login-wrap p-0">
                             <h3 class="mb-4 text-center">Have an account?</h3>
 
-            <!--CHANGE THE # in "action='#'" HERE TO THE CORRECT SERVLET ADDRESS WHICH IS ACCEPTING THE FORM-->
+                            <!--CHANGE THE # in "action='#'" HERE TO THE CORRECT SERVLET ADDRESS WHICH IS ACCEPTING THE FORM-->
 
-                            <form action="LogonCon" method="Get" class="signin-form">
+                            <form action="LogonCon" method="Post" class="signin-form">
                                 <div class="form-group">
-                                    <input id="username" type="text" class="form-control" placeholder="Username">
+                                    <input name="username" type="text" class="form-control" placeholder="Username">
                                 </div>
                                 <div class="form-group">
-                                    <input id="password" type="password" class="form-control" placeholder="Password">
+                                    <input name="password" type="password" class="form-control" placeholder="Password">
                                     <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" name="submit" value="Sign In" class="form-control btn btn-primary submit px-3">Sign In</button>>
+                                    <button type="submit" name="submit" value="Sign In" class="form-control btn btn-primary submit px-3">Sign In</button>
                                 </div>
                                 <div class="form-group d-md-flex">
                                     <div class="w-50">
-
-                 <!--Add id for Remember Me and Track in Servlet either as a cookie, or let the session live infinitely like FB does it.-->
+                                        <!--Add id for Remember Me and Track in Servlet either as a cookie, or let the session live infinitely like FB does it.-->
                                         <label class="checkbox-wrap checkbox-primary">Remember Me
                                             <input type="checkbox" checked>
                                             <span class="checkmark"></span>
                                         </label>
-                                      <!--//Error Message 
-                                      Seek Service message for errors
-                                      
-                                      -->  
-                                       ${requestScope.message}
                                     </div>
                                     <div class="w-50 text-md-right">
-               <!-- Change Href to point to Forgot Password Page -->
+                                        <!-- Change Href to point to Forgot Password Page -->
                                         <a href="#" style="color: #fff">Forgot Password</a>
                                     </div>
                                 </div>
                             </form>
-
+                            <div class="alert alert-error" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <p class ="text-lg-left">
+                                    ${requestScope.message} </p>
+                            </div>
                         </div>
                     </div>
                 </div>
