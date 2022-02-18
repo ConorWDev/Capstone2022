@@ -54,36 +54,40 @@
                 <div class="row">
                     <div class="col-8"></div>
                     <div class="col-4">    
-                    <a href="#" class="">See full course list</a>
+                    <a href="SiteNavigation?nav=courselist" class="">See full course list</a>
                 </div>
                 </div>
             </div> 
-
-
-
             <div class="col-1">
-
             </div> 
-            <div class="col-3 bg-white rounded shadow">
-                <p class="h3" style=" color: #0069d9">${courseid} - Announcements</p>
+            <div class="col-3 bg-white rounded">
+                <p class="h3" style=" color: #0069d9">Announcements</p>
+                <c:forEach items="${announcement}" var="announcement">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="h4" style="float:left;">${announcement.title} - ${announcement.courseID}</p>
+                        <span style="float:right;">
+                            <p class="h5">${announcement.date}</p>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <p>${announcement.body}</p>
+                        <span style="float:right">
+                            <a href="${announcement.url}" class="btn btn-primary">Read More...</a>
+                        </span>
+                    </div>
+                </div>
+            </c:forEach>
+                <div class="row">
+                    <div class="col-5">
+                        <a href="SiteNavigation?nav=announcements" class="h6" style=" color: #0069d9">See All Announcements</a>
+                    </div>
+                </div>
             </div>
-            <div>
-                <table>
-                <c:forEach items="${announcements}" var="announcements">
-                    <tr>
-                        <td>${announcements.title}</td>
-                        <td>${announcements.date}</td>
-                        <td>${announcement}<td>
-                    </tr>
-                </c:forEach>
-                </table>
-            </div>
-
             <div class="col-1">
-
-            </div> 
+            </div>
         </div>
-                                 
+                                
 
         </form>
     
