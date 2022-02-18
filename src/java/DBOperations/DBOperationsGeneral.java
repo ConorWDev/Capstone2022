@@ -39,7 +39,7 @@ public class DBOperationsGeneral {
         return conn;
     }
 
-    public String  login(String webUsername,String webPassword) {
+    public String login(String webUsername,String webPassword) {
         
         String result = "";
             String sql = "SELECT COUNT(username) FROM ma_student WHERE username = ? AND password = ? ;";
