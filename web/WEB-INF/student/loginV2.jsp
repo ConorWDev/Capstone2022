@@ -24,7 +24,18 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">
-                        <h2 class="heading-section">MASS</h2>
+                        <div class="css-3d-text" style="font-size: 69px;color: #ffffff; line-height: 1.6;font-family: 'Lato', Arial, sans-serif;text-shadow: 0px 0px 0 rgb(150,150,150),
+                             1px 1px 0 rgb(113,113,113),
+                             2px 2px 0 rgb(77,77,77),
+                             3px 3px 0 rgb(40,40,40),
+                             4px 4px 0 rgb(4,4,4),
+                             5px 5px 0 rgb(-33,-33,0),
+                             6px 6px 0 rgb(-69,-69,0),
+                             7px 7px  0 rgb(-105,-105,0),
+                             8px 8px 7px rgba(0,0,0,1),
+                             8px 8px 1px rgba(0,0,0,0.5),
+                             0px 0px 7px rgba(0,0,0,.2);">MASS</div>
+                        <h4 class="header-section" style ="color: white;line-height: 1; font-family: 'Lato', Arial, sans-serif;">MTG Healthcare Academy</h4>
                     </div>
                 </div>
                 <div class="row justify-content-center">
@@ -55,7 +66,7 @@
                                     </div>
                                     <div class="w-50 text-md-right">
                                         <!-- Change Href to point to Forgot Password Page -->
-                                        <a href="#" style="color: #fff">Forgot Password</a>
+                                        <a href="#" onClick="MyWindow = window.open('https://mtghealthcare.com/contact-us/', 'MyWindow', 'width=600,height=300'); return false;" style="color: #fff"><u>Forgot Password</u> </a>
                                     </div>
                                 </div>
                             </form>
