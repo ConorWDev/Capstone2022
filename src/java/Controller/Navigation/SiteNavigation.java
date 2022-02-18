@@ -123,6 +123,9 @@ public class SiteNavigation extends HttpServlet {
             else if(nav.equals("coursemodules")){
                 request.getRequestDispatcher("/WEB-INF/student/coursemodules.jsp").forward(request, response); 
             }
+            else if(nav.equals("assignments")){
+                request.getRequestDispatcher("/WEB-INF/student/assignments.jsp").forward(request, response); 
+            }
             else{
               request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response);   
             }
