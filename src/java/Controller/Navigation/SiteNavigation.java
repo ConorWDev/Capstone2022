@@ -91,7 +91,7 @@ public class SiteNavigation extends HttpServlet {
             }
         }
         else{
-          request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
+          request.getRequestDispatcher("/WEB-INF/student/coursemodules.jsp").forward(request, response); 
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

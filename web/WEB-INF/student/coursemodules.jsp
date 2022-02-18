@@ -21,6 +21,11 @@
             <%@include file="headerfragment.jspf" %>
         </div>
         
+        <form action="courseModulesController" style="border-style: solid">
+                enter course:<input type="text" name="courseNum"><br>
+                <input type="submit" value="get modules">
+        </form>
+        
         <form action="modules" method="POST">
             <div class="row">
             <div class="col-1">
@@ -32,10 +37,10 @@
                 <p class="h3 " style="color: #0069d9">${courseid} - Modules</p>
                 <div class="row " style="align-content: center">
              
-                <c:forEach items="${requestScope.module}" var="modules">
+                <c:forEach items="${requestScope.modules}" var="modules">
                     <div class="row">
                   <div class="col-10">
-                      <a class="h5 col" href="courseModulesController?link=yes">${module.name}</a>
+                      <a class="h5 col" href="courseModulesController?link=yes">${modules.name}</a>
                   </div>
                     </div>
                 </c:forEach>
