@@ -16,8 +16,18 @@
         <title>Course Grades</title>
     </head>
     <body>
+         
         <%@include file="headerfragment.jspf" %>
         <p class="h1 bg-danger">Under Construction </p>
+        <form action="courseListController" style="border-style: solid">
+                This form is a place holder. When app is complete the data will be fed into page dynamically. Try student: cmc21-00001<br>
+                enter student username:<input type="text" name="username"><br>
+                <input type="submit" value="get grades">
+        </form>
         <%@include file="footerfragment.jspf" %>
+        
+       
+        
+        
     </body>
 </html>
