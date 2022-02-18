@@ -58,7 +58,7 @@
                                     <a class=""  href="reportcardController?link=yes">${courses.courseName}</a>
                                 </div>
                                 <div class="col-2" style='align-content: center'>
-                                    <p>${courses.courseAvg}</p>
+                                    <p>${courses.courseAvg!="NaN"?courses.courseAvg:"-"}</p>
                                 </div>
                             </div>
                         </c:forEach>
