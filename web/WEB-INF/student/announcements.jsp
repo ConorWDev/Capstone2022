@@ -6,6 +6,7 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,6 +33,11 @@
                 <hr>
             </div>
         </div>
+        
+        <form action="announcementController" style="border-style: solid">
+            <h4>CohortId</h4> <input type="text" name="cohortId"><br>
+                <input type="submit" value="get announcement">
+        </form>        
         
         <div class="container">
             <div class="row">
@@ -64,9 +70,11 @@
                                 Potential Changes:
                                     - CourseID and courseName might be the same item, so it may not be necessary to separate them.
                             -->
+                            <%--
                             <c:forEach items="courses" var="course">
                                 <option value="${course.courseID}">${course.courseName}</option>
                             </c:forEach>
+                            <--%>
                         </select>
                     </p>
                 </div>
@@ -93,18 +101,19 @@
                     - Could also do a maximum word count, could be weird to shorten the body.
                     - Instead of leading to a URL of just a single announcement, we could have announcements in their full on this page.
             -->
-            <c:forEach items="${announcement}" var="announcement">
+            ${requestScope.announcements}
+            <c:forEach items="${requestScope.announcements}" var="announcements">
                 <div class="card">
                     <div class="card-header">
-                        <p class="h4" style="float:left;">${announcement.title} - ${announcement.courseID}</p>
+                        <%--> <p class="h4" style="float:left;">${announcement.title} - ${announcement.courseID}</p> <--%>
                         <span style="float:right;">
-                            <p class="h5">${announcement.date}</p>
+                            <p class="h5">${announcements.startDate}</p>
                         </span>
                     </div>
                     <div class="card-body">
-                        <p>${announcement.body}</p>
+                        <p>${announcements.text}</p>
                         <span style="float:right">
-                            <a href="${announcement.url}" class="btn btn-primary">Read More...</a>
+                            <%-- <a href="${announcement.url}" class="btn btn-primary">Read More...</a><--%>
                         </span>
                     </div>
                 </div>
