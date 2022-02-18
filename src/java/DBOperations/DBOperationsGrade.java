@@ -20,6 +20,15 @@ import java.util.ArrayList;
  */
 public class DBOperationsGrade {
     
+    
+    /*
+    *getGrades
+    This method returns all grades of a given student, regarless of
+    *course. This method may not currently be in use as students can only
+    *view grades in a course-by-course basis. May delete this method if
+    *neccessary
+    */
+    
       public ArrayList<Grade> getGrades(String username){
         
           ArrayList<Grade> grades = new ArrayList<>();
@@ -57,6 +66,16 @@ public class DBOperationsGrade {
         }
         return grades;
     }
+      
+      /*
+      *getCourseGrades
+      *This method takes two parameters. A student username and a courseID. These parameters
+      *are used to query the database for all grade information of a particular student and a
+      *particular course. The resulting grade information is used to construct grade objects.
+      *These objects are placed within an arrayList of grade objects which are then returned.
+      *This method is used for functionality in the course grade page.
+      */
+      
       
       public ArrayList<Grade> getCourseGrades (String studentUsername, String courseID){
           ArrayList<Grade> courseGrades = new ArrayList<>();
@@ -102,6 +121,13 @@ public class DBOperationsGrade {
           return courseGrades;
       }
       
+      /*
+      *getWeight
+      This method takes the assignmentID of any assignment and
+      returns the weight of that assignment as it is held within
+      the database
+      */
+      
       public String getWeight (String assignmentID){
           String weight = "";
           String sql = "select weight from ma_assignment where assignment_id = ?;";
@@ -126,6 +152,15 @@ public class DBOperationsGrade {
           
           return weight;
       }
+      
+      /*
+      getStudentCourses
+      This method takes as input the student username.
+      It returns an arrayList of StudentCourse objects. Student course objects
+      are objects that link together a particular course with a particular
+      student. This is useful for calculating student averages for entire
+      courses.
+      */
       
       public ArrayList<StudentCourse> getStudentCourses (String studentUsername){
           ArrayList<StudentCourse> courses = new ArrayList<>();
