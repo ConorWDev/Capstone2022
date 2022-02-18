@@ -5,6 +5,7 @@
  */
 package Controller.Navigation;
 import DBOperations.DBOperationsAnnouncement;
+import DBOperations.DBOperationsGeneral;
 import DBOperations.DBOperationsGrade;
 import Interface.Users.Student;
 import Objects.Announcement;
@@ -38,28 +39,42 @@ public class SiteNavigation extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Getting Any Data We Need from the page
+        
         String nav = request.getParameter("nav");
         String logout = request.getParameter("logout");
         HttpSession session = request.getSession();
         String course = request.getParameter("course#");
-        //Needs to change to get this from 
+        String username = (String)(session.getAttribute("username")); 
+        Student student = (Student)(session.getAttribute("student"));
         
         
-       //Landing at navigation services work
+        
+        //Block for doing the work to find relevant data
         DBOperationsAnnouncement dbOpsAn = new DBOperationsAnnouncement();
-         
-        try {
-            ArrayList<Announcement> homeAnnoucements=dbOpsAn.getCohortAnnouncements("1");
-            request.setAttribute("Announcements", homeAnnoucements);
-        } catch (Exception ex) {
-            Logger.getLogger(SiteNavigation.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
+        
+        DBOperationsGeneral dbOpsGen = new DBOperationsGeneral();
+        
+        String displayname = dbOpsGen.getStudentName(username);
+        request.setAttribute("displayname", displayname);
+        //request.setAttribute("cohortID","1");
+        
+        String cohortID = "1";//request.getParameter("cohortId");
+        
+        
+        ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
+        
+        request.setAttribute("announcements", announcements);
+        //LogOut Block
         if(logout!=null&&!logout.equals("")){
           session.invalidate();
           request.setAttribute("message", "User successfully logged out.");
           request.getRequestDispatcher("/WEB-INF/student/loginV2.jsp").forward(request, response); 
         }
+        
+        
+        //Navigation Block 
         else if(nav!=null&&!nav.equals("")){
             if(nav.equals("home")){
                 request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
@@ -69,7 +84,7 @@ public class SiteNavigation extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/student/courselist.jsp").forward(request, response); 
             }
             else if(nav.equals("reportcard")){
-                String username = (String)(session.getAttribute("username"));
+                
                 
                 DBOperationsGrade dbOps = new DBOperationsGrade();
                 ArrayList<StudentCourse> courses = dbOps.getStudentCourses(username);

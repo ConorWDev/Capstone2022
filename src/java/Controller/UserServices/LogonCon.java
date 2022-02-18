@@ -82,7 +82,7 @@ public class LogonCon extends HttpServlet {
                 session.setAttribute("username", webUsername);
                 session.setAttribute("student", new Student(webUsername));
 
-                request.getRequestDispatcher("/NavCon").forward(request, response);
+                request.getRequestDispatcher("/SiteNavigation").forward(request, response);
             } else {
                 request.setAttribute("message", "Hmmm, I don't recognize that username or password. Try again &#128512;");
                 request.getRequestDispatcher("WEB-INF/student/loginV2.jsp").forward(request, response);

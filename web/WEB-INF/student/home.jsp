@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-1">
             </div>
-            <div class="col-5 bg-white rounded " style="height: 390px; width: 525px;">
+            <div class="col-5 bg-white rounded " style=" width: 525px;">
                 <p class="h3 " style="color: #0069d9">Courses</p>
                 <div class="row " style="align-content: center">
                     <div class="col-6">
@@ -39,7 +39,7 @@
                                 <a hef="#" class="card-title h5" Style="color: white;">Course Two</a>
                                 <p Style="color: white;">The Human Body, Health and Chronic Illness</p>
                             </div>
-                        
+
                         </div>
                         <div class="card border-0 " style="align-content: center">
                             <img class="card-body p-0 bottom-0" width="100%" src="short.png" alt="short"/>
@@ -61,31 +61,33 @@
             </div>
             <div class="col-3 bg-white rounded">
                 <p class="h3" style=" color: #0069d9">Announcements</p>
-                <c:forEach items="${announcement}" var="announcement">
-                <div class="card">
-                    <div class="card-header">
-                        <p class="h4" style="float:left;">${announcement.title} - ${announcement.courseID}</p>
-                        <span style="float:right;">
-                            <p class="h5">${announcement.date}</p>
-                        </span>
+                <c:forEach items="${requestScope.announcements}" var="announcements">
+                    <div class="row border-bottom">
+                        <!-- 7 annoucement should be the final output update file after -->
+                            <%--> <p class="h4" style="float:left;">${announcement.title} - ${announcement.courseID}</p> <--%>
+                            
+
+
+
+                            
+                            <p class=" d-inline">${announcements.startDate} <b>-</b> ${announcements.text}</p>
+                            
+                            
+                                
+                            
+                        
+
                     </div>
-                    <div class="card-body">
-                        <p>${announcement.body}</p>
-                        <span style="float:right">
-                            <a href="${announcement.url}" class="btn btn-primary">Read More...</a>
-                        </span>
+                    </c:forEach>
+                    <div class="row mt-0 pt-0 pb-3">
+                        <div class="col-5 align-content-end">
+                            <a href="SiteNavigation?nav=announcements" class="h6" style=" color: #0069d9; float: right">See All Announcements</a>
+                        </div>
                     </div>
                 </div>
-            </c:forEach>
-                <div class="row">
-                    <div class="col-5">
-                        <a href="SiteNavigation?nav=announcements" class="h6" style=" color: #0069d9">See All Announcements</a>
-                    </div>
+                <div class="col-1">
                 </div>
             </div>
-            <div class="col-1">
-            </div>
-        </div>
-        <%@include file="footerfragment.jspf" %>
+            <%@include file="footerfragment.jspf" %>
     </body>
 </html>

@@ -14,18 +14,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link href="style.css" rel="stylesheet"/>
         <title>Announcements - MTG</title>
     </head>
     <body>
         <!-- Header -->
-        <div class="container">
-            <div class="row">
+        
                 <%@include file="headerfragment.jspf" %>
-            </div>
-        </div>
+        
 
         <!-- Main -->
         <div class="container">
+            
+            
+        
             <div class="row">
                 <div class="col">
                     <p class="h3">Announcements</p>                    
@@ -34,10 +36,7 @@
             </div>
         </div>
         
-        <form action="announcementController" style="border-style: solid">
-            <h4>CohortId</h4> <input type="text" name="cohortId"><br>
-                <input type="submit" value="get announcement">
-        </form>        
+        
         
         <div class="container">
             <div class="row">
@@ -101,7 +100,7 @@
                     - Could also do a maximum word count, could be weird to shorten the body.
                     - Instead of leading to a URL of just a single announcement, we could have announcements in their full on this page.
             -->
-            ${requestScope.announcements}
+            <p class="h4">Polishing Not Complete</p>
             <c:forEach items="${requestScope.announcements}" var="announcements">
                 <div class="card">
                     <div class="card-header">
@@ -122,11 +121,10 @@
         </div>
         
         <!-- Footer -->
-        <div class="container">
-            <div class="row">
+        
                 <%@include file="footerfragment.jspf" %>
-            </div>
-        </div>
+            
+        
         
     </body>
 </html>
