@@ -8,12 +8,6 @@ package Controller.UserServices;
 import DBOperations.DBOperationsGeneral;
 import Interface.Users.Student;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,8 +21,10 @@ import javax.servlet.http.HttpSession;
  * @author Altamish Lalani
  *
  *
- * To use LogonService class, a user must enter credentials from the following
- * prerequisites. 1) webUsername from login.jsp 2) webPassword from login.jsp
+ * To use LogonService class, a user must enter credentials with the following
+ * prerequisites in mind. 1) webUsername from login.jsp 2) webPassword from login.jsp
+ * The class will transact with the database and point the user in the right direction.
+ * 
  */
 @WebServlet(name = "LogonCon", urlPatterns = {"/LogonCon"})
 public class LogonCon extends HttpServlet {
@@ -52,14 +48,12 @@ public class LogonCon extends HttpServlet {
         boolean login = false;
 
         if (webUsername == null && webPassword == null) {
-            //TESTING********************************************************************
-            request.setAttribute("message", "TestPASSED!");
-
-            request.getRequestDispatcher("WEB-INF/student/login.jsp").forward(request, response);
+            
+            request.getRequestDispatcher("WEB-INF/student/loginV2.jsp").forward(request, response);
 
         } else if (webUsername.equals("") || webPassword.equals("")) {
-            request.setAttribute("message", "Both values are required!");
-            request.getRequestDispatcher("WEB-INF/student/login.jsp").forward(request, response);
+            request.setAttribute("message", "Sorry, please enter both<br>Username and Password to sign in.");
+            request.getRequestDispatcher("WEB-INF/student/loginV2.jsp").forward(request, response);
         } //Check a valid entry
         else {
 
@@ -90,7 +84,7 @@ public class LogonCon extends HttpServlet {
 
                 request.getRequestDispatcher("/NavCon").forward(request, response);
             } else {
-                request.setAttribute("message", "Invalid username or password!");
+                request.setAttribute("message", "Hmmm, I don't recognize that username or password. Try again &#128512;");
                 request.getRequestDispatcher("WEB-INF/student/loginV2.jsp").forward(request, response);
             }
         }
