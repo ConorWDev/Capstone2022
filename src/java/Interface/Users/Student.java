@@ -5,6 +5,7 @@
  */
 package Interface.Users;
 
+import DBOperations.DBOperationsGeneral;
 import java.io.Serializable;
 
 /**
@@ -44,7 +45,11 @@ public class Student implements Serializable {
         this.lastName = dbOps.getStudentLname;
         
         */
+        DBOperationsGeneral dbOps = new DBOperationsGeneral();
         this.userID = userID;
+        this.firstName = dbOps.getStudentName(userID);
+        this.lastName = this.firstName;
+        this.email = "studentSample@MTGacademy.ca";
        
     }
 
