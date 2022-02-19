@@ -55,7 +55,7 @@
                     <c:forEach var="courses" items="${requestScope.courses}">
                             <div class="row">
                                 <div class="col-10">
-                                    <a class=""  href="reportcardController?link=yes">${courses.courseName}</a>
+                                    <a class=""  href="SiteNavigation?nav=coursegrade">${courses.courseName}</a>
                                 </div>
                                 <div class="col-2" style='align-content: center'>
                                     <p>${courses.courseAvg!="NaN"?courses.courseAvg:"-"}</p>
