@@ -98,6 +98,12 @@ public class SiteNavigation extends HttpServlet {
             else if(nav.equals("courses")){
                 request.getRequestDispatcher("/WEB-INF/student/courselist.jsp").forward(request, response); 
             }
+            /*The reportcard else if statement requires one variables to dynamically load reportcard information
+            1) the username of the student (which is obtained above from the session scope)
+            
+            This variable is used within the getStudentCourses method to obtain an arraylist of studentCourse objects that
+            is then fed via an attribute to the reportcard page
+            */
             else if(nav.equals("reportcard")){
                 ArrayList<StudentCourse> courses = dbOpsGrade.getStudentCourses(username);
                 request.setAttribute("courses", courses);
@@ -116,7 +122,7 @@ public class SiteNavigation extends HttpServlet {
             else if(nav.equals("announcements")){
                 request.getRequestDispatcher("/WEB-INF/student/announcements.jsp").forward(request, response); 
             }
-            /*The course grade else if statement requires two variables to dynamically load courseGrade information
+            /*The coursegrade else if statement requires two variables to dynamically load courseGrade information
             1) the username of the student (which is obtained above from the session scope)
             2) the courseid (which is passed via an href variable in reportcard TODO as well as eventually from courseMain link)
             
