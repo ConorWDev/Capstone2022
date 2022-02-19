@@ -25,6 +25,7 @@
             </div>
         </div>
         
+            <!-- Taking out this form. dynamic loading will occur within SiteNavigation, not courseGradeController 
             <form action="courseGradeController" style="border-style: solid">
                 This form is a place holder. When app is complete the data will be fed into page dynamically. Try student: cmc21-00001 course_id: 1<br>
                 enter student username:<input type="text" name="username"><br>
@@ -32,6 +33,7 @@
                 <input type="submit" value="get grades">
                 
             </form>
+            -->
             
         <!-- Main -->
         <div class="container">
