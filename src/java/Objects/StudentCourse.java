@@ -20,12 +20,14 @@ public class StudentCourse {
     
     DBOperationsGrade dbOps = new DBOperationsGrade();
     
+    private String courseID;
     private String courseName;
     private double courseAvg;
     
     public StudentCourse(String studentUsername, String courseName, String courseID){
         this.courseName = courseName;
         this.courseAvg = caclculateCourseAvg(studentUsername,courseID);
+        this.courseID = courseID;
     }
     
     private double caclculateCourseAvg(String studentUsername, String courseID){
@@ -52,6 +54,14 @@ public class StudentCourse {
         courseAvg = Double.parseDouble(formatedDouble);
         
         return courseAvg;
+    }
+
+    public String getCourseID() {
+        return courseID;
+    }
+
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
     }
 
     public String getCourseName() {
