@@ -41,33 +41,42 @@ public class SiteNavigation extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         //Getting Any Data We Need from the page
         
-        String nav = request.getParameter("nav");
-        String logout = request.getParameter("logout");
+        /*Here we obtain from the HttpSession object...
+        *  1) the username of the student ex.cmc21-00001
+        *  2) a student object which contains attibutes relevant to a particular student 
+        */
         HttpSession session = request.getSession();
-        String courseNumber = request.getParameter("courseNumber");
         String username = (String)(session.getAttribute("username")); 
         Student student = (Student)(session.getAttribute("student"));
         
+        //obtaining values from request scope. May be able to clean this up
+        String nav = request.getParameter("nav");
+        String logout = request.getParameter("logout");
+                //note: these two variables seem to hold the same value
+                //will come back and determine if they can be one variable
+        String courseNumber = request.getParameter("courseNumber");
+        String courseid = request.getParameter("courseid");
         
-        
-        //Block for doing the work to find relevant data
+        //DBOperations classes are instantiated
         DBOperationsAnnouncement dbOpsAn = new DBOperationsAnnouncement();
-        
-        
         DBOperationsGeneral dbOpsGen = new DBOperationsGeneral();
+        DBOperationsGrade dbOpsGrade = new DBOperationsGrade();
         
+        //Obtain the name of the student who is logging in
         String displayname = dbOpsGen.getStudentName(username);
         request.setAttribute("displayname", displayname);
         //request.setAttribute("cohortID","1");
         
+        //currently setting the cohortID statically, using within getCohortAnnouncement
         String cohortID = "1";//request.getParameter("cohortId");
         
         
         ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
-        
         request.setAttribute("announcements", announcements);
+        
         //LogOut Block
         if(logout!=null&&!logout.equals("")){
           session.invalidate();
@@ -80,25 +89,17 @@ public class SiteNavigation extends HttpServlet {
             
             request.setAttribute("modules", modules);
             request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response);  
-          
-          
-            
         }
-        
         //Navigation Block for Nav Bar Most of home page
         else if(nav!=null&&!nav.equals("")){
             if(nav.equals("home")){
                 request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
             }
             else if(nav.equals("courses")){
-                
                 request.getRequestDispatcher("/WEB-INF/student/courselist.jsp").forward(request, response); 
             }
             else if(nav.equals("reportcard")){
-                
-                
-                DBOperationsGrade dbOps = new DBOperationsGrade();
-                ArrayList<StudentCourse> courses = dbOps.getStudentCourses(username);
+                ArrayList<StudentCourse> courses = dbOpsGrade.getStudentCourses(username);
                 request.setAttribute("courses", courses);
                 request.getRequestDispatcher("/WEB-INF/student/reportcard.jsp").forward(request, response); 
             }
@@ -106,18 +107,25 @@ public class SiteNavigation extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/student/schedule.jsp").forward(request, response); 
             }
             else if(nav.equals("courselist")){
-                request.getRequestDispatcher("/WEB-INF/student/courselist.jsp").forward(request, response); 
-            
+                request.getRequestDispatcher("/WEB-INF/student/courselist.jsp").forward(request, response);
             }
             //Leaving for now - possible deprecation
             else if(nav.equals("coursemain")){
-                request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response); 
-            
+                request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response);
             }
             else if(nav.equals("announcements")){
                 request.getRequestDispatcher("/WEB-INF/student/announcements.jsp").forward(request, response); 
             }
+            /*The course grade else if statement requires two variables to dynamically load courseGrade information
+            1) the username of the student (which is obtained above from the session scope)
+            2) the courseid (which is passed via an href variable in reportcard TODO as well as eventually from courseMain link)
+            
+            These two variables are used within the getCourseGrade method to obtain an arraylist of courseGrade objects that
+            is then fed via an attribute to the courseGrade page
+            */
             else if(nav.equals("coursegrade")){
+                ArrayList<Grade> courseGrades = dbOpsGrade.getCourseGrades(username, courseid);
+                request.setAttribute("courseGrades", courseGrades);
                 request.getRequestDispatcher("/WEB-INF/student/coursegrade.jsp").forward(request, response); 
             }
             else if(nav.equals("coursemodules")){
