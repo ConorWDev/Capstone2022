@@ -34,6 +34,9 @@ public class reportcardController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        /*
+        
+        ReportCard controller is no longer in use. Will be deleted
         
         DBOperationsGrade dbOps = new DBOperationsGrade();
         String username = request.getParameter("username");
@@ -43,12 +46,10 @@ public class reportcardController extends HttpServlet {
             //TODO add functionallity to assign course attribute so course grade page will dynamically pull up grades from that given courses
             request.getRequestDispatcher("WEB-INF/student/coursegrade.jsp").forward(request, response);
         }
-        
-        ArrayList<StudentCourse> courses = dbOps.getStudentCourses(username);
-        
-        request.setAttribute("courses", courses);
-        request.getRequestDispatcher("WEB-INF/student/reportcard.jsp").forward(request, response);
-        
+        //ArrayList<StudentCourse> courses = dbOps.getStudentCourses(username);
+        //request.setAttribute("courses", courses);
+        //request.getRequestDispatcher("WEB-INF/student/reportcard.jsp").forward(request, response);
+        */
         
     }
 
