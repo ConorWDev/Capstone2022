@@ -34,6 +34,11 @@ public class courseGradeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
+        
+        /*
+        TODO delete this servlet
+        
         DBOperationsGrade dbOps = new DBOperationsGrade();
         
         String username = request.getParameter("username");
@@ -43,7 +48,8 @@ public class courseGradeController extends HttpServlet {
         
         request.setAttribute("courseGrades", courseGrades);
         request.getRequestDispatcher("WEB-INF/student/coursegrade.jsp").forward(request, response);
-    }
+        */
+        }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
