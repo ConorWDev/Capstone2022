@@ -25,10 +25,7 @@ public class Student implements Serializable {
     private String email = "";
     //opting to store full name within one field
     private String fullName = "";
-    //this arraylist will hold cohort codes that can later be referenced
-    //the arraylist will allow for multiple cohorts in the case that a student
-    //is assigned to multiple cohorts over the period of time the are at MTG 
-    private ArrayList<String> cohortList = new ArrayList<>();
+    private String cohortID = "";
 
     
     //Java Bean rule
@@ -39,7 +36,7 @@ public class Student implements Serializable {
         this.userID = userID;
         this.fullName = dbOps.getStudentName(userID);
         this.email = dbOps.getStudentEmail(userID);
-        this.cohortList = dbOps.getCohortList(userID);
+        this.cohortID = dbOps.getCohortID(userID);
     }
 
     public String getUserID() {
@@ -54,8 +51,8 @@ public class Student implements Serializable {
         return fullName;
     }
 
-    public ArrayList<String> getCohortList() {
-        return cohortList;
+    public String getCohortID() {
+        return cohortID;
     }
 
    
