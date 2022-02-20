@@ -21,6 +21,7 @@
             <%@include file="headerfragment.jspf" %>
         </div>
         
+        
         <form action="course" method="POST">
                 <div class="row">
             <div class="col-1">
@@ -29,12 +30,12 @@
 
 
             <div class="col-5 bg-white rounded p-2">
-                <p class="h3 " style="color: #0069d9">${courseid} - Current Course</p>
+                <p class="h3 " style="color: #0069d9">${requestScope.courseName}</p>
                 <div class="row " style="align-content: center">
                     
                 <div class="col-6">
                         <div class="card border-0" >
-                    <a href="SiteNavigation?nav=coursegrade"><img class="card-body p-0 align-content-center" width="100%" src="tall.png" alt="tall"/>
+                            <a href="SiteNavigation?nav=coursegrade&courseid=${requestScope.courseid}"><img class="card-body p-0 align-content-center" width="100%" src="tall.png" alt="tall"/>
                         <span class="h5">Grades</span></a>
                     
                 </div>
@@ -52,10 +53,23 @@
                 <span id ="assignments" class="h5">Assignments</span></a></div> -->
                 
                 
+                
+                 
                 <div class="card border-0" style="align-content: center">    
-                <a href="SiteNavigation?nav=coursemodules"><img class="card-body p-0" width="100%" src="short.png" alt="short"/>
-                <span id="modules" class="h5">Modules</span></a>
-                </div>                
+                    <a href=""><img class="card-body p-0" width="100%" src="short.png" alt="short"/> 
+                <span id="modules" class="h5">${module.name}</span></a>
+                </div> 
+             
+                
+                
+                <!--Here is the newly added loop for dynamic modules of each course. Some visual changes from front end are required here
+                clicking these bubbles will take you to the modulemain.jsp page-->
+                
+                
+                <c:forEach items="${requestScope.modules}" var="module">
+                    <a href="SiteNavigation?nav=modulemain&moduleid=${module.lessonId}">${module.name}</a>
+                </c:forEach>
+                
                 
                     </div>
                 </div>
