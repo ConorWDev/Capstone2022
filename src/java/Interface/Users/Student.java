@@ -39,6 +39,7 @@ public class Student implements Serializable {
         this.userID = userID;
         this.fullName = dbOps.getStudentName(userID);
         this.email = dbOps.getStudentEmail(userID);
+        this.cohortList = dbOps.getCohortList(userID);
     }
 
     public String getUserID() {
