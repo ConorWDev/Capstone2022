@@ -33,7 +33,8 @@ public class courseModulesController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        /*
+        //TODO delete
         DBOperationsModule dbOpsMod = new DBOperationsModule();
         String link = request.getParameter("link");
         String name = request.getParameter("courseNum");
@@ -44,11 +45,11 @@ public class courseModulesController extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/student/coursegrade.jsp").forward(request, response);
         }
         
-        ArrayList<Module> modules = dbOpsMod.getAllModules(name);
+        //ArrayList<Module> modules = dbOpsMod.getAllModules(name);
         
-        request.setAttribute("modules", modules);
+        //request.setAttribute("modules", modules);
         request.getRequestDispatcher("WEB-INF/student/coursemodules.jsp").forward(request, response);
-        
+        */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

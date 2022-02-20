@@ -14,7 +14,8 @@ import java.sql.SQLException;
 
 public class DBOperationsModule {
 
-    public ArrayList<Module> getAllModules(String courseID){
+    //return all modules for a given course
+    public ArrayList<Module> getCourseModules(String courseID){
         
         ArrayList<Module> modules = new ArrayList<>();
         String sql = "select l.lesson_id, l.name, l.description  \n" +
@@ -38,7 +39,7 @@ public class DBOperationsModule {
                 name = rs.getString(2);
                 description = rs.getString(3);
                 
-                Module module = new Module(courseID, name, description);
+                Module module = new Module(lessonID, name, description);
                 
                 modules.add(module);
             }
@@ -49,79 +50,57 @@ public class DBOperationsModule {
             }
           
         return modules;
-    }    
-
-    
-    
-    public String getLessonId (String lessonId) throws SQLException{
-        String result = "";
-        String sql = "select lesson_id from ma_lesson where lesson_id=?;";
-        
-                try{
-                    Connection conn = DBOperationsGeneral.getConnection();
-                    PreparedStatement st = conn.prepareStatement(sql);
-                    st.setString(1, lessonId);
-                    ResultSet rs = st.executeQuery(sql);
-                    
-                    while (rs.next()) {
-                        result = rs.getString(1);
-                    }
-                    
-                    st.close();
-                    rs.close();
-                    conn.close();
-                    
-                } catch(Exception e){}
-                
-                return result;
     }
     
-    public String getName (String lessonId) throws SQLException{
-        String result = "";
+    //parameter moduleId. return module name
+    public String getModuleName(String moduleID){
+        
+        String moduleName = "";
         String sql = "select name from ma_lesson where lesson_id = ?;";
         
-                try{
-                    Connection conn = DBOperationsGeneral.getConnection();
-                    PreparedStatement st = conn.prepareStatement(sql);
-                    st.setString(1, lessonId);
-                    ResultSet rs = st.executeQuery(sql);
-                    
-                    while (rs.next()) {
-                        result = rs.getString(2);
-                    }
-                    
-                    st.close();
-                    rs.close();
-                    conn.close();
-                    
-                } catch(Exception e){}
-                
-                return result;
+        try {
+            Connection conn = DBOperationsGeneral.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, moduleID);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()) {
+                moduleName = rs.getString(1);
+            }
+            st.close();
+            rs.close();
+            conn.close();
+        } catch (Exception e) {
+            }
+          
+        return moduleName;
     }
     
-    public String getDescription (String lessonId) throws SQLException{
-        String result = "";
+    
+    //parameter moduleId. return module description
+    public String getModuleDescription(String moduleID){
+        
+        String moduleName = "";
         String sql = "select description from ma_lesson where lesson_id = ?;";
         
-                try{
-                    Connection conn = DBOperationsGeneral.getConnection();
-                    PreparedStatement st = conn.prepareStatement(sql);
-                    st.setString(1, lessonId);
-                    ResultSet rs = st.executeQuery(sql);
-                    
-                    while (rs.next()) {
-                        result = rs.getString(3);
-                    }
-                    
-                    
-                    st.close();
-                    rs.close();
-                    conn.close();
-                    
-                } catch(Exception e){}
-                
-                return result;
+        try {
+            Connection conn = DBOperationsGeneral.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, moduleID);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()) {
+                moduleName = rs.getString(1);
+            }
+            st.close();
+            rs.close();
+            conn.close();
+        } catch (Exception e) {
+            }
+          
+        return moduleName;
     }
-
+    
+    
     
 }

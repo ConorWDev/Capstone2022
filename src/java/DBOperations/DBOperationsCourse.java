@@ -65,4 +65,31 @@ public class DBOperationsCourse {
         return courses;
     }
     
+    
+    //enter the courseId and get the courseName in return
+    public String getCourseName (String courseID){
+        String courseName = "";
+        String sql="select name from ma_course where course_id =?;";
+                
+        try{
+            Connection conn = DBOperationsGeneral.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, courseID);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+                courseName = rs.getString(1);
+            }
+            
+            st.close();
+            rs.close();
+            conn.close();
+            
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return courseName;
+    }
+    
 }
