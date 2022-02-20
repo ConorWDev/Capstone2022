@@ -65,7 +65,9 @@ public class SiteNavigation extends HttpServlet {
         DBOperationsAnnouncement dbOpsAn = new DBOperationsAnnouncement();
         DBOperationsGeneral dbOpsGen = new DBOperationsGeneral();
         DBOperationsGrade dbOpsGrade = new DBOperationsGrade();
-        DBOperationsStudent dbOpsStud = new DBOperationsStudent(); 
+        DBOperationsStudent dbOpsStud = new DBOperationsStudent();
+        DBOperationsModule dbOpsMod = new DBOperationsModule();
+        
         
         String cohortID ="1";
         
@@ -75,8 +77,9 @@ public class SiteNavigation extends HttpServlet {
           request.setAttribute("message", "User successfully logged out.");
           request.getRequestDispatcher("/WEB-INF/student/loginV2.jsp").forward(request, response); 
         }
+            
         else if(courseNumber!=null&&!courseNumber.equals("")){
-            DBOperationsModule dbOpsMod = new DBOperationsModule();
+            
             ArrayList<Module> modules = dbOpsMod.getAllModules(cohortID);
             
             request.setAttribute("modules", modules);
@@ -109,6 +112,7 @@ public class SiteNavigation extends HttpServlet {
             }
             //Leaving for now - possible deprecation
             else if(nav.equals("coursemain")){
+                
                 request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response);
             }
             /*The announcement else if statement requires one variable to dynamically load announcement information
