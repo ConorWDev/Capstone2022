@@ -93,9 +93,6 @@ public class SiteNavigation extends HttpServlet {
                 
                 request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
             }
-            else if(nav.equals("courses")){
-                request.getRequestDispatcher("/WEB-INF/student/courselist.jsp").forward(request, response); 
-            }
             /*The reportcard else if block requires one variables to dynamically load reportcard information
             1) the username of the student (which is obtained above from the session scope)
             
@@ -109,10 +106,6 @@ public class SiteNavigation extends HttpServlet {
             }
             else if(nav.equals("schedule")){
                 request.getRequestDispatcher("/WEB-INF/student/schedule.jsp").forward(request, response); 
-            }
-            //will be depricated. courselist exists on home.jsp
-            else if(nav.equals("courselist")){
-                request.getRequestDispatcher("/WEB-INF/student/courselist.jsp").forward(request, response);
             }
             /*The coursemain else if block requires one variable to dynamically load all modules for a specific course
             1) the courseID (this is passed through an href redirect on the home page) is used as an argument for getCourseModules
