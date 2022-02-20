@@ -27,7 +27,7 @@
          ${requestScope.moduleName} <br>
          ${requestScope.moduleDescription}
          
-         
+         <!--TODO add assignment and document functionality (this will need amendment to the database i.e., and added document table -->
          
          
          <%@include file="footerfragment.jspf" %>
