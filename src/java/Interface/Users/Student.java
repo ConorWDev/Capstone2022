@@ -28,7 +28,7 @@ public class Student implements Serializable {
     //this arraylist will hold cohort codes that can later be referenced
     //the arraylist will allow for multiple cohorts in the case that a student
     //is assigned to multiple cohorts over the period of time the are at MTG 
-    private ArrayList<String> cohortList;
+    private ArrayList<String> cohortList = new ArrayList<>();
 
     
     //Java Bean rule
