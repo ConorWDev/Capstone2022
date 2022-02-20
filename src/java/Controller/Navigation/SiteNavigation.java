@@ -8,6 +8,7 @@ import DBOperations.DBOperationsAnnouncement;
 import DBOperations.DBOperationsGeneral;
 import DBOperations.DBOperationsGrade;
 import DBOperations.DBOperationsModule;
+import DBOperations.DBOperationsStudent;
 import Interface.Users.Student;
 import Objects.Announcement;
 import Objects.Grade;
@@ -46,11 +47,11 @@ public class SiteNavigation extends HttpServlet {
         
         /*Here we obtain from the HttpSession object...
         *  1) the username of the student ex.cmc21-00001
-        *  2) a student object which contains attibutes relevant to a particular student 
+        *  2) a Student object called student which hold information about the student object created at login
         */
         HttpSession session = request.getSession();
-        String username = (String)(session.getAttribute("username")); 
-        Student student = (Student)(session.getAttribute("student"));
+        String username = (String)(session.getAttribute("username"));
+        Student student = (Student)session.getAttribute("student");
         
         //obtaining values from request scope. May be able to clean this up
         String nav = request.getParameter("nav");
@@ -64,18 +65,9 @@ public class SiteNavigation extends HttpServlet {
         DBOperationsAnnouncement dbOpsAn = new DBOperationsAnnouncement();
         DBOperationsGeneral dbOpsGen = new DBOperationsGeneral();
         DBOperationsGrade dbOpsGrade = new DBOperationsGrade();
+        DBOperationsStudent dbOpsStud = new DBOperationsStudent(); 
         
-        //Obtain the name of the student who is logging in
-        String displayname = dbOpsGen.getStudentName(username);
-        request.setAttribute("displayname", displayname);
-        //request.setAttribute("cohortID","1");
-        
-        //currently setting the cohortID statically, using within getCohortAnnouncement
-        String cohortID = "1";//request.getParameter("cohortId");
-        
-        
-        ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
-        request.setAttribute("announcements", announcements);
+        String cohortID ="1";
         
         //LogOut Block
         if(logout!=null&&!logout.equals("")){
@@ -139,13 +131,26 @@ public class SiteNavigation extends HttpServlet {
             }
             else if(nav.equals("assignments")){
                 request.getRequestDispatcher("/WEB-INF/student/assignments.jsp").forward(request, response); 
-            }
-            else{
-              request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response);   
-            }
+            } 
         }
         else{
-          request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
+        //The following setAttribute calls are done with attibutes that dynamically load upon entering the main page
+        //This includes announcments as well as courses
+        
+        //!!!!!!!!!!!!!!!!!!!TODO currently selecting only the first cohort code within the cohortCodes arraylist held in student 
+        //and using it within getCohortAnnouncement. Multiple cohort codes are now held within the student object so we need a way to display
+        //all announcements for all cohorts. With this done, we can do some sort of filtering between cohorts
+        //or possibly more simply, time based hierarchy of announcements. The other opotion is that we only have a student assigned to one cohort
+        //at any one time in the databse, however i believe that this is less desirable --Ryan
+        
+        ArrayList<String> cohortIDs = student.getCohortList();
+        String firstCohortID = cohortIDs.get(0);
+        ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
+        request.setAttribute("announcements", announcements);
+        
+        //TODO dynamically loading courses to 
+        
+        request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
