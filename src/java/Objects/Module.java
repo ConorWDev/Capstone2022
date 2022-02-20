@@ -5,15 +5,9 @@
  */
 package Objects;
 
-import DBOperations.DBOperationsGeneral;
-import DBOperations.DBOperationsModule;
-import java.io.Serializable;
-import java.sql.SQLException;
 
-public class Module implements Serializable {
+public class Module {
     
-    //DBOperationsModule dbOpsMod = new DBOperationsModule();
-    //DBOperationsGeneral dbOpsGen = new DBOperationsGeneral();
     private String lessonId;
     private String name;
     private String description;
@@ -21,7 +15,7 @@ public class Module implements Serializable {
     public Module() {
     }
 
-    public Module(String lessonId, String name, String description) throws SQLException {
+    public Module(String lessonId, String name, String description) {
         this.lessonId = lessonId;
         this.name = name;
         this.description = description;
