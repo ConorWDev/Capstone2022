@@ -5,7 +5,7 @@
  */
 package Controller.UserServices;
 
-import DBOperations.DBOperationsGeneral;
+import DBOperations.DBOperationsLogin;
 import Interface.Users.Student;
 import java.io.IOException;
 import javax.servlet.ServletContext;
@@ -45,29 +45,33 @@ public class LogonCon extends HttpServlet {
         String webUsername = request.getParameter("username");
         String webPassword = request.getParameter("password");
 
-        boolean login = false;
-
+        //initial catch for first time entering the site. Send user to the login screen
         if (webUsername == null && webPassword == null) {
-            
             request.getRequestDispatcher("WEB-INF/student/loginV2.jsp").forward(request, response);
 
-        } else if (webUsername.equals("") || webPassword.equals("")) {
+        } 
+        //if username or password fields are left empty redirect to login page with error message
+        else if (webUsername.equals("") || webPassword.equals("")) {
             request.setAttribute("message", "Sorry, please enter both<br>Username and Password to sign in.");
             request.getRequestDispatcher("WEB-INF/student/loginV2.jsp").forward(request, response);
-        } //Check a valid entry
+        } 
+        //Username and password entered. We now must check that the entry was valid, as well as what usertype is
+        //logging on
         else {
 
-            DBOperationsGeneral dbOps = new DBOperationsGeneral();
-
+            //session object for storring values within the session scope. As of Feb.19 we are only holding info relevant
+            //to student users (studentid and a student object that holds general info for a given student--see Student.java)
             HttpSession session = request.getSession();
-
-            String result = dbOps.login(webUsername, webPassword);
-
-            if (result.equals("1")) {
-                login = true;
-            }
-//PASSED
-            if (login) {
+            
+            //Here we are creating an instance of DBOperations login. This class contains methods for
+            //determining of the user who is loggin in is a student, faculty, or admin type user.
+            DBOperationsLogin dbOps = new DBOperationsLogin();
+            Boolean isStudent = dbOps.isStudent(webUsername, webPassword);
+            Boolean isFaculty = dbOps.isFaculty(webUsername, webPassword);
+            Boolean isAdmin = dbOps.isAdmin(webUsername, webPassword);
+            
+            //a valid student is logging in
+            if (isStudent) {
 
                 ServletContext application = getServletContext();
 
@@ -83,7 +87,15 @@ public class LogonCon extends HttpServlet {
                 session.setAttribute("student", new Student(webUsername));
 
                 request.getRequestDispatcher("/SiteNavigation").forward(request, response);
-            } else {
+            }
+            else if (isFaculty){
+                //TODO user is a faculty type. Handle site navigation and assignment of session scope variables accordingly
+            }
+            else if (isAdmin){
+                //TODO user is an admin type. Handle site navigation and assignment of session scope variables accordingly
+            }
+            //Username and password do not match in ma_student, ma_faculty, or ma_admin tables
+            else {
                 request.setAttribute("message", "Hmmm, I don't recognize that username or password. Try again &#128512;");
                 request.getRequestDispatcher("WEB-INF/student/loginV2.jsp").forward(request, response);
             }
