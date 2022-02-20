@@ -38,7 +38,8 @@ public class announcementController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
+        /*
+        TODO delete this
         DBOperationsAnnouncement dbOps = new DBOperationsAnnouncement();
         
         
@@ -50,7 +51,8 @@ public class announcementController extends HttpServlet {
         
         request.setAttribute("announcements", announcements);
         request.getRequestDispatcher("WEB-INF/student/announcements.jsp").forward(request, response);
-    }
+           */
+        }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
