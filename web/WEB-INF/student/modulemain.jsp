@@ -1,7 +1,10 @@
 <%-- 
     Document   : modulemain
     Created on : Feb. 20, 2022, 12:39:29 a.m.
-    Author     : massvm
+    Author     : Ryan Checora
+
+    modulemain will give information about a specific module.
+    This will hold modulename, description, as well as assignments (TODO) and documents (TODO)
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
