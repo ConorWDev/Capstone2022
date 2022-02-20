@@ -52,6 +52,9 @@
                         </div>
                     </div>
                 </div>
+                <!-- These links will be removed. We may not need to see full course list as all courses will
+                now be shown on home
+                
                 <div class="row">
                     <div class="col-8"></div>
                     <div class="col-4">
@@ -62,6 +65,14 @@
                         <a href="SiteNavigation?nav=coursemain&courseNumber=1" class="bg-warning">To course Main</a>
                     </div>
                 </div>
+                -->
+                These links need to be made pretty, some design like the blue bubbles above<br>
+                
+                 <c:forEach items="${requestScope.courses}" var="course">
+                     <a href="SiteNavigation?nav=coursemain&courseid=${course.courseID}">${course.courseName}</a><br>
+                 </c:forEach>
+                
+                
             </div>
             <div class="col-1">
             </div>
