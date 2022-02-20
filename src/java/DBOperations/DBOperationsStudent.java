@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -69,5 +70,36 @@ public class DBOperationsStudent {
         }
          
         return result;
+    }
+    
+     //get the cohortList from the studentUsername. A student may be within one or more cohort
+    //in their time at the school. As such we want an array of cohort data to represent this.
+    //The method will return an arraylist of strings that are representative of a particular cohort code.
+    public ArrayList<String> getCohortList(String studentUsername){
+       
+        ArrayList<String> cohortCodes = new ArrayList<>();
+        String sql = "select sc.cohort_id from ma_student_cohort sc, ma_student s "
+                    + "where s.username = sc.username"
+                    + "and s.username = ?";
+         try{
+            Connection conn = DBOperationsGeneral.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, studentUsername);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                String cohortCode = rs.getString(1);
+                cohortCodes.add(cohortCode);
+            }
+            
+            st.close();
+            rs.close();
+            conn.close();
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+         
+        return cohortCodes;
     }
 }
