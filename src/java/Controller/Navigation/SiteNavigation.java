@@ -135,16 +135,11 @@ public class SiteNavigation extends HttpServlet {
         }
         else{
         //The following setAttribute calls are done with attibutes that dynamically load upon entering the main page
-        //This includes announcments as well as courses
+        //This includes announcments as well as courses for a specfic cohort
         
-        //!!!!!!!!!!!!!!!!!!!TODO currently selecting only the first cohort code within the cohortCodes arraylist held in student 
-        //and using it within getCohortAnnouncement. Multiple cohort codes are now held within the student object so we need a way to display
-        //all announcements for all cohorts. With this done, we can do some sort of filtering between cohorts
-        //or possibly more simply, time based hierarchy of announcements. The other opotion is that we only have a student assigned to one cohort
-        //at any one time in the databse, however i believe that this is less desirable --Ryan
-        
-        ArrayList<String> cohortIDs = student.getCohortList();
-        String firstCohortID = cohortIDs.get(0);
+        //Note: Currently only one cohort ID per student is being allowed. This is contrary to what is currently possible
+        //within the ERD. The DB may have to be changed in order to mirror this requirement
+        String cohortIDs = student.getCohortID();
         ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
         request.setAttribute("announcements", announcements);
         
