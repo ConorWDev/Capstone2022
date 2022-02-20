@@ -64,7 +64,7 @@
             <div class="col-1">
             </div> 
             
-            <!--   Annoucement functionality on coursemain has been removed. This more closely resembles
+            <!--   Announcement functionality on coursemain has been removed. This more closely resembles
                     the logic within the database, as announcements will be cohort specific. This code may
                     be deleted
             
