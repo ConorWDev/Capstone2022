@@ -76,11 +76,11 @@ public class DBOperationsStudent {
     //in their time at the school. As such we want an array of cohort data to represent this.
     //The method will return an arraylist of strings that are representative of a particular cohort code.
     public ArrayList<String> getCohortList(String studentUsername){
-       
+        
         ArrayList<String> cohortCodes = new ArrayList<>();
-        String sql = "select sc.cohort_id from ma_student_cohort sc, ma_student s "
-                    + "where s.username = sc.username"
-                    + "and s.username = ?";
+        String sql = "select sc.cohort_id from ma_student_cohort sc, ma_student s\n"
+                    + "where s.username = sc.username\n"
+                    + "and s.username = ?;";
          try{
             Connection conn = DBOperationsGeneral.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
@@ -97,6 +97,7 @@ public class DBOperationsStudent {
             conn.close();
         }
         catch(SQLException ex){
+            System.out.print("getCohortList exception");
             ex.printStackTrace();
         }
          
