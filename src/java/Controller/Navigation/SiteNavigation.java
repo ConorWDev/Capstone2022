@@ -111,7 +111,12 @@ public class SiteNavigation extends HttpServlet {
             else if(nav.equals("coursemain")){
                 request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response);
             }
+            /*The announcement else if statement requires one variable to dynamically load announcement information
+            1) the cohortID of the student (which is obtained above from the session scope)
+            */
             else if(nav.equals("announcements")){
+                ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(student.getCohortID());
+                request.setAttribute("announcements", announcements);
                 request.getRequestDispatcher("/WEB-INF/student/announcements.jsp").forward(request, response); 
             }
             /*The coursegrade else if statement requires two variables to dynamically load courseGrade information
