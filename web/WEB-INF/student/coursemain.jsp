@@ -63,37 +63,33 @@
             </div> 
             <div class="col-1">
             </div> 
+            
+            <!--   Annoucement functionality on coursemain has been removed. This more closely resembles
+                    the logic within the database, as announcements will be cohort specific. This code may
+                    be deleted
+            
             <div class="col-3 bg-white rounded">
                 <p class="h3" style=" color: #0069d9">Announcements</p>
-                <c:forEach items="${requestScope.announcements}" var="announcements">
+                
                     <div class="row border-bottom">
-                        <!-- 7 annoucement should be the final output update file after -->
-                            <%--> <p class="h4" style="float:left;">${announcement.title} - ${announcement.courseID}</p> <--%>
-                            
-
-
-
-                            
-                            <p class=" d-inline">${announcements.startDate} <b>-</b> ${announcements.text}</p>
-                            
-                            
-                                
-                            
-                        
-
+                        <!-- 7 annoucement should be the final output update file after 
+                            <%--> <p class="h4" style="float:left;">${announcement.title} - ${announcement.courseID}</p> <--%>            
+                            <p class=" d-inline">{announcements.startDate} <b>-</b> {announcements.text}</p>
                     </div>
-                    </c:forEach>
+                  
                     <div class="row mt-0 pt-0 pb-3">
                         <div class="col-5 align-content-end">
                             <a href="SiteNavigation?nav=announcements" class="h6" style=" color: #0069d9; float: right">See All Announcements</a>
                         </div>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col-5">
                         <a href="SiteNavigation?nav=announcements" class="h6" style=" color: #0069d9">See All Announcements</a>
                     </div>
                 </div>
+                    -->
             </div>
             <div class="col-1">
             </div>
