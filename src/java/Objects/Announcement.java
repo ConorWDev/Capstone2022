@@ -19,7 +19,6 @@ public class Announcement {
     DBOperationsAnnouncement dbOpsAnnoun = new DBOperationsAnnouncement();
     DBOperationsGeneral dbOpsGen = new DBOperationsGeneral();
     
-    private String announcementId;
     private String cohortId;
     private String text;
     private String startDate;
@@ -27,7 +26,6 @@ public class Announcement {
     private boolean isVisible;
     
      public Announcement (String cohortId,String startDate,String endDate,String text,String isVisible) throws SQLException{
-        this.announcementId = "ann";
         this.cohortId = cohortId;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -38,29 +36,6 @@ public class Announcement {
         } else {
             this.isVisible = false;
         }
-    }
-    
-    
-    public Announcement (String announcementId,String cohortId,String startDate,String endDate,String text,String isVisible) throws SQLException{
-        this.announcementId = dbOpsAnnoun.getAnnouncementId(announcementId);
-        this.cohortId = dbOpsAnnoun.getCohortId(announcementId);
-        this.startDate = dbOpsAnnoun.getStartDate(announcementId);
-        this.endDate = dbOpsAnnoun.getEndDate(announcementId);
-        this.text = dbOpsAnnoun.getText(announcementId);
-       
-        if (isVisible.equalsIgnoreCase("Y")) {
-            this.isVisible = true;
-        } else {
-            this.isVisible = false;
-        }
-    }
-    
-    public String getAnnouncementId(){
-    return announcementId;
-    }
-
-    public void setAnnouncementId(String announcementId){
-        this.announcementId = announcementId;
     }
         
     public String getcohortId(){
