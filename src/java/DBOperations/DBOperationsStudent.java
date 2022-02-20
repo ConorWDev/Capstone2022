@@ -72,12 +72,10 @@ public class DBOperationsStudent {
         return result;
     }
     
-     //get the cohortList from the studentUsername. A student may be within one or more cohort
-    //in their time at the school. As such we want an array of cohort data to represent this.
-    //The method will return an arraylist of strings that are representative of a particular cohort code.
-    public ArrayList<String> getCohortList(String studentUsername){
+     //get the cohortCode from the studentUsername
+    public String getCohortID(String studentUsername){
         
-        ArrayList<String> cohortCodes = new ArrayList<>();
+        String result = "";
         String sql = "select sc.cohort_id from ma_student_cohort sc, ma_student s\n"
                     + "where s.username = sc.username\n"
                     + "and s.username = ?;";
@@ -89,7 +87,7 @@ public class DBOperationsStudent {
             
             while (rs.next()){
                 String cohortCode = rs.getString(1);
-                cohortCodes.add(cohortCode);
+                result = cohortCode;
             }
             
             st.close();
@@ -97,10 +95,9 @@ public class DBOperationsStudent {
             conn.close();
         }
         catch(SQLException ex){
-            System.out.print("getCohortList exception");
             ex.printStackTrace();
         }
          
-        return cohortCodes;
+        return result;
     }
 }
