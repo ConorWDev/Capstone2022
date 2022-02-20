@@ -45,13 +45,18 @@
                 <!-- changing href to send directly to SiteNavigation with no additional variable. This is for testing purposes. 
                 Will have to add the dynamic data passing later          
                 <a href="SiteNavigation?nav=assignments?assignment=#"><img class="card-body p-0" width="100%" src="short.png" alt="short"/> -->
+                
+                <!-- Commenting out assignments. Assignments will be found within the yet to be created modulemain.jsp TODO Feb19
+                
                 <a href="SiteNavigation?nav=assignments"><img class="card-body p-0" width="100%" src="short.png" alt="short"/>
-                <span id ="assignments" class="h5">Assignments</span></a></div>
-                <div class="card border-0" style="align-content: center">
+                <span id ="assignments" class="h5">Assignments</span></a></div> -->
+                
+                
+                <div class="card border-0" style="align-content: center">    
                 <a href="SiteNavigation?nav=coursemodules"><img class="card-body p-0" width="100%" src="short.png" alt="short"/>
                 <span id="modules" class="h5">Modules</span></a>
+                </div>                
                 
-                </div>
                     </div>
                 </div>
                 <div class="row">
