@@ -55,7 +55,10 @@
                     <c:forEach var="courses" items="${requestScope.courses}">
                             <div class="row">
                                 <div class="col-10">
-                                    <a class=""  href="reportcardController?link=yes">${courses.courseName}</a>
+                                    <!--The link generated will pass two variable back to SiteNavigation
+                                    1) nav, which will determine the more general if/else structure within SiteNavigation
+                                    2) courseid, this will allow for the dynamic loading of particular course assignments into the courseGrade page-->
+                                    <a class=""  href="SiteNavigation?nav=coursegrade&courseid=${courses.courseID}">${courses.courseName}</a>
                                 </div>
                                 <div class="col-2" style='align-content: center'>
                                     <p>${courses.courseAvg!="NaN"?courses.courseAvg:"-"}</p>

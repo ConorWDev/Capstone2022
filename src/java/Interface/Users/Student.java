@@ -5,8 +5,9 @@
  */
 package Interface.Users;
 
-import DBOperations.DBOperationsGeneral;
+import DBOperations.DBOperationsStudent;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,11 +19,16 @@ import java.io.Serializable;
  */
 public class Student implements Serializable {
     
-    //Fields
+    DBOperationsStudent dbOps = new DBOperationsStudent();
+    
     private String userID = "";
-    private String email;
-    private String firstName = "";
-    private String lastName = "";
+    private String email = "";
+    //opting to store full name within one field
+    private String fullName = "";
+    //this arraylist will hold cohort codes that can later be referenced
+    //the arraylist will allow for multiple cohorts in the case that a student
+    //is assigned to multiple cohorts over the period of time the are at MTG 
+    private ArrayList<String> cohortList = new ArrayList<>();
 
     
     //Java Bean rule
@@ -30,27 +36,10 @@ public class Student implements Serializable {
     
     //Overloaded Constructor
     public Student(String userID){
-        this.email = "";
-        this.firstName = "";
-        this.lastName = "";
-       
-        //*********Write DBops methods
-        /*
-        Need to set email, firstname, lastname from DB.
-         
-        sample Java:
-        
-        this.email = dbOps.getStudentmail;
-        this.firstName = dbOps.getStudentFname;
-        this.lastName = dbOps.getStudentLname;
-        
-        */
-        DBOperationsGeneral dbOps = new DBOperationsGeneral();
         this.userID = userID;
-        this.firstName = dbOps.getStudentName(userID);
-        this.lastName = this.firstName;
-        this.email = "studentSample@MTGacademy.ca";
-       
+        this.fullName = dbOps.getStudentName(userID);
+        this.email = dbOps.getStudentEmail(userID);
+        this.cohortList = dbOps.getCohortList(userID);
     }
 
     public String getUserID() {
@@ -61,12 +50,14 @@ public class Student implements Serializable {
         return email;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public ArrayList<String> getCohortList() {
+        return cohortList;
     }
+
+   
     
 }

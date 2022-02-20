@@ -17,6 +17,10 @@ import java.sql.SQLException;
  * I have created the DBOperationsGeneral class to handle all general database operations. At this point i believe  that we will
  * create other more specific dbOperations within other specific db classes (i.e. grade db operations, announcement db operations)
  * to allow for greater organization.
+ * 
+ * The getter methods in this class (not including getConnection) should be methods that are used to get information from multiple
+ * different areas within the application. It may turn out that some of these getter methods are not neccesary and can instead be pulled
+ * from objects that are held within the session scope. Will evaluate further.
  *
  * 
  * 
@@ -37,53 +41,6 @@ public class DBOperationsGeneral {
             ex.printStackTrace();
         }
         return conn;
-    }
-
-    public String login(String webUsername,String webPassword) {
-        
-        String result = "";
-            String sql = "SELECT COUNT(username) FROM ma_student WHERE username = ? AND password = ? ;";
-
-            try {
-                Connection conn = getConnection();
-                PreparedStatement st = conn.prepareStatement(sql);
-                st.setString(1, webUsername);
-                st.setString(2, webPassword);
-                ResultSet rs = st.executeQuery();
-
-                while (rs.next()) {
-                    result = rs.getString(1);
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            return result;
-            
-    }
-      
-    public String getStudentName(String username){
-        String result ="";
-        String sql = "select first_name, last_name from ma_student where username = ?;";
-        
-         try{
-            Connection conn = getConnection();
-            PreparedStatement st = conn.prepareStatement(sql);
-            st.setString(1, username);
-            ResultSet rs = st.executeQuery();
-            
-            while (rs.next()){
-                result = rs.getString(1) + " " + rs.getString(2);
-            }
-            
-            st.close();
-            rs.close();
-            conn.close();
-        }
-        catch(SQLException ex){
-            ex.printStackTrace();
-        }
-         
-        return result;
     }
     
     /*

@@ -7,6 +7,7 @@ package Objects;
 
 import DBOperations.DBOperationsGeneral;
 import DBOperations.DBOperationsGrade;
+import DBOperations.DBOperationsStudent;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Grade {
     
     DBOperationsGrade dbOpsGrade = new DBOperationsGrade();
     DBOperationsGeneral dbOpsGen = new DBOperationsGeneral();
+    DBOperationsStudent dbOpsStud = new DBOperationsStudent();
     
     private String studentName;
     private String assignmentName;
@@ -32,7 +34,7 @@ public class Grade {
     
     public Grade(String studentUsername, String assignmentID, String mark, String isVisible){
         
-        this.studentName =  dbOpsGen.getStudentName(studentUsername);
+        this.studentName =  dbOpsStud.getStudentName(studentUsername);
         this.assignmentName = dbOpsGen.getAssignmentName(assignmentID);
         this.lessonName = dbOpsGen.getLessonName(assignmentID);
         this.weight = Double.parseDouble(dbOpsGrade.getWeight(assignmentID));

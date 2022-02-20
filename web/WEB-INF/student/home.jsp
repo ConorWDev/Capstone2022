@@ -72,17 +72,8 @@
                         <!-- 7 annoucement should be the final output update file after -->
                             <%--> <p class="h4" style="float:left;">${announcement.title} - ${announcement.courseID}</p> <--%>
                             
-
-
-
-                            
                             <p class=" d-inline">${announcements.startDate} <b>-</b> ${announcements.text}</p>
                             
-                            
-                                
-                            
-                        
-
                     </div>
                     </c:forEach>
                     <div class="row mt-0 pt-0 pb-3">

@@ -4,7 +4,7 @@
   <div class="container-fluid">
       <a href="#" class="navbar-brand text-info"><img src="MGTLOGO.png" height="25px" alt="MGTLOGO"/> MGT</a>
     <div class="navbar-nav">
-      <a class="nav-item nav-link active text-primary" aria-current="page" href="#">${requestScope.displayname}</a>
+      <a class="nav-item nav-link active text-primary" aria-current="page" href="#">${sessionScope.student.getFullName()}</a>
     </div>
   </div>
 </nav>
