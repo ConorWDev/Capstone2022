@@ -18,9 +18,11 @@ public class DBOperationsSchedule {
         
         ArrayList<Schedule> schedules = new ArrayList<>();
         String sql = "select * from ma_schedule where schedule_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
         
         try {
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, scheduleId);
             ResultSet rs = st.executeQuery();
@@ -41,7 +43,8 @@ public class DBOperationsSchedule {
             }
             st.close();
             rs.close();
-            conn.close();
+            //conn.close();
+            cp.freeConnection(conn);
         } catch (Exception e) {
             }
           
@@ -53,9 +56,11 @@ public class DBOperationsSchedule {
     public String getScheduleId (String scheduleId) throws SQLException{
         String result = "";
         String sql = "select schedule_id from ma_schedule where schedule_id=?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
         
                 try{
-                    Connection conn = DBOperationsGeneral.getConnection();
+                    //Connection conn = DBOperationsGeneral.getConnection();
+                    Connection conn = cp.getConnection();
                     PreparedStatement st = conn.prepareStatement(sql);
                     st.setString(1, scheduleId);
                     ResultSet rs = st.executeQuery(sql);
@@ -66,7 +71,8 @@ public class DBOperationsSchedule {
                     
                     st.close();
                     rs.close();
-                    conn.close();
+                    //conn.close();
+                    cp.freeConnection(conn);
                     
                 } catch(Exception e){}
                 
@@ -76,9 +82,11 @@ public class DBOperationsSchedule {
     public String getCohortId (String scheduleId) throws SQLException{
         String result = "";
         String sql = "select cohort_id from ma_schedule where schedule_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
         
                 try{
-                    Connection conn = DBOperationsGeneral.getConnection();
+                    //Connection conn = DBOperationsGeneral.getConnection();
+                    Connection conn = cp.getConnection();
                     PreparedStatement st = conn.prepareStatement(sql);
                     st.setString(1, scheduleId);
                     ResultSet rs = st.executeQuery(sql);
@@ -89,8 +97,8 @@ public class DBOperationsSchedule {
                     
                     st.close();
                     rs.close();
-                    conn.close();
-                    
+                    //conn.close();
+                    cp.freeConnection(conn);
                 } catch(Exception e){}
                 
                 return result;
@@ -99,9 +107,11 @@ public class DBOperationsSchedule {
     public String getUrl (String scheduleId) throws SQLException{
         String result = "";
         String sql = "select url from ma_schedule where schedule_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
         
                 try{
-                    Connection conn = DBOperationsGeneral.getConnection();
+                    //Connection conn = DBOperationsGeneral.getConnection();
+                    Connection conn = cp.getConnection();
                     PreparedStatement st = conn.prepareStatement(sql);
                     st.setString(1, scheduleId);
                     ResultSet rs = st.executeQuery(sql);
@@ -113,7 +123,8 @@ public class DBOperationsSchedule {
                     
                     st.close();
                     rs.close();
-                    conn.close();
+                    //conn.close();
+                    cp.freeConnection(conn);
                     
                 } catch(Exception e){}
                 
