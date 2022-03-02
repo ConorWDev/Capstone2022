@@ -34,8 +34,11 @@ public class DBOperationsCourse {
                     "and sc.cohort_id = c.cohort_id\n" +
                     "and c.cohort_id = cc.cohort_id\n" +
                     "and cc.course_id = cou.course_id;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
         try{
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, studentUsername);
             ResultSet rs = st.executeQuery();
@@ -56,8 +59,8 @@ public class DBOperationsCourse {
             
             st.close();
             rs.close();
-            conn.close();
-            
+            //conn.close();
+            cp.freeConnection(conn);
         }
         catch(SQLException ex){
             ex.printStackTrace();
@@ -70,9 +73,11 @@ public class DBOperationsCourse {
     public String getCourseName (String courseID){
         String courseName = "";
         String sql="select name from ma_course where course_id =?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
                 
         try{
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, courseID);
             ResultSet rs = st.executeQuery();
@@ -83,8 +88,8 @@ public class DBOperationsCourse {
             
             st.close();
             rs.close();
-            conn.close();
-            
+            //conn.close();
+            cp.freeConnection(conn);
         }
         catch(SQLException ex){
             ex.printStackTrace();
