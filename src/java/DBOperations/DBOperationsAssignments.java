@@ -26,10 +26,12 @@ public class DBOperationsAssignments {
                      "and l.lesson_id = cl.lesson_id \n" +
                      "and cl.course_id = c.course_id \n" +
                      "and c.course_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
        
         
         try {
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, courseID);
             ResultSet rs = st.executeQuery();
@@ -53,7 +55,8 @@ public class DBOperationsAssignments {
             }
             st.close();
             rs.close();
-            conn.close();
+            //con.close();
+            cp.freeConnection(conn);
         } catch (Exception e) {
             }
           
