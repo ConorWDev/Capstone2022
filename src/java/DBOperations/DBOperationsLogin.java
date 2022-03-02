@@ -33,9 +33,11 @@ public class DBOperationsLogin {
         Boolean isStudent = false;
         String result = "";
             String sql = "SELECT COUNT(username) FROM ma_student WHERE username = ? AND password = ? ;";
+            ConnectionPool cp = ConnectionPool.getInstance();
 
             try {
-                Connection conn = DBOperationsGeneral.getConnection();
+                //Connection conn = DBOperationsGeneral.getConnection();
+                Connection conn = cp.getConnection();
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, webUsername);
                 st.setString(2, webPassword);
@@ -44,6 +46,11 @@ public class DBOperationsLogin {
                 while (rs.next()) {
                     result = rs.getString(1);
                 }
+                
+                rs.close();
+                st.close();
+                cp.freeConnection(conn);
+                
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
