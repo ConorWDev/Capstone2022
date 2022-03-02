@@ -31,6 +31,7 @@ import java.sql.SQLException;
 public class DBOperationsGeneral {
    
     //getConnection is depricated. Now using connection pool
+    /*
     public static Connection getConnection(){
 
         Connection conn = null;
@@ -46,6 +47,7 @@ public class DBOperationsGeneral {
         }
         return conn;
     }
+    */
     
     /*
     *getAssignmentName
