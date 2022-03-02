@@ -33,9 +33,11 @@ public class DBOperationsGrade {
         
           ArrayList<Grade> grades = new ArrayList<>();
         String sql = "select * from ma_grade where username = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
         
         try{
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, username);
             ResultSet rs = st.executeQuery();
@@ -58,8 +60,8 @@ public class DBOperationsGrade {
             
             st.close();
             rs.close();
-            conn.close();
-            
+            //conn.close();
+            cp.freeConnection(conn);
         }
         catch(SQLException ex){
             ex.printStackTrace();
@@ -87,9 +89,11 @@ public class DBOperationsGrade {
                         "and la.lesson_id = l.lesson_id\n" +
                         "and l.lesson_id = cl.lesson_id\n" +
                         "and cl.course_id = ?;";
+          ConnectionPool cp = ConnectionPool.getInstance();
           
           try{
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, studentUsername);
             st.setString(2, courseID);
@@ -111,8 +115,8 @@ public class DBOperationsGrade {
             
             st.close();
             rs.close();
-            conn.close();
-            
+            //conn.close();
+            cp.freeConnection(conn);
           }
           catch(SQLException ex){
               ex.printStackTrace();
@@ -131,8 +135,10 @@ public class DBOperationsGrade {
       public String getWeight (String assignmentID){
           String weight = "";
           String sql = "select weight from ma_assignment where assignment_id = ?;";
+          ConnectionPool cp = ConnectionPool.getInstance();
           try{
-             Connection conn = DBOperationsGeneral.getConnection();
+             //Connection conn = DBOperationsGeneral.getConnection();
+             Connection conn = cp.getConnection();
              PreparedStatement st = conn.prepareStatement(sql);
              st.setString(1,assignmentID);
              ResultSet rs = st.executeQuery();
@@ -143,7 +149,8 @@ public class DBOperationsGrade {
              
              st.close();
              rs.close();
-             conn.close();
+             //conn.close();
+             cp.freeConnection(conn);
           }
           catch(SQLException ex){
               ex.printStackTrace();
@@ -171,10 +178,12 @@ public class DBOperationsGrade {
                         "and sc.cohort_id = c.cohort_id\n" +
                         "and c.cohort_id = cc.cohort_id\n" +
                         "and cc.course_id = cou.course_id;";
+          ConnectionPool cp = ConnectionPool.getInstance();
           
           try{
               
-             Connection conn = DBOperationsGeneral.getConnection();
+             //Connection conn = DBOperationsGeneral.getConnection();
+             Connection conn = cp.getConnection();
              PreparedStatement st = conn.prepareStatement(sql);
              st.setString(1,studentUsername);
              ResultSet rs = st.executeQuery();
@@ -189,7 +198,8 @@ public class DBOperationsGrade {
               
              st.close();
              rs.close();
-             conn.close();
+             //conn.close();
+             cp.freeConnection(conn);
           }
           catch(SQLException ex){
               ex.printStackTrace();
