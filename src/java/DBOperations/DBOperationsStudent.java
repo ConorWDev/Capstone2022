@@ -22,9 +22,11 @@ public class DBOperationsStudent {
     public String getStudentName(String studentUsername){
         String result ="";
         String sql = "select first_name, last_name from ma_student where username = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
         
          try{
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, studentUsername);
             ResultSet rs = st.executeQuery();
@@ -35,8 +37,9 @@ public class DBOperationsStudent {
             
             st.close();
             rs.close();
-            conn.close();
-        }
+            //conn.close();
+            cp.freeConnection(conn);
+         }
         catch(SQLException ex){
             ex.printStackTrace();
         }
@@ -49,10 +52,12 @@ public class DBOperationsStudent {
     public String getStudentEmail(String studentUsername){
         String result = "";
         String sql = "select email from ma_student where username =?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
         
         
          try{
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, studentUsername);
             ResultSet rs = st.executeQuery();
@@ -63,8 +68,9 @@ public class DBOperationsStudent {
             
             st.close();
             rs.close();
-            conn.close();
-        }
+            //conn.close();
+            cp.freeConnection(conn);
+         }
         catch(SQLException ex){
             ex.printStackTrace();
         }
@@ -79,8 +85,10 @@ public class DBOperationsStudent {
         String sql = "select sc.cohort_id from ma_student_cohort sc, ma_student s\n"
                     + "where s.username = sc.username\n"
                     + "and s.username = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
          try{
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, studentUsername);
             ResultSet rs = st.executeQuery();
@@ -92,7 +100,8 @@ public class DBOperationsStudent {
             
             st.close();
             rs.close();
-            conn.close();
+            //conn.close();
+            cp.freeConnection(conn);
         }
         catch(SQLException ex){
             ex.printStackTrace();
