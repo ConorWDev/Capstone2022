@@ -5,6 +5,7 @@
  */
 package Controller.Navigation;
 import DBOperations.DBOperationsAnnouncement;
+import DBOperations.DBOperationsAssignments;
 import DBOperations.DBOperationsCourse;
 import DBOperations.DBOperationsGeneral;
 import DBOperations.DBOperationsGrade;
@@ -12,6 +13,7 @@ import DBOperations.DBOperationsModule;
 import DBOperations.DBOperationsStudent;
 import Interface.Users.Student;
 import Objects.Announcement;
+import Objects.Assignment;
 import Objects.Course;
 import Objects.Grade;
 import Objects.Module;
@@ -70,7 +72,7 @@ public class SiteNavigation extends HttpServlet {
         DBOperationsStudent dbOpsStud = new DBOperationsStudent();
         DBOperationsModule dbOpsMod = new DBOperationsModule();
         DBOperationsCourse dbOpsCor = new DBOperationsCourse();
-        
+        DBOperationsAssignments dbOpsAss = new DBOperationsAssignments();
         
         String cohortID ="1";
         
@@ -146,12 +148,15 @@ public class SiteNavigation extends HttpServlet {
                 String moduleDescription = dbOpsMod.getModuleDescription(moduleid);
                 request.setAttribute("moduleDescription", moduleDescription);
                 
+                
+                ArrayList<Assignment> assignments = dbOpsAss.getCourseAssignments(courseid);
+                request.setAttribute("assignments", assignments);
+                
+                
+                
                 request.getRequestDispatcher("/WEB-INF/student/modulemain.jsp").forward(request, response); 
             }
-            //will be depricated. assignments will exist on modulemain.jsp
-            else if(nav.equals("assignments")){
-                request.getRequestDispatcher("/WEB-INF/student/assignments.jsp").forward(request, response); 
-            } 
+            
         }
         else{
         //The following setAttribute calls are done with attibutes that dynamically load upon entering the main page
