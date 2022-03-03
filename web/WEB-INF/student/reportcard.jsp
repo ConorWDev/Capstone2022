@@ -64,8 +64,29 @@
                                     <p>${courses.courseAvg!="NaN"?courses.courseAvg:"-"}</p>
                                 </div>
                             </div>
-                        </c:forEach>
-                    </div>
+                    </c:forEach>
+                            <c:set var="courseTotal" value="0"/>
+                            <c:set var="count" value="0" scope="page"/>
+                            <div class="row ">
+                            <div class="col-10">
+                            <p class="h5" style="font-weight: bold; color:  slategrey " >Total Course Avg.</p>
+                            </div>
+                                
+                            <c:forEach var="courses"  items="${requestScope.courses}">
+                            <div class="col-2">
+                            <p class="h5" style="font-weight: bold; color: slategrey "> 
+                                <c:set var="courseTotal" value="${courseTotal + courses.courseAvg}"/>
+                                <c:set var="count" value="${count + 1}" scope="page"/>
+                              
+                            </c:forEach>
+                            <c:set var="courseAvg" value="${courseTotal / count}"/>
+                            ${courseAvg} 
+                            </p>    
+                            </div>
+                
+                    </div> 
+                    
+                             
                 </div>
                 <div class="col-7"></div>
             </div>
