@@ -23,10 +23,15 @@ import java.sql.SQLException;
  * from objects that are held within the session scope. Will evaluate further.
  *
  * 
+ * UPDATE MARCH 2ND: the DBOperationsGeneral class may soon be deprecated. No longer a need for the
+ * getConnection method due to the newly added connection pool. Further, methods within this class can be
+ * placed elsewhere to have things more organized into individual use cases
  * 
  */
 public class DBOperationsGeneral {
    
+    //getConnection is depricated. Now using connection pool
+    /*
     public static Connection getConnection(){
 
         Connection conn = null;
@@ -42,17 +47,21 @@ public class DBOperationsGeneral {
         }
         return conn;
     }
+    */
     
     /*
     *getAssignmentName
     *This method returns an assignment name from a given assignmentID
+    
     */
       public String getAssignmentName(String assignmentID){
         String result ="";
         String sql = "select name from ma_assignment where assignment_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
         
          try{
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, assignmentID);
             ResultSet rs = st.executeQuery();
@@ -63,8 +72,8 @@ public class DBOperationsGeneral {
             
             st.close();
             rs.close();
-            conn.close();
-            
+            //conn.close();
+            cp.freeConnection(conn);
             
         }
         catch(SQLException ex){
@@ -85,9 +94,11 @@ public class DBOperationsGeneral {
             "where a.assignment_id  = la.assignment_id " +
             "and la.lesson_id  = l.lesson_id " +
             "and a.assignment_id = ?;";
+            ConnectionPool cp = ConnectionPool.getInstance();
             
             try{
-                Connection conn = DBOperationsGeneral.getConnection();
+                //Connection conn = DBOperationsGeneral.getConnection();
+                Connection conn = cp.getConnection();
                 PreparedStatement st = conn.prepareStatement(sql);
                 st.setString(1, assignmentID);
                 ResultSet rs = st.executeQuery();
@@ -99,8 +110,8 @@ public class DBOperationsGeneral {
                 
                 st.close();
                 rs.close();
-                conn.close();
-                
+                //conn.close();
+                cp.freeConnection(conn);
             }
             catch(SQLException ex){
                 ex.printStackTrace();

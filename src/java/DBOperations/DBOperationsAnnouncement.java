@@ -19,9 +19,11 @@ public class DBOperationsAnnouncement {
         
         ArrayList<Announcement> cohortAnnouncements = new ArrayList<>();
         String sql = "select * from ma_announcement where cohort_id=?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
         
         try {
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, cohortId);
             ResultSet rs = st.executeQuery();
@@ -44,7 +46,8 @@ public class DBOperationsAnnouncement {
             }
             st.close();
             rs.close();
-            conn.close();
+            //conn.close();
+            cp.freeConnection(conn);
         } catch(Exception e){}
             return cohortAnnouncements;
     }

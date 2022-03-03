@@ -22,9 +22,11 @@ public class DBOperationsModule {
                      "from ma_lesson l, ma_course_lesson cl where\n" +
                      "l.lesson_id = cl.lesson_id \n" +
                       "and cl.course_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
         
         try {
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, courseID);
             ResultSet rs = st.executeQuery();
@@ -45,7 +47,8 @@ public class DBOperationsModule {
             }
             st.close();
             rs.close();
-            conn.close();
+            //conn.close();
+            cp.freeConnection(conn);
         } catch (Exception e) {
             }
           
@@ -57,9 +60,11 @@ public class DBOperationsModule {
         
         String moduleName = "";
         String sql = "select name from ma_lesson where lesson_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
         
         try {
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, moduleID);
             ResultSet rs = st.executeQuery();
@@ -69,7 +74,8 @@ public class DBOperationsModule {
             }
             st.close();
             rs.close();
-            conn.close();
+            //conn.close();
+            cp.freeConnection(conn);
         } catch (Exception e) {
             }
           
@@ -82,9 +88,11 @@ public class DBOperationsModule {
         
         String moduleName = "";
         String sql = "select description from ma_lesson where lesson_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
         
         try {
-            Connection conn = DBOperationsGeneral.getConnection();
+            //Connection conn = DBOperationsGeneral.getConnection();
+            Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, moduleID);
             ResultSet rs = st.executeQuery();
@@ -94,7 +102,8 @@ public class DBOperationsModule {
             }
             st.close();
             rs.close();
-            conn.close();
+            //conn.close();
+            cp.freeConnection(conn);
         } catch (Exception e) {
             }
           
