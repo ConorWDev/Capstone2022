@@ -11,4 +11,48 @@ package Objects;
  */
 public class Document {
     
+    String documentID="";
+    String name="";
+    String description ="";
+    String url="";
+            
+    
+    public Document(String documentID, String name, String description, String url){
+        this.documentID = documentID;
+        this.name = name;
+        this.description = description;
+        this.url = url;
+    }
+
+    public String getDocumentID() {
+        return documentID;
+    }
+
+    public void setDocumentID(String documentID) {
+        this.documentID = documentID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }
