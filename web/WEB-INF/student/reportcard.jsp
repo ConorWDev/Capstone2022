@@ -5,6 +5,7 @@
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -52,6 +53,10 @@
                             - Variables can be adjusted to fit a common ground.
                             - Potentially could be adding a URL that will take you to the Courses grade page.
                     -->
+                    
+                    <c:set var="courseTotal" value="0"/>
+                    <c:set var="count" value="0"/>
+                    
                     <c:forEach var="courses" items="${requestScope.courses}">
                             <div class="row">
                                 <div class="col-10">
@@ -64,27 +69,25 @@
                                     <p>${courses.courseAvg!="NaN"?courses.courseAvg:"-"}</p>
                                 </div>
                             </div>
+                            
+                            <c:if test="${courses.courseAvg>=0 && courses.courseAvg<=100}">
+                                <c:set var="courseTotal" value="${courseTotal + courses.courseAvg}"/> 
+                                <c:set var="count" value="${count + 1}"/>
+                            </c:if>
                     </c:forEach>
-                            <c:set var="courseTotal" value="0"/>
-                            <c:set var="count" value="0" scope="page"/>
+                    
+                           
                             <div class="row ">
                             <div class="col-10">
                             <p class="h5" style="font-weight: bold; color:  slategrey " >Total Course Avg.</p>
                             </div>
                                 
-                            <c:forEach var="courses"  items="${requestScope.courses}">
-                            <div class="col-2">
-                            <p class="h5" style="font-weight: bold; color: slategrey "> 
-                                <c:set var="courseTotal" value="${courseTotal + courses.courseAvg}"/>
-                                <c:set var="count" value="${count + 1}" scope="page"/>
-                              
-                            </c:forEach>
                             <c:set var="courseAvg" value="${courseTotal / count}"/>
-                            ${courseAvg} 
-                            </p>    
-                            </div>
+                            ${fn:substring(courseAvg,0,5)} 
+                            
+                            
                 
-                    </div> 
+                            </div> 
                     
                              
                 </div>
