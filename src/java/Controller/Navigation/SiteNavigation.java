@@ -16,6 +16,7 @@ import Interface.Users.Student;
 import Objects.Announcement;
 import Objects.Assignment;
 import Objects.Course;
+import Objects.CourseAnnouncement;
 import Objects.Document;
 import Objects.Grade;
 import Objects.Module;
@@ -125,6 +126,10 @@ public class SiteNavigation extends HttpServlet {
                 String courseName = dbOpsCor.getCourseName(courseid);
                 request.setAttribute("courseName",courseName);
                 request.setAttribute("courseid", courseid);
+                
+                ArrayList<CourseAnnouncement> courseAnnouncements = dbOpsAn.getCourseAnnouncements(courseid);
+                request.setAttribute("courseAnnouncements",courseAnnouncements);
+                
                 request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response);
             }
             /*The announcement else if block requires one variable to dynamically load announcement information
