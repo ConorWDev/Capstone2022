@@ -76,6 +76,15 @@
                 </div>
              </c:forEach>
             
+            
+            VVV Document functionality VVV<br>
+            <c:forEach items="${requestScope.documents}" var="document">
+                 ${document.name}
+                 ${document.description}
+                 ${document.url} <br>
+                
+            </c:forEach>
+            
         </div>
          
          <%@include file="footerfragment.jspf" %>

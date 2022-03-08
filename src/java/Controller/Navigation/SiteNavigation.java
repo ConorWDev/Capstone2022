@@ -7,6 +7,7 @@ package Controller.Navigation;
 import DBOperations.DBOperationsAnnouncement;
 import DBOperations.DBOperationsAssignments;
 import DBOperations.DBOperationsCourse;
+import DBOperations.DBOperationsDocument;
 import DBOperations.DBOperationsGeneral;
 import DBOperations.DBOperationsGrade;
 import DBOperations.DBOperationsModule;
@@ -15,10 +16,12 @@ import Interface.Users.Student;
 import Objects.Announcement;
 import Objects.Assignment;
 import Objects.Course;
+import Objects.Document;
 import Objects.Grade;
 import Objects.Module;
 import Objects.StudentCourse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -57,6 +60,9 @@ public class SiteNavigation extends HttpServlet {
         String username = (String)(session.getAttribute("username"));
         Student student = (Student)session.getAttribute("student");
         
+        //testing
+        System.out.print("!!!!!!! session ID: " + session.getId());
+        
         //obtaining values from request scope
         String nav = request.getParameter("nav");
         String logout = request.getParameter("logout");
@@ -73,6 +79,7 @@ public class SiteNavigation extends HttpServlet {
         DBOperationsModule dbOpsMod = new DBOperationsModule();
         DBOperationsCourse dbOpsCor = new DBOperationsCourse();
         DBOperationsAssignments dbOpsAss = new DBOperationsAssignments();
+        DBOperationsDocument dbOpsDoc = new DBOperationsDocument();
         
         String cohortID ="1";
         
@@ -152,7 +159,8 @@ public class SiteNavigation extends HttpServlet {
                 ArrayList<Assignment> assignments = dbOpsAss.getCourseAssignments(courseid);
                 request.setAttribute("assignments", assignments);
                 
-                
+                ArrayList<Document> documents = dbOpsDoc.getModuleDocument(moduleid);
+                request.setAttribute("documents", documents);
                 
                 request.getRequestDispatcher("/WEB-INF/student/modulemain.jsp").forward(request, response); 
             }
