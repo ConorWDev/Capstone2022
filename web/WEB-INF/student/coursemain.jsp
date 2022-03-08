@@ -86,6 +86,9 @@
                     the logic within the database, as announcements will be cohort specific. This code may
                     be deleted
             
+                    UPDATE March 8. Announcement functionality will be added back in. New ma_course_announcment table added
+                    to database. New courseAnnouncement object created
+            
             <div class="col-3 bg-white rounded">
                 <p class="h3" style=" color: #0069d9">Announcements</p>
                 
@@ -108,6 +111,15 @@
                     </div>
                 </div>
                     -->
+                    
+                    vvv COURSE ANNOUNCEMENT FUNCTIONALITY vvv <br>
+                    
+                    <c:forEach items="${requestScope.courseAnnouncements}" var="courseAnnouncement">
+                        ${courseAnnouncement.text}
+                        ${courseAnnouncement.startDate}
+                    </c:forEach>
+                    
+                    
             </div>
             <div class="col-1">
             </div>
