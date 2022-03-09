@@ -50,34 +50,47 @@
                 JSTL Assignment loop notes:
                 
                 Summary:
-                    Loads every assignment from the course into rows
+                    Loads every assignment from the module into rows
             
                 List Name: assignments
                 
                 What Will it Call:
-                    - An ArrayList containing all the assignments the student has in the course
+                    - An ArrayList containing all the assignments the module has
             
                 Attributes List:
-                    url     : the URL that will download the assignment file
-                    status  : The current status of the assignment (incomplete, complete, marked, etc.)
-                    grade   : Shows the grade recieved and/or it's marks worth (format: a/b - ##%)
-                    dueDate : The Date and time the assignment must be handed in prior to (format: Month-Day-Year | HH:MM am/pm)
+                    assignmentUrl     : the URL that will download the assignment file
+                    assignmentName: name of assignment
+                    assignmentDescription: description of assignment
             
-                Potential Changes:
-                    <TBD>
+              
             -->
+            <b>VVV Assignment functionality VVV</b><br>
              <c:forEach items="${requestScope.assignments}" var="assignment">
-                    <div class="row">
-                    <div class="col-4"><a class="h5" href=${assignment.url}>${assignment.name}</p></div>
-                    <div class="col-2"><p class="h5">${assignment.status}</p></div>
-                    <div class="col-3"><p class="h5">${assignment.grade}</p></div>
-                    <div class="col-3"><p class="h5">${assignment.dueDate}</p></div>
-                    <hr>
-                </div>
+                 ${assignment.assignmentName}<br>
+                 ${assignment.assignmentDescription}<br>
              </c:forEach>
             
+                 
+                  <!-- 
+                JSTL document loop notes:
+                
+                Summary:
+                    Loads every document from the module into rows
             
-            VVV Document functionality VVV<br>
+                List Name: documents
+                
+                What Will it Call:
+                    - An ArrayList containing all the documents the module has
+            
+                Attributes List:
+                    name     : name of document
+                    description: description of document
+                    url: url of document
+            
+              
+            -->
+            
+            <b>VVV Document functionality VVV</b><br>
             <c:forEach items="${requestScope.documents}" var="document">
                  ${document.name}
                  ${document.description}
