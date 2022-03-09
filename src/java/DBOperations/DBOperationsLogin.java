@@ -66,7 +66,7 @@ public class DBOperationsLogin {
         //TODO implement isFaculty method. Query the ma_faculty table in a similar fashion to the isStudent method above. return a boolean
         //for use in LogonCon.java
         
-        return false; 
+        return true; 
     }
     
      public boolean isAdmin(String webUsername,String webPassword) {

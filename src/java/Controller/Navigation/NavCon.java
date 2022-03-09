@@ -32,6 +32,10 @@ public class NavCon extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        /*
+        
+        DEPRICATED. TODO DELETE
+        
         String nav = request.getParameter("nav");
         String logout = request.getParameter("logout");
         HttpSession session = request.getSession();
@@ -66,7 +70,7 @@ public class NavCon extends HttpServlet {
         }
         
         
-        
+        */
         }
         
         

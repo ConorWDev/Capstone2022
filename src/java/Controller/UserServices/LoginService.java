@@ -23,6 +23,7 @@ package Controller.UserServices;
  * DBOps uses &&&& as markers.
  * 
  */
+/*
 public class LoginService {
     
     public String message = "";
@@ -105,9 +106,9 @@ public class LoginService {
 //            }
 //        }   
     
-    }
+//    }
     
-    
+ /*   
     
     //Simple getter for result.
     public boolean getResult(){
@@ -115,3 +116,4 @@ public class LoginService {
     }
     
 }
+*/
