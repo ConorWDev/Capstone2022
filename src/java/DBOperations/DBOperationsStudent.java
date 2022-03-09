@@ -5,6 +5,7 @@
  */
 package DBOperations;
 
+import Interface.Users.Student;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -108,5 +109,78 @@ public class DBOperationsStudent {
         }
          
         return result;
+    }
+    
+    public ArrayList<Student> getStudentsByCohort(String cohortID){
+        ArrayList<Student> students = new ArrayList<>();
+        String sql = "select s.username from ma_student s, ma_student_cohort sc\n" +
+                     "where s.username = sc.username \n" +
+                     "and sc.cohort_id =?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+         
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                String username = rs.getString(1);
+                Student student = new Student(username);
+                students.add(student);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+         
+        
+        
+        return students;
+    }
+    
+    //search student name functionality used in fac_grades.jsp page. enter the search name and cohort
+    public ArrayList<Student> searchStudents (String search, String cohortID){
+        ArrayList<Student> students = new ArrayList<>();
+        String sql = "SELECT s.username, sc.cohort_id\n" +
+                     "FROM ma_student s, ma_student_cohort sc\n" +
+                     "WHERE s.username = sc.username\n" +
+                     "AND sc.cohort_id = ?\n" +
+                     "AND s.first_name LIKE ?\n" +
+                     "OR s.last_name LIKE ?;";
+        
+         ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+         
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            st.setString(2, search + "%");
+            st.setString(3, search + "%");
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                String username = rs.getString(1);
+                Student student = new Student(username);
+                students.add(student);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+        }
+        catch(SQLException ex){
+            System.out.print("error during search");
+            ex.printStackTrace();
+        }
+         
+        
+        return students;
     }
 }
