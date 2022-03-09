@@ -68,6 +68,48 @@ public class DBOperationsCourse {
         return courses;
     }
     
+    /*
+    obtain list of courses associated with a particular cohortID. (Currently used within SiteNavigationFaculty)
+    */
+    public ArrayList<Course> getCoursesByCohort (String cohortID){
+        ArrayList<Course> courses = new ArrayList<>();
+        String sql ="SELECT cou.course_id,cou.name,cou.description, c.name\n" +
+                    "FROM ma_cohort c, ma_cohort_course cc, ma_course cou\n" +
+                    "WHERE c.cohort_id = cc.cohort_id\n" +
+                    "AND cc.course_id = cou.course_id\n" +
+                    "AND c.cohort_id = ?;";
+        
+         ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            ResultSet rs = st.executeQuery();
+            
+            String courseID = "";
+            String courseName = "";
+            String courseDescription = "";
+            
+            while(rs.next()){
+                courseID = rs.getString(1);
+                courseName = rs.getString(2);
+                courseDescription = rs.getString(3);
+                
+                Course course = new Course (courseID,courseName,courseDescription);
+                
+                courses.add(course);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return courses;
+    }
     
     //enter the courseId and get the courseName in return
     public String getCourseName (String courseID){
