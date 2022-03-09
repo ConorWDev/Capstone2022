@@ -65,16 +65,71 @@ public class DBOperationsLogin {
         
         //TODO implement isFaculty method. Query the ma_faculty table in a similar fashion to the isStudent method above. return a boolean
         //for use in LogonCon.java
-        
-        return true; 
+        Boolean isFaculty = false;
+        String result = "";
+            String sql = "SELECT COUNT(username) FROM ma_faculty WHERE username = ? AND password = ? ;";
+            ConnectionPool cp = ConnectionPool.getInstance();
+
+            try {
+                //Connection conn = DBOperationsGeneral.getConnection();
+                Connection conn = cp.getConnection();
+                PreparedStatement st = conn.prepareStatement(sql);
+                st.setString(1, webUsername);
+                st.setString(2, webPassword);
+                ResultSet rs = st.executeQuery();
+
+                while (rs.next()) {
+                    result = rs.getString(1);
+                }
+                
+                rs.close();
+                st.close();
+                cp.freeConnection(conn);
+                
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            
+            if (result.equals("1")){
+                isFaculty = true;
+            }
+            return isFaculty; 
+         
     }
     
      public boolean isAdmin(String webUsername,String webPassword) {
          
         //TODO implement isAdmin method. Query the ma_faculty table in a similar fashion to the isStudent method above. return a boolean
         //for use in LogonCon.java
-        
-        return false; 
+        Boolean isAdmin = false;
+        String result = "";
+            String sql = "SELECT COUNT(username) FROM ma_admin WHERE username = ? AND password = ? ;";
+            ConnectionPool cp = ConnectionPool.getInstance();
+
+            try {
+                //Connection conn = DBOperationsGeneral.getConnection();
+                Connection conn = cp.getConnection();
+                PreparedStatement st = conn.prepareStatement(sql);
+                st.setString(1, webUsername);
+                st.setString(2, webPassword);
+                ResultSet rs = st.executeQuery();
+
+                while (rs.next()) {
+                    result = rs.getString(1);
+                }
+                
+                rs.close();
+                st.close();
+                cp.freeConnection(conn);
+                
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            
+            if (result.equals("1")){
+                isAdmin = true;
+            }
+            return isAdmin; 
     }
     
 }
