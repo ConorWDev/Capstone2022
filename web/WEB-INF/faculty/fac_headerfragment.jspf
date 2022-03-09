@@ -11,9 +11,9 @@
 <nav class="navbar navbar-dark p-0 mb-5" id="navbottom">
   <div class="container-fluid pr-5">
       <div class="align-self-left" id="navbottomlinks">
-      <a href="SiteNavigationFaculty?nav=home" class="navbar-item">Home</a>
-      <a href="SiteNavigationFaculty?nav=reportcard" class="navbar-item">Grades</a>
-      <a href="SiteNavigationFaculty?nav=schedule" class="navbar-item">Attendance</a>
+      <a href="SiteNavigationFaculty?nav=" class="navbar-item">Home</a>
+      <a href="SiteNavigationFaculty?nav=grades" class="navbar-item">Grades</a>
+      <a href="SiteNavigationFaculty?nav=attendance" class="navbar-item">Attendance</a>
       <a href="SiteNavigationFaculty?nav=schedule" class="navbar-item">Schedule</a>
       </div>
       <div class="navbar-nav">
