@@ -5,7 +5,7 @@
  */
 package Interface.Users;
 
-import DBOperations.Faculty.DBOperationsFaculty;
+import DBOperations.DBOperationsFaculty;
 
 /**
  *
@@ -19,7 +19,6 @@ public class Faculty {
     private String email = "";
     //opting to store full name within one field
     private String fullName = "";
-    private String cohortID = "";
     
     public Faculty(String userID){
         this.userID = userID;
@@ -50,13 +49,5 @@ public class Faculty {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getCohortID() {
-        return cohortID;
-    }
-
-    public void setCohortID(String cohortID) {
-        this.cohortID = cohortID;
     }
 }
