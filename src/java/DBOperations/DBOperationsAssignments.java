@@ -63,4 +63,49 @@ public class DBOperationsAssignments {
         return assignments;
     }
     
+    public ArrayList<Assignment> getModuleAssignments(String moduleID){
+        
+        ArrayList<Assignment> assignments = new ArrayList<>();
+        String sql = "select a.assignment_id, a.name, a.description, a.url, a.weight\n" +
+                     "from ma_assignment a, ma_lesson_assignment la, ma_lesson l\n" +
+                     "where a.assignment_id  = la.assignment_id \n" +
+                     "and la.lesson_id = l.lesson_id \n" +
+                     "and l.lesson_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+       
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, moduleID);
+            ResultSet rs = st.executeQuery();
+            
+            String assignmentUrl;
+            double assignmentWeight;
+            String assignmentName;
+            String assignmentDescription;
+            String assignmentId;
+            
+            while(rs.next()) {
+                assignmentId = rs.getString(1);
+                assignmentName = rs.getString(2);
+                assignmentDescription = rs.getString(3);
+                assignmentUrl = rs.getString(4);
+                assignmentWeight = rs.getDouble(5);
+                
+                Assignment assignment = new Assignment(assignmentId, assignmentName, assignmentDescription, assignmentUrl, assignmentWeight);
+                
+                assignments.add(assignment);
+            }
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+        } catch (Exception e) {
+            }
+          
+        return assignments;
+    }
+    
+    
+    
 }
