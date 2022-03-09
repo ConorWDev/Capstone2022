@@ -15,9 +15,13 @@ import DBOperations.DBOperationsGrade;
 import DBOperations.DBOperationsModule;
 import DBOperations.DBOperationsStudent;
 import Interface.Users.Faculty;
+import Interface.Users.Student;
 import Objects.Announcement;
+import Objects.Assignment;
 import Objects.Course;
 import Objects.Cohort;
+import Objects.Document;
+import Objects.Module;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -56,6 +60,9 @@ public class SiteNavigationFaculty extends HttpServlet {
         String logout = request.getParameter("logout");
         
         String courseID = request.getParameter("courseid");
+        String moduleID = request.getParameter("moduleid");
+        
+        String search = request.getParameter("search");
         
         DBOperationsCohort dbOpsCo = new DBOperationsCohort();
         DBOperationsModule dbOpsMod = new DBOperationsModule();
@@ -73,15 +80,51 @@ public class SiteNavigationFaculty extends HttpServlet {
           request.getRequestDispatcher("/WEB-INF/student/loginV2.jsp").forward(request, response); 
         }
         else if(nav!=null&&!nav.equals("")){
-           if (nav.equals("coursemain")){
-               ArrayList<Objects.Module> modules = dbOpsMod.getCourseModules(courseID);
-                request.setAttribute("modules",modules);
-                String courseName = dbOpsCor.getCourseName(courseID);
-                request.setAttribute("courseName",courseName);
-               
-               
+           //navigating to course main
+            if (nav.equals("coursemain")){
+               //load list of modules for associated course
+               ArrayList<Module> modules = dbOpsMod.getCourseModules(courseID);
+               request.setAttribute("modules",modules);
+               //get course name
+               String courseName = dbOpsCor.getCourseName(courseID);
+               request.setAttribute("courseName",courseName);
+               //direct to coursemain page
                request.getRequestDispatcher("/WEB-INF/faculty/fac_coursemain.jsp").forward(request, response);
            }
+            //navigating to modulemain
+            else if (nav.equals("modulemain")){
+                //get module name
+                String moduleName = dbOpsMod.getModuleName(moduleID);
+                request.setAttribute("moduleName", moduleName);
+                //get module description
+                String moduleDescription = dbOpsMod.getModuleDescription(moduleID);
+                request.setAttribute("moduleDescription", moduleDescription);
+                //get assignments for module
+                ArrayList<Assignment> assignments = dbOpsAss.getModuleAssignments(moduleID);
+                request.setAttribute("assignments", assignments);
+                //get documents for module
+                ArrayList<Document> documents = dbOpsDoc.getModuleDocument(moduleID);
+                request.setAttribute("documents", documents);
+                //direct to module main
+                request.getRequestDispatcher("/WEB-INF/faculty/fac_modulemain.jsp").forward(request, response); 
+            }
+            //navigating to grades page
+            else if (nav.equals("grades")){
+                
+                ArrayList<Cohort> cohorts = dbOpsCo.getCohorts(faculty.getUserID());
+                request.setAttribute("cohorts", cohorts);
+                //an array list of arraylists. In the case that a teacher teaches across multiple cohorts, we need to be able
+                //to store the student list of each cohort
+                ArrayList<ArrayList> studentLists = new ArrayList<>();
+                for(int x =0; x < cohorts.size(); x++){
+                    ArrayList<Student> students = dbOpsStud.getStudentsByCohort(cohorts.get(x).getCohortID());
+                    studentLists.add(students);
+                }
+                request.setAttribute("studentLists", studentLists);
+                
+                
+            request.getRequestDispatcher("/WEB-INF/faculty/fac_grades.jsp").forward(request, response);   
+            }
         }
         //if faculty is logging in for first time
         else{
