@@ -12,10 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="fac_headerfragment.jspf" %>
         <h1>${requestScope.courseName}</h1>
         
         <c:forEach items="${requestScope.modules}" var="module">
-            ${module.name}<br>
+            <a href="SiteNavigationFaculty?nav=modulemain&moduleid=${module.lessonId}">${module.name}</a><br>
         </c:forEach>
         
     </body>
