@@ -61,9 +61,6 @@ public class SiteNavigation extends HttpServlet {
         String username = (String)(session.getAttribute("username"));
         Student student = (Student)session.getAttribute("student");
         
-        //testing
-        System.out.print("!!!!!!! session ID: " + session.getId());
-        
         //obtaining values from request scope
         String nav = request.getParameter("nav");
         String logout = request.getParameter("logout");
@@ -82,8 +79,6 @@ public class SiteNavigation extends HttpServlet {
         DBOperationsAssignments dbOpsAss = new DBOperationsAssignments();
         DBOperationsDocument dbOpsDoc = new DBOperationsDocument();
         
-        String cohortID ="1";
-        
         //LogOut Block
         if(logout!=null&&!logout.equals("")){
           session.invalidate();
@@ -94,7 +89,7 @@ public class SiteNavigation extends HttpServlet {
         else if(nav!=null&&!nav.equals("")){
             if(nav.equals("home")){
                 //this code is copy pasted from the final else statment. May change this
-                String cohortIDs = student.getCohortID();
+                String cohortID = student.getCohortID();
                 ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
                 request.setAttribute("announcements", announcements);
 
@@ -161,7 +156,7 @@ public class SiteNavigation extends HttpServlet {
                 request.setAttribute("moduleDescription", moduleDescription);
                 
                 
-                ArrayList<Assignment> assignments = dbOpsAss.getCourseAssignments(courseid);
+                ArrayList<Assignment> assignments = dbOpsAss.getModuleAssignments(moduleid);
                 request.setAttribute("assignments", assignments);
                 
                 ArrayList<Document> documents = dbOpsDoc.getModuleDocument(moduleid);
@@ -177,7 +172,7 @@ public class SiteNavigation extends HttpServlet {
         
         //Note: Currently only one cohort ID per student is being allowed. This is contrary to what is currently possible
         //within the ERD. The DB may have to be changed in order to mirror this requirement
-        String cohortIDs = student.getCohortID();
+        String cohortID = student.getCohortID();
         ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
         request.setAttribute("announcements", announcements);
         
