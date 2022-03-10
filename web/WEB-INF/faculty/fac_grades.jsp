@@ -26,7 +26,7 @@
             <b>${cohort.cohortName}</b><br>
             
             <c:forEach items="${requestScope.studentLists.get(count)}" var="student">
-                ${student.fullName} ${student.userID} <br>
+                <a href="SiteNavigationFaculty?nav=studentgrades&studentid=${student.userID}&studentname=${student.fullName}">${student.fullName} ${student.userID}</a> <br>
             </c:forEach>
             
             <c:set var="count" value="${count + 1}"/>  

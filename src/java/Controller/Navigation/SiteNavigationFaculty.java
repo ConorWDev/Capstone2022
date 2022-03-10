@@ -21,6 +21,7 @@ import Objects.Assignment;
 import Objects.Course;
 import Objects.Cohort;
 import Objects.Document;
+import Objects.Grade;
 import Objects.Module;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -61,7 +62,12 @@ public class SiteNavigationFaculty extends HttpServlet {
         
         String courseID = request.getParameter("courseid");
         String moduleID = request.getParameter("moduleid");
+        //studentid and studentname passed from fac_grades.jsp
+        String studentID = request.getParameter("studentid");
+        String studentName = request.getParameter("studentname");
         
+        
+        //TODO search functionality on grades page
         String search = request.getParameter("search");
         
         DBOperationsCohort dbOpsCo = new DBOperationsCohort();
@@ -123,7 +129,16 @@ public class SiteNavigationFaculty extends HttpServlet {
                 request.setAttribute("studentLists", studentLists);
                 
                 
-            request.getRequestDispatcher("/WEB-INF/faculty/fac_grades.jsp").forward(request, response);   
+                request.getRequestDispatcher("/WEB-INF/faculty/fac_grades.jsp").forward(request, response);   
+            }
+            //navigating to student grades page
+            else if (nav.equals("studentgrades")){
+                //get a list of grades for all assignments of a particular student 
+                ArrayList<Grade> studentGrades = dbOpsGrade.getGrades(studentID);
+                request.setAttribute("studentGrades", studentGrades);
+                request.setAttribute("studentName", studentName);
+                
+                request.getRequestDispatcher("/WEB-INF/faculty/fac_studentgrades.jsp").forward(request, response);   
             }
         }
         //if faculty is logging in for first time

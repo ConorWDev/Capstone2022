@@ -11,7 +11,7 @@ import DBOperations.DBOperationsStudent;
 
 /**
  *
- * @author massvm
+ * @author This object holds the grade of a particular asignment for a particular student
  */
 public class Grade {
     
@@ -27,6 +27,7 @@ public class Grade {
     //private String courseName;
     
     private double mark;
+    //NOTE weight may not be applicable here. Weight should change for all assignments, not for one particular grade
     private double weight;
     
     private boolean isVisible;
