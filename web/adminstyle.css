@@ -10,18 +10,18 @@ and open the template in the editor.
 
 body{
 color: #9c9c9c;
-
 }
 #adminnavbottom{
     background-color: #082047;
 }
 #adminnavtop{
     background-color: whitesmoke;
-    link: darkred;
+
+    color: #9c9c9c;
+    font-weight: normal;
 }
 #adminview{
     text-decoration: none;
-    font-weight: bolder;
     color: #082047;
 }
 #control-bar{
@@ -31,12 +31,14 @@ color: #9c9c9c;
     text-align: left;
     align-content: flex-start;
 }
+
 #cbbutton1 {
     background-color: #9c9c9c;
 
 }
 #control-bar button{
     color: #082047;
+    text-align: left;
 }
 #control-bar {
     background-color: #9c9c9c;
