@@ -1,0 +1,77 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar. 10, 2022, 12:39:26 p.m.
+    Author     : Conor Welch
+*/
+
+body{
+color: #9c9c9c;
+
+}
+#adminnavbottom{
+    background-color: #082047;
+}
+#adminnavtop{
+    background-color: whitesmoke;
+    link: darkred;
+}
+#adminview{
+    text-decoration: none;
+    font-weight: bolder;
+    color: #082047;
+}
+#control-bar{
+    background-color: #9c9c9c;
+    height: 100%;
+    font-weight: bold;
+    text-align: left;
+    align-content: flex-start;
+}
+#cbbutton1 {
+    background-color: #9c9c9c;
+
+}
+#control-bar button{
+    color: #082047;
+}
+#control-bar {
+    background-color: #9c9c9c;
+    color: whitesmoke;
+    border:none;
+    cursor: pointer;
+}
+#cbbutton2 {
+    background-color: #9c9c9c;
+}
+#cbbutton3 {
+    background-color: #9c9c9c;
+}
+#cbbutton4 {
+    background-color: #9c9c9c;
+}
+#cbbutton5 {
+    background-color: #9c9c9c;
+}
+#cbbutton6 {
+    background-color: #9c9c9c;
+}
+#cbbutton7 {
+    background-color: #9c9c9c;
+}
+#cbbutton8 {
+    background-color: #9c9c9c;
+    height:125px;
+}
+#contentpage {
+    background-color: #c3c3c3;
+
+}
+#contentcontainer{
+    height: 530px;
+    background-color: whitesmoke;
+    box-shadow: 1px 1px 1px #787878;
+}
