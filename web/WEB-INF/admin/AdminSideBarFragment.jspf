@@ -1,0 +1,100 @@
+<%-- Author: Conor Welch --%>
+<%@ page pageEncoding="UTF-8" %>
+<!--Page Navigation-->
+<div class="row">
+    <div class="col-sm-2 ms-0 border border-light border-top-0" id="control-bar">
+        <div id="cbbutton1" class="row p-3 border border-light border-top-0">
+            <div class="dropdown">
+                <button type="button" class="btn dropdown-toggle ms-0 ps-0 pe-5" data-bs-toggle="dropdown">
+                    User Management
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Student</a></li>
+                    <li><a class="dropdown-item" href="#">Faculty</a></li>
+                    <li><a class="dropdown-item" href="#">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="cbbutton2" class="row p-3 border border-light">
+
+            <div class="dropdown">
+                <button type="button" class="btn dropdown-toggle ms-0 ps-0 pe-5" data-bs-toggle="dropdown">
+                    Assignment
+                </button>
+                <ul class="dropdown-menu ">
+                    <li><a class="dropdown-item" href="#">1</a></li>
+                    <li><a class="dropdown-item" href="#">2</a></li>
+                    <li><a class="dropdown-item" href="#">3</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="cbbutton3" class="row p-3 border border-light ">
+
+            <div class="dropdown">
+                <button type="button" class="btn dropdown-toggle ms-0 ps-0 pe-5" data-bs-toggle="dropdown">
+                    Module
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">1</a></li>
+                    <li><a class="dropdown-item" href="#">2</a></li>
+                    <li><a class="dropdown-item" href="#">3</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="cbbutton4" class="row p-3 border border-light ">
+
+            <div class="dropdown">
+                <button type="button" class="btn dropdown-toggle ms-0 ps-0 pe-5" data-bs-toggle="dropdown">
+                    Course
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">1</a></li>
+                    <li><a class="dropdown-item" href="#">2</a></li>
+                    <li><a class="dropdown-item" href="#">3</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="cbbutton5" class="row p-3 border border-light pe-5">
+
+            <div class="dropdown">
+                <button type="button" class="btn dropdown-toggle ms-0 ps-0 pe-5" data-bs-toggle="dropdown">
+                    Cohort
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">1</a></li>
+                    <li><a class="dropdown-item" href="#">2</a></li>
+                    <li><a class="dropdown-item" href="#">3</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="cbbutton6" class="row p-3 border border-light ">
+
+            <div class="dropdown">
+                <button type="button" class="btn dropdown-toggle ms-0 ps-0 pe-5" data-bs-toggle="dropdown">
+                    Announcement
+                </button>
+                <ul class="dropdown-menu me-5">
+                    <li><a class="dropdown-item" href="#">1</a></li>
+                    <li><a class="dropdown-item" href="#">2</a></li>
+                    <li><a class="dropdown-item" href="#">3</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="cbbutton7" class="row p-3 border border-light pe-5">
+
+            <div class="dropdown">
+                <button type="button" class="btn dropdown-toggle ms-0 ps-0 pe-5" data-bs-toggle="dropdown">
+                    Administration
+                </button>
+                <ul class="dropdown-menu me-5">
+                    <li><a class="dropdown-item" href="#">Reports</a></li>
+                    <li><a class="dropdown-item" href="#">Archive</a></li>
+                    <li><a class="dropdown-item" href="#">Backup and Recovery</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="cbbutton8" class="row p-3 border border-light pe-5 border-bottom-0">
+           <a href="#"></a>
+        </div>
+
+    </div>

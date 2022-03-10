@@ -1,3 +1,22 @@
 <%-- Author: Conor Welch--%>
 <%@ page pageEncoding="UTF-8" %>
-<h2>Hello World!</h2>
+<!--Top of the admin bar-->
+<nav id="adminnavtop" class="navbar navbar-expand-m navbar-light bg-white p-0 me-0">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand text-black" id="mgtlogo"><img src="MGTLOGO.png" height="25px" alt="MGTLOGO"/> MGT</a>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active " id="adminview" aria-current="page" href="#">Admin</a>
+        </div>
+    </div>
+</nav>
+<!--Bottom of dual tone nav bar-->
+<nav class="navbar navbar-dark p-0 mb-0" id="adminnavbottom">
+    <div class="container-fluid pr-5">
+        <div class="align-self-left" id="navbottomlinks">
+            <a href="#" class="navbar-item"></a>
+        </div>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" aria-current="page" href="#">Log Out?</a>
+        </div>
+    </div>
+</nav>

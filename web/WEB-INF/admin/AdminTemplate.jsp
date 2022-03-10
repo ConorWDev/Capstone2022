@@ -6,12 +6,33 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="adminstyle.css" rel="stylesheet"/>
+    <title>Title</title>
+</head>
+<body>
+<!--Header Fragment-->
+
+
+    <!--SideBar Fragment-->
+    
+    <!--End of Fragment-->
+
+
+    <!--CONTEXT SECTION-->
+    <div class="col p-5 pt-3" id="contentpage">
+        <div class="row">
+            <div class="container bg-light" id="contentcontainer">
+                <h1 style="margin: auto; align-self: center">CONTENT GOES HERE</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>
