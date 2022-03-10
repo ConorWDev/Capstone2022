@@ -24,9 +24,7 @@ public class DBOperationsGrade {
     /*
     *getGrades
     This method returns all grades of a given student, regarless of
-    *course. This method may not currently be in use as students can only
-    *view grades in a course-by-course basis. May delete this method if
-    *neccessary
+    *course. This is used for the faculty studentGrades.jsp page
     */
     
       public ArrayList<Grade> getGrades(String username){
