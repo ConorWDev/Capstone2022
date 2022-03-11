@@ -36,7 +36,11 @@
                 
                 <b>COHORT SPECIFIC ANNOUNCEMENTS --></b>
             <c:forEach items="${requestScope.announcementLists.get(count)}" var="announcement">
-                ${announcement.text}  <br>
+                <form action="SiteNavigationFaculty" method="GET">
+                    ${announcement.text}  <br>
+                    <input type="submit" value="edit">
+                </form>
+                
             </c:forEach>
                 
            
