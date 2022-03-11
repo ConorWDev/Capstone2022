@@ -62,6 +62,9 @@ public class SiteNavigationFaculty extends HttpServlet {
         
         String courseID = request.getParameter("courseid");
         String moduleID = request.getParameter("moduleid");
+        //the parameter cohortid and cohort name are retrieved from fac_home.jsp announcement form
+        String cohortID = request.getParameter("cohortid");
+        String cohortName = request.getParameter("cohortname");
         //studentid and studentname passed from fac_grades.jsp
         String studentID = request.getParameter("studentid");
         String studentName = request.getParameter("studentname");
@@ -139,6 +142,15 @@ public class SiteNavigationFaculty extends HttpServlet {
                 request.setAttribute("studentName", studentName);
                 
                 request.getRequestDispatcher("/WEB-INF/faculty/fac_studentgrades.jsp").forward(request, response);   
+            }
+            //faculty has selected view all announcements on fac_home.jsp
+            else if (nav.equals("cohortannouncements")){
+                
+                ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
+                request.setAttribute("announcements", announcements);
+                request.setAttribute("cohortName", cohortName);
+                
+                request.getRequestDispatcher("/WEB-INF/faculty/fac_cohortannouncements.jsp").forward(request, response);
             }
         }
         //if faculty is logging in for first time
