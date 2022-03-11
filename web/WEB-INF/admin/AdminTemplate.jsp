@@ -24,16 +24,18 @@
 <!--SideBar Fragment-->
 <%@include file="AdminSideBarFragment.jspf" %>    
 <!--End of Fragments-->
+<div class="row">
 
-
-<!--CONTENT SECTION-->
     <div class="col p-5 pt-3" id="contentpage">
         <div class="row">
             <div class="container bg-light" id="contentcontainer">
-                <h1 style="margin: auto; align-self: center">LANDING CONTENT TBA</h1>
+                <div class="row-cols-1 " id="contentheaderrow">
+                <p class="h3 ms-3 mt-3 " id="contentheader">Section Header</p>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
 
 </body>
