@@ -105,7 +105,36 @@ public class DBOperationsAssignments {
           
         return assignments;
     }
-    
-    
+
+    //Submit a new assignment Obj
+    //Author: Altamish Lalani
+    public boolean submitAssignment(Assignment inbound_assignment){
+        boolean result = false;
+
+        //Check if assignment exists already
+
+        //Check if assignment URL works
+
+        //If the two cases above pass, persist object into tables as needed.
+
+
+
+        return result;
+    }
+    //Submit an updated assignment Obj
+    //Author: Altamish Lalani
+    public boolean editAssignment(Assignment inboundUpdated_assignment){
+        boolean result = false;
+
+        //Check if assignment exists already
+
+        //Check if new assignment URL works
+
+        //If the two cases above pass, Update the record in the tables correctly.
+
+        
+
+        return result;
+    }
     
 }
