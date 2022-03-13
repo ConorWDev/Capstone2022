@@ -92,6 +92,60 @@ public class DBOperationsAnnouncement {
             return courseAnnouncements;
     }
     
+    /*
+    In this method we are creating a course announcement. To do this we are currently feeding in the course ID and text entered by the user.
+    Right now we are inserting dummy data into the start/end time columns. The db has been updated to auto increment the primary key. The pk is
+    changed to an int to achieve this
+    */
+    public boolean createCourseAnnouncement(String courseID, String text){
+        boolean result = false;
+        //currently insert dummy values for start/end date
+        String sql = "insert into ma_course_announcement (course_id,start_time,end_time,text) values (?,'2022-02-10','2022-02-10',?);";
+       
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, courseID);
+            st.setString(2, text);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){}
+            return result;
+    }
+    
+    /*
+    public String testGetPK (){
+        String result = "";
+        String sql = "select annnouncement_id from ma_course_announcement where annnouncement_id = 1";
+        
+         ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()) {
+                
+                result = rs.getString(1);
+                
+            }
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){}
+            return result;
+    }
+        
+    */
+    
     
 }
         

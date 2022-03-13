@@ -13,8 +13,8 @@
     </head>
     <body>
         <%@include file="fac_headerfragment.jspf" %>
-        <h1>${requestScope.moduleName}</h1>
-        ${requestScope.moduleDescription}<br>
+        <h1>${sessionScope.moduleObject.name}</h1>
+        ${sessionScope.moduleObject.description}<br>
         
         <b> ASSIGNMENTS </b><br>
         <c:forEach items="${requestScope.assignments}" var="assignment">

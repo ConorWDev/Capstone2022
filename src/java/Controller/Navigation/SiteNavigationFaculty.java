@@ -20,6 +20,7 @@ import Objects.Announcement;
 import Objects.Assignment;
 import Objects.Course;
 import Objects.Cohort;
+import Objects.CourseAnnouncement;
 import Objects.Document;
 import Objects.Grade;
 import Objects.Module;
@@ -60,14 +61,22 @@ public class SiteNavigationFaculty extends HttpServlet {
         String nav = request.getParameter("nav");
         String logout = request.getParameter("logout");
         
+        
+        //course ID is passed into SiteNavigationFaculty from the users selection of the particular course
+        //that they are navigating to. this will then be used to create a course ibject. That course object will be attached to the session.
         String courseID = request.getParameter("courseid");
+        //module ID is passed into SiteNavigationFaculty from the users selection of the particular module
+        //that they are navigating to. this will then be used to create a module object. that module object will be attached to the session.
         String moduleID = request.getParameter("moduleid");
+        
         //the parameter cohortid and cohort name are retrieved from fac_home.jsp announcement form
         String cohortID = request.getParameter("cohortid");
         String cohortName = request.getParameter("cohortname");
         //studentid and studentname passed from fac_grades.jsp
         String studentID = request.getParameter("studentid");
         String studentName = request.getParameter("studentname");
+        
+        
         
         
         //TODO search functionality on grades page
@@ -91,24 +100,44 @@ public class SiteNavigationFaculty extends HttpServlet {
         else if(nav!=null&&!nav.equals("")){
            //navigating to course main
             if (nav.equals("coursemain")){
+                
+               //ADDING GIVEN COURSE TO SESSION SCOPE "courseObject" 
+               
+               //create a course object from the given course ID and then set it within the session scope for use later.
+               //this is a new model. Prior to this, no course was held in session scope. Rather, the required values (name, id description)
+               //were all passed individually. This was ineffective. Because all navigation "deeper" into the app (i.e, navigating to further pages
+               //from this point onward) will be only relevant to this particular course, the course is set as "course" on the session scope.
+               //if a different course is navigated to on fac_home.jsp, that particular course will be assigned to the session scope as "course".
+               Course course = dbOpsCor.getCourse(courseID);
+               session.setAttribute("courseObject", course);
+               
+               //obtain course announcements 
+               ArrayList<CourseAnnouncement> announcements = dbOpsAn.getCourseAnnouncements(courseID);
+               request.setAttribute("announcements",announcements);
+               
                //load list of modules for associated course
                ArrayList<Module> modules = dbOpsMod.getCourseModules(courseID);
                request.setAttribute("modules",modules);
-               //get course name
-               String courseName = dbOpsCor.getCourseName(courseID);
-               request.setAttribute("courseName",courseName);
+               
                //direct to coursemain page
                request.getRequestDispatcher("/WEB-INF/faculty/fac_coursemain.jsp").forward(request, response);
            }
             //navigating to modulemain
             else if (nav.equals("modulemain")){
-                //get module name
-                String moduleName = dbOpsMod.getModuleName(moduleID);
-                request.setAttribute("moduleName", moduleName);
-                //get module description
-                String moduleDescription = dbOpsMod.getModuleDescription(moduleID);
-                request.setAttribute("moduleDescription", moduleDescription);
-                //get assignments for module
+                
+                //ADDING GIVEN MODULE TO SESSION SCOPE "moduleObject"
+                
+                
+                 //create a module object from the given module ID and then set it within the session scope for use later.
+               //this is a new model. Prior to this, no module was held in session scope. Rather, the required values (name, id description)
+               //were all passed individually. This was ineffective. Because all navigation "deeper" into the app (i.e, navigating to further pages
+               //from this point in the app onward) will be only relevant to this particular module, the module is set as "module" on the session scope.
+               //if a different module is navigated to on fac_coursemain.jsp, that particular module will be assigned to the session scope as "module".
+                
+                Module module = dbOpsMod.getModule(moduleID);
+                session.setAttribute("moduleObject", module);
+                
+                //get list of assignments for particular module
                 ArrayList<Assignment> assignments = dbOpsAss.getModuleAssignments(moduleID);
                 request.setAttribute("assignments", assignments);
                 //get documents for module
@@ -120,6 +149,7 @@ public class SiteNavigationFaculty extends HttpServlet {
             //navigating to grades page
             else if (nav.equals("grades")){
                 
+                //a faculty member may have multiple cohorts under their influence. return a list of these cohorts
                 ArrayList<Cohort> cohorts = dbOpsCo.getCohorts(faculty.getUserID());
                 request.setAttribute("cohorts", cohorts);
                 //an array list of arraylists. In the case that a teacher teaches across multiple cohorts, we need to be able
@@ -151,6 +181,41 @@ public class SiteNavigationFaculty extends HttpServlet {
                 request.setAttribute("cohortName", cohortName);
                 
                 request.getRequestDispatcher("/WEB-INF/faculty/fac_cohortannouncements.jsp").forward(request, response);
+            }
+            //faculty has select view all announcements on fac_coursemain.jsp
+            else if (nav.equals("courseannouncements")){
+                
+               //obtain the course object that is storred within the session scope (again, this is done above when navigating to coursemain.jsp)
+               Course course = (Course)session.getAttribute("courseObject"); 
+                
+               /*
+                NOTE, at this point in the application, the course object "course" within the session scope has been set (occurs when selecting couse
+                (on fac_home.jsp). As such, course related datafields that are required on courseannouncement.jsp can be passed via the "course" session
+                scope variable
+                */
+               
+               //obtain text from add announcement form on fac_courseannouncements.jsp and carry out sql command to add it to the DB
+               String textSubmission = request.getParameter("textSubmission");
+               if (textSubmission != null && !textSubmission.equals("")){
+                   
+                   boolean result = dbOpsAn.createCourseAnnouncement(course.getCourseID(), textSubmission);
+                   
+                   String message = "";
+                   if (result){
+                       message = "The announcement has been created";
+                   }
+                   else{
+                       message = "There was an error when creating the announcement";
+                   }
+                   request.setAttribute("message", message);
+               }
+               
+               //obtain course announcements 
+               ArrayList<CourseAnnouncement> announcements = dbOpsAn.getCourseAnnouncements(course.getCourseID());
+               request.setAttribute("announcements",announcements);
+               
+               
+               request.getRequestDispatcher("/WEB-INF/faculty/fac_courseannouncements.jsp").forward(request, response);
             }
         }
         //if faculty is logging in for first time
