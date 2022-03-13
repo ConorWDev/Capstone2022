@@ -139,4 +139,35 @@ public class DBOperationsCourse {
         return courseName;
     }
     
+    /*
+    This method returns a course object for a given course id entered. This is used within SiteNavigationFaculty when navigating to the
+    course main page and setting the particular module object as "module" within the session scope of the application. This may
+    depreicate getCourseName method, as this one method can be called, and from the resulting object, all datafields of the course can be retrieved
+    */
+    public Course getCourse (String courseID){
+        Course course = null;
+        String sql ="select * from ma_course where course_id = ?";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+            
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, courseID);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+                course = new Course(rs.getString(1),rs.getString(2),rs.getString(3));
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return course;
+    }
+    
 }
