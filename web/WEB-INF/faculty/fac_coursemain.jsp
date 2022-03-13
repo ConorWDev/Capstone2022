@@ -13,11 +13,26 @@
     </head>
     <body>
         <%@include file="fac_headerfragment.jspf" %>
-        <h1>${requestScope.courseName}</h1>
+        <h1>${sessionScope.courseObject.courseName}</h1>
         
         <c:forEach items="${requestScope.modules}" var="module">
             <a href="SiteNavigationFaculty?nav=modulemain&moduleid=${module.lessonId}">${module.name}</a><br>
         </c:forEach>
+            
+            <br>
+            <b> COURSE ANNOUNCEMENTS </b>    
+            <br>
+        <%--TODO limit printout of announcemnts to three or something. View all announcements on next page --%>    
+        <c:forEach items="${requestScope.announcements}" var="announcement">
+            ${announcement.text}
+        </c:forEach>    
+        
+            
+        <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
+                <input type="submit" value="View/edit announcements">
+        </form> 
+            
+         
         
     </body>
 </html>
