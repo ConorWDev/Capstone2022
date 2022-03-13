@@ -3,6 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/*
+
+TODO Delete this!!
+
+
 package DBOperations.Faculty;
 
 import DBOperations.ConnectionPool;
@@ -15,6 +20,7 @@ import java.sql.SQLException;
  *
  * @author massvm
  */
+/*
 public class DBOperationsFaculty {
     
     //get faculty name from username
@@ -74,3 +80,4 @@ public class DBOperationsFaculty {
     }
     
 }
+*/
