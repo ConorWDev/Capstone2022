@@ -120,6 +120,64 @@ public class DBOperationsAnnouncement {
             return result;
     }
     
+    //obtain a particular courseannouncment from a given courseannouncementID. This is done to save the
+    //course announcement to the session scope when faculty is editing a course announcement
+    public CourseAnnouncement getCourseAnnouncement (String courseAnnouncementID){
+        CourseAnnouncement announcement = null;
+        String sql = "select * from ma_course_announcement where annnouncement_id = ?;";
+        
+        
+         ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, courseAnnouncementID);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()) {
+                String announcementID = rs.getString(1);
+                String cohort_id = rs.getString(2);
+                String start_time = rs.getString(3);
+                String end_time = rs.getString(4);
+                String text = rs.getString(5);
+                String isVisible = rs.getString(6);
+                
+                announcement = new CourseAnnouncement(announcementID,cohort_id,start_time,end_time,text,isVisible);
+            }
+            
+           
+            rs.close();
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){}    
+        
+        return announcement;
+    }
+    
+    //method used when editing courseAnnouncements. Input courseAnnouncementID and new text that will replace it
+    public boolean editCourseAnnouncement (String courseAnnouncementID, String newText){
+        boolean result = false;
+        String sql = "update ma_course_announcement set text = ? where annnouncement_id = ?;";
+         ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, newText);
+            st.setString(2, courseAnnouncementID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){}
+            
+        return result;
+    }
+    
     /*
     public String testGetPK (){
         String result = "";
