@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="fac_headerfragment.jspf" %>
         <h1>Grades</h1>
          
         <form action="SiteNavigationFaculty?nav=grades" method="POST">
