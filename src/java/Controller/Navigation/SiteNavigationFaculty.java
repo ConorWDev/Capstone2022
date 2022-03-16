@@ -210,6 +210,39 @@ public class SiteNavigationFaculty extends HttpServlet {
                    request.setAttribute("message", message);
                }
                
+               //editing the course announcement, pull up edit menu. Add selected announcement
+               //to session scope for further work
+               String editMenu = request.getParameter("editMenu");
+              
+               if (editMenu != null && !editMenu.equals("")){
+                   request.setAttribute("editMenu", true);
+                   //saving announcement that we are editing to the session scope.
+                   //to do this we obtain the given announcements ID from the form on fac_courseannouncements.jsp
+                   //create a new annonucement object with the dbOp. And then save that created announcement object to session scope
+                   String courseAnnouncementID = request.getParameter("announcementID");
+                   CourseAnnouncement announcement = dbOpsAn.getCourseAnnouncement(courseAnnouncementID);
+                   session.setAttribute("courseAnnouncement", announcement);
+                   
+               }
+               
+               //edit menu form submitted, call dbOp to update database
+               String newText = request.getParameter("newText");
+               if (newText != null && !newText.equals("")){
+                   
+                   CourseAnnouncement announcement = (CourseAnnouncement)session.getAttribute("courseAnnouncement");
+                   String announcementID = announcement.getAnnouncementID();
+                   
+                   boolean result = dbOpsAn.editCourseAnnouncement(announcementID, newText);
+                   
+                   if (result){
+                       request.setAttribute("editMenu", false);
+                   }
+                   else{
+                       request.setAttribute("editMessage", "An error ocurred during editing. Limit 1000 characters");
+                   }
+               }
+               
+               
                //obtain course announcements 
                ArrayList<CourseAnnouncement> announcements = dbOpsAn.getCourseAnnouncements(course.getCourseID());
                request.setAttribute("announcements",announcements);
