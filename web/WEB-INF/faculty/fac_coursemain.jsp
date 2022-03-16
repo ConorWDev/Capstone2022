@@ -24,7 +24,10 @@
             <br>
         <%--TODO limit printout of announcemnts to three or something. View all announcements on next page --%>    
         <c:forEach items="${requestScope.announcements}" var="announcement">
-            ${announcement.text}
+            <form style="border: solid">
+            <br>${announcement.text}<br>
+            ${announcement.startDate}<br>
+            </form>
         </c:forEach>    
         
             

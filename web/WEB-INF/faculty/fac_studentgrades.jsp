@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="fac_headerfragment.jspf" %>
         <h1>${requestScope.studentName}'s Grades</h1>
         
         <c:forEach items="${requestScope.studentGrades}" var="grades">
