@@ -18,7 +18,8 @@
         
         <c:forEach items="${requestScope.attendanceList}" var="attendance">
             
-            ${attendance.date} 
+            ${attendance.date}
+           
             <c:choose>
                 <c:when test="${attendance.present}">
                     <a href="SiteNavigationFaculty?nav=studentattendance&studentID=${requestScope.studentID}&date=${attendance.date}&isPresent=true&studentName=${requestScope.studentName}">Present</a>
