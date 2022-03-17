@@ -15,9 +15,22 @@
         <%@include file="fac_headerfragment.jspf" %>
         <h1>${requestScope.studentName}'s Grades</h1>
         
-        <c:forEach items="${requestScope.studentGrades}" var="grades">
-            ${grades.assignmentName} ${grades.mark} <br>
-        </c:forEach>
+       <c:forEach items="${requestScope.studentGrades}" var="grades">
+            ${grades.assignmentName}
+            <input type ="text" name="newGrade" size ="5" value="<c:out value ='${grades.mark}'/>">
+            <br>
+        </c:forEach>     
+            
+            <form action ="SiteNavigationFaculty?nav=studentgrades" method ="POST">
+            <input type ="submit" value="Save"> 
+            </form>
+             
+        
+            
+            
+                
+              
+            
         
         
     </body>
