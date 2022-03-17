@@ -24,7 +24,7 @@
 <!--SideBar Fragment-->
 <%@include file="AdminSideBarFragment.jspf" %>    
 <!--End of Fragments-->
-<    <div class="col p-5 pt-3" id="contentpage">
+   <div class="col p-5 pt-3" id="contentpage">
         <div class="row">
             <div class="container pe-2" id="contentcontainer" >
                 <div class="row-cols-1 mt-3" id="contentheaderrow">
