@@ -23,8 +23,7 @@ public class Faculty {
     public Faculty(String userID){
         this.userID = userID;
         this.fullName = dbOps.getFacultyName(userID);
-        this.email = dbOps.getFacultyEmail(userID);
-        
+        this.email = dbOps.getFacultyEmail(userID); 
     }
 
     public String getUserID() {
