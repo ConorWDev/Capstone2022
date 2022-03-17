@@ -30,7 +30,7 @@
 
 
             <div class="col-5 bg-white rounded p-2">
-                <p class="h3 " style="color: #0069d9">${requestScope.courseName}</p>
+                <p class="h3 " style="color: #0069d9">${requestScope.courseName} </p>
                 <div class="row " style="align-content: center">
                     
                 <div class="col-6">
