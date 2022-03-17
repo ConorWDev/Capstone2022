@@ -7,6 +7,7 @@ package Controller.Navigation;
 
 import DBOperations.DBOperationsAnnouncement;
 import DBOperations.DBOperationsAssignments;
+import DBOperations.DBOperationsAttendance;
 import DBOperations.DBOperationsCohort;
 import DBOperations.DBOperationsCourse;
 import DBOperations.DBOperationsDocument;
@@ -18,6 +19,7 @@ import Interface.Users.Faculty;
 import Interface.Users.Student;
 import Objects.Announcement;
 import Objects.Assignment;
+import Objects.Attendance;
 import Objects.Course;
 import Objects.Cohort;
 import Objects.CourseAnnouncement;
@@ -91,6 +93,7 @@ public class SiteNavigationFaculty extends HttpServlet {
         DBOperationsCourse dbOpsCor = new DBOperationsCourse();
         DBOperationsAssignments dbOpsAss = new DBOperationsAssignments();
         DBOperationsDocument dbOpsDoc = new DBOperationsDocument();
+        DBOperationsAttendance dbOpsAtt = new DBOperationsAttendance();
         
         if(logout!=null&&!logout.equals("")){
           session.invalidate();
@@ -229,9 +232,11 @@ public class SiteNavigationFaculty extends HttpServlet {
                String newText = request.getParameter("newText");
                if (newText != null && !newText.equals("")){
                    
+                   //get course announcement from sesssion scope assigned previously. And then get its ID
                    CourseAnnouncement announcement = (CourseAnnouncement)session.getAttribute("courseAnnouncement");
                    String announcementID = announcement.getAnnouncementID();
                    
+                   //call dbOp to edit course announcement with courseannouncementID and newText as parameter
                    boolean result = dbOpsAn.editCourseAnnouncement(announcementID, newText);
                    
                    if (result){
@@ -243,12 +248,127 @@ public class SiteNavigationFaculty extends HttpServlet {
                }
                
                
-               //obtain course announcements 
+               //obtain course announcements for display on fac_courseannouncments page 
                ArrayList<CourseAnnouncement> announcements = dbOpsAn.getCourseAnnouncements(course.getCourseID());
                request.setAttribute("announcements",announcements);
                
-               
+               //direct to fac_courseannouncement.jsp page
                request.getRequestDispatcher("/WEB-INF/faculty/fac_courseannouncements.jsp").forward(request, response);
+            }
+            //faculty is entering into the attendance page from the headerfragment
+            else if (nav.equals("attendance")){
+                
+                //obtain number of students in the given cohort. Will be null unless attendance is saved on attendenca page.
+                String studentCountString = request.getParameter("studentCount");
+               
+                //In the following code section we obtain all studentIDs that are present as well as all studentIDs for a given
+                //cohort. These two lists of IDs will be used to determine who is and is not present for a given day. once this
+                //is determined we persist the needed information to the database to track attendance
+
+                String attendanceMessage = "";
+                
+                //create an array list to hold the IDs of all studnts who are present
+                ArrayList<String> presentIDs = new ArrayList<>();
+                //create an array list to hold the IDs of all students in the given cohort
+                ArrayList<String> allIDs = new ArrayList<>();
+                
+                //if the studentCountString isnt null, ie we are saving attendance
+                if (studentCountString != null){
+                    int studentCount = Integer.parseInt(studentCountString);
+                        //get each attendanceCheck{count} parameter from the form. If it isnt null that student
+                        //has been checked and therefore is present.
+                        for (int x = 0; x < studentCount; x++){
+                            String presentID = request.getParameter("attendanceCheck" + x);
+                            if (presentID != null){
+                                presentIDs.add(presentID);
+                            }   
+                        }
+                        //get all IDs for each student within the given cohort and add it to allIDs arraylist
+                        //this will allow for comparison between the present students (whose ids are held in the
+                        //presentIDs arraylist
+                        for (int x = 0; x < studentCount; x++){
+                            String ID = request.getParameter("attendanceHidden" + x);
+                            allIDs.add(ID);
+                        }
+                    //parse through all StudentIDs
+                    for (int x = 0; x < allIDs.size(); x++){
+                        String date = request.getParameter("date");
+                        //if the studentID is present
+                        if (presentIDs.contains(allIDs.get(x))){
+                            Boolean result = dbOpsAtt.addAttendancePresent(allIDs.get(x),date);
+                            
+                            if (result){
+                                attendanceMessage = "Attendance Successfully updated";
+                            }
+                            else{
+                                attendanceMessage = "Something went wrong when updating attendance";
+                            }
+                        }
+                        //if student is marked not present
+                        else{
+                             Boolean result = dbOpsAtt.addAttendanceNotPresent(allIDs.get(x),date);
+                             
+                             if (result){
+                                attendanceMessage = "Attendance Successfully updated";
+                            }
+                            else{
+                                attendanceMessage = "Something went wrong when updating attendance";
+                            }
+                        }
+                    }
+                }
+                
+                request.setAttribute("attendanceMessage",attendanceMessage);
+                request.setAttribute("presentIDs",presentIDs);
+                request.setAttribute("allIDs",allIDs);
+                
+                
+                //similar to logic when navigating to grade page...
+                //a faculty member may have multiple cohorts under their influence. return a list of these cohorts
+                ArrayList<Cohort> cohorts = dbOpsCo.getCohorts(faculty.getUserID());
+                request.setAttribute("cohorts", cohorts);
+                //an array list of arraylists. In the case that a teacher teaches across multiple cohorts, we need to be able
+                //to store the student list of each cohort
+                ArrayList<ArrayList> studentLists = new ArrayList<>();
+                for(int x =0; x < cohorts.size(); x++){
+                    ArrayList<Student> students = dbOpsStud.getStudentsByCohort(cohorts.get(x).getCohortID());
+                    studentLists.add(students);
+                }
+                request.setAttribute("studentLists", studentLists);
+                
+                request.getRequestDispatcher("/WEB-INF/faculty/fac_attendance.jsp").forward(request, response);
+            }
+            else if (nav.equals("studentattendance")){
+                //session scope not used here. requestScope hands values back and forth. A bit lazy but it works. See large <a> in jsp to see
+                //partly whats going on
+                
+                //date and isPresent is particular are derived solely from the <a> href within studentattendance.jsp
+                String date = request.getParameter("date");
+                String isPresent = request.getParameter("isPresent");
+                
+                //name and ID are obtained both from attendance and studentattendance depending on which page user is on
+                request.setAttribute("studentName",request.getParameter("studentName"));
+                request.setAttribute("studentID", request.getParameter("studentID"));
+                String studentIDAttendance = request.getParameter("studentID");
+
+                //if isPresent is not null that means the user is attempting to switch a particular student from present to
+                //absent or vise versa on the studentattendance page
+                if (isPresent != null && !isPresent.equals("")){
+                    //student is currently present, change to absent
+                    if (isPresent.equals("true")){
+                        Boolean result = dbOpsAtt.addAttendanceNotPresent(studentIDAttendance, date);
+                    }
+                    //else the opposite
+                    else{
+                         Boolean result = dbOpsAtt.addAttendancePresent(studentIDAttendance, date);
+                    }
+                }
+
+                
+                ArrayList<Attendance> attendanceList = dbOpsAtt.getAttendanceRecords(studentIDAttendance);
+                request.setAttribute("attendanceList",attendanceList);
+                
+                request.getRequestDispatcher("/WEB-INF/faculty/fac_studentattendance.jsp").forward(request, response);
             }
         }
         //if faculty is logging in for first time
