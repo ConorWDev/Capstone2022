@@ -174,8 +174,27 @@ public class SiteNavigationFaculty extends HttpServlet {
                 request.setAttribute("studentGrades", studentGrades);
                 request.setAttribute("studentName", studentName);
                 
+                
+                String newGrade = request.getParameter("newGrade");
+                if (newGrade != null && !newGrade.equals("")){
+                    request.setAttribute("newGrade", true);
+                    
+                    Grade grade= (Grade)session.getAttribute("studentGrades");
+                    Assignment assignment = (Assignment)session.getAttribute("assignemntID");
+                    Student student = (Student)session.getAttribute("UserID");
+                    
+                    String assignmentID = assignment.getassignmentId();
+                    String studentUsername = student.getUserID();
+                    
+                    boolean result = dbOpsGrade.updateGrade(assignmentID, studentUsername, newGrade);
+                    
+                }             
+                ArrayList<Grade> grade = dbOpsGrade.getGrades(studentID);
+                request.setAttribute("grade", grade);
+                
                 request.getRequestDispatcher("/WEB-INF/faculty/fac_studentgrades.jsp").forward(request, response);   
             }
+        
             //faculty has selected view all announcements on fac_home.jsp
             else if (nav.equals("cohortannouncements")){
                 
