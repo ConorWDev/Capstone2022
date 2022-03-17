@@ -6,6 +6,8 @@
 package DBOperations;
 
 import DBOperations.DBOperationsGeneral;
+import Interface.Users.Student;
+import Objects.Assignment;
 import Objects.Grade;
 import Objects.StudentCourse;
 import java.sql.Connection;
@@ -206,5 +208,27 @@ public class DBOperationsGrade {
           
           return courses;
       }
-       
+      public boolean updateGrade (String assignmentID, String studentUsername, String newGrade) {
+          boolean result = false;
+          String sql = "UPDATE ma_grade SET mark = ? WHERE assignment_id = ? and username = ?;";
+          ConnectionPool cp = ConnectionPool.getInstance();
+          
+          try {
+              Connection conn = cp.getConnection();
+              PreparedStatement st = conn.prepareStatement(sql);
+              
+              st.setString(1, newGrade);
+              st.setString(2, assignmentID);
+              st.setString(3, studentUsername);
+              
+              int rowUpdate = st.executeUpdate(); 
+              
+              result = (rowUpdate > 0);
+              st.close();
+            //conn.close();
+             cp.freeConnection(conn);
+          } catch (Exception e){}
+          return result;
+ 
+      }
 }
