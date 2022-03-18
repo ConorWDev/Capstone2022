@@ -43,7 +43,7 @@
 #cbbutton6 {}
 #cbbutton7 {}
 #cbbutton8 {
-    height:125px;
+    height:300px;
 }
 
 #contentpage {
@@ -52,18 +52,18 @@
     color: #082047;
 }
 #contentcontainer{
-    height: 570px;
+    
     background: #E2E6EA;
     box-shadow: 1px 1px 1px #c5c9cd;
     border-radius: 3px;
-    border-style: wave;
+    
 }
 #contentcontainerann{
     height: 550px;
     background: #E2E6EA;
     box-shadow: 1px 1px 1px #c5c9cd;
     border-radius: 3px;
-    border-style: wave;
+    border-style: groove;
 }
 #contentheader{
     color: #082047;
