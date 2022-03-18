@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-1 " id="contentheader">User Management</p>
+                            <p class="h2 mb-1 " id="contentheader">Landing Page</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
