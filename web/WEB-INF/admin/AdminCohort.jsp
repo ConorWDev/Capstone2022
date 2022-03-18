@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-1 " id="contentheader">Content Title</p>
+                            <p class="h2 mb-1 " id="contentheader">Cohort Management</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
@@ -70,7 +70,7 @@
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic">*User Type* Info</p>
+                                            <p class="h6 mt-2 " id="headerdynamic"><b>Cohort Info</b></p>
                                         </div>
                                     </div>
                                     <div class="row">
