@@ -85,7 +85,7 @@ public class SiteNavigation extends HttpServlet {
           request.setAttribute("message", "User successfully logged out.");
           request.getRequestDispatcher("/WEB-INF/student/loginV2.jsp").forward(request, response); 
         }
-        //Navigation Block for Nav Bar Most of home page
+        //Navigation Block for Nav Bar
         else if(nav!=null&&!nav.equals("")){
             if(nav.equals("home")){
                 //this code is copy pasted from the final else statment. May change this
