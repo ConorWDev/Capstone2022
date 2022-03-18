@@ -52,7 +52,10 @@ public class SiteNavigationAdmin extends HttpServlet {
             
             if(nav.equals("users")){
                 
-//                op perameter added for pages with multiple ops
+                //op perameter added for pages with multiple ops
+                //this is only one option for implementation it could value you check and assign 
+                //but if the value is not null then it just needs the op and forward it to the 
+                //page with the op value I just don't know if it will transfer
                 if(op!=null&&!op.equals("")){
                     request.setAttribute("op", op); 
                 }
