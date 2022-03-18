@@ -41,7 +41,7 @@ public class SiteNavigationAdmin extends HttpServlet {
         //obtaining values from request scope
         String nav = request.getParameter("nav");
         String logout = request.getParameter("logout");
-        
+        String op = request.getParameter("op");
         
          if(logout!=null&&!logout.equals("")){
           session.invalidate();
@@ -51,6 +51,13 @@ public class SiteNavigationAdmin extends HttpServlet {
         else if(nav!=null&&!nav.equals("")){
             
             if(nav.equals("users")){
+                
+//                op perameter added for pages with multiple ops
+                if(op!=null&&!op.equals("")){
+                    request.setAttribute("op", op); 
+                }
+                
+                
                 request.getRequestDispatcher("/WEB-INF/admin/AdminUsers.jsp").forward(request, response);
             }
             
