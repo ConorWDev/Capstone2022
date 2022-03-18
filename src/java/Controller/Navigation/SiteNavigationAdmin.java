@@ -51,40 +51,40 @@ public class SiteNavigationAdmin extends HttpServlet {
         else if(nav!=null&&!nav.equals("")){
             
             if(nav.equals("users")){
-                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/admin/AdminUsers.jsp").forward(request, response);
             }
             
             else if(nav.equals("assignments")){
-                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/admin/AdminAssignments.jsp").forward(request, response);
             }
             
             else if(nav.equals("modules")){
-                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/admin/AdminModules.jsp").forward(request, response);
             }
             
             else if(nav.equals("courses")){
-                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/admin/AdminCourses.jsp").forward(request, response);
             }
             
-            else if(nav.equals("cohorts")){
-                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+            else if(nav.equals("cohort")){
+                request.getRequestDispatcher("/WEB-INF/admin/AdminCohort.jsp").forward(request, response);
             }
             
-            else if(nav.equals("annoucements")){
-                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+            else if(nav.equals("announcements")){
+                request.getRequestDispatcher("/WEB-INF/admin/AdminAnnoucements.jsp").forward(request, response);
             
             }
             else if(nav.equals("adminreport")){
-                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/admin/AdminReports.jsp").forward(request, response);
             
             }
             
             else if(nav.equals("adminarchive")){
-                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/admin/AdminArchive.jsp").forward(request, response);
             }
             
             else if(nav.equals("adminbr")){
-                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/admin/AdminRecover.jsp").forward(request, response);
             }
             
             else{
