@@ -50,6 +50,47 @@ public class SiteNavigationAdmin extends HttpServlet {
         }
         else if(nav!=null&&!nav.equals("")){
             
+            if(nav.equals("users")){
+                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+            }
+            
+            else if(nav.equals("assignments")){
+                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+            }
+            
+            else if(nav.equals("modules")){
+                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+            }
+            
+            else if(nav.equals("courses")){
+                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+            }
+            
+            else if(nav.equals("cohorts")){
+                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+            }
+            
+            else if(nav.equals("annoucements")){
+                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+            
+            }
+            else if(nav.equals("adminreport")){
+                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+            
+            }
+            
+            else if(nav.equals("adminarchive")){
+                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+            }
+            
+            else if(nav.equals("adminbr")){
+                request.getRequestDispatcher("/WEB-INF/admin/XXX.jsp").forward(request, response);
+            }
+            
+            else{
+                request.getRequestDispatcher("/WEB-INF/admin/AdminLanding.jsp").forward(request, response);
+            }
+            
         }
         //first time the admin is logging in
         else{
