@@ -5,10 +5,6 @@
  */
 package Objects;
 
-/**
- *
- * @author 816601
- */
 public class Assignment {
     
     
