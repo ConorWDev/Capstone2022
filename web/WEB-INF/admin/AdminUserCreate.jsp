@@ -41,8 +41,8 @@
                         <div class="row  ">
 
                             
-
-                            <div class="col-4">
+                            
+                            <div class="col-4 ps-3">
                                  
                                  <form action="action">
 
@@ -98,8 +98,8 @@
 
                                 </form>
                             </div>
-                            <div class="col-6 bg-secondary">
-                                <p class="h1 text-white">Could Add CVS bulk load for students here if we have time</p>
+                            <div class="col-6 border-info">
+                                <p class="h1 text-danger">Could Add CVS bulk load for students here if we have time</p>
                             </div>    
                         </div>
                         
