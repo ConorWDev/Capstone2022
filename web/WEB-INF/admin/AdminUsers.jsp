@@ -44,13 +44,13 @@
                                 <form>
                                     <div class="row">
                                         <div class="container d-flex justify-content-around mb-1">
-                                            <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Button 1</button>
-                                            <button type="submit" id="but2"class="btn d-inline-block ">Button 2</button>
-                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Button/Dropdown 3</button>
+                                            <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Select User</button>
+                                            <button type="submit" id="but2"class="btn d-inline-block ">Edit User</button>
+                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Change User Type</button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Item 1</a></li>
-                                                <li><a class="dropdown-item" href="#">Item 2</a></li>
-                                                <li><a class="dropdown-item" href="#">Item 3</a></li>
+                                                <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=1">Student</a></li>
+                                                <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=2">Faculty</a></li>
+                                                <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=3">Admin</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -65,39 +65,40 @@
 
                             <div class="col ">
 
-                                <form action="#">
+                                <form>
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic">*User Type* Info</p>
+                                            <p class="h6 mt-2 " id="headerdynamic">User Info</p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div id="infoblock"class="form-control  ">
+                                            
+                                            <!-- -->
+                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Username</b></label>
+                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Username" name="info1">
+                                            <!-- -->
+                                            <label for="info2" id="label2" class="form-label mb-0"><b>First Name</b></label>
+                                            <input type="text" class="form-control mb-3" id="info2" placeholder="First Name" name="info2">
+                                            <!-- -->
+                                            <label for="info3" id="label3" class="form-label mb-0"><b>Middle Name</b></label>
+                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="Middle Name" name="info3">
+                                            <!-- -->
+                                            <label for="info4" id="label4" class="form-label mb-0"><b>Last Name</b></label>
+                                            <input type="text" class="form-control mb-3" id="info4" placeholder="Last Name" name="info4">
+                                            <!-- -->
+                                            <label for="info5" id="label5"  class="form-label mb-0"><b>Password</b></label>
+                                            <input type="text" class="form-control mb-3" id="info5" placeholder="Password" name="info5">
                                             <!---->
-                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Info 1</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="info1" name="info1">
-                                            <!---->
-                                            <label for="info2" id="label2" class="form-label mb-0"><b>Info 2</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="info2" name="info2">
-                                            <!---->
-                                            <label for="info3" id="label3" class="form-label mb-0"><b>Info 3</b></label>
-                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="info3" name="info3">
-                                            <!---->
-                                            <label for="info4" id="label4" class="form-label mb-0"><b>Info 4</b></label>
-                                            <input type="text" class="form-control mb-3" id="info4" placeholder="info4" name="info4">
-                                            <!---->
-                                            <label for="info5" id="label5"  class="form-label mb-0"><b>Info 5</b></label>
-                                            <input type="text" class="form-control mb-3" id="info5" placeholder="info5" name="info5">
-                                            <!---->
-                                            <label for="info6" id="label6" class="form-label mb-0"><b>Info 6</b></label>
-                                            <input type="text" class="form-control mb-0" id="info6" placeholder="info6" name="info6">
+                                            <label for="info6" id="label6" class="form-label mb-0"><b>Email</b></label>
+                                            <input type="text" class="form-control mb-0" id="info6" placeholder="Email" name="info6">
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <button type="submit" id="but4" class="btn d-inline  ">Edit $$$$</button>
-                                                    <button type="submit" id="but5" class="btn d-inline  ">Create $$$$</button>
-                                                    <button type="submit" id="but6" class="btn d-inline  ">Delete $$$$</button>
+                                                    <a href="#" type="submit" id="but4" class="btn d-inline  ">Edit User</a>
+                                                    
+                                                    <a type="submit" id="but6" class="btn d-inline  ">Delete User</a>
                                                 </div>
                                             </div>
                                         </div>
