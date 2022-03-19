@@ -5,10 +5,15 @@
  */
 package Controller.Navigation;
 
+import DBOperations.DBOperationsAdmin;
+import DBOperations.DBOperationsFaculty;
+import DBOperations.DBOperationsStudent;
 import Interface.Users.Admin;
 import Interface.Users.Faculty;
+import Interface.Users.Student;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +48,12 @@ public class SiteNavigationAdmin extends HttpServlet {
         String logout = request.getParameter("logout");
         String op = request.getParameter("op");
         
+        
+        DBOperationsStudent dbOpsStud = new DBOperationsStudent();
+        DBOperationsFaculty dbOpsFac = new DBOperationsFaculty();
+        DBOperationsAdmin dbOpsAd = new DBOperationsAdmin();
+        
+        
          if(logout!=null&&!logout.equals("")){
           session.invalidate();
           request.setAttribute("message", "User successfully logged out.");
@@ -59,6 +70,25 @@ public class SiteNavigationAdmin extends HttpServlet {
                 if(op!=null&&!op.equals("")){
                     request.setAttribute("op", op); 
                 }
+                
+                //arraylist for holding whatever type of user is selected
+                ArrayList<Student> students = null;
+                ArrayList<Faculty> faculty = null;
+                ArrayList<Admin> admins = null;
+                
+                
+                
+                //TODO
+                switch(op){
+                    case "1": students = dbOpsStud.getAllStudents();break;
+                    case "2": faculty = dbOpsFac.getAllFaculty(); break;
+                    case "3": admins = dbOpsAd.getAllAdmins(); break;
+                    case "4":
+                }
+                    
+                request.setAttribute("students", students);
+                request.setAttribute("faculty", faculty);
+                request.setAttribute("admins", admins);
                 
                 
                 request.getRequestDispatcher("/WEB-INF/admin/AdminUsers.jsp").forward(request, response);
