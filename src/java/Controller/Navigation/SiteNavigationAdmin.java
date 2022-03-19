@@ -77,7 +77,8 @@ public class SiteNavigationAdmin extends HttpServlet {
                 ArrayList<Admin> admins = null;
                 
                 
-                
+                //depending on the option selected, the arraylist will be populated
+                //the rest will stay null
                 //TODO
                 switch(op){
                     case "1": students = dbOpsStud.getAllStudents();break;
@@ -85,7 +86,8 @@ public class SiteNavigationAdmin extends HttpServlet {
                     case "3": admins = dbOpsAd.getAllAdmins(); break;
                     case "4":
                 }
-                    
+                
+                //assign arraylists to the session scope
                 request.setAttribute("students", students);
                 request.setAttribute("faculty", faculty);
                 request.setAttribute("admins", admins);
