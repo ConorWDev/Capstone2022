@@ -5,10 +5,12 @@
  */
 package DBOperations;
 
+import Interface.Users.Admin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -71,4 +73,33 @@ public class DBOperationsAdmin {
          
         return result;
     }
+    
+     public ArrayList<Admin> getAllAdmins(){
+        ArrayList<Admin> admins = new ArrayList<Admin>();
+        
+         String sql = "select username from ma_admin;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                Admin admin = new Admin(rs.getString(1));
+                admins.add(admin);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        
+        
+        return admins;
+    } 
 }
