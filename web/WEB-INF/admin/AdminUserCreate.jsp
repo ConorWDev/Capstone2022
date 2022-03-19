@@ -35,47 +35,28 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-1 " id="contentheader">User Management</p>
+                            <p class="h2 mb-1 " id="contentheader">User Creation</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
 
-                            <div class="col ">
-                                <form>
-                                    <div class="row">
-                                        <div class="container d-flex justify-content-around mb-1">
-                                            <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Select User</button>
-                                            <button type="submit" id="but2"class="btn d-inline-block ">Edit User</button>
-                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Change User Type</button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=1">Student</a></li>
-                                                <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=2">Faculty</a></li>
-                                                <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=3">Admin</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <select multiple="multiple" class="form-select border-0"  id="select1">
-                                            <option>This needs to be Updated with Logic So this is dynamically created</option>
-                                            <!--FOR JSP add loop to build dynamic -->
-                                        </select>
-                                    </div>
-                                </form>
-                            </div>
+                            
 
-                            <div class="col ">
+                            <div class="col-6">
 
-                                <form>
+                                 <form action="action">
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic"><b>${requestScope.usertype} Info</b></p>
+                                            <p class="h6 mt-2 " id="headerdynamic"><b>Please Select User Type and Enter Info Below</b></p>
+                                            
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div id="infoblock"class="form-control  ">
                                             
+                                           
                                             <!-- -->
                                             <label for="info1" id="label1" class="form-label mb-0 "><b>Username</b></label>
                                             <input type="text" class="form-control mb-3" id="info1" placeholder="Username" name="info1">
@@ -91,16 +72,17 @@
                                             <!-- -->
                                             <label for="info5" id="label5"  class="form-label mb-0"><b>Password</b></label>
                                             <input type="text" class="form-control mb-3" id="info5" placeholder="Password" name="info5">
-                                            <!---->
+                                            <!-- -->
                                             <label for="info6" id="label6" class="form-label mb-0"><b>Email</b></label>
                                             <input type="text" class="form-control mb-0" id="info6" placeholder="Email" name="info6">
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <a href="#" type="submit" id="but4" class="btn d-inline  ">Edit User</a>
+                                                    <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create User</button>
                                                     
-                                                    <a type="submit" id="but6" class="btn d-inline  ">Delete User</a>
+                                                    
                                                 </div>
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
 
