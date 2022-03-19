@@ -35,21 +35,28 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-1 " id="contentheader">User Creation</p>
+                            <p class="h2 mb-3 " id="contentheader">User Creation</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
 
                             
 
-                            <div class="col-6">
-
+                            <div class="col-4">
+                                 
                                  <form action="action">
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic"><b>Please Select User Type and Enter Info Below</b></p>
+                                            <p class="h6 me-3 mt-2 d-inline" id="headerdynamic">Select User Type:</p>
+                                            
+                                            <select class="form-control-sm  d-inline" id="usercreatetype" name="sellist1">
+                                                <option value="student">Student</option>
+                                                <option value="faculty">Faculty</option>
+                                                <option value="admin">Admin</option>
+                                                                
+                                            </select>
                                             
                                         </div>
                                     </div>
@@ -91,10 +98,12 @@
 
                                 </form>
                             </div>
-
+                            <div class="col-6 bg-secondary">
+                                <p class="h1 text-white">Could Add CVS bulk load for students here if we have time</p>
+                            </div>    
                         </div>
-
-
+                        
+                        
                     </div>
                 </div>
             </div>

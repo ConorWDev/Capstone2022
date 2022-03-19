@@ -56,14 +56,45 @@
                                     </div>
                                     <div>
                                         <select multiple="multiple" class="form-select border-0"  id="select1">
-                                            <option>This needs to be Updated with Logic So this is dynamically created</option>
+                                            
+                                            
+                                            <%--Test to find which array list is not null, the list
+                                            that is not null will be printed--%>
+                                            <c:choose>
+                                                <c:when test="${requestScope.students != null}">
+                                                    <c:forEach items="${requestScope.students}" var="student">
+                                                        <option>${student.fullName}</option>
+                                                    </c:forEach>
+                                                </c:when>
+                                                <c:when test="${requestScope.faculty != null}">
+                                                    <c:forEach items="${requestScope.faculty}" var="faculty">
+                                                        <option>${faculty.fullName}</option>
+                                                    </c:forEach>    
+                                                </c:when>
+                                                <c:when test="${requestScope.admins != null}">
+                                                    <c:forEach items="${requestScope.admins}" var="admin">
+                                                        <option>${admin.fullName}</option>
+                                                        
+                                                    </c:forEach>   
+                                                </c:when>
+                                                
+                                            </c:choose>    
+                                                 
+                                            
+                                            
+                                               
+                                            
+                                           
                                             <!--FOR JSP add loop to build dynamic -->
+                                            
+                                            
+                                            
                                         </select>
                                     </div>
                                 </form>
                             </div>
 
-                            <div class="col ">
+                            <div class="col-5">
 
                                 <form>
 

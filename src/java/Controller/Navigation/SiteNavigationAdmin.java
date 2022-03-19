@@ -5,10 +5,15 @@
  */
 package Controller.Navigation;
 
+import DBOperations.DBOperationsAdmin;
+import DBOperations.DBOperationsFaculty;
+import DBOperations.DBOperationsStudent;
 import Interface.Users.Admin;
 import Interface.Users.Faculty;
+import Interface.Users.Student;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,49 +47,54 @@ public class SiteNavigationAdmin extends HttpServlet {
         String nav = request.getParameter("nav");
         String logout = request.getParameter("logout");
         String op = request.getParameter("op");
-
-        if (logout != null && !logout.equals("")) {
-            session.invalidate();
-            request.setAttribute("message", "User successfully logged out.");
-            request.getRequestDispatcher("/WEB-INF/student/loginV2.jsp").forward(request, response);
-        } else if (nav != null && !nav.equals("")) {
-
-            if (nav.equals("users")) {
-
-                //op perameter added for pages with multiple ops
-                //this is only one option for implementation it could value you check and assign 
-                //but if the value is not null then it just needs the op and forward it to the 
-                //page with the op value I just don't know if it will transfer
-                if (op != null && !op.equals("")) {
-                    String usertype = "Undefined";
-                    if (op.equals("1")) {
-
-                        request.setAttribute("usertype", "Student");
-                        request.getRequestDispatcher("/WEB-INF/admin/AdminUsers.jsp").forward(request, response);
-                    } else if (op.equals("2")) {
-
-                        
-                        request.setAttribute("usertype", "Faculty");
-                        request.getRequestDispatcher("/WEB-INF/admin/AdminUsers.jsp").forward(request, response);
-                    } else if (op.equals("3")) {
-                        
-                        request.setAttribute("usertype", "Admin");
-                        request.getRequestDispatcher("/WEB-INF/admin/AdminUsers.jsp").forward(request, response);
-                    } else if (op.equals("4")) {
-
-                        request.setAttribute("usertype", usertype);
-                        request.getRequestDispatcher("/WEB-INF/admin/AdminUserCreate.jsp").forward(request, response);
-                    } else {
-                        request.setAttribute("usertype", usertype);
-                        request.getRequestDispatcher("/WEB-INF/admin/AdminUsers.jsp").forward(request, response);
-                    }
-                    
-                } else {
-                    request.getRequestDispatcher("/WEB-INF/admin/AdminUsers.jsp").forward(request, response);
-                }
-
-            } 
+        
+        
+        DBOperationsStudent dbOpsStud = new DBOperationsStudent();
+        DBOperationsFaculty dbOpsFac = new DBOperationsFaculty();
+        DBOperationsAdmin dbOpsAd = new DBOperationsAdmin();
+        
+        
+        if(logout!=null&&!logout.equals("")){
+          session.invalidate();
+          request.setAttribute("message", "User successfully logged out.");
+          request.getRequestDispatcher("/WEB-INF/student/loginV2.jsp").forward(request, response); 
+        }
+        else if(nav!=null&&!nav.equals("")){
             
+            if(nav.equals("users")){
+                
+                
+                
+                //arraylist for holding whatever type of user is selected
+                ArrayList<Student> students = null;
+                ArrayList<Faculty> faculty = null;
+                ArrayList<Admin> admins = null;
+                
+                
+                //depending on the option selected, the arraylist will be populated
+                //the rest will stay null
+                //TODO
+                String usertype=null;
+                switch(op){
+                    case "1": students = dbOpsStud.getAllStudents();usertype= "Student";break;
+                    case "2": faculty = dbOpsFac.getAllFaculty();usertype= "Faculty"; break;
+                    case "3": admins = dbOpsAd.getAllAdmins();usertype= "Admin"; break;
+                    
+                }
+                
+                request.setAttribute("usertype", usertype);
+                
+                //assign arraylists to the session scope
+                request.setAttribute("students", students);
+                request.setAttribute("faculty", faculty);
+                request.setAttribute("admins", admins);
+                
+                
+                request.getRequestDispatcher("/WEB-INF/admin/AdminUsers.jsp").forward(request, response);
+            }
+            else if(nav.equals("create")){
+                request.getRequestDispatcher("/WEB-INF/admin/AdminUserCreate.jsp").forward(request, response);
+            }
             
             else if (nav.equals("assignments")) {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminAssignments.jsp").forward(request, response);
