@@ -17,7 +17,13 @@
     </head>
     <body>
         <%@include file="fac_headerfragment.jspf" %>
-        <h1>Faculty home</h1>
+        <div class="row">
+        <div class="col-1"></div>
+        
+        <div class="col bg-light rounded" >
+            
+        
+        <p class="h1">Faculty home</p>
         
         <!-- 
         The following code dynamically loads all cohort information that is associated with a faculty member. As a faculty
@@ -29,10 +35,11 @@
         course within. A similar function is done for the second inner loop that prints out cohort specific announcements 
         
         -->
-        
+        <div class="row justify-content-around">
         <!-- For each cohort in the list -->
         <c:set var="count" value="0"/>
         <c:forEach items="${requestScope.cohorts}" var="cohort">
+            <div class="col-3">
             <b>${cohort.cohortName}</b><br>
            <!-- Print list of courses for that cohort-->
             <c:forEach items="${requestScope.courseLists.get(count)}" var="course">
@@ -51,8 +58,12 @@
                 
            
                <c:set var="count" value="${count + 1}"/>
-               
-        </c:forEach>
-        
+               </div>
+              </c:forEach>
+             
+            </div>
+        </div>
+            <div class="col-1"></div> 
+            </div>
     </body>
 </html>
