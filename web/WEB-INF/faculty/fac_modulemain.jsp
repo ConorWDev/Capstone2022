@@ -21,10 +21,10 @@
         <div class="row">
         <div class="col-1"></div>
         
-        <div class="col bg-light rounded" >
+        <div class="col bg-light rounded" id="containerfac">
         
         <h1>${sessionScope.moduleObject.name}</h1>
-        ${sessionScope.moduleObject.description}<br>
+        ${sessionScope.moduleObject.description}
         
         <b> ASSIGNMENTS </b><br>
         <c:forEach items="${requestScope.assignments}" var="assignment">

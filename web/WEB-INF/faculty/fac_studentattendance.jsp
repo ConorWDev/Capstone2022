@@ -22,7 +22,7 @@
         <div class="row">
         <div class="col-1"></div>
         
-        <div class="col bg-light rounded" >
+        <div class="col bg-white rounded" id="containerfac">
         <h1>${requestScope.studentName}'s Attendance Record</h1>
         If you wish to change the record for a particular day, click on the Present/Absent button...<br><br>
         

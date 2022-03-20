@@ -17,49 +17,62 @@
         <title>Course Announcements</title>
     </head>
     <body>
-        
+
         <%@include file="fac_headerfragment.jspf" %>
-        
+
         <div class="row">
-            <div class="col"></div>
-            <div class="col bg-light rounded">
-        
-        <p class="h3">Announcements for ${sessionScope.courseObject.courseName}</p>
-        
-        <c:forEach items="${requestScope.announcements}" var="announcement">
-            <form style="border: solid" action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
-                ${announcement.text}
-            <input type="hidden" name="announcementID" value="${announcement.announcementID}">
-                <input type="submit" name="editMenu" value="edit">
-            </form>
-        </c:forEach>
-            
-            
-            <br>
-            <b>ANNOUNCEMENT CREATION FORM</b>  
-            
-            <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
+            <div class="col-1"></div>    
+            <div class="col bg-white rounded" id="containerfac">
+                <div class="row mb-5">
+                    <p class="h4">${sessionScope.courseObject.courseName}</p>
+                </div>
+                <div class="row mb-5">
+                <div class="col">
+                    <div class="row">
+                        <p class="h4">Announcements</p>
+                    </div>
+
+                    <c:forEach items="${requestScope.announcements}" var="announcement">
+                        <div class="row">
+                            <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
+                                <p class="d-inline-block">${announcement.text}</p>
+                                <input type="hidden" name="announcementID" value="${announcement.announcementID}">
+                                <input class="btn-block d-inline-block" type="submit" name="editMenu" value="edit">
+                            </form>
+                        </div>    
+                    </c:forEach>
+                </div>
+                <div class="col">
+                    <div class="row">
+                <p class="h4">Announcement Creation Form</p>  
+
+                <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
                     Text:<input type="text" name="textSubmission"> 
                     <input type="submit" value="add">
-            </form>
-                     
-            ${requestScope.message}
-                
-            <br>
-            <c:if test="${requestScope.editMenu}">
-                <b>ANNOUNCEMENT EDIT FORM</b>  
-                <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
-                    Original Text: ${sessionScope.courseAnnouncement.text}<br>
-                    New Text: <input type="text" name="newText">
-                    <input type="submit" value="update">
                 </form>
-            </c:if>
-            </div>
-            <div class="col-1"></div>
-            </div>
-        
-        
-        
-        
+                </div>
+                ${requestScope.message}
+                </div>
+                <div class="col">
+                    <div class="row">
+                <c:if test="${requestScope.editMenu}">
+                    <p class="h4">ANNOUNCEMENT EDIT FORM</b>  
+                    <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
+                        Original Text: ${sessionScope.courseAnnouncement.text}<br>
+                        New Text: <input type="text" name="newText">
+                        <input type="submit" value="update">
+                    </form>
+                </c:if>
+                </div>    
+            </div> 
+                </div>
+                </div>    
+            <div class="col-1"></div>    
+
+        </div>
+
+
+
+
     </body>
 </html>

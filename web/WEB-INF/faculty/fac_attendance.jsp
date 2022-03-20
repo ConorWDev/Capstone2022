@@ -25,7 +25,7 @@
                 <p class="h5 ">${requestScope.attendanceMessage}</p><!-- comment -->
                 </div>
                 <div class="row">
-                <div class="col-1">
+                <div class="col-3">
                    
                 <button  class="btn d-inline justify-content-end"data-bs-toggle="collapse" data-bs-target="#instruct">View Less</button>
              

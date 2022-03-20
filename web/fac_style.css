@@ -15,8 +15,23 @@ body {
 #navbottom {
     background-color: #0069d9;
 }
+#navtop{
+    
+    background-color: ghostwhite;
+    color: #9c9c9c;
+    
+    
+}
 
 #navbottomlinks a{
     color: white;
     text-decoration: none;
+}
+#containerfac{
+    color: #082047;
+    font-family: 'Roboto', sans-serif;
+    
+}
+#annselect {
+    height: 150px;
 }
