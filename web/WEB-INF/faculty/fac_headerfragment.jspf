@@ -1,10 +1,10 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
-<nav class="navbar navbar-expand-m navbar-light bg-white p-0" id="navtop">
+<nav class="navbar navbar-expand-m navbar-light bg-white p-0 " id="navtop">
   <div class="container-fluid">
-      <a href="#" class="navbar-brand text-info"><img src="MGTLOGO.png" height="25px" alt="MGTLOGO"/> MGT</a>
+      <a href="#" class="navbar-brand text-info p-0 mb-0 d-inline"><img src="MGTLOGO.png" height="25px" alt="MGTLOGO"/> MGT</a>
     <div class="navbar-nav">
-      <a class="nav-item nav-link active text-primary" aria-current="page" href="#">${sessionScope.faculty.getFullName()}</a><p></p>
+      <a class="nav-item nav-link active text-primary mb-0 d-inline" aria-current="page" href="#">${sessionScope.faculty.getFullName()}</a><p></p>
     </div>
   </div>
 </nav>
