@@ -17,7 +17,13 @@
         <title>Course Announcements</title>
     </head>
     <body>
+        
         <%@include file="fac_headerfragment.jspf" %>
+        
+        <div class="row">
+            <div class="col"></div>
+            <div class="col bg-light rounded">
+        
         <p class="h3">Announcements for ${sessionScope.courseObject.courseName}</p>
         
         <c:forEach items="${requestScope.announcements}" var="announcement">
@@ -48,7 +54,9 @@
                     <input type="submit" value="update">
                 </form>
             </c:if>
-            
+            </div>
+            <div class="col-1"></div>
+            </div>
         
         
         

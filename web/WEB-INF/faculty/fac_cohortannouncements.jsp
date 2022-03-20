@@ -19,12 +19,18 @@ for the faculty member to add/edit the cohort annoucments
         <title>Cohort Announcement</title>
     </head>
     <body>
+        
+        <div class="row">
+            <div class="col"></div>
+            <div class="col bg-light rounded">
         <%@include file="fac_headerfragment.jspf" %>
         <h1>Announcements for ${requestScope.cohortName} Cohort</h1>
         
         <c:forEach items="${requestScope.announcements}" var="announcement">
             ${announcement.text}
         </c:forEach>
-        
+        </div>
+        <div class="col-1"></div>
+        </div>
     </body>
 </html>

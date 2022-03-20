@@ -16,6 +16,10 @@
         <title>Course</title>
     </head>
     <body>
+        <div class="row">
+        <div class="col"></div>
+        <div class="col bg-light rounded">
+        
         <%@include file="fac_headerfragment.jspf" %>
         <h1>${sessionScope.courseObject.courseName}</h1>
         
@@ -38,7 +42,9 @@
         <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
                 <input type="submit" value="View/edit announcements">
         </form> 
-            
+           </div>
+        <div class="col-1"></div>
+        </div>
          
         
     </body>

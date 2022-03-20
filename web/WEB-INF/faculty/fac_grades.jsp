@@ -17,6 +17,10 @@
     </head>
     <body>
         <%@include file="fac_headerfragment.jspf" %>
+        
+        <div class="row">
+        <div class="col"></div>
+        <div class="col bg-light rounded">
         <h1>Grades</h1>
          
         <form action="SiteNavigationFaculty?nav=grades" method="POST">
@@ -37,6 +41,8 @@
             <c:set var="count" value="${count + 1}"/>  
 
         </c:forEach>
-        
+        </div>
+        <div class="col-1"></div>
+        </div>
     </body>
 </html>

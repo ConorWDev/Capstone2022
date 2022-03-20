@@ -16,17 +16,35 @@
     </head>
     <body>
         <%@include file="fac_headerfragment.jspf" %>
-        <h1>Attendance</h1>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 bg-light rounded">
         
-        To take attendance.... <br> 1) Select the date <br> 2) Check off the students who were present on that day <br> 3) Select save
-        <br> Note: if you are teaching more than one cohort you will need to track attendance separately
-        <br><br>
-      
-        
+                <div class="row">   
+                <p class="h3 d-inline">Attendance</p>
+                <p class="h5 ">${requestScope.attendanceMessage}</p><!-- comment -->
+                </div>
+                <div class="row">
+                <div class="col-1">
+                   
+                <button  class="btn d-inline justify-content-end"data-bs-toggle="collapse" data-bs-target="#instruct">View Less</button>
+             
+                <div id="instruct" class=" collapse-show">
+                <p>To take attendance....</p>
+                 <ul class="list-group bg-transparent">
+                    <li class="list-group-item bg-transparent">1. Select the date</li>
+                    <li class="list-group-item bg-transparent">2. Check off the students who were present on that day  </li>
+                    <li class="list-group-item bg-transparent">3. Select save</li>
+                </ul> 
+                <p>Note: if you are teaching more than one cohort you will need to track attendance separately.</p>
+                </div> 
+                </div>
         <c:set var="count" value="0"/>
         
         <c:forEach items="${requestScope.cohorts}" var="cohort">
             <c:set var="countStudent" value="0"/>
+            <div class="col-2 ">
+                <div class="container border-right">    
             <b>${cohort.cohortName}</b><br>
             
             <form action="SiteNavigationFaculty?nav=attendance" method="POST">
@@ -59,9 +77,14 @@
             </form>   
             <br> 
             <c:set var="count" value="${count + 1}"/> 
-
+            </div>
+            </div>
         </c:forEach>
-        
-            ${requestScope.attendanceMessage}
+            </div>
+            
+            </div>
+            <div class="col-1"></div>
+            </div>
+            
     </body>
 </html>

@@ -17,6 +17,12 @@
     </head>
     <body>
         <%@include file="fac_headerfragment.jspf" %>
+        
+        <div class="row">
+        <div class="col-1"></div>
+        
+        <div class="col bg-light rounded" >
+        
         <h1>${sessionScope.moduleObject.name}</h1>
         ${sessionScope.moduleObject.description}<br>
         
@@ -31,7 +37,9 @@
             ${document.name}<br>
             ${document.description}<br>
         </c:forEach>
-            
+        </div>
+        <div class="col-1"></div>
+        </div>    
         
     </body>
 </html>
