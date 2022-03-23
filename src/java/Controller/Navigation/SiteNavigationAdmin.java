@@ -41,8 +41,8 @@ public class SiteNavigationAdmin extends HttpServlet {
             throws ServletException, IOException {
         //get session object admin
         HttpSession session = request.getSession();
-        Admin admin = (Admin)session.getAttribute("admin");
-        
+        Admin admin = (Admin) session.getAttribute("admin");
+
         //obtaining values from request scope
         String nav = request.getParameter("nav");
         String logout = request.getParameter("logout");
@@ -54,7 +54,7 @@ public class SiteNavigationAdmin extends HttpServlet {
         DBOperationsAdmin dbOpsAd = new DBOperationsAdmin();
         
         
-         if(logout!=null&&!logout.equals("")){
+        if(logout!=null&&!logout.equals("")){
           session.invalidate();
           request.setAttribute("message", "User successfully logged out.");
           request.getRequestDispatcher("/WEB-INF/student/loginV2.jsp").forward(request, response); 
@@ -63,13 +63,7 @@ public class SiteNavigationAdmin extends HttpServlet {
             
             if(nav.equals("users")){
                 
-                //op perameter added for pages with multiple ops
-                //this is only one option for implementation it could value you check and assign 
-                //but if the value is not null then it just needs the op and forward it to the 
-                //page with the op value I just don't know if it will transfer
-                if(op!=null&&!op.equals("")){
-                    request.setAttribute("op", op); 
-                }
+                
                 
                 //arraylist for holding whatever type of user is selected
                 ArrayList<Student> students = null;
@@ -80,12 +74,15 @@ public class SiteNavigationAdmin extends HttpServlet {
                 //depending on the option selected, the arraylist will be populated
                 //the rest will stay null
                 //TODO
+                String usertype=null;
                 switch(op){
-                    case "1": students = dbOpsStud.getAllStudents();break;
-                    case "2": faculty = dbOpsFac.getAllFaculty(); break;
-                    case "3": admins = dbOpsAd.getAllAdmins(); break;
-                    case "4":
+                    case "1": students = dbOpsStud.getAllStudents();usertype= "Student";break;
+                    case "2": faculty = dbOpsFac.getAllFaculty();usertype= "Faculty"; break;
+                    case "3": admins = dbOpsAd.getAllAdmins();usertype= "Admin"; break;
+                    
                 }
+                
+                request.setAttribute("usertype", usertype);
                 
                 //assign arraylists to the session scope
                 request.setAttribute("students", students);
@@ -95,48 +92,46 @@ public class SiteNavigationAdmin extends HttpServlet {
                 
                 request.getRequestDispatcher("/WEB-INF/admin/AdminUsers.jsp").forward(request, response);
             }
+            else if(nav.equals("create")){
+                request.getRequestDispatcher("/WEB-INF/admin/AdminUserCreate.jsp").forward(request, response);
+            }
             
-            else if(nav.equals("assignments")){
+            else if (nav.equals("assignments")) {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminAssignments.jsp").forward(request, response);
-            }
+            } 
             
-            else if(nav.equals("modules")){
+            else if (nav.equals("modules")) {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminModules.jsp").forward(request, response);
-            }
+            } 
             
-            else if(nav.equals("courses")){
+            
+            else if (nav.equals("courses")) {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminCourses.jsp").forward(request, response);
-            }
+            } 
             
-            else if(nav.equals("cohort")){
+            
+            else if (nav.equals("cohort")) {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminCohort.jsp").forward(request, response);
-            }
+            } 
             
-            else if(nav.equals("announcements")){
+            
+            else if (nav.equals("announcements")) {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminAnnoucements.jsp").forward(request, response);
-            
-            }
-            else if(nav.equals("adminreport")){
+
+            } else if (nav.equals("adminreport")) {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminReports.jsp").forward(request, response);
-            
-            }
-            
-            else if(nav.equals("adminarchive")){
+
+            } else if (nav.equals("adminarchive")) {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminArchive.jsp").forward(request, response);
-            }
-            
-            else if(nav.equals("adminbr")){
+            } else if (nav.equals("adminbr")) {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminRecover.jsp").forward(request, response);
-            }
-            
-            else{
+            } else {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminLanding.jsp").forward(request, response);
             }
-            
-        }
-        //first time the admin is logging in
-        else{
-            
+
+        } //first time the admin is logging in
+        else {
+
             request.getRequestDispatcher("/WEB-INF/admin/AdminLanding.jsp").forward(request, response);
         }
     }

@@ -7,4 +7,16 @@ and open the template in the editor.
     Created on : Mar. 18, 2022, 1:19:30 p.m.
     Author     : massvm
 */
+body {
+    background-color: #e2e6ea;
+    color: #082047;
+    font-family: 'Roboto', sans-serif;
+}
+#navbottom {
+    background-color: #0069d9;
+}
 
+#navbottomlinks a{
+    color: white;
+    text-decoration: none;
+}

@@ -11,10 +11,18 @@ for the faculty member to add/edit the cohort annoucments
 --%>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>            
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link href="fac_style.css" rel="stylesheet"/>
+        <title>Cohort Announcement</title>
     </head>
     <body>
+        
+        <div class="row">
+            <div class="col"></div>
+            <div class="col bg-light rounded">
         <%@include file="fac_headerfragment.jspf" %>
         <h1>Announcements for ${sessionScope.cohort.cohortName} Cohort</h1>
         
@@ -25,8 +33,13 @@ for the faculty member to add/edit the cohort annoucments
                 <input type="submit" name="editMenu" value="edit">
             </form>
         </c:forEach>
+
+        </div>
+        <div class="col-1"></div>
+        </div>
         
-        <b>ANNOUNCEMENT CREATION FORM</b>  
+      
+       <b>ANNOUNCEMENT CREATION FORM</b>  
         <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
                     Text:<input type="text" name="textSubmission"> 
                     <input type="submit" value="add">
@@ -43,6 +56,5 @@ for the faculty member to add/edit the cohort annoucments
                 </form>
             </c:if>
                 ${requestScope.editMessage}
-        
     </body>
 </html>

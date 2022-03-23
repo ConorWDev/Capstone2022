@@ -74,6 +74,7 @@
                                                 <c:when test="${requestScope.admins != null}">
                                                     <c:forEach items="${requestScope.admins}" var="admin">
                                                         <option>${admin.fullName}</option>
+                                                        
                                                     </c:forEach>   
                                                 </c:when>
                                                 
@@ -93,14 +94,14 @@
                                 </form>
                             </div>
 
-                            <div class="col ">
+                            <div class="col-5">
 
                                 <form>
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic">User Info</p>
+                                            <p class="h6 mt-2 " id="headerdynamic"><b>${requestScope.usertype} Info</b></p>
                                         </div>
                                     </div>
                                     <div class="row">

@@ -17,7 +17,13 @@
     </head>
     <body>
         <%@include file="fac_headerfragment.jspf" %>
-        <h1>Faculty home</h1>
+        <div class="row">
+        <div class="col-1"></div>
+        
+        <div class="col bg-light rounded" >
+            
+        
+        <p class="h1">Faculty home</p>
         
         <!-- 
         The following code dynamically loads all cohort information that is associated with a faculty member. As a faculty
@@ -29,30 +35,37 @@
         course within. A similar function is done for the second inner loop that prints out cohort specific announcements 
         
         -->
-        
+        <div class="row mb-5">
         <!-- For each cohort in the list -->
         <c:set var="count" value="0"/>
         <c:forEach items="${requestScope.cohorts}" var="cohort">
-            <b>${cohort.cohortName}</b><br>
+            <div class="col-6 border-light">
+                <p class="h5">${cohort.cohortName}</p>
            <!-- Print list of courses for that cohort-->
             <c:forEach items="${requestScope.courseLists.get(count)}" var="course">
                 <a href="SiteNavigationFaculty?nav=coursemain&courseid=${course.courseID}">${course.courseName}</a><br>
             </c:forEach>
                 
-            <b>COHORT SPECIFIC ANNOUNCEMENTS --></b>
+                <p class="h5"><b>${cohort.cohortName} Announcements</b></p>
              <!-- Print list of announcements for that cohort-->
             <c:forEach items="${requestScope.announcementLists.get(count)}" var="announcement">
-                    ${announcement.text}  <br>
+                <div class="container border-bottom ">
+                <p class="text">  ${announcement.text} </p> 
+                </div>
             </c:forEach>
              <!-- Provide form for navigation to full cohort announcement list-->
             <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${cohort.cohortID}&cohortname=${cohort.cohortName}" method="POST">
-                <input type="submit" value="See all announcements">
+                <input type="submit" class="btn justify-content-end" value="See all announcements">
             </form>
                 
            
                <c:set var="count" value="${count + 1}"/>
-               
-        </c:forEach>
-        
+               </div>
+              </c:forEach>
+             
+            </div>
+        </div>
+            <div class="col-1"></div> 
+            </div>
     </body>
 </html>
