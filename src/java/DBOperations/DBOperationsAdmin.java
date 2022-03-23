@@ -101,5 +101,31 @@ public class DBOperationsAdmin {
         
         
         return admins;
-    } 
+    }
+    
+     //get password from ma_student table. Password is not held withn student object for added security
+    public String getStudentPass(String userID){
+        String result = "";
+        String sql = "select password from ma_student where username = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, userID);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                result = rs.getString(1);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+         return result;
+    }
 }
