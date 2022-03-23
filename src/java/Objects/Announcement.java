@@ -19,15 +19,13 @@ public class Announcement {
     DBOperationsAnnouncement dbOpsAnnoun = new DBOperationsAnnouncement();
     DBOperationsGeneral dbOpsGen = new DBOperationsGeneral();
     
-    private String announcementID;
     private String cohortId;
     private String text;
     private String startDate;
     private String endDate;
     private boolean isVisible;
     
-     public Announcement (String announcementID, String cohortId,String startDate,String endDate,String text,String isVisible) throws SQLException{
-        this.announcementID = announcementID;
+     public Announcement (String cohortId,String startDate,String endDate,String text,String isVisible) throws SQLException{
         this.cohortId = cohortId;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -39,15 +37,6 @@ public class Announcement {
             this.isVisible = false;
         }
     }
-
-    public String getAnnouncementID() {
-        return announcementID;
-    }
-
-    public void setAnnouncementID(String announcementID) {
-        this.announcementID = announcementID;
-    }
-     
         
     public String getcohortId(){
     return cohortId;
