@@ -169,28 +169,63 @@ public class SiteNavigationFaculty extends HttpServlet {
             }
             //navigating to student grades page
             else if (nav.equals("studentgrades")){
+                //set student to session scope for further use later
+                Student student = new Student(studentID);
+                session.setAttribute("student", student);
+                
+                //obtain cohortID from grades page (related to particular student) and get a list of the courses.
+                String cohortid = request.getParameter("cohortid");
+                request.setAttribute("cohortid", cohortid);
+                ArrayList<Course> courses = dbOpsCor.getCoursesByCohort(cohortid);
+                
+                //create an arraylist to hold all assignments in a given cohort
+                ArrayList<Assignment> allAssignments = new ArrayList<>();
+                
+                //loop through all courses within a cohort. Obtain all assignments for a given course
+                //and place them within "hold". Add each assignment within hold to allAssignments
+                //at the end allAssignments will hold every assignment within every course within a given cohort
+                for (int x = 0; x < courses.size(); x++){
+                    ArrayList<Assignment> hold = dbOpsAss.getCourseAssignments(courses.get(x).getCourseID());
+                    
+                    for (int y =0; y < hold.size(); y++){
+                        allAssignments.add(hold.get(y));
+                    }
+                } 
+                
+                /*
+                If grades are being saved...
+                get the variable count from form on studengrades page. this is the number of assignments, it will be used
+                for the for loop.
+                Obtain the unique grade value and assignment_id from the form on studentgrades page.
+                Feed these two values along with the student ID obtained from session scope into the DBoperation update grades
+                */
+                String count = request.getParameter("count");
+                String saveGrade = request.getParameter("saveGrade");
+                if (saveGrade != null && !saveGrade.equals("")){
+                    int countInt = Integer.parseInt(count);
+                    String grade="";
+                    String assignmentID = "";
+                    for (int x = 0; x < countInt; x++){
+                         grade = request.getParameter("newGrade" + x);
+                         assignmentID = request.getParameter("assignment" + x);
+                         Student stud = (Student)session.getAttribute("student");
+                         boolean result = dbOpsGrade.updateGrade(assignmentID, stud.getUserID(), grade);
+                         
+                         if (result){
+                             request.setAttribute("message", "success");
+                         }
+                         else{
+                             request.setAttribute("message", "something went wrong. grade not updated");
+                         }
+                    } 
+                }
+                
+                 //set allAssignments within the requestscope
+                request.setAttribute("allAssignments", allAssignments);
+                
                 //get a list of grades for all assignments of a particular student 
-                ArrayList<Grade> studentGrades = dbOpsGrade.getGrades(studentID);
+                ArrayList<Grade> studentGrades = dbOpsGrade.getGrades(student.getUserID());
                 request.setAttribute("studentGrades", studentGrades);
-                request.setAttribute("studentName", studentName);
-                
-                
-                String newGrade = request.getParameter("newGrade");
-                if (newGrade != null && !newGrade.equals("")){
-                    request.setAttribute("newGrade", true);
-                    
-                    Grade grade= (Grade)session.getAttribute("studentGrades");
-                    Assignment assignment = (Assignment)session.getAttribute("assignemntID");
-                    Student student = (Student)session.getAttribute("UserID");
-                    
-                    String assignmentID = assignment.getassignmentId();
-                    String studentUsername = student.getUserID();
-                    
-                    boolean result = dbOpsGrade.updateGrade(assignmentID, studentUsername, newGrade);
-                    
-                }             
-                ArrayList<Grade> grade = dbOpsGrade.getGrades(studentID);
-                request.setAttribute("grade", grade);
                 
                 request.getRequestDispatcher("/WEB-INF/faculty/fac_studentgrades.jsp").forward(request, response);   
             }
