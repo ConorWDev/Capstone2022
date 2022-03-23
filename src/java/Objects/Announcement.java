@@ -39,6 +39,14 @@ public class Announcement {
             this.isVisible = false;
         }
     }
+
+    public String getAnnouncementID() {
+        return announcementID;
+    }
+
+    public void setAnnouncementID(String announcementID) {
+        this.announcementID = announcementID;
+    }
         
     public String getcohortId(){
     return cohortId;
