@@ -198,9 +198,58 @@ public class SiteNavigationFaculty extends HttpServlet {
             //faculty has selected view all announcements on fac_home.jsp
             else if (nav.equals("cohortannouncements")){
                 
+                 //set the cohort in the session scope for the cohort currently being added to
+                
+                Cohort cohort = dbOpsCo.getCohort(cohortID);
+                session.setAttribute("cohort",cohort);
+                
+                //obtain text from add announcement form on fac_cohortannouncements.jsp and carry out sql command to add it to the DB
+                String textSubmission = request.getParameter("textSubmission");
+                if (textSubmission != null && !textSubmission.equals("")){
+                   
+                   boolean result = dbOpsAn.createCohortAnnouncement(cohortID, textSubmission);
+                   
+                   String message = "";
+                   if (result){
+                       message = "The announcement has been created";
+                   }
+                   else{
+                       message = "There was an error when creating the announcement";
+                   }
+                   request.setAttribute("message", message);
+                }
+                //user has selected edit. Pull up edit menu
+                String announcementID = request.getParameter("announcementID");
+                if(announcementID != null && !announcementID.equals("")){
+                    request.setAttribute("editMenu", true);
+                    //saving announcement that we are editing to the session scope.
+                   //to do this we obtain the given announcements ID from the form on fac_courseannouncements.jsp
+                   //create a new annonucement object with the dbOp. And then save that created announcement object to session scope
+                   String cohortAnnouncementID = request.getParameter("announcementID");
+                   Announcement announcement = dbOpsAn.getCohortAnnouncement(cohortAnnouncementID);
+                   session.setAttribute("cohortAnnouncement", announcement);
+                }
+                //User as entered new text within the edit menu
+                String newText = request.getParameter("newText");
+                if (newText != null && !newText.equals("")){
+                     
+                   //get cohort announcement from sesssion scope assigned previously. And then get its ID
+                   Announcement announcement = (Announcement)session.getAttribute("cohortAnnouncement");
+                   String cohortAnnouncementID = announcement.getAnnouncementID();
+                   
+                   //call dbOp to edit course announcement with courseannouncementID and newText as parameter
+                   boolean result = dbOpsAn.editCohortAnnouncement(cohortAnnouncementID, newText);
+                   
+                   if (result){
+                       request.setAttribute("editMenu", false);
+                   }
+                   else{
+                       request.setAttribute("editMessage", "An error ocurred during editing. Limit 1000 characters");
+                   }
+                }
+                
                 ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
                 request.setAttribute("announcements", announcements);
-                request.setAttribute("cohortName", cohortName);
                 
                 request.getRequestDispatcher("/WEB-INF/faculty/fac_cohortannouncements.jsp").forward(request, response);
             }
