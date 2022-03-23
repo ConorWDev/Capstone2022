@@ -109,7 +109,7 @@
                                             
                                             <!-- -->
                                             <label for="info1" id="label1" class="form-label mb-0 "><b>Username</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" value="Username" name="info1">
+                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Username" name="info1">
                                             <!-- -->
                                             <label for="info2" id="label2" class="form-label mb-0"><b>First Name</b></label>
                                             <input type="text" class="form-control mb-3" id="info2" placeholder="First Name" name="info2">
