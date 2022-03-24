@@ -22,8 +22,7 @@
         <!--Header Fragment-->
         <!--Top of the admin bar-->
         <%@include file="AdminHeaderFragment.jspf" %>
-
-
+  
         <div class="row">
             <!--SideBar Fragment-->   
             <%@include file="AdminSideBarFragment.jspf" %>
@@ -41,21 +40,34 @@
                         <div class="row  ">
 
                             <div class="col ">
-                                <form>
+                                <form action="SiteNavigationAdmin?nav=users" method="POST">
+                                    
+                                    <c:choose>
+                                        <c:when test="${requestScope.students != null}">
+                                            <input type="hidden" name="op" value="1">
+                                        </c:when>
+                                        <c:when test="${requestScope.faculty != null}">
+                                            <input type="hidden" name="op" value="2">
+                                        </c:when>
+                                        <c:when test="${requestScope.admins != null}">
+                                            <input type="hidden" name="op" value="3">
+                                        </c:when>
+                                    </c:choose>
+                                    
                                     <div class="row">
                                         <div class="container d-flex justify-content-around mb-1">
+                                            <%--
                                             <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Select User</button>
-                                            <button type="submit" id="but2"class="btn d-inline-block ">Edit User</button>
-                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Change User Type</button>
+                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Change User Type</button> 
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=1">Student</a></li>
                                                 <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=2">Faculty</a></li>
                                                 <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=3">Admin</a></li>
-                                            </ul>
+                                            </ul>--%>
                                         </div>
                                     </div>
                                     <div>
-                                        <select multiple="multiple" class="form-select border-0"  id="select1">
+                                        <select multiple="multiple" class="form-select border-0"  id="select1" name="userIDs" onchange="this.form.submit()">
                                             
                                             
                                             <%--Test to find which array list is not null, the list
@@ -63,32 +75,22 @@
                                             <c:choose>
                                                 <c:when test="${requestScope.students != null}">
                                                     <c:forEach items="${requestScope.students}" var="student">
-                                                        <option>${student.fullName}</option>
+                                                        <option value="${student.userID}">${student.fullName}</option>
                                                     </c:forEach>
                                                 </c:when>
                                                 <c:when test="${requestScope.faculty != null}">
                                                     <c:forEach items="${requestScope.faculty}" var="faculty">
-                                                        <option>${faculty.fullName}</option>
+                                                        <option value="${faculty.userID}">${faculty.fullName}</option>
                                                     </c:forEach>    
                                                 </c:when>
                                                 <c:when test="${requestScope.admins != null}">
                                                     <c:forEach items="${requestScope.admins}" var="admin">
-                                                        <option>${admin.fullName}</option>
-                                                        
+                                                        <option value="${admin.userID}">${admin.fullName}</option>
                                                     </c:forEach>   
                                                 </c:when>
                                                 
                                             </c:choose>    
                                                  
-                                            
-                                            
-                                               
-                                            
-                                           
-                                            <!--FOR JSP add loop to build dynamic -->
-                                            
-                                            
-                                            
                                         </select>
                                     </div>
                                 </form>
@@ -96,8 +98,18 @@
 
                             <div class="col-5">
 
-                                <form>
-
+                                <form action="SiteNavigationAdmin?nav=users&editUser=yes" method="POST">
+                                     <c:choose>
+                                        <c:when test="${requestScope.students != null}">
+                                            <input type="hidden" name="op" value="1">
+                                        </c:when>
+                                        <c:when test="${requestScope.faculty != null}">
+                                            <input type="hidden" name="op" value="2">
+                                        </c:when>
+                                        <c:when test="${requestScope.admins != null}">
+                                            <input type="hidden" name="op" value="3">
+                                        </c:when>
+                                    </c:choose>
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
@@ -109,27 +121,29 @@
                                             
                                             <!-- -->
                                             <label for="info1" id="label1" class="form-label mb-0 "><b>Username</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Username" name="info1">
+                                            <input type="text" class="form-control mb-3" id="info1" value="${requestScope.username}" name="infoUser"> 
                                             <!-- -->
                                             <label for="info2" id="label2" class="form-label mb-0"><b>First Name</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="First Name" name="info2">
+                                            <input type="text" class="form-control mb-3" id="info2" value="${requestScope.firstname}" name="infoFirst">
                                             <!-- -->
                                             <label for="info3" id="label3" class="form-label mb-0"><b>Middle Name</b></label>
-                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="Middle Name" name="info3">
+                                            <input type="text" class="form-control  mb-3" id="info3" value="${requestScope.middlename}" name="infoMiddle">
                                             <!-- -->
                                             <label for="info4" id="label4" class="form-label mb-0"><b>Last Name</b></label>
-                                            <input type="text" class="form-control mb-3" id="info4" placeholder="Last Name" name="info4">
+                                            <input type="text" class="form-control mb-3" id="info4" value="${requestScope.lastname}" name="infoLast">
                                             <!-- -->
                                             <label for="info5" id="label5"  class="form-label mb-0"><b>Password</b></label>
-                                            <input type="text" class="form-control mb-3" id="info5" placeholder="Password" name="info5">
+                                            <input type="text" class="form-control mb-3" id="info5" value="${requestScope.pass}" name="infoPass">
                                             <!---->
                                             <label for="info6" id="label6" class="form-label mb-0"><b>Email</b></label>
-                                            <input type="text" class="form-control mb-0" id="info6" placeholder="Email" name="info6">
+                                            <input type="text" class="form-control mb-0" id="info6" value="${requestScope.email}" name="infoEmail">
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <a href="#" type="submit" id="but4" class="btn d-inline  ">Edit User</a>
+                                                    <button type="submit" id="but1" class="btn d-inline-block ms-2" name="saveChanges" value="save">Save Changes</button>
+                                                    <button type="submit" id="but6" class="btn d-inline-block ms-2" name="deleteUser" value="delete">Delete User</button>
+                                                    <%--<a href="SiteNavigationAdmin?nav=users&editUser=yes" type="submit" id="but4" class="btn d-inline">Edit User</a>--%>
                                                     
-                                                    <a type="submit" id="but6" class="btn d-inline  ">Delete User</a>
+                                                    <%-- <a type="submit" id="but6" class="btn d-inline  ">Delete User</a> --%>
                                                 </div>
                                             </div>
                                         </div>
