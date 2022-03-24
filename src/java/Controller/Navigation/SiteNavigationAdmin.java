@@ -63,13 +63,84 @@ public class SiteNavigationAdmin extends HttpServlet {
             
             if(nav.equals("users")){
                 
+                //obtain userID from requestScope. use this to populate edit menu
+                //this code excecutes when a name is clicked in the main window
+                String userID = request.getParameter("userIDs");
+                if (userID != null && !userID.equals("")){
+                    switch(op){
+                    case "1": Student student = new Student(userID);
+                              request.setAttribute("username", student.getUserID());
+                              request.setAttribute("firstname", student.getFirstName());
+                              request.setAttribute("middlename", student.getMiddleName());
+                              request.setAttribute("lastname", student.getLastName());
+                              request.setAttribute("email", student.getEmail());
+                              
+                              //obtain password separately
+                              String passStudent = dbOpsAd.getStudentPass(userID);
+                              request.setAttribute("pass", passStudent);
+                              break;
+                    case "2": Faculty facultyMember = new Faculty(userID);
+                              request.setAttribute("username", facultyMember.getUserID());
+                              request.setAttribute("firstname", facultyMember.getFirstName());
+                              request.setAttribute("middlename", facultyMember.getMiddleName());
+                              request.setAttribute("lastname", facultyMember.getLastName());
+                              request.setAttribute("email", facultyMember.getEmail());
+                              
+                              //obtain password separately
+                              String passFaculty = dbOpsAd.getFacultyPass(userID);
+                              request.setAttribute("pass", passFaculty);
+                             break;
+                    case "3": Admin adminMember = new Admin(userID);
+                              request.setAttribute("username", adminMember.getUserID());
+                              request.setAttribute("firstname", adminMember.getFirstName());
+                              request.setAttribute("middlename", adminMember.getMiddleName());
+                              request.setAttribute("lastname", adminMember.getLastName());
+                              request.setAttribute("email", adminMember.getEmail());
+                              
+                              //obtain password separately
+                              String passAdmin = dbOpsAd.getAdminPass(userID);
+                               request.setAttribute("pass", passAdmin);  
+                             break;
+                    }  
+                }
                 
+                //user is being edited from edit menu
+                String editUser = request.getParameter("editUser");
+                if(editUser != null && !editUser.equals("")){
+                    //obtain menu option selected from form
+                    String save = request.getParameter("saveChanges");
+                    String delete = request.getParameter("deleteUser");
+                    
+                    //user has selected to save changes
+                    if (save != null && !save.equals("")){
+                        String user = request.getParameter("infoUser");
+                        String first = request.getParameter("infoFirst");
+                        String middle = request.getParameter("infoMiddle");
+                        String last = request.getParameter("infoLast");
+                        String email = request.getParameter("infoEmail");
+                        String pass = request.getParameter("infoPass");
+                        
+                        switch(op){
+                            case "1": boolean resultStud = dbOpsAd.editStudent(user, first, middle, last, email, pass);break;
+                            case "2": boolean resultFac = dbOpsAd.editFaculty(user, first, middle, last, email, pass);break;
+                            case "3": boolean resultAdmin = dbOpsAd.editAdmin(user, first, middle, last, email, pass);break;
+                        }
+                    }
+                    //user has selected to delete users
+                    else if (delete != null && !delete.equals("")){
+                        String user = request.getParameter("infoUser");
+                         switch(op){
+                            case "1": boolean resultStud = dbOpsAd.deleteStudent(user);break;
+                            case "2": boolean resultFac = dbOpsAd.deleteFaculty(user);break;
+                            case "3": boolean resultAdmin = dbOpsAd.deleteAdmin(user);break;
+                        }
+                    }
+                }
                 
                 //arraylist for holding whatever type of user is selected
                 ArrayList<Student> students = null;
                 ArrayList<Faculty> faculty = null;
                 ArrayList<Admin> admins = null;
-                
                 
                 //depending on the option selected, the arraylist will be populated
                 //the rest will stay null
@@ -79,11 +150,11 @@ public class SiteNavigationAdmin extends HttpServlet {
                     case "1": students = dbOpsStud.getAllStudents();usertype= "Student";break;
                     case "2": faculty = dbOpsFac.getAllFaculty();usertype= "Faculty"; break;
                     case "3": admins = dbOpsAd.getAllAdmins();usertype= "Admin"; break;
-                    
                 }
                 
+                //assign user type as determined by the above switch statement
                 request.setAttribute("usertype", usertype);
-                
+             
                 //assign arraylists to the session scope
                 request.setAttribute("students", students);
                 request.setAttribute("faculty", faculty);
