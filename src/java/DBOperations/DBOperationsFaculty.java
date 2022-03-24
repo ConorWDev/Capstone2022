@@ -102,6 +102,81 @@ public class DBOperationsFaculty {
         
         
         return faculty;
-    } 
+    }
+    
+     public String getFirstname (String studentID){
+        String name = "";
+        String sql = "select first_name from ma_faculty where username = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, studentID);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                name = rs.getString(1);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return name;
+    }
+    
+     public String getMiddlename (String studentID){
+        String name = "";
+        String sql = "select middle_name from ma_faculty where username = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, studentID);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                name = rs.getString(1);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return name;
+    }
+     
+     public String getLastname (String studentID){
+        String name = "";
+        String sql = "select last_name from ma_faculty where username = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, studentID);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                name = rs.getString(1);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return name;
+    }
     
 }
