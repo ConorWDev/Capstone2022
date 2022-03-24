@@ -169,28 +169,63 @@ public class SiteNavigationFaculty extends HttpServlet {
             }
             //navigating to student grades page
             else if (nav.equals("studentgrades")){
+                //set student to session scope for further use later
+                Student student = new Student(studentID);
+                session.setAttribute("student", student);
+                
+                //obtain cohortID from grades page (related to particular student) and get a list of the courses.
+                String cohortid = request.getParameter("cohortid");
+                request.setAttribute("cohortid", cohortid);
+                ArrayList<Course> courses = dbOpsCor.getCoursesByCohort(cohortid);
+                
+                //create an arraylist to hold all assignments in a given cohort
+                ArrayList<Assignment> allAssignments = new ArrayList<>();
+                
+                //loop through all courses within a cohort. Obtain all assignments for a given course
+                //and place them within "hold". Add each assignment within hold to allAssignments
+                //at the end allAssignments will hold every assignment within every course within a given cohort
+                for (int x = 0; x < courses.size(); x++){
+                    ArrayList<Assignment> hold = dbOpsAss.getCourseAssignments(courses.get(x).getCourseID());
+                    
+                    for (int y =0; y < hold.size(); y++){
+                        allAssignments.add(hold.get(y));
+                    }
+                } 
+                
+                /*
+                If grades are being saved...
+                get the variable count from form on studengrades page. this is the number of assignments, it will be used
+                for the for loop.
+                Obtain the unique grade value and assignment_id from the form on studentgrades page.
+                Feed these two values along with the student ID obtained from session scope into the DBoperation update grades
+                */
+                String count = request.getParameter("count");
+                String saveGrade = request.getParameter("saveGrade");
+                if (saveGrade != null && !saveGrade.equals("")){
+                    int countInt = Integer.parseInt(count);
+                    String grade="";
+                    String assignmentID = "";
+                    for (int x = 0; x < countInt; x++){
+                         grade = request.getParameter("newGrade" + x);
+                         assignmentID = request.getParameter("assignment" + x);
+                         Student stud = (Student)session.getAttribute("student");
+                         boolean result = dbOpsGrade.updateGrade(assignmentID, stud.getUserID(), grade);
+                         
+                         if (result){
+                             request.setAttribute("message", "success");
+                         }
+                         else{
+                             request.setAttribute("message", "something went wrong. grade not updated");
+                         }
+                    } 
+                }
+                
+                 //set allAssignments within the requestscope
+                request.setAttribute("allAssignments", allAssignments);
+                
                 //get a list of grades for all assignments of a particular student 
-                ArrayList<Grade> studentGrades = dbOpsGrade.getGrades(studentID);
+                ArrayList<Grade> studentGrades = dbOpsGrade.getGrades(student.getUserID());
                 request.setAttribute("studentGrades", studentGrades);
-                request.setAttribute("studentName", studentName);
-                
-                
-                String newGrade = request.getParameter("newGrade");
-                if (newGrade != null && !newGrade.equals("")){
-                    request.setAttribute("newGrade", true);
-                    
-                    Grade grade= (Grade)session.getAttribute("studentGrades");
-                    Assignment assignment = (Assignment)session.getAttribute("assignemntID");
-                    Student student = (Student)session.getAttribute("UserID");
-                    
-                    String assignmentID = assignment.getassignmentId();
-                    String studentUsername = student.getUserID();
-                    
-                    boolean result = dbOpsGrade.updateGrade(assignmentID, studentUsername, newGrade);
-                    
-                }             
-                ArrayList<Grade> grade = dbOpsGrade.getGrades(studentID);
-                request.setAttribute("grade", grade);
                 
                 request.getRequestDispatcher("/WEB-INF/faculty/fac_studentgrades.jsp").forward(request, response);   
             }
@@ -198,9 +233,58 @@ public class SiteNavigationFaculty extends HttpServlet {
             //faculty has selected view all announcements on fac_home.jsp
             else if (nav.equals("cohortannouncements")){
                 
+                 //set the cohort in the session scope for the cohort currently being added to
+                
+                Cohort cohort = dbOpsCo.getCohort(cohortID);
+                session.setAttribute("cohort",cohort);
+                
+                //obtain text from add announcement form on fac_cohortannouncements.jsp and carry out sql command to add it to the DB
+                String textSubmission = request.getParameter("textSubmission");
+                if (textSubmission != null && !textSubmission.equals("")){
+                   
+                   boolean result = dbOpsAn.createCohortAnnouncement(cohortID, textSubmission);
+                   
+                   String message = "";
+                   if (result){
+                       message = "The announcement has been created";
+                   }
+                   else{
+                       message = "There was an error when creating the announcement";
+                   }
+                   request.setAttribute("message", message);
+                }
+                //user has selected edit. Pull up edit menu
+                String announcementID = request.getParameter("announcementID");
+                if(announcementID != null && !announcementID.equals("")){
+                    request.setAttribute("editMenu", true);
+                    //saving announcement that we are editing to the session scope.
+                   //to do this we obtain the given announcements ID from the form on fac_courseannouncements.jsp
+                   //create a new annonucement object with the dbOp. And then save that created announcement object to session scope
+                   String cohortAnnouncementID = request.getParameter("announcementID");
+                   Announcement announcement = dbOpsAn.getCohortAnnouncement(cohortAnnouncementID);
+                   session.setAttribute("cohortAnnouncement", announcement);
+                }
+                //User as entered new text within the edit menu
+                String newText = request.getParameter("newText");
+                if (newText != null && !newText.equals("")){
+                     
+                   //get cohort announcement from sesssion scope assigned previously. And then get its ID
+                   Announcement announcement = (Announcement)session.getAttribute("cohortAnnouncement");
+                   String cohortAnnouncementID = announcement.getAnnouncementID();
+                   
+                   //call dbOp to edit course announcement with courseannouncementID and newText as parameter
+                   boolean result = dbOpsAn.editCohortAnnouncement(cohortAnnouncementID, newText);
+                   
+                   if (result){
+                       request.setAttribute("editMenu", false);
+                   }
+                   else{
+                       request.setAttribute("editMessage", "An error ocurred during editing. Limit 1000 characters");
+                   }
+                }
+                
                 ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
                 request.setAttribute("announcements", announcements);
-                request.setAttribute("cohortName", cohortName);
                 
                 request.getRequestDispatcher("/WEB-INF/faculty/fac_cohortannouncements.jsp").forward(request, response);
             }

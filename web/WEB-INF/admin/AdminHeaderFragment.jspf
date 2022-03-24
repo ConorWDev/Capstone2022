@@ -16,7 +16,7 @@
             <a class="navbar-item" href="#"></a>
         </div>
         <div class="navbar-nav">
-            <a aria-current="page" class="nav-item nav-link active" href="/SiteNavigationAdmin?logout=true">Log Out?</a>
+            <a aria-current="page" class="nav-item nav-link active" href="SiteNavigationAdmin?logout=yes">Log Out?</a>
         </div>
     </div>
 </nav>
