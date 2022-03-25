@@ -63,5 +63,36 @@ public class DBOperationsDocument {
         }
         return documents;
     }
+
+    //Submit a new Document Obj
+    //Author: Altamish Lalani
+    public boolean submitDocument(Document inbound_Doc){
+        boolean result = false;
+
+        //Check if Document exists already
+
+        //Check if Document URL works
+
+        //If the two cases above pass, persist object into tables as needed.
+
+
+
+        return result;
+    }
+    //Submit an updated Document Obj
+    //Author: Altamish Lalani
+    public boolean editDocument(Document inboundUpdated_Doc){
+        boolean result = false;
+
+        //Check if Document exists already
+
+        //Check if new Document URL works
+
+        //If the two cases above pass, Update the record in the tables correctly.
+
+        
+
+        return result;
+    }
     
 }
