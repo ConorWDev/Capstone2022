@@ -26,8 +26,23 @@
             </div>
 
         </div>
+        <!--Option Area 2A-->
+        <div class="row p-3 border-bottom  border-white" id="cbbutton2" >
 
-        <!--Option Area 2-->
+            <button class="btn  ms-0 ps-0 pe-5" data-bs-target="#opcollapse2A" data-bs-toggle="collapse"
+                    type="button">
+                Document Management
+            </button>
+
+            <div class="collapse" id="opcollapse2A">
+
+                <a class="dropdown-item" href="SiteNavigationAdmin?nav=documents&op=1">Create Document</a>
+                <a class="dropdown-item" href="SiteNavigationAdmin?nav=documents&op=2">Manage Documents</a>
+                
+            </div>
+
+        </div>
+        <!--Option Area 2B-->
         <div class="row p-3 border-bottom  border-white" id="cbbutton2" >
 
             <button class="btn  ms-0 ps-0 pe-5" data-bs-target="#opcollapse2" data-bs-toggle="collapse"
