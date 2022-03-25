@@ -164,25 +164,63 @@ public class SiteNavigationAdmin extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminUsers.jsp").forward(request, response);
             }
             else if(nav.equals("create")){
+                
                 request.getRequestDispatcher("/WEB-INF/admin/AdminUserCreate.jsp").forward(request, response);
+            }
+            else if(nav.equals("documents")){
+                if (op.equals("1")){
+                    request.getRequestDispatcher("/WEB-INF/admin/AdminDocumentCreate.jsp").forward(request, response);
+                }
+                else{
+                    request.getRequestDispatcher("/WEB-INF/admin/AdminDocumentManagement.jsp").forward(request, response);
+                }
             }
             
             else if (nav.equals("assignments")) {
+                
+                if(op.equals("1")){
+                    request.getRequestDispatcher("/WEB-INF/admin/AdminAssignmentsCreate.jsp").forward(request, response);
+                }
+                
+                else{
                 request.getRequestDispatcher("/WEB-INF/admin/AdminAssignments.jsp").forward(request, response);
+                        }
             } 
             
             else if (nav.equals("modules")) {
-                request.getRequestDispatcher("/WEB-INF/admin/AdminModules.jsp").forward(request, response);
+                
+                
+                
+                if(op.equals("1")){
+                   request.getRequestDispatcher("/WEB-INF/admin/AdminModulesCreate.jsp").forward(request, response); 
+                }
+                else{
+                   request.getRequestDispatcher("/WEB-INF/admin/AdminModules.jsp").forward(request, response); 
+                }
+                
             } 
             
             
             else if (nav.equals("courses")) {
-                request.getRequestDispatcher("/WEB-INF/admin/AdminCourses.jsp").forward(request, response);
+                
+                if(op.equals("1")){
+                   request.getRequestDispatcher("/WEB-INF/admin/AdminCourseCreate.jsp").forward(request, response); 
+                }
+                else{
+                    request.getRequestDispatcher("/WEB-INF/admin/AdminCourses.jsp").forward(request, response);
+                }
+                
             } 
             
             
             else if (nav.equals("cohort")) {
+                
+                if (op.equals("1")){
+                request.getRequestDispatcher("/WEB-INF/admin/AdminCohortCreate.jsp").forward(request, response); 
+                }
+                else {    
                 request.getRequestDispatcher("/WEB-INF/admin/AdminCohort.jsp").forward(request, response);
+                }
             } 
             
             
