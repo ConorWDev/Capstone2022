@@ -44,14 +44,14 @@
                                 <form>
                                     <div class="row">
                                         <div class="container d-flex justify-content-around mb-1">
-                                            <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Button 1</button>
-                                            <button type="submit" id="but2"class="btn d-inline-block ">Button 2</button>
-                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Button/Dropdown 3</button>
+<!--                                            <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Button 1</button>-->
+                                            <button type="submit" id="but2"class="btn d-inline-block ">.</button>
+<!--                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Button/Dropdown 3</button>
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="#">Item 1</a></li>
                                                 <li><a class="dropdown-item" href="#">Item 2</a></li>
                                                 <li><a class="dropdown-item" href="#">Item 3</a></li>
-                                            </ul>
+                                            </ul>-->
                                         </div>
                                     </div>
                                     <div>
@@ -70,13 +70,13 @@
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic"><b>Module Management</b></p>
+                                            <p class="h4 mt-2 " id="headerdynamic"><b>Module Management</b></p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div id="infoblock"class="form-control  ">
                                             <!---->
-                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Info 1</b></label>
+                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Modules ID</b></label>
                                             <input type="text" class="form-control mb-3" id="info1" placeholder="info1" name="info1">
                                             <!---->
                                             <label for="info2" id="label2" class="form-label mb-0"><b>Info 2</b></label>
@@ -95,9 +95,9 @@
                                             <input type="text" class="form-control mb-0" id="info6" placeholder="info6" name="info6">
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <button type="submit" id="but4" class="btn d-inline  ">Edit $$$$</button>
-                                                    <button type="submit" id="but5" class="btn d-inline  ">Create $$$$</button>
-                                                    <button type="submit" id="but6" class="btn d-inline  ">Delete $$$$</button>
+                                                    <button type="submit" id="but4" class="btn d-inline  ">Edit Module</button>
+                                                    
+                                                    <button type="submit" id="but6" class="btn d-inline  ">Delete Module</button>
                                                 </div>
                                             </div>
                                         </div>

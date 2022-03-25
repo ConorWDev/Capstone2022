@@ -76,7 +76,7 @@
                                         <div id="infoblock"class="form-control  ">
                                             <!---->
                                             <label for="info1" id="label1" class="form-label mb-0 "><b>Assignment ID</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Assignment ID" name="info1">
+                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Assignment ID" name="info1" disabled="true">
                                             <!---->
                                             <label for="info2" id="label2" class="form-label mb-0"><b>Assignment Name</b></label>
                                             <input type="text" class="form-control mb-3" id="info2" placeholder="Name" name="info2">
