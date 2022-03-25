@@ -39,8 +39,7 @@
 
                 <a class="dropdown-item" href="SiteNavigationAdmin?nav=assignments&op=1">Create New Assignment</a>
                 <a class="dropdown-item" href="SiteNavigationAdmin?nav=assignments&op=2">Edit Assignment</a>
-                <a class="dropdown-item" href="SiteNavigationAdmin?nav=assignments&op=3">Assign Faculty</a>
-                <a class="dropdown-item" href="SiteNavigationAdmin?nav=assignments&op=4">Remove Assignment</a>
+                
             </div>
 
         </div>
@@ -56,7 +55,7 @@
             <div class="collapse" id="opcollapse3">
                 <a class="dropdown-item" href="SiteNavigationAdmin?nav=modules&op=1">Create New Module</a>
                 <a class="dropdown-item" href="SiteNavigationAdmin?nav=modules&op=2">Edit Module</a>
-                <a class="dropdown-item" href="SiteNavigationAdmin?nav=modules&op=3">Remove Module</a>
+                
 
             </div>
         </div>
@@ -73,7 +72,7 @@
 
                 <a class="dropdown-item" href="SiteNavigationAdmin?nav=courses&op=1">Create Course</a>
                 <a class="dropdown-item" href="SiteNavigationAdmin?nav=courses&op=2">Edit Course</a>
-                <a class="dropdown-item" href="SiteNavigationAdmin?nav=courses&op=3">Remove Course</a>
+                
 
             </div>
         </div>
