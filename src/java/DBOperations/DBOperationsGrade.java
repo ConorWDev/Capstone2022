@@ -6,6 +6,8 @@
 package DBOperations;
 
 import DBOperations.DBOperationsGeneral;
+import Interface.Users.Student;
+import Objects.Assignment;
 import Objects.Grade;
 import Objects.StudentCourse;
 import java.sql.Connection;
@@ -206,5 +208,88 @@ public class DBOperationsGrade {
           
           return courses;
       }
-       
+      
+      /*
+      this method updates the ma_grade table. If a studentUsername / assignmentID composite key is not currently
+      in the database, it will populate the database with new data. Otherwise the data identified by the composite
+      key will be updated.
+      */
+      public boolean updateGrade (String assignmentID, String studentUsername, String newGrade) {
+          boolean result = false;
+          
+          boolean inDatabase = gradeInDatabase(assignmentID, studentUsername);
+          
+          String sqlUpdate = "UPDATE ma_grade SET mark = ? WHERE assignment_id = ? and username = ?;";
+          String sqlInsert = "insert into ma_grade values (?,?,?,'y');";
+          ConnectionPool cp = ConnectionPool.getInstance();
+          
+          
+          
+          if(inDatabase){
+          try {
+                Connection conn = cp.getConnection();
+                PreparedStatement st = conn.prepareStatement(sqlUpdate);
+
+                st.setString(1, newGrade);
+                st.setString(2, assignmentID);
+                st.setString(3, studentUsername);
+
+                int rowUpdate = st.executeUpdate(); 
+
+                result = (rowUpdate > 0);
+                st.close();
+                cp.freeConnection(conn);
+
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+          }
+          else{
+              try{
+                Connection conn = cp.getConnection();
+                PreparedStatement st = conn.prepareStatement(sqlInsert);
+
+                st.setString(1, assignmentID);
+                st.setString(2, studentUsername);
+                st.setString(3, newGrade);
+
+                int rowUpdate = st.executeUpdate(); 
+
+                result = (rowUpdate > 0);
+                st.close();
+                cp.freeConnection(conn);
+
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+          }
+          return result;
+ 
+      }
+      
+      public boolean gradeInDatabase (String assignmentID, String studentUsername){
+          boolean result = false;
+          String sql = "select * from ma_grade where assignment_id = ? and username = ?;";
+          ConnectionPool cp = ConnectionPool.getInstance();
+          
+           try{
+             Connection conn = cp.getConnection();
+             PreparedStatement st = conn.prepareStatement(sql);
+             st.setString(1,assignmentID);
+             st.setString(2, studentUsername);
+             ResultSet rs = st.executeQuery();
+             
+             while (rs.next()) {
+                result = true;
+            } 
+             
+             st.close();
+             rs.close();
+             cp.freeConnection(conn);
+          }
+          catch(SQLException ex){
+              ex.printStackTrace();
+          }
+          return result;
+      }
 }

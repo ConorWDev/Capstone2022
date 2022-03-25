@@ -70,7 +70,7 @@
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic"><b>*Topic* Info</b></p>
+                                            <p class="h6 mt-2 " id="headerdynamic">*User Type* Info</p>
                                         </div>
                                     </div>
                                     <div class="row">

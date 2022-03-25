@@ -27,6 +27,10 @@ public class Student implements Serializable {
     private String fullName = "";
     private String cohortID = "";
 
+    //for admin form, need separate first/middle/last name
+    private String firstName = "";
+    private String middleName = "";
+    private String lastName = "";
     
     //Java Bean rule
     Student(){}
@@ -37,6 +41,35 @@ public class Student implements Serializable {
         this.fullName = dbOps.getStudentName(userID);
         this.email = dbOps.getStudentEmail(userID);
         this.cohortID = dbOps.getCohortID(userID);
+        
+        this.firstName = dbOps.getFirstname(userID);
+        this.middleName = dbOps.getMiddlename(userID);
+        this.lastName = dbOps.getLastname(userID);
+        
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUserID() {

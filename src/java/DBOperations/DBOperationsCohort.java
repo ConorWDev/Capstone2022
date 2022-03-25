@@ -60,4 +60,31 @@ public class DBOperationsCohort {
         return cohorts;
     }
     
+    public Cohort getCohort (String cohortID){
+        Cohort cohort = null;
+        String sql= "select * from ma_cohort where cohort_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+            
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                cohort = new Cohort(rs.getString(1),rs.getString(2));
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        
+        return cohort;
+    }
+    
 }

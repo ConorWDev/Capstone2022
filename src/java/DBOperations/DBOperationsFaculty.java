@@ -6,10 +6,12 @@
 package DBOperations;
 
 import DBOperations.ConnectionPool;
+import Interface.Users.Faculty;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -71,6 +73,110 @@ public class DBOperationsFaculty {
         }
          
         return result;
+    }
+    
+    public ArrayList<Faculty> getAllFaculty(){
+        ArrayList<Faculty> faculty = new ArrayList<Faculty>();
+        
+         String sql = "select username from ma_faculty;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                Faculty facultyMember = new Faculty(rs.getString(1));
+                faculty.add(facultyMember);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        
+        
+        return faculty;
+    }
+    
+     public String getFirstname (String studentID){
+        String name = "";
+        String sql = "select first_name from ma_faculty where username = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, studentID);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                name = rs.getString(1);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return name;
+    }
+    
+     public String getMiddlename (String studentID){
+        String name = "";
+        String sql = "select middle_name from ma_faculty where username = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, studentID);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                name = rs.getString(1);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return name;
+    }
+     
+     public String getLastname (String studentID){
+        String name = "";
+        String sql = "select last_name from ma_faculty where username = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, studentID);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                name = rs.getString(1);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return name;
     }
     
 }

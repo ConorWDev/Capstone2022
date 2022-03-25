@@ -6,6 +6,7 @@
 package Controller.UserServices;
 
 import DBOperations.DBOperationsLogin;
+import Interface.Users.Admin;
 import Interface.Users.Faculty;
 import Interface.Users.Student;
 import java.io.IOException;
@@ -106,7 +107,21 @@ public class LogonCon extends HttpServlet {
                 request.getRequestDispatcher("/SiteNavigationFaculty").forward(request, response);
             }
             else if (isAdmin){
-                //TODO user is an admin type. Handle site navigation and assignment of session scope variables accordingly
+                
+                ServletContext application = getServletContext();
+
+                if (application.getAttribute("usercount") == null) {
+                    application.setAttribute("usercount", 0);
+                }
+
+                int userCount = (Integer) application.getAttribute("usercount");
+                userCount++;
+                application.setAttribute("usercount", userCount);
+                
+                session.setAttribute("username", webUsername);
+                session.setAttribute("admin", new Admin(webUsername));
+
+                request.getRequestDispatcher("/SiteNavigationAdmin").forward(request, response);
             }
             //Username and password do not match in ma_student, ma_faculty, or ma_admin tables
             else {

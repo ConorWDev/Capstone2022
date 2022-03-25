@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-1 " id="contentheader">Content Title</p>
+                            <p class="h2 mb-1 " id="contentheader">Archive</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
@@ -56,7 +56,7 @@
                                     </div>
                                     <div>
                                         <select multiple="multiple" class="form-select border-0"  id="select1">
-                                            <option>This needs to be Updated with Logic So this is dynamically created</option>
+                                            <option>This page may have to be custom built</option>
                                             <!--FOR JSP add loop to build dynamic -->
                                         </select>
                                     </div>
@@ -70,7 +70,7 @@
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic"><b>*Topic* Info</b></p>
+                                            <p class="h6 mt-2 " id="headerdynamic">*User Type* Info</p>
                                         </div>
                                     </div>
                                     <div class="row">
