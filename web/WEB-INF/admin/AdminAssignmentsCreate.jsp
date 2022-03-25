@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-3 " id="contentheader">Header 1</p>
+                            <p class="h2 mb-3 " id="contentheader">Assignments Create</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
@@ -51,7 +51,7 @@
                                              d-flex justify-content mt-1">
                                             <p class="h6 me-3 mt-2 d-inline" id="headerdynamic">Header 2</p>
                                             
-                                            <select class="form-control-sm  d-inline" id="usercreatetype" name="sellist1">
+                                            <select class="form-control-sm  d-inline" id="createtype" name="Create Type">
                                                 <option value="1">X</option>
                                                 <option value="2">Y</option>
                                                 <option value="3">Z</option>
@@ -65,26 +65,25 @@
                                             
                                            
                                             <!-- -->
-                                            <label for="info1" id="label1" class="form-label mb-0 "><b>info1</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="info1" name="info1">
+                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Assignment ID</b></label>
+                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Assignment ID" name="info1">
                                             <!-- -->
-                                            <label for="info2" id="label2" class="form-label mb-0"><b>info2</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="info" name="info2">
+                                            <label for="info2" id="label2" class="form-label mb-0"><b>Assignment Name</b></label>
+                                            <input type="text" class="form-control mb-3" id="info2" placeholder="Name" name="info2">
                                             <!-- -->
-                                            <label for="info3" id="label3" class="form-label mb-0"><b>info3</b></label>
-                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="info" name="info3">
+                                            <label for="info3" id="label3" class="form-label mb-0"><b>Assignment Description</b></label>
+                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="Description" name="info3">
                                             <!-- -->
-                                            <label for="info4" id="label4" class="form-label mb-0"><b>info4</b></label>
-                                            <input type="text" class="form-control mb-3" id="info4" placeholder="info" name="info4">
+                                            <label for="info4" id="label4" class="form-label mb-0"><b>Assignment URL</b></label>
+                                            <input type="text" class="form-control mb-3" id="info4" placeholder="URL" name="info4">
                                             <!-- -->
-                                            <label for="info5" id="label5"  class="form-label mb-0"><b>info5</b></label>
-                                            <input type="text" class="form-control mb-3" id="info5" placeholder="info" name="info5">
+                                            <label for="info5" id="label5"  class="form-label mb-0"><b>Assignment Weight</b></label>
+                                            <input type="text" class="form-control mb-5" id="info5" placeholder="Weight" name="info5">
                                             <!-- -->
-                                            <label for="info6" id="label6" class="form-label mb-0"><b>info6</b></label>
-                                            <input type="text" class="form-control mb-0" id="info6" placeholder="info" name="info6">
-                                            <div class="row">
+                                            
+                                            <div class="row mb-5">
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create XXXX</button>
+                                                    <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create Assignment</button>
                                                     
                                                     
                                                 </div>
