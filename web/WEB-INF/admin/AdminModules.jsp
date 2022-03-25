@@ -44,8 +44,9 @@
                                 <form>
                                     <div class="row">
                                         <div class="container d-flex justify-content-around mb-1">
+                                            <p> </p>
 <!--                                            <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Button 1</button>-->
-                                            <button type="submit" id="but2"class="btn d-inline-block ">.</button>
+<!--                                            <button type="submit" id="but2"class="btn d-inline-block ">.</button>-->
 <!--                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Button/Dropdown 3</button>
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="#">Item 1</a></li>
@@ -85,14 +86,14 @@
                                             <label for="info3" id="label3" class="form-label mb-0"><b>Info 3</b></label>
                                             <input type="text" class="form-control  mb-3" id="info3" placeholder="info3" name="info3">
                                             <!---->
-                                            <label for="info4" id="label4" class="form-label mb-0"><b>Info 4</b></label>
+<!--                                            <label for="info4" id="label4" class="form-label mb-0"><b>Info 4</b></label>
                                             <input type="text" class="form-control mb-3" id="info4" placeholder="info4" name="info4">
-                                            <!---->
+                                            
                                             <label for="info5" id="label5"  class="form-label mb-0"><b>Info 5</b></label>
                                             <input type="text" class="form-control mb-3" id="info5" placeholder="info5" name="info5">
-                                            <!---->
+                                            
                                             <label for="info6" id="label6" class="form-label mb-0"><b>Info 6</b></label>
-                                            <input type="text" class="form-control mb-0" id="info6" placeholder="info6" name="info6">
+                                            <input type="text" class="form-control mb-0" id="info6" placeholder="info6" name="info6">-->
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
                                                     <button type="submit" id="but4" class="btn d-inline  ">Edit Module</button>
