@@ -48,15 +48,10 @@
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
-                                             d-flex justify-content mt-1">
-                                            <p class="h6 me-3 mt-2 d-inline" id="headerdynamic">Header 2</p>
-                                            
-                                            <select class="form-control-sm  d-inline" id="createtype" name="Create Type">
-                                                <option value="1">X</option>
-                                                <option value="2">Y</option>
-                                                <option value="3">Z</option>
-                                                                
-                                            </select>
+                                             d-flex justify-content-center mt-1">
+                                            <p class="h6 me-3 mt-2 d-inline" >.</p>
+                                            <p class="h6 me-3 mt-2 d-inline" >.</p>
+                                            <p class="h6 me-3 mt-2 d-inline" >.</p>
                                             
                                         </div>
                                     </div>
