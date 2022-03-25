@@ -55,15 +55,15 @@
                                     </c:choose>
                                     
                                     <div class="row">
-                                        <div class="container d-flex justify-content-around mb-1">
-                                            <%--
-                                            <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Select User</button>
-                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Change User Type</button> 
+                                        <div class="container d-flex justify-content-end mb-1 ">
+                                            
+                                            
+                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-4 " data-bs-toggle="dropdown"></button> 
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=1">Student</a></li>
                                                 <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=2">Faculty</a></li>
                                                 <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=3">Admin</a></li>
-                                            </ul>--%>
+                                            </ul>
                                         </div>
                                     </div>
                                     <div>
