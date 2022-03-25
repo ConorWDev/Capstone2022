@@ -16,7 +16,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <link href="adminstyle.css" rel="stylesheet"/>
-        <title>Title</title>
+        <title>Admin Landing</title>
     </head>
     <body>
         <!--Header Fragment-->
