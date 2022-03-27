@@ -39,11 +39,16 @@
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
-
+                            <div class="col"></div>
+                            
+                            <div class="col">
+                            <img class="img m-4" src="MassLogo500px.png" alt="Mass"/>
+                            </div>
+                            <div class="col"></div>
                             
 
 
-
+                            
 
                                 </form>
                             </div>

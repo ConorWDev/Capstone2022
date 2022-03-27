@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <select multiple="multiple" class="form-select border-0"  id="select1">
+                                        <select multiple="multiple" class="form-select border-0 mb-3"  id="select1">
                                             <option>This needs to be Updated with Logic So this is dynamically created</option>
                                             <!--FOR JSP add loop to build dynamic -->
                                         </select>
@@ -71,7 +71,7 @@
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h4 mt-2 " id="headerdynamic"><b>Module Management</b></p>
+                                            <p class="h4 mt-2 mb-3" id="headerdynamic"><b>Module Management</b></p>
                                         </div>
                                     </div>
                                     <div class="row">
