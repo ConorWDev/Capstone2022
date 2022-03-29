@@ -165,6 +165,45 @@ public class SiteNavigationAdmin extends HttpServlet {
             }
             else if(nav.equals("create")){
                 
+                 String userType = request.getParameter("userType");
+                if (userType != null && !userType.equals("")){
+                    
+                    
+                    String username = request.getParameter("info1");
+                    String first = request.getParameter("info2");
+                    
+                    String middle = request.getParameter("info3");
+                    if (middle == null){
+                        middle = "";
+                    }
+                    
+                    String last = request.getParameter("info4");
+                    String pass = request.getParameter("info5");
+                    String email = request.getParameter("info6");
+                    
+                    
+                    switch(userType){
+                        case "student": boolean resultStud = dbOpsAd.createStudent(username,first,middle,last,pass,email);
+                                        if (resultStud){
+                                            request.setAttribute("message", "Student " + first + " " + middle + " " + last + " Created");
+                                        }
+                                        break;
+                        case "faculty": boolean resultFac = dbOpsAd.createFaculty (username,first,middle,last,pass,email);
+                                        if (resultFac){
+                                            request.setAttribute("message", "Faculty " + first + " " + middle + " " + last + " Created");
+                                        }
+                                        break;
+                        case "admin": boolean resultAd = dbOpsAd.createAdmin (username,first,middle,last,pass,email);
+                                        if (resultAd){
+                                            request.setAttribute("message", "Admin " + first + " " + middle + " " + last + " Created");
+                                        }
+                                        break;
+                    }
+                        
+                    
+                }
+                
+                
                 request.getRequestDispatcher("/WEB-INF/admin/AdminUserCreate.jsp").forward(request, response);
             }
             else if(nav.equals("documents")){
