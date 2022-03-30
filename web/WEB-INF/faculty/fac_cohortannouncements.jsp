@@ -31,6 +31,7 @@ for the faculty member to add/edit the cohort annoucments
                 ${announcement.text}
                 <input type="hidden" name="announcementID" value="${announcement.announcementID}">
                 <input type="submit" name="editMenu" value="edit">
+                <input type="submit" name="deleteButton" value="delete">
             </form>
         </c:forEach>
 
@@ -56,6 +57,8 @@ for the faculty member to add/edit the cohort annoucments
                 </form>
             </c:if>
                 ${requestScope.editMessage}
+                
+                
         </div>
         <div class="col-1"></div>
         </div>
