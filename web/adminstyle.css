@@ -109,5 +109,11 @@
 }
 /*Announcement Specifics*/
 #select2{
+    height: 500px;
+}
+#select3{
+   height: 500px;
+}
+#selectann{
     height: 450px;
 }

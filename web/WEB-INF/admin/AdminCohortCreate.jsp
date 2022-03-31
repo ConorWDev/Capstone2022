@@ -35,41 +35,41 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-3 " id="contentheader">Header 1</p>
+                            <p class="h2 mb-3 " id="contentheader">Cohort Create</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
 
-                            
-                            
+
+
                             <div class="col-4 ps-3">
-                                 
-                                 <form action="action">
+
+                                <form action="action">
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content mt-1">
-                                            <p class="h6 me-3 mt-2 d-inline" id="headerdynamic">Header 2</p>
-                                            
+                                            <p class="h6 me-3 mt-2 d-inline" id="headerdynamic">Select Menu:</p>
+
                                             <select class="form-control-sm  d-inline" id="usercreatetype" name="sellist1">
-                                                <option value="1">X</option>
-                                                <option value="2">Y</option>
-                                                <option value="3">Z</option>
-                                                                
+                                                <option value="1">Student</option>
+                                                <option value="2">Cohort</option>
+
+
                                             </select>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div id="infoblock"class="form-control  ">
-                                            
-                                           
+
+
                                             <!-- -->
-                                            <label for="info1" id="label1" class="form-label mb-0 "><b>info1</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="info1" name="info1">
+                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Cohort ID</b></label>
+                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Cohort ID" name="info1">
                                             <!-- -->
-                                            <label for="info2" id="label2" class="form-label mb-0"><b>info2</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="info" name="info2">
+                                            <label for="info2" id="label2" class="form-label mb-0"><b>Cohort Name</b></label>
+                                            <input type="text" class="form-control mb-3" id="info2" placeholder="Cohort Name" name="info2">
                                             <!-- -->
                                             <label for="info3" id="label3" class="form-label mb-0"><b>info3</b></label>
                                             <input type="text" class="form-control  mb-3" id="info3" placeholder="info" name="info3">
@@ -84,9 +84,9 @@
                                             <input type="text" class="form-control mb-0" id="info6" placeholder="info" name="info6">
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create XXXX</button>
-                                                    
-                                                    
+                                                    <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create Cohort</button>
+
+
                                                 </div>
                                             </div>
                                             </form>
@@ -98,25 +98,48 @@
 
                                 </form>
                             </div>
-                            
+
                             <div class="col me-3">
-                                
+
                                 <div class="row mt-2 " >
-                                     <select multiple="multiple" class="form-select border-0"  id="select2" style="height: 500px;">
-                                     
-                                     
-                                     
-                                     </select>
+                                    <select multiple="multiple" class="form-select "  id="select2" style="height: 490px" >
+
+
+
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <div class="container-fluid d-flex justify-content-around ">
+                                        <button href="#" type="submit" id="but1" class="btn d-inline ">Spare Button</button>
+
+
+                                    </div>
                                 </div>
                             </div> 
-                            
-                        </div>
-                        
-                        
+                            <div class="col me-3">
+
+                                <div class="row mt-2 " >
+                                    <select multiple="multiple" class="form-select "  id="select3" style="height: 490px">
+
+
+
+                                    </select>
+                                </div>
+                                <div class="container-fluid d-flex justify-content-around ">
+                                    <button href="#" type="submit" id="but2" class="btn d-inline ">Select Student</button>
+
+
+                                </div>
+                            </div>
+                        </div> 
+
                     </div>
+
+
                 </div>
             </div>
         </div>
+    </div>
 
-    </body>
+</body>
 </html>
