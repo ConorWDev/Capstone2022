@@ -38,6 +38,7 @@
                                 <p class="d-inline-block">${announcement.text}</p>
                                 <input type="hidden" name="announcementID" value="${announcement.announcementID}">
                                 <input class="btn-block d-inline-block" type="submit" name="editMenu" value="edit">
+                                <input class ="btn-blck d-inline-block" type="submit" name="deleteMenu" value="delete">
                             </form>
                         </div>    
                     </c:forEach>
