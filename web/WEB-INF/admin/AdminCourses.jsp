@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <select multiple="multiple" class="form-select border-0"  id="select1">
+                                        <select multiple="multiple" class="form-select border-0 mb-3"  id="select1">
                                             <option>This needs to be Updated with Logic So this is dynamically created</option>
                                             <!--FOR JSP add loop to build dynamic -->
                                         </select>
@@ -78,27 +78,38 @@
                                         <div id="infoblock"class="form-control  ">
                                             <!---->
                                             <label for="info1" id="label1" class="form-label mb-0 "><b>Course ID</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="" name="info1" disabled="true">
+                                            <input type="text" class="form-control mb-2" id="info1" placeholder="" name="info1" disabled="true">
                                             <!---->
                                             <label for="info2" id="label2" class="form-label mb-0"><b>Course Name</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="Name" name="info2">
+                                            <input type="text" class="form-control mb-2" id="info2" placeholder="Name" name="info2">
                                             <!---->
                                             <label for="info3" id="label3" class="form-label mb-0"><b>Course Description</b></label>
-                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="Description" name="info3">
-                                            <!---->
-<!--                                            <label for="info4" id="label4" class="form-label mb-0"><b>Info 4</b></label>
-                                            <input type="text" class="form-control mb-3" id="info4" placeholder="info4" name="info4">
+                                            <input type="text" class="form-control  mb-2" id="info3" placeholder="Description" name="info3">
                                             
-                                            <label for="info5" id="label5"  class="form-label mb-0"><b>Info 5</b></label>
-                                            <input type="text" class="form-control mb-3" id="info5" placeholder="info5" name="info5">
-                                            
-                                            <label for="info6" id="label6" class="form-label mb-0"><b>Info 6</b></label>
-                                            <input type="text" class="form-control mb-0" id="info6" placeholder="info6" name="info6">-->
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-between ">
                                                     <button type="submit" id="but4" class="btn d-inline  ">Edit Course</button>
-                                                    <button type="submit" id="but4" class="btn d-inline  ">Add Student to Course</button>
-                                                    <button type="submit" id="but6" class="btn d-inline  ">Delete Course</button>
+                                                    <button type="submit" id="but6" class="btn d-inline  ">Delete Course</button>  
+                                                    
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <!---->
+                                            <label for="info4" id="label4" class="form-label mb-0"><b>Student Username</b></label>
+                                            <input type="text" class="form-control mb-3" id="info4" placeholder="Student Username" name="info4" disabled="true">
+                                            
+                                            <label for="info5" id="label5"  class="form-label mb-0"><b>Student First Name</b></label>
+                                            <input type="text" class="form-control mb-3" id="info5" placeholder="Student First Name" name="info5" disabled="true">
+                                            
+                                            <label for="info6" id="label6" class="form-label mb-0"><b>Student Last Name</b></label>
+                                            <input type="text" class="form-control mb-0" id="info6" placeholder="Student Last Name" name="info6" disabled="true">
+                                            </div>
+                                            <div class="row">
+                                                <div class="container-fluid d-flex justify-content-end ">
+                                                  <button type="submit" id="but4" class="btn d-inline  ">Add Student to Course</button>
+                                                    
+                                                    
                                                 </div>
                                             </div>
                                         </div>

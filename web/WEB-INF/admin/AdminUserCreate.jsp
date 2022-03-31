@@ -16,13 +16,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <link href="adminstyle.css" rel="stylesheet"/>
-        <title>User Create</title>
+        <title>Title</title>
     </head>
     <body>
         <!--Header Fragment-->
         <!--Top of the admin bar-->
         <%@include file="AdminHeaderFragment.jspf" %>
-
 
         <div class="row">
             <!--SideBar Fragment-->   
@@ -44,14 +43,14 @@
                             
                             <div class="col-4 ps-3">
                                  
-                                 <form action="action">
+                                 <form action="SiteNavigationAdmin?nav=create" method="POST">
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
                                             <p class="h6 me-3 mt-2 d-inline" id="headerdynamic">Select User Type:</p>
                                             
-                                            <select class="form-control-sm  d-inline" id="usercreatetype" name="sellist1">
+                                            <select class="form-control-sm  d-inline" id="usercreatetype" name="userType">
                                                 <option value="student">Student</option>
                                                 <option value="faculty">Faculty</option>
                                                 <option value="admin">Admin</option>
@@ -66,30 +65,30 @@
                                            
                                             <!-- -->
                                             <label for="info1" id="label1" class="form-label mb-0 "><b>Username</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Username" name="info1">
+                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Username" name="info1" required>
                                             <!-- -->
                                             <label for="info2" id="label2" class="form-label mb-0"><b>First Name</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="First Name" name="info2">
+                                            <input type="text" class="form-control mb-3" id="info2" placeholder="First Name" name="info2" required>
                                             <!-- -->
                                             <label for="info3" id="label3" class="form-label mb-0"><b>Middle Name</b></label>
                                             <input type="text" class="form-control  mb-3" id="info3" placeholder="Middle Name" name="info3">
                                             <!-- -->
                                             <label for="info4" id="label4" class="form-label mb-0"><b>Last Name</b></label>
-                                            <input type="text" class="form-control mb-3" id="info4" placeholder="Last Name" name="info4">
+                                            <input type="text" class="form-control mb-3" id="info4" placeholder="Last Name" name="info4" required>
                                             <!-- -->
                                             <label for="info5" id="label5"  class="form-label mb-0"><b>Password</b></label>
-                                            <input type="text" class="form-control mb-3" id="info5" placeholder="Password" name="info5">
+                                            <input type="text" class="form-control mb-3" id="info5" placeholder="Password" name="info5" required>
                                             <!-- -->
                                             <label for="info6" id="label6" class="form-label mb-0"><b>Email</b></label>
-                                            <input type="text" class="form-control mb-0" id="info6" placeholder="Email" name="info6">
+                                            <input type="text" class="form-control mb-0" id="info6" placeholder="Email" name="info6" required>
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create User</button>
+                                                    <button type="submit" id="but4" class="btn d-inline text-success">Create User</button>
                                                     
                                                     
                                                 </div>
                                             </div>
-                                            </form>
+                                            
                                         </div>
                                     </div>
 
@@ -100,6 +99,7 @@
                             </div>
                             <div class="col-6 border-info">
                                 <p class="h1 text-danger">Could Add CVS bulk load for students here if we have time</p>
+                                test: ${requestScope.message}
                             </div>    
                         </div>
                         

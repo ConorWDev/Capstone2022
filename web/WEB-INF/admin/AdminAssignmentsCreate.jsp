@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-3 " id="contentheader">Assignments Create</p>
+                            <p class="h2 mb-3 " id="contentheader">Assignment Create</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
