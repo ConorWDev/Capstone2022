@@ -253,6 +253,7 @@ public class SiteNavigationFaculty extends HttpServlet {
                    }
                    request.setAttribute("message", message);
                 }
+               
                 //user has selected edit. Pull up edit menu
                 String announcementID = request.getParameter("announcementID");
                 if(announcementID != null && !announcementID.equals("")){
@@ -264,6 +265,7 @@ public class SiteNavigationFaculty extends HttpServlet {
                    Announcement announcement = dbOpsAn.getCohortAnnouncement(cohortAnnouncementID);
                    session.setAttribute("cohortAnnouncement", announcement);
                 }
+                
                 //User as entered new text within the edit menu
                 String newText = request.getParameter("newText");
                 if (newText != null && !newText.equals("")){
@@ -272,7 +274,7 @@ public class SiteNavigationFaculty extends HttpServlet {
                    Announcement announcement = (Announcement)session.getAttribute("cohortAnnouncement");
                    String cohortAnnouncementID = announcement.getAnnouncementID();
                    
-                   //call dbOp to edit course announcement with courseannouncementID and newText as parameter
+                   //call dbOp to editcourse announcement with courseannouncementID and newText as parameter
                    boolean result = dbOpsAn.editCohortAnnouncement(cohortAnnouncementID, newText);
                    
                    if (result){
@@ -283,6 +285,15 @@ public class SiteNavigationFaculty extends HttpServlet {
                    }
                 }
                 
+                 String deleteButton = request.getParameter("deleteButton");
+                 if (deleteButton != null && deleteButton.equals("delete")){
+            
+                     String idtemp = request.getParameter("announcementID");
+                     int id = Integer.parseInt(idtemp);
+                     DBOperationsAnnouncement da = new DBOperationsAnnouncement();
+                     da.deleteCohortAnnouncement(announcementID);
+               }
+               
                 ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
                 request.setAttribute("announcements", announcements);
                 
@@ -349,7 +360,7 @@ public class SiteNavigationFaculty extends HttpServlet {
                        request.setAttribute("editMessage", "An error ocurred during editing. Limit 1000 characters");
                    }
                }
-               
+              
                
                //obtain course announcements for display on fac_courseannouncments page 
                ArrayList<CourseAnnouncement> announcements = dbOpsAn.getCourseAnnouncements(course.getCourseID());

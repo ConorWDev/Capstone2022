@@ -256,6 +256,30 @@ public class DBOperationsAnnouncement {
         return result;
     }
     
+    //method used when deleting cohortAnnouncements. Input courseAnnouncementID and new text that will be deletec
+    public boolean deleteCohortAnnouncement (String cohortAnnouncementID){
+        boolean result = false;
+        String sql = "DELETE from ma_announcement where announcement_id = ?;";
+         ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortAnnouncementID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){}
+            
+        return result;
+    }
+    
+    
+    
     /*
     public String testGetPK (){
         String result = "";

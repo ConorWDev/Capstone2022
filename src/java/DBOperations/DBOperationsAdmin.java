@@ -446,4 +446,85 @@ public class DBOperationsAdmin {
          
          return result;
      }
+     
+     public boolean createStudent (String username, String first, String middle, String last, String pass, String email){
+         boolean result = false;
+         String sql = "insert into ma_student (username, first_name, middle_name, last_name, password, email) values (?,?,?,?,?,?);";
+         ConnectionPool cp = ConnectionPool.getInstance();
+         
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, username);
+            st.setString(2, first);
+            st.setString(3, middle);
+            st.setString(4, last);
+            st.setString(5, pass);
+            st.setString(6, email);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){}
+        
+         
+         return result;
+     }
+     
+      public boolean createFaculty (String username, String first, String middle, String last, String pass, String email){
+         boolean result = false;
+         String sql = "insert into ma_faculty (username, first_name, middle_name, last_name, password, email) values (?,?,?,?,?,?);";
+         ConnectionPool cp = ConnectionPool.getInstance();
+         
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, username);
+            st.setString(2, first);
+            st.setString(3, middle);
+            st.setString(4, last);
+            st.setString(5, pass);
+            st.setString(6, email);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){}
+        
+         
+         return result;
+     }
+      
+      public boolean createAdmin (String username, String first, String middle, String last, String pass, String email){
+         boolean result = false;
+         String sql = "insert into ma_admin (username, first_name, middle_name, last_name, password, email) values (?,?,?,?,?,?);";
+         ConnectionPool cp = ConnectionPool.getInstance();
+         
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, username);
+            st.setString(2, first);
+            st.setString(3, middle);
+            st.setString(4, last);
+            st.setString(5, pass);
+            st.setString(6, email);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){}
+        
+         
+         return result;
+     }
 }
