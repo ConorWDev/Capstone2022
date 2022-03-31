@@ -120,7 +120,7 @@ public class DBOperationsAnnouncement {
         } catch(Exception e){}
             return result;
     }
-    
+        
     //obtain a particular courseannouncment from a given courseannouncementID. This is done to save the
     //course announcement to the session scope when faculty is editing a course announcement
     public CourseAnnouncement getCourseAnnouncement (String courseAnnouncementID){
@@ -177,6 +177,28 @@ public class DBOperationsAnnouncement {
         } catch(Exception e){}
             
         return result;
+    }
+    
+    //method used when deleting courseAnnouncements
+    public boolean deleteCourseAnnouncement (String courseAnnouncementID) {
+        boolean result = false;
+        String sql = "delete from ma_course_announcement where annnouncement_id = ?";
+        
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, courseAnnouncementID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);          
+        } catch(Exception e){}
+            return result;
     }
     
      public boolean createCohortAnnouncement(String cohortID, String text){

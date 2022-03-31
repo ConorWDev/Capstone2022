@@ -304,7 +304,7 @@ public class SiteNavigationFaculty extends HttpServlet {
                 
                //obtain the course object that is storred within the session scope (again, this is done above when navigating to coursemain.jsp)
                Course course = (Course)session.getAttribute("courseObject"); 
-                
+                 
                /*
                 NOTE, at this point in the application, the course object "course" within the session scope has been set (occurs when selecting couse
                 (on fac_home.jsp). As such, course related datafields that are required on courseannouncement.jsp can be passed via the "course" session
@@ -342,6 +342,8 @@ public class SiteNavigationFaculty extends HttpServlet {
                    
                }
                
+               
+               
                //edit menu form submitted, call dbOp to update database
                String newText = request.getParameter("newText");
                if (newText != null && !newText.equals("")){
@@ -360,7 +362,29 @@ public class SiteNavigationFaculty extends HttpServlet {
                        request.setAttribute("editMessage", "An error ocurred during editing. Limit 1000 characters");
                    }
                }
-              
+
+               
+               //delete course announcement, get delete menu
+               String deleteMenu = request.getParameter("deleteMenu");
+               
+               if (deleteMenu != null && !deleteMenu.equals("")){
+                   
+                   //obtain announcementID from get announcement form on fac_courseannouncements.jsp and carry out sql command to delete it from the DB
+                   String announcementID = request.getParameter("announcementID");
+                   
+                   //call dbOp to delete course announcement with announcemnetID
+                   boolean result = dbOpsAn.deleteCourseAnnouncement(announcementID);
+                   
+                   String message = "";
+                   if (result){
+                       message = "The announcement has been deleted";
+                   }
+                  
+         
+                   request.setAttribute("message", message);
+               }
+               
+
                
                //obtain course announcements for display on fac_courseannouncments page 
                ArrayList<CourseAnnouncement> announcements = dbOpsAn.getCourseAnnouncements(course.getCourseID());
