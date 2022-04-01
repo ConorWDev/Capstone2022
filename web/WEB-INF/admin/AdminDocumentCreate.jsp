@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-3 " id="contentheader">Header 1</p>
+                            <p class="h2 mb-3 " id="contentheader">Document Creation</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
@@ -44,19 +44,21 @@
                             
                             <div class="col-4 ps-3">
                                  
-                                 <form action="action">
+                                 <form action="SiteNavigationAdmin?nav=documents&op=1" method="POST">
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content mt-1">
+                                            
+                                            <!--
                                             <p class="h6 me-3 mt-2 d-inline" id="headerdynamic">Header 2</p>
                                             
                                             <select class="form-control-sm  d-inline" id="usercreatetype" name="sellist1">
                                                 <option value="1">X</option>
                                                 <option value="2">Y</option>
-                                                <option value="3">Z</option>
-                                                                
+                                                <option value="3">Z</option>                 
                                             </select>
+                                            -->
                                             
                                         </div>
                                     </div>
@@ -65,31 +67,23 @@
                                             
                                            
                                             <!-- -->
-                                            <label for="info1" id="label1" class="form-label mb-0 "><b>info1</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="info1" name="info1">
+                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Document Name</b></label>
+                                            <input type="text" class="form-control mb-3" id="info1" placeholder="info1" name="info1" required>
                                             <!-- -->
-                                            <label for="info2" id="label2" class="form-label mb-0"><b>info2</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="info" name="info2">
+                                            <label for="info2" id="label2" class="form-label mb-0"><b>Description</b></label>
+                                            <input type="text" class="form-control mb-3" id="info2" placeholder="info" name="info2" required>
                                             <!-- -->
-                                            <label for="info3" id="label3" class="form-label mb-0"><b>info3</b></label>
-                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="info" name="info3">
+                                            <label for="info3" id="label3" class="form-label mb-0"><b>Link</b></label>
+                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="info" name="info3" required>
                                             <!-- -->
-                                            <label for="info4" id="label4" class="form-label mb-0"><b>info4</b></label>
-                                            <input type="text" class="form-control mb-3" id="info4" placeholder="info" name="info4">
-                                            <!-- -->
-                                            <label for="info5" id="label5"  class="form-label mb-0"><b>info5</b></label>
-                                            <input type="text" class="form-control mb-3" id="info5" placeholder="info" name="info5">
-                                            <!-- -->
-                                            <label for="info6" id="label6" class="form-label mb-0"><b>info6</b></label>
-                                            <input type="text" class="form-control mb-0" id="info6" placeholder="info" name="info6">
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create XXXX</button>
+                                                    <button type="submit" id="but4" class="btn d-inline text-success">Create Document</button>
                                                     
                                                     
                                                 </div>
                                             </div>
-                                            </form>
+                                            
                                         </div>
                                     </div>
 
@@ -102,11 +96,14 @@
                             <div class="col me-3">
                                 
                                 <div class="row mt-2 " >
+                                     
+                                    <!-- 
                                      <select multiple="multiple" class="form-select border-0"  id="select2" style="height: 500px;">
-                                     
-                                     
-                                     
+
                                      </select>
+                                     -->
+                                     test: ${requestScope.message}
+                                    
                                 </div>
                             </div> 
                             
