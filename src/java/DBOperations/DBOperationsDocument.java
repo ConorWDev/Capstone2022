@@ -7,11 +7,18 @@ package DBOperations;
 
 import Objects.Course;
 import Objects.Document;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -66,35 +73,112 @@ public class DBOperationsDocument {
 
     //Submit a new Document Obj
     //Author: Altamish Lalani
-    public boolean submitDocument(Document inbound_Doc){
-        boolean result = false;
-
-        //Check if Document exists already
-
+    public String submitDocument(Document inbound_Doc){
+        String result = "URL failed - Please check your link and try again.";
+        boolean urlCheck = false;
+        URL myUrl;
+        
+        try {
+            myUrl = new URL(inbound_Doc.getUrl());
+            urlCheck = isSiteUp(myUrl);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(DBOperationsDocument.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //documentID,documentName,docmentDescription,documentURL);
+                       
         //Check if Document URL works
-
-        //If the two cases above pass, persist object into tables as needed.
-
-
+        if(urlCheck){
+        /* If the case above passes, persist object into tables as needed.
+           Else false result
+        */
+        String documentName = inbound_Doc.getName();
+        String documentDescription = inbound_Doc.getDescription();
+        String documentURL = inbound_Doc.getUrl(); 
+            
+        String sql="INSERT into ma_document (name, description, url) VALUES (?,?,?);";
+               
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, documentName);
+            st.setString(2, documentDescription);
+            st.setString(3, documentURL);
+            ResultSet rs = st.executeQuery();
+            System.out.println(rs);
+          
+            result = "Successful entry.";
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+            }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            }
+            
+        }
+        
 
         return result;
     }
     //Submit an updated Document Obj
     //Author: Altamish Lalani
-    public boolean editDocument(Document inboundUpdated_Doc){
-        boolean result = false;
-
-        //Check if Document exists already
-
-        //Check if new Document URL works
-
-        //If the two cases above pass, Update the record in the tables correctly.
-
+    public String editDocument(Document inboundUpdated_Doc){
         
+       String result = "URL failed - Please check your link and try again.";
+        boolean urlCheck = false;
+        URL myUrl;
+        
+        try {
+            myUrl = new URL(inboundUpdated_Doc.getUrl());
+            urlCheck = isSiteUp(myUrl);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(DBOperationsDocument.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //documentID,documentName,docmentDescription,documentURL);
+                       
+        //Check if Document URL works
+        if(urlCheck){
+        /* If the case above passes, persist object into tables as needed.
+           Else false result
+        */
+        String documentID = inboundUpdated_Doc.getDocumentID();
+        String documentName = inboundUpdated_Doc.getName();
+        String documentDescription = inboundUpdated_Doc.getDescription();
+        String documentURL = inboundUpdated_Doc.getUrl(); 
+            
+        String sql="UPDATE ma_document SET name = ?, description = ?, url = ? WHERE document_id = ? ;";
+               
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, documentName);
+            st.setString(2, documentDescription);
+            st.setString(3, documentURL);
+            st.setString(4, documentID);
+            ResultSet rs = st.executeQuery();
+            System.out.println(rs);
+          
+            result = "Successful entry.";
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+            }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            }
+            
+        }
 
         return result;
     }
     
+
     public boolean createDocument (String name, String description, String url){
         boolean result = false;
         String sql = "insert into ma_document (name,description,url) values (?,?,?);";
@@ -240,5 +324,22 @@ public class DBOperationsDocument {
         
         return result;
     }
+
+    public static boolean isSiteUp(URL site) {
+        try {
+            HttpURLConnection conn = (HttpURLConnection) site.openConnection();
+            conn.getContent();
+            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                return true;
+            }
+            return false;
+        } catch (SocketTimeoutException tout) {
+            return false;
+        } catch (IOException ioex) {
+            // You may decide on more specific behaviour...
+            return false;
+        }
+      }
+
     
 }

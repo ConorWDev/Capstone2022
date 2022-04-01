@@ -6,8 +6,15 @@
 package DBOperations;
 
 import Objects.Assignment;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -108,33 +115,138 @@ public class DBOperationsAssignments {
 
     //Submit a new assignment Obj
     //Author: Altamish Lalani
-    public boolean submitAssignment(Assignment inbound_assignment){
-        boolean result = false;
-
-        //Check if assignment exists already
-
-        //Check if assignment URL works
-
-        //If the two cases above pass, persist object into tables as needed.
-
-
-
-        return result;
-    }
-    //Submit an updated assignment Obj
-    //Author: Altamish Lalani
-    public boolean editAssignment(Assignment inboundUpdated_assignment){
-        boolean result = false;
-
-        //Check if assignment exists already
-
-        //Check if new assignment URL works
-
-        //If the two cases above pass, Update the record in the tables correctly.
-
+     public String submitAssignment(Assignment inbound_assignment){
+       
+        String result = "URL failed - Please check your link and try again.";
+        boolean urlCheck = false;
+        URL myUrl;
         
+        try {
+            myUrl = new URL(inbound_assignment.getassignmentUrl());
+            urlCheck = isSiteUp(myUrl);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(DBOperationsAssignments.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+        //Weight Error Check.
+        if(inbound_assignment.getassignmentWeight()< 0){
+            result = "Error, assingment must not have a weight that is less than 0.";
+            return result;
+        }
+        
+        //Check if Assignment URL works
+        if(urlCheck){
+        /* If the case above passes, persist object into tables as needed.
+           Else false result
+        */
+        
+        String assignmentName = inbound_assignment.getassignmentName();
+        String assignmentDescription = inbound_assignment.getassignmentDescription();
+        String assignmentUrl = inbound_assignment.getassignmentUrl();
+        double assignmentWeight = inbound_assignment.getassignmentWeight();
+                   
+        String sql="INSERT  into ma_assignment (name, description, url, weight)  VALUES (?,?,?,?);";
+               
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, assignmentName);
+            st.setString(2, assignmentDescription);
+            st.setString(3, assignmentUrl);
+            st.setDouble(4, assignmentWeight);
+            ResultSet rs = st.executeQuery();
+            System.out.println(rs);
+          
+            result = "Successful entry.";
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+            }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            }
+            
+        }
 
         return result;
     }
+    //Update an updated assignment Obj
+    //Author: Altamish Lalani
+    public String editAssignment(Assignment inboundUpdated_assignment){
+        String result = "URL failed - Please check your link and try again.";
+        boolean urlCheck = false;
+        URL myUrl;
+        
+        try {
+            myUrl = new URL(inboundUpdated_assignment.getassignmentUrl());
+            urlCheck = isSiteUp(myUrl);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(DBOperationsAssignments.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+        //Weight Error Check.
+        if(inboundUpdated_assignment.getassignmentWeight()< 0){
+            result = "Error, assingment must not have a weight that is less than 0.";
+            return result;
+        }
+        
+        //Check if Assignment URL works
+        if(urlCheck){
+        /* If the case above passes, persist object into tables as needed.
+           Else false result
+        */
+        String assignmentID = inboundUpdated_assignment.getassignmentId();
+        String assignmentName = inboundUpdated_assignment.getassignmentName();
+        String assignmentDescription = inboundUpdated_assignment.getassignmentDescription();
+        String assignmentUrl = inboundUpdated_assignment.getassignmentUrl();
+        double assignmentWeight = inboundUpdated_assignment.getassignmentWeight();
+                   
+        String sql="UPDATE ma_assignment  SET name = ?, description = ?, url = ?, weight = ? WHERE assignment_id  = ?;";
+               
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, assignmentName);
+            st.setString(2, assignmentDescription);
+            st.setString(3, assignmentUrl);
+            st.setDouble(4, assignmentWeight);
+            st.setString(5, assignmentID);
+            ResultSet rs = st.executeQuery();
+            System.out.println(rs);
+          
+            result = "Successful entry.";
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+            }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            }
+            
+        }
+
+        return result;
+    }
+    
+    
+    public static boolean isSiteUp(URL site) {
+        try {
+            HttpURLConnection conn = (HttpURLConnection) site.openConnection();
+            conn.getContent();
+            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                return true;
+            }
+            return false;
+        } catch (SocketTimeoutException tout) {
+            return false;
+        } catch (IOException ioex) {
+            // You may decide on more specific behaviour...
+            return false;
+        }
+      }
     
 }

@@ -23,6 +23,13 @@ public class Document {
         this.description = description;
         this.url = url;
     }
+    
+       public Document(String name, String description, String url){
+        this.documentID = "null";
+        this.name = name;
+        this.description = description;
+        this.url = url;
+    }
 
     public String getDocumentID() {
         return documentID;

@@ -85,34 +85,26 @@
                                             <!---->
                                             <label for="info3" id="label3" class="form-label mb-0"><b>Course Description</b></label>
                                             <input type="text" class="form-control  mb-2" id="info3" placeholder="Description" name="info3">
-                                            
-                                            <div class="row">
-                                                <div class="container-fluid d-flex justify-content-between ">
-                                                    <button type="submit" id="but4" class="btn d-inline  ">Edit Course</button>
-                                                    <button type="submit" id="but6" class="btn d-inline  ">Delete Course</button>  
-                                                    
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <!---->
+                                            <!---->
                                             <label for="info4" id="label4" class="form-label mb-0"><b>Student Username</b></label>
                                             <input type="text" class="form-control mb-3" id="info4" placeholder="Student Username" name="info4" disabled="true">
-                                            
+                                            <!---->
                                             <label for="info5" id="label5"  class="form-label mb-0"><b>Student First Name</b></label>
                                             <input type="text" class="form-control mb-3" id="info5" placeholder="Student First Name" name="info5" disabled="true">
-                                            
+                                            <!---->
                                             <label for="info6" id="label6" class="form-label mb-0"><b>Student Last Name</b></label>
                                             <input type="text" class="form-control mb-0" id="info6" placeholder="Student Last Name" name="info6" disabled="true">
                                             </div>
+                                            <!---->
                                             <div class="row">
-                                                <div class="container-fluid d-flex justify-content-end ">
-                                                  <button type="submit" id="but4" class="btn d-inline  ">Add Student to Course</button>
-                                                    
+                                                <div class="container-fluid d-flex justify-content-around ">
+                                                    <button type="submit" id="but4" class="btn d-inline  ">Edit Course</button>
+                                                    <button type="submit" id="but6" class="btn d-inline  ">Delete Course</button>  
+                                                    <button type="submit" id="but4" class="btn d-inline  ">Add Student to Course</button>
                                                     
                                                 </div>
                                             </div>
-                                        </div>
+                                            
                                     </div>
 
 
