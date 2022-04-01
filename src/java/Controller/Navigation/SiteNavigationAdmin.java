@@ -6,11 +6,13 @@
 package Controller.Navigation;
 
 import DBOperations.DBOperationsAdmin;
+import DBOperations.DBOperationsDocument;
 import DBOperations.DBOperationsFaculty;
 import DBOperations.DBOperationsStudent;
 import Interface.Users.Admin;
 import Interface.Users.Faculty;
 import Interface.Users.Student;
+import Objects.Document;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -52,6 +54,8 @@ public class SiteNavigationAdmin extends HttpServlet {
         DBOperationsStudent dbOpsStud = new DBOperationsStudent();
         DBOperationsFaculty dbOpsFac = new DBOperationsFaculty();
         DBOperationsAdmin dbOpsAd = new DBOperationsAdmin();
+        
+        DBOperationsDocument dbOpsDoc = new DBOperationsDocument();
         
         
         if(logout!=null&&!logout.equals("")){
@@ -208,9 +212,75 @@ public class SiteNavigationAdmin extends HttpServlet {
             }
             else if(nav.equals("documents")){
                 if (op.equals("1")){
+                    
+                    String name = request.getParameter("info1");
+                    String description = request.getParameter("info2");
+                    String url = request.getParameter("info3");
+                    
+                    boolean result = dbOpsDoc.createDocument(name, description, url);
+                    
+                    if (result){
+                        request.setAttribute("message", "Document " + name + " has been created successfully");
+                    }
+                    else{
+                        request.setAttribute("message", "Something went wrong during document creation. Please try again");
+                    }
+                    
+                    
                     request.getRequestDispatcher("/WEB-INF/admin/AdminDocumentCreate.jsp").forward(request, response);
                 }
                 else{
+                    
+                   
+                    
+                    
+                    String documentID = request.getParameter("documentIDs");
+                    if (documentID != null && !documentID.equals("")){
+                        
+                        Document document = dbOpsDoc.getDocumentByID(documentID);
+                        request.setAttribute("docID",document.getDocumentID());
+                        request.setAttribute("docName", document.getName());
+                        request.setAttribute("docDescription", document.getDescription());
+                        request.setAttribute("docUrl", document.getUrl());
+                    }
+                    
+                    String saveChanges = request.getParameter("saveChanges");
+                    if (saveChanges != null && !saveChanges.equals("")){
+                        
+                        String id = request.getParameter("id");
+                        String name = request.getParameter("info1");
+                        String description = request.getParameter("info2");
+                        String url = request.getParameter("info3");
+                        boolean result = dbOpsDoc.updateDoc(id,name,description,url);
+                        
+                        if (result){
+                            request.setAttribute("message", "saved succesfully");
+                        }
+                        else{
+                            request.setAttribute("message", "something went wrong");
+                        }
+                           
+                    }
+                    
+                    String deleteDoc = request.getParameter("deleteDoc");
+                    if (deleteDoc != null && !deleteDoc.equals("")){
+                        
+                        String id = request.getParameter("id");
+                        boolean result = dbOpsDoc.deleteDoc(id);
+                        
+                        if (result){
+                            request.setAttribute("message", "deleted");
+                        }
+                        else{
+                            request.setAttribute("message", "something went wrong when deleting");
+                        }
+                        
+                    }
+                    
+                    
+                    ArrayList<Document> documents = dbOpsDoc.getAllDocuments();
+                    request.setAttribute("documents", documents);
+                    
                     request.getRequestDispatcher("/WEB-INF/admin/AdminDocumentManagement.jsp").forward(request, response);
                 }
             }
