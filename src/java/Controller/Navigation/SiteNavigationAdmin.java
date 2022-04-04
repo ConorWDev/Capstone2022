@@ -217,14 +217,14 @@ public class SiteNavigationAdmin extends HttpServlet {
                     String description = request.getParameter("info2");
                     String url = request.getParameter("info3");
                     
-                    boolean result = dbOpsDoc.createDocument(name, description, url);
+                    if (name != null && !name.equals("")){
+                        //boolean result = dbOpsDoc.createDocument(name, description, url);
+                         Document doc = new Document(name,description,url);
                     
-                    if (result){
-                        request.setAttribute("message", "Document " + name + " has been created successfully");
+                         //trying altamishes code
+                         request.setAttribute("message", dbOpsDoc.submitDocument(doc)); 
                     }
-                    else{
-                        request.setAttribute("message", "Something went wrong during document creation. Please try again");
-                    }
+                    
                     
                     
                     request.getRequestDispatcher("/WEB-INF/admin/AdminDocumentCreate.jsp").forward(request, response);
@@ -251,14 +251,18 @@ public class SiteNavigationAdmin extends HttpServlet {
                         String name = request.getParameter("info1");
                         String description = request.getParameter("info2");
                         String url = request.getParameter("info3");
-                        boolean result = dbOpsDoc.updateDoc(id,name,description,url);
+                        //boolean result = dbOpsDoc.updateDoc(id,name,description,url);
                         
+                        Document doc = new Document(id,name,description,url);
+                        request.setAttribute("message", dbOpsDoc.editDocument(doc));   
+                        
+                        /*
                         if (result){
                             request.setAttribute("message", "saved succesfully");
                         }
                         else{
                             request.setAttribute("message", "something went wrong");
-                        }
+                        }*/
                            
                     }
                     
