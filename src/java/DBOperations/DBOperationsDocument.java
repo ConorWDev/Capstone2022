@@ -106,12 +106,12 @@ public class DBOperationsDocument {
             st.setString(1, documentName);
             st.setString(2, documentDescription);
             st.setString(3, documentURL);
-            ResultSet rs = st.executeQuery();
-            System.out.println(rs);
+            st.executeUpdate();
+            //System.out.println(rs);
           
             result = "Successful entry.";
             st.close();
-            rs.close();
+            //rs.close();
             cp.freeConnection(conn);
             }
         catch(SQLException ex){
@@ -161,12 +161,14 @@ public class DBOperationsDocument {
             st.setString(2, documentDescription);
             st.setString(3, documentURL);
             st.setString(4, documentID);
-            ResultSet rs = st.executeQuery();
-            System.out.println(rs);
+            
+            st.executeUpdate();
+            //ResultSet rs = st.executeQuery();
+            //System.out.println(rs);
           
             result = "Successful entry.";
             st.close();
-            rs.close();
+            //rs.close();
             cp.freeConnection(conn);
             }
         catch(SQLException ex){
@@ -177,33 +179,7 @@ public class DBOperationsDocument {
 
         return result;
     }
-    
-
-    public boolean createDocument (String name, String description, String url){
-        boolean result = false;
-        String sql = "insert into ma_document (name,description,url) values (?,?,?);";
-        ConnectionPool cp = ConnectionPool.getInstance();
-        
-        try {
-            Connection conn = cp.getConnection();
-            PreparedStatement st = conn.prepareStatement(sql);
-            st.setString(1, name);
-            st.setString(2, description);
-            st.setString(3, url);
-            
-            int rowsAffected = st.executeUpdate();
-            
-            result = (rowsAffected > 0);
-            
-            st.close();
-            cp.freeConnection(conn);
-        } catch(Exception e){
-      
-        }
-        
-        
-        return result;
-    }
+   
     
     public ArrayList<Document> getAllDocuments (){
         ArrayList<Document> documents = new ArrayList<>();
@@ -278,7 +254,51 @@ public class DBOperationsDocument {
         return document;
     }
     
-    public boolean updateDoc (String id, String name, String description, String url){
+
+    public static boolean isSiteUp(URL site) {
+        try {
+            HttpURLConnection conn = (HttpURLConnection) site.openConnection();
+            conn.getContent();
+            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                return true;
+            }
+            return false;
+        } catch (SocketTimeoutException tout) {
+            return false;
+        } catch (IOException ioex) {
+            // You may decide on more specific behaviour...
+            return false;
+        }
+      }
+    
+     public boolean createDocument (String name, String description, String url){
+        boolean result = false;
+        String sql = "insert into ma_document (name,description,url) values (?,?,?);";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, name);
+            st.setString(2, description);
+            st.setString(3, url);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+      
+        }
+        
+        
+        return result;
+    }
+    
+    
+      public boolean updateDoc (String id, String name, String description, String url){
         boolean result = false;
         String sql = "update ma_document set name = ?, description = ?, url = ? where document_id = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -305,6 +325,9 @@ public class DBOperationsDocument {
     }
     
     public boolean deleteDoc (String id){
+        
+        deleteBridge(id);
+        
         boolean result = false;
         String sql = "delete from ma_document where document_id = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -324,22 +347,29 @@ public class DBOperationsDocument {
         
         return result;
     }
-
-    public static boolean isSiteUp(URL site) {
-        try {
-            HttpURLConnection conn = (HttpURLConnection) site.openConnection();
-            conn.getContent();
-            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                return true;
-            }
-            return false;
-        } catch (SocketTimeoutException tout) {
-            return false;
-        } catch (IOException ioex) {
-            // You may decide on more specific behaviour...
-            return false;
+    
+    //called within deleteDoc. delete bridge table row
+    public boolean deleteBridge(String id){
+        boolean result = false;
+        String sql = "delete from ma_lesson_document where document_id = ?;";
+         ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, id);
+            
+            int rowsAffected = st.executeUpdate();
+            result = (rowsAffected > 0);
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+      
         }
-      }
+        
+        return result;
+        
+    }
 
     
 }
