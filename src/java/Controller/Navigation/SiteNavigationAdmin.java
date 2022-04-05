@@ -7,6 +7,7 @@ package Controller.Navigation;
 
 import DBOperations.DBOperationsAdmin;
 import DBOperations.DBOperationsAssignments;
+import DBOperations.DBOperationsCourse;
 import DBOperations.DBOperationsDocument;
 import DBOperations.DBOperationsFaculty;
 import DBOperations.DBOperationsModule;
@@ -15,6 +16,7 @@ import Interface.Users.Admin;
 import Interface.Users.Faculty;
 import Interface.Users.Student;
 import Objects.Assignment;
+import Objects.Course;
 import Objects.Document;
 import Objects.Module;
 import java.io.IOException;
@@ -62,6 +64,7 @@ public class SiteNavigationAdmin extends HttpServlet {
         DBOperationsDocument dbOpsDoc = new DBOperationsDocument();
         DBOperationsAssignments dbOpsAss = new DBOperationsAssignments();
         DBOperationsModule dbOpsMod = new DBOperationsModule();
+        DBOperationsCourse dbOpsCou = new DBOperationsCourse();
         
         
         if(logout!=null&&!logout.equals("")){
@@ -517,9 +520,89 @@ public class SiteNavigationAdmin extends HttpServlet {
             else if (nav.equals("courses")) {
                 
                 if(op.equals("1")){
+                    
+                    String courseName = request.getParameter("info2");
+                    String courseDescription = request.getParameter("info3");
+                    if (courseName != null && !courseName.equals("")){
+                       boolean result = dbOpsCou.createCourse(courseName, courseDescription);
+                        if (result){
+                            request.setAttribute("message", "course added sucessfully");
+                        }
+                        else{
+                            request.setAttribute("message", "something went wrong...");
+                        }
+                    }
+                    
+                    
                    request.getRequestDispatcher("/WEB-INF/admin/AdminCourseCreate.jsp").forward(request, response); 
                 }
                 else{
+                    
+                    
+                    String courseID = request.getParameter("courseIDs");
+                    if (courseID != null && !courseID.equals("")){
+                        Course course = dbOpsCou.getCourse(courseID);
+                        request.setAttribute("courseID", course.getCourseID());
+                        request.setAttribute("courseName", course.getCourseName());
+                        request.setAttribute("courseDescription", course.getCourseDescription());
+                        
+                        
+                        ArrayList<Module> allModules = dbOpsMod.getAllModules();
+                        ArrayList<Module> relModules = dbOpsMod.getCourseModules(courseID);
+                        
+                        request.setAttribute("allModules", allModules);
+                        request.setAttribute("relModules", relModules);
+                    }
+                    
+                    
+                    String save = request.getParameter("saveChanges");
+                    if (save != null && !save.equals("")){
+                        
+                        
+                       String ID = request.getParameter("courseID");
+                        
+                       //obtain list of all modules that are checked off in the document form and store it in array list checkedModuleIDs
+                       String count = request.getParameter("count");
+                       int countInt = Integer.parseInt(count);
+                       ArrayList<String> checkedModuleIDs = new ArrayList<>();
+                       for (int x = 0; x < countInt; x++){
+                           String check = request.getParameter("moduleList" + x);
+                           if (check != null && !check.equals("")){
+                               checkedModuleIDs.add(check);
+                           }
+                       }
+                       
+                       //sever all previous connections between course and lessons
+                       dbOpsCou.clearBridge(ID);
+                       
+                       //add new connections
+                       for (int x = 0; x < checkedModuleIDs.size(); x++){
+                           dbOpsCou.bridgeCourseModule(ID, checkedModuleIDs.get(x));
+                       }
+                        
+                        
+                        String courseName = request.getParameter("info2");
+                        String courseDescription = request.getParameter("info3");
+                        
+                        if (courseName != null && !courseName.equals("")){
+                            dbOpsCou.updateCourse(ID, courseName, courseDescription);
+                        }
+                        
+                    }
+                    
+                    String delete = request.getParameter("deleteCourse");
+                    if (delete != null && !delete.equals("")){
+                         String ID = request.getParameter("courseID");
+                        dbOpsCou.deleteCourseByID(ID);
+                    }
+                    
+                    
+                    
+                    
+                    
+                    ArrayList<Course> courses = dbOpsCou.getAllCourses();
+                    request.setAttribute("courses", courses);
+                    
                     request.getRequestDispatcher("/WEB-INF/admin/AdminCourses.jsp").forward(request, response);
                 }
                 
