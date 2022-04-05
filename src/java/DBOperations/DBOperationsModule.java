@@ -114,6 +114,9 @@ public class DBOperationsModule {
     This method returns a module object for a given module id entered. This is used when navigating to the
     module main page and setting the particular module object as "module" within the session scope of the application. This may
     depreicate the above methods, as this one method can be called, and from the resulting object, all datafields of the module can be retrieved
+    
+    
+    Also used during admin module mgmt
     */
     public Module getModule (String moduleID){
         Module module = null;
@@ -140,6 +143,142 @@ public class DBOperationsModule {
         return module;
     }
     
+    public boolean createModule (String name, String description){
+        boolean result = false;
+        String sql = "insert into ma_lesson (name,description) values(?,?);";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, name);
+            st.setString(2, description);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+            
+        }
+        return result;
+    }
     
+    public ArrayList<Module> getAllModules (){
+        ArrayList<Module> modules = new ArrayList<>();
+        String sql = "select * from ma_lesson;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            
+           
+            String name;
+            String description;
+            String lessonID;
+            
+            while(rs.next()) {
+                lessonID = rs.getString(1);
+                name = rs.getString(2);
+                description = rs.getString(3);
+                
+                Module module = new Module(lessonID, name, description);
+                
+                modules.add(module);
+            }
+            st.close();
+            rs.close();
+            
+            cp.freeConnection(conn);
+        } catch (Exception e) {
+            }
+        
+        return modules;
+    }
     
+    public boolean updateModule (String moduleID, String moduleName, String moduleDescription){
+        boolean result = false;
+        String sql = "update ma_lesson set name = ?, description = ? where lesson_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, moduleName);
+            st.setString(2, moduleDescription);
+            st.setString(3, moduleID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+            
+        }
+        return result;
+        
+        
+    }
+    
+    public boolean deleteModuleByID (String moduleID){
+        
+        deleteBridges(moduleID);
+        
+        boolean result = false;
+        String sql = "delete from ma_lesson where lesson_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, moduleID);
+            
+            int rowsAffected = st.executeUpdate();
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+            
+        }
+        return result;
+    }
+
+    private boolean deleteBridges(String moduleID) {
+        boolean result = false;
+        String sql = "delete from ma_lesson_document where lesson_id = ?;";
+        String sql2 = "delete from ma_lesson_assignment where lesson_id = ?;";
+        String sql3 = "delete from ma_course_lesson where lesson_id = ?;";
+        
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            PreparedStatement st2 = conn.prepareStatement(sql2);
+            PreparedStatement st3 = conn.prepareStatement(sql3);
+            st.setString(1, moduleID);
+            st2.setString(1, moduleID);
+            st3.setString(1, moduleID);
+            
+            int rowsAffected = st.executeUpdate();
+            rowsAffected = st2.executeUpdate();
+            rowsAffected = st3.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+            
+        }
+        return true;
+        
+    }
 }
