@@ -24,7 +24,7 @@
         <div class="col bg-light rounded" id="containerfac">
         
         <h1>${sessionScope.moduleObject.name}</h1>
-        ${sessionScope.moduleObject.description}
+        ${sessionScope.moduleObject.description} <br>
         
         <b> ASSIGNMENTS </b><br>
         <c:forEach items="${requestScope.assignments}" var="assignment">
@@ -40,6 +40,29 @@
         </div>
         <div class="col-1"></div>
         </div>    
+        
+        
+        ASSIGNMENT CREATION FORM
+        <form action="SiteNavigationFaculty?nav=modulemain" method="POST">
+            Assignment Name <input type="text" name="assignmentName"> <br>
+            Assignment Description <input type="text" name="assignmentDescription"> <br>
+            Assignment URL (Optional) <input type="text" name="assignmentURL"> <br> 
+            <input type="hidden" name="moduleid" value="${sessionScope.moduleObject.lessonId}"> 
+            <input type="submit" value="submit">
+        </form>
+        ${requestScope.message}
+        
+        
+         DOCUMENT CREATION FORM
+        <form action="SiteNavigationFaculty?nav=modulemain" method="POST">
+            Document Name <input type="text" name="documentName"> <br>
+            Document Description <input type="text" name="documentDescription"> <br>
+            Document URL <input type="text" name="documentURL"> <br> 
+            <input type="hidden" name="moduleid" value="${sessionScope.moduleObject.lessonId}"> 
+            <input type="submit" value="submit">
+        </form>
+        ${requestScope.message}
+        
         
     </body>
 </html>
