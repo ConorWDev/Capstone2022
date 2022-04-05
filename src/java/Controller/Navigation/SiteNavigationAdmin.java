@@ -6,12 +6,14 @@
 package Controller.Navigation;
 
 import DBOperations.DBOperationsAdmin;
+import DBOperations.DBOperationsAssignments;
 import DBOperations.DBOperationsDocument;
 import DBOperations.DBOperationsFaculty;
 import DBOperations.DBOperationsStudent;
 import Interface.Users.Admin;
 import Interface.Users.Faculty;
 import Interface.Users.Student;
+import Objects.Assignment;
 import Objects.Document;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,6 +58,7 @@ public class SiteNavigationAdmin extends HttpServlet {
         DBOperationsAdmin dbOpsAd = new DBOperationsAdmin();
         
         DBOperationsDocument dbOpsDoc = new DBOperationsDocument();
+        DBOperationsAssignments dbOpsAss = new DBOperationsAssignments();
         
         
         if(logout!=null&&!logout.equals("")){
@@ -292,12 +295,76 @@ public class SiteNavigationAdmin extends HttpServlet {
             else if (nav.equals("assignments")) {
                 
                 if(op.equals("1")){
+                    
+                    
+                    String name = request.getParameter("info2");
+                    String description = request.getParameter("info3");
+                    String url = request.getParameter("info4");
+                    //if url is not entered assign it to ""
+                    if (url == null || url.equals("")){
+                        url = "";
+                    }
+                    
+                    
+                    if (name != null && !name.equals("")){
+                        
+                        Assignment assignment = new Assignment (name,description,url);
+                        request.setAttribute("message",dbOpsAss.submitAssignment(assignment));
+                    }
+                    
+                    
                     request.getRequestDispatcher("/WEB-INF/admin/AdminAssignmentsCreate.jsp").forward(request, response);
                 }
                 
                 else{
-                request.getRequestDispatcher("/WEB-INF/admin/AdminAssignments.jsp").forward(request, response);
-                        }
+                    
+                    String assignmentID = request.getParameter("assignmentIDs");
+                    if (assignmentID != null && !assignmentID.equals("")){
+                        Assignment assignment = dbOpsAss.getAssignmentByID(assignmentID);
+                        request.setAttribute("assID", assignmentID);
+                        request.setAttribute("assName", assignment.getassignmentName());
+                        request.setAttribute("assDescription", assignment.getassignmentDescription());
+                        request.setAttribute("assURL", assignment.getassignmentUrl());
+                    }
+                    
+                   
+                    String save = request.getParameter("saveChanges");
+                    
+                    if (save != null && !save.equals("")){
+                        
+                        String id = request.getParameter("id");
+                        String name = request.getParameter("info2");
+                        String description = request.getParameter("info3");
+                        String url = request.getParameter("info4");
+                        
+                        Assignment assignment = new Assignment(id,name,description,url, 1);
+                        
+                        request.setAttribute("message",dbOpsAss.editAssignment(assignment));
+                    }
+                    
+                     String delete = request.getParameter("deleteAss");
+                     
+                     if (delete != null && !delete.equals("")){
+                         
+                         String id = request.getParameter("id");
+                         boolean result = dbOpsAss.deleteAssignmentByID(id);
+                         
+                         if (result){
+                             request.setAttribute("message", "successfully deleted");
+                         }
+                         else{
+                             request.setAttribute("message", "something went wrong when deleting");
+                         }
+                     }
+                    
+                    
+                    
+                    ArrayList<Assignment> assignments = dbOpsAss.getAllAssignments();
+                    request.setAttribute("assignments", assignments);
+                    
+                    request.getRequestDispatcher("/WEB-INF/admin/AdminAssignments.jsp").forward(request, response);
+                
+                }
             } 
             
             else if (nav.equals("modules")) {

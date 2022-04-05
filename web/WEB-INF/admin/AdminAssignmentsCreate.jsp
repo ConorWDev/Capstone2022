@@ -44,7 +44,7 @@
                             
                             <div class="col-4 ps-3">
                                  
-                                 <form action="action">
+                                <form action="SiteNavigationAdmin?nav=assignments&op=1" method="POST">
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
@@ -59,7 +59,7 @@
                                         <div id="infoblock"class="form-control  ">
                                             
                                            
-                                            <!-- -->
+                                            <!-- 
                                             <label for="info1" id="label1" class="form-label mb-0 "><b>Assignment ID</b></label>
                                             <input type="text" class="form-control mb-3" id="info1" placeholder="Assignment ID will be created automatically." name="info1" disabled="true">
                                             <!-- -->
@@ -69,21 +69,22 @@
                                             <label for="info3" id="label3" class="form-label mb-0"><b>Assignment Description</b></label>
                                             <input type="text" class="form-control  mb-3" id="info3" placeholder="Description" name="info3">
                                             <!-- -->
-                                            <label for="info4" id="label4" class="form-label mb-0"><b>Assignment URL</b></label>
+                                            <label for="info4" id="label4" class="form-label mb-0"><b>Assignment URL (Optional)</b></label>
                                             <input type="text" class="form-control mb-3" id="info4" placeholder="URL" name="info4">
-                                            <!-- -->
+                                            <!-- weight will have to be assigned when assignments are gathered within a given course as weight
+                                            is relative to the other assignments within the course
                                             <label for="info5" id="label5"  class="form-label mb-0"><b>Assignment Weight</b></label>
                                             <input type="text" class="form-control mb-5" id="info5" placeholder="Weight" name="info5">
-                                            <!-- -->
+                                             -->
                                             
                                             <div class="row mb-5">
                                                 <div class="container-fluid d-flex justify-content-around ">
                                                     <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create Assignment</button>
                                                     
-                                                    
+                                                    test: ${requestScope.message}
                                                 </div>
                                             </div>
-                                            </form>
+                                            
                                         </div>
                                     </div>
 
@@ -93,6 +94,7 @@
                                 </form>
                             </div>
                             
+                            <!--
                             <div class="col me-3">
                                 
                                 <div class="row mt-2 " >
@@ -103,6 +105,7 @@
                                      </select>
                                 </div>
                             </div> 
+                             -->
                             
                         </div>
                         

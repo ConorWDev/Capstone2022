@@ -22,6 +22,15 @@ public class Assignment {
         this.assignmentUrl = assignmentUrl;
         this.assignmentWeight = assignmentWeight;
     }
+    
+    //when assignment is first created within admin assignment page, weight is not entered. URL is optional
+    public Assignment (String assignmentName, String assignmentDescription, String assignmentUrl){
+        this.assignmentName = assignmentName;
+        this.assignmentDescription = assignmentDescription;
+        this.assignmentUrl = assignmentUrl;
+        this.assignmentId = null;
+        this.assignmentWeight = 1;
+    }
 
 
     public String getassignmentId() {
