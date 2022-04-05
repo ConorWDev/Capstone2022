@@ -136,9 +136,45 @@ public class SiteNavigationFaculty extends HttpServlet {
                //were all passed individually. This was ineffective. Because all navigation "deeper" into the app (i.e, navigating to further pages
                //from this point in the app onward) will be only relevant to this particular module, the module is set as "module" on the session scope.
                //if a different module is navigated to on fac_coursemain.jsp, that particular module will be assigned to the session scope as "module".
-                
+
                 Module module = dbOpsMod.getModule(moduleID);
                 session.setAttribute("moduleObject", module);
+               
+                
+                String assName = request.getParameter("assignmentName");
+                String assDescription = request.getParameter("assignmentDescription");
+                String assURL = request.getParameter("assignmentURL");
+                if (assName != null && !assName.equals("")){
+                    module = (Module)session.getAttribute("moduleObject");
+                    Assignment assignment = new Assignment(assName,assDescription,assURL);
+                    
+                    //COME BACK TO HERE work on facultys ability to add assignments
+                    dbOpsAss.createAssignmentFac(module.getLessonId(),assignment);
+                    
+                    String id = dbOpsAss.getAssignmentID(assignment);
+                    
+                    if (id != null && !id.equals("")){
+                        request.setAttribute("message", id);
+                    }
+                    else{
+                           request.setAttribute("message", "something went wrong");
+                    }
+                    
+                    dbOpsAss.brigeAssignmentModule(module.getLessonId(), id);
+                    
+                    
+                }
+                
+                String docName = request.getParameter("documentName");
+                String docDescription = request.getParameter("documentDescription");
+                String docURL = request.getParameter("documentURL");
+                if (docName != null && !docName.equals("")){
+                    Document doc = new Document(docName,docDescription,docURL);
+                    dbOpsDoc.submitDocument(doc);
+                    String id = dbOpsDoc.getDocumentID(doc);
+                    dbOpsDoc.bridgeDocumentModule(moduleID, id);
+                }
+                
                 
                 //get list of assignments for particular module
                 ArrayList<Assignment> assignments = dbOpsAss.getModuleAssignments(moduleID);

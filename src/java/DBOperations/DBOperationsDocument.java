@@ -417,6 +417,37 @@ public class DBOperationsDocument {
         return result;
         
     }
+    
+    public String getDocumentID (Document doc){
+        String docID = "";
+        String sql ="select document_id from ma_document where name = ? and description = ? and url = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+             
+             Connection conn = cp.getConnection();
+             PreparedStatement st = conn.prepareStatement(sql);
+             st.setString(1,doc.getName());
+             st.setString(2,doc.getDescription());
+             st.setString(3,doc.getUrl());
+             
+             ResultSet rs = st.executeQuery();
+             
+             while (rs.next()){
+                 docID = rs.getString(1);
+             }
+             
+             st.close();
+             rs.close();
+             
+             cp.freeConnection(conn);
+          }
+          catch(SQLException ex){
+              ex.printStackTrace();
+          }
+        
+        return docID;
+    }
 
     
 }
