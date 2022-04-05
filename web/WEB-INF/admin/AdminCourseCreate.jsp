@@ -44,7 +44,7 @@
                             
                             <div class="col-4 ps-3">
                                  
-                                 <form action="action">
+                                 <form action="SiteNavigationAdmin?nav=courses&op=1" method="POST">
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
@@ -64,7 +64,7 @@
                                         <div id="infoblock"class="form-control  ">
                                             
                                            
-                                            <!-- -->
+                                            <!-- 
                                             <label for="info1" id="label1" class="form-label mb-0 "><b>Course ID</b></label>
                                             <input type="text" class="form-control mb-3" id="info1" placeholder="Course ID" name="info1" >
                                             <!-- -->
@@ -84,9 +84,9 @@
                                             <input type="text" class="form-control mb-0" id="info6" placeholder="info" name="info6">-->
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create Course</button>
+                                                    <button type="submit" id="but4" class="btn d-inline text-success">Create Course</button>
                                                     
-                                                    
+                                                    ${requestScope.message}
                                                 </div>
                                             </div>
                                             </form>
@@ -99,6 +99,7 @@
                                 </form>
                             </div>
                             
+                            <!-- 
                             <div class="col me-3">
                                 
                                 <div class="row mt-2 " >
@@ -109,7 +110,7 @@
                                      </select>
                                 </div>
                             </div> 
-                            
+                            -->
                         </div>
                         
                         
