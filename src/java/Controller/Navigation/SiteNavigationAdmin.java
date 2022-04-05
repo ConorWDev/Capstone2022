@@ -9,12 +9,14 @@ import DBOperations.DBOperationsAdmin;
 import DBOperations.DBOperationsAssignments;
 import DBOperations.DBOperationsDocument;
 import DBOperations.DBOperationsFaculty;
+import DBOperations.DBOperationsModule;
 import DBOperations.DBOperationsStudent;
 import Interface.Users.Admin;
 import Interface.Users.Faculty;
 import Interface.Users.Student;
 import Objects.Assignment;
 import Objects.Document;
+import Objects.Module;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -59,6 +61,7 @@ public class SiteNavigationAdmin extends HttpServlet {
         
         DBOperationsDocument dbOpsDoc = new DBOperationsDocument();
         DBOperationsAssignments dbOpsAss = new DBOperationsAssignments();
+        DBOperationsModule dbOpsMod = new DBOperationsModule();
         
         
         if(logout!=null&&!logout.equals("")){
@@ -369,12 +372,142 @@ public class SiteNavigationAdmin extends HttpServlet {
             
             else if (nav.equals("modules")) {
                 
-                
-                
                 if(op.equals("1")){
+                    
+                   String name = request.getParameter("info2");
+                   String description = request.getParameter("info3");
+                   
+                   if (name != null && !name.equals("")){
+                       boolean result = dbOpsMod.createModule(name, description);
+                       
+                       if (result){
+                           request.setAttribute("message", "successfully added module");
+                       }
+                       else{
+                           request.setAttribute("message", "something went wrong when adding module");
+                       }
+                   }
+                    
+                    
                    request.getRequestDispatcher("/WEB-INF/admin/AdminModulesCreate.jsp").forward(request, response); 
                 }
                 else{
+                    
+                   
+                   
+                   String moduleID = request.getParameter("moduleIDs");
+                   if (moduleID != null && !moduleID.equals("")){
+                       Module module = dbOpsMod.getModule(moduleID);
+                       request.setAttribute("modName", module.getName());
+                       request.setAttribute("modDescription", module.getDescription());
+                       request.setAttribute("modID", module.getLessonId());
+                       
+                       
+                       ArrayList<Assignment> allAssignments = dbOpsAss.getAllAssignments();
+                       ArrayList<Document> allDocuments = dbOpsDoc.getAllDocuments();
+                       
+                       request.setAttribute("allAssignments", allAssignments);
+                       request.setAttribute("allDocuments", allDocuments);
+                       
+                       ArrayList<Assignment> relevantAssignments = dbOpsAss.getModuleAssignments(moduleID);
+                       ArrayList<Document> relevantDocuments = dbOpsDoc.getModuleDocument(moduleID);
+                       
+                       request.setAttribute("relAssignments", relevantAssignments);
+                       request.setAttribute("relDocuments", relevantDocuments);
+                   }
+                   
+                   String save = request.getParameter("saveChanges");
+                   if (save != null && !save.equals("")){
+                       
+                       /*
+                       in the following code, obtain two lists. One list is of all assignments currently connected to the
+                       given module. The second is a list of all assignments that have been checked off within the "assignments" form
+                       using these two lists we will update the database appropriatly, either adding or deleteing the connections of assignments from
+                       a given module
+                       */
+                       
+                       //obtain a list of all assignments currently held in the module and stor it in array list previouslyCheckedAssignmentIDs
+                       moduleID = request.getParameter("modID"); 
+                       ArrayList<Assignment> relevantAssignments = dbOpsAss.getModuleAssignments(moduleID);
+                       ArrayList<String> previouslyCheckedAssignmentIDs = new ArrayList<>();
+                       for (int x = 0; x < relevantAssignments.size(); x++){
+                           previouslyCheckedAssignmentIDs.add(relevantAssignments.get(x).getassignmentId());
+                       }
+                       
+                       //obtain list of all assignments that are checked off in the assignments form and store it in array list checkedAssignmentIDs
+                       String count = request.getParameter("count");
+                       int countInt = Integer.parseInt(count);
+                       ArrayList<String> checkedAssignmentIDs = new ArrayList<>();
+                       for (int x = 0; x < countInt; x++){
+                           String check = request.getParameter("assignmentList" + x);
+                           if (check != null && !check.equals("")){
+                               checkedAssignmentIDs.add(check);
+                           }
+                       }
+                       
+                       //if a value in the old list is not contained in the new list, sever the connection between the lesson and assignment table
+                       for (int x = 0; x < previouslyCheckedAssignmentIDs.size(); x++){
+                           if (!checkedAssignmentIDs.contains(previouslyCheckedAssignmentIDs.get(x))){
+                               dbOpsAss.severConnection(moduleID, previouslyCheckedAssignmentIDs.get(x));
+                           }
+                       }
+                       
+                       //if a value is the new list is not in the old list, add the new bridge connection to the DB
+                       for (int x = 0; x < checkedAssignmentIDs.size(); x++){
+                           if (!previouslyCheckedAssignmentIDs.contains(checkedAssignmentIDs.get(x))){
+                               //add checkedAssignmentIDs.get(x) id
+                               dbOpsAss.brigeAssignmentModule(moduleID, checkedAssignmentIDs.get(x));
+                           }
+                       }
+                       
+                       //drop all entries in ma_less_document table where module_id = x. then add in as necessary
+                       
+                       
+                       /*
+                       in the following code, obtain one lists. A list of all documents that have been checked off within the "documents" form
+                       using this list we will update the database appropriatly, first delete all previous instances in ma_lesson_document
+                       table where module_id = x. then add all new occurences in
+                       */
+                       
+                       //obtain list of all documents that are checked off in the document form and store it in array list checkedDocumentIDs
+                       String docCount = request.getParameter("docCount");
+                       int countDocInt = Integer.parseInt(docCount);
+                       ArrayList<String> checkedDocumentIDs = new ArrayList<>();
+                       for (int x = 0; x < countInt; x++){
+                           String check = request.getParameter("documentList" + x);
+                           if (check != null && !check.equals("")){
+                               checkedDocumentIDs.add(check);
+                           }
+                       }
+                       
+                       //sever all previous connections between module and documents
+                       dbOpsDoc.clearBridge(moduleID);
+                       
+                       //add new connections
+                       for (int x = 0; x < checkedDocumentIDs.size(); x++){
+                           dbOpsDoc.bridgeDocumentModule(moduleID, checkedDocumentIDs.get(x));
+                       }
+                       
+                       
+                       
+                       //editing name/ description
+                       String name = request.getParameter("info2");
+                       String description = request.getParameter("info3");
+                       
+                       if (name != null && !name.equals("")){
+                           boolean result = dbOpsMod.updateModule(moduleID, name, description);
+                       }
+                   }
+                    
+                   String delete = request.getParameter("deleteModule");
+                   if (delete != null && !delete.equals("")){
+                       moduleID = request.getParameter("modID"); 
+                       dbOpsMod.deleteModuleByID(moduleID);
+                   }
+                   
+                   ArrayList<Module> modules = dbOpsMod.getAllModules();
+                   request.setAttribute("modules", modules);
+                   
                    request.getRequestDispatcher("/WEB-INF/admin/AdminModules.jsp").forward(request, response); 
                 }
                 
