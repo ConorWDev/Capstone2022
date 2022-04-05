@@ -44,8 +44,8 @@
         
         ASSIGNMENT CREATION FORM
         <form action="SiteNavigationFaculty?nav=modulemain" method="POST">
-            Assignment Name <input type="text" name="assignmentName"> <br>
-            Assignment Description <input type="text" name="assignmentDescription"> <br>
+            Assignment Name <input type="text" name="assignmentName" required> <br>
+            Assignment Description <input type="text" name="assignmentDescription" required> <br>
             Assignment URL (Optional) <input type="text" name="assignmentURL"> <br> 
             <input type="hidden" name="moduleid" value="${sessionScope.moduleObject.lessonId}"> 
             <input type="submit" value="submit">
@@ -55,9 +55,9 @@
         
          DOCUMENT CREATION FORM
         <form action="SiteNavigationFaculty?nav=modulemain" method="POST">
-            Document Name <input type="text" name="documentName"> <br>
-            Document Description <input type="text" name="documentDescription"> <br>
-            Document URL <input type="text" name="documentURL"> <br> 
+            Document Name <input type="text" name="documentName" required> <br>
+            Document Description <input type="text" name="documentDescription" required> <br>
+            Document URL <input type="text" name="documentURL" required> <br> 
             <input type="hidden" name="moduleid" value="${sessionScope.moduleObject.lessonId}"> 
             <input type="submit" value="submit">
         </form>
