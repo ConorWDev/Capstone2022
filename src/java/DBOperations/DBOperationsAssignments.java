@@ -425,14 +425,20 @@ public class DBOperationsAssignments {
     public boolean severConnection(String moduleID, String assignmentID) {
         boolean result = false;
         String sql = "delete from ma_lesson_assignment where lesson_id = ? and assignment_id = ?;";
+        String sql2 = "delete from ma_grade where assignment_id = ? ;";
          ConnectionPool cp = ConnectionPool.getInstance();
         
          try{
+             
             Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
+            PreparedStatement st2 = conn.prepareStatement(sql2);
+            
+            st2.setString(1, assignmentID);
             st.setString(1, moduleID);
             st.setString(2, assignmentID);
             int rowsAffected = st.executeUpdate();
+            rowsAffected = st2.executeUpdate();
             result = (rowsAffected > 0);
             
             st.close();
@@ -443,6 +449,108 @@ public class DBOperationsAssignments {
             }
          
          return result;
+    }
+    
+    public String createAssignmentFac (String moduleID, Assignment inbound_assignment){
+        String result = "URL failed - Please check your link and try again.";
+        boolean urlCheck = false;
+        URL myUrl;
+        
+        //add functionality to leave out URL. In the case that an assignment does not have any doc attached
+        boolean noUrl = false;
+        if (inbound_assignment.getassignmentUrl() == null || inbound_assignment.getassignmentUrl().equals("")){
+            noUrl = true;
+        }
+        
+        
+        try {
+            myUrl = new URL(inbound_assignment.getassignmentUrl());
+            urlCheck = isSiteUp(myUrl);
+          } catch (MalformedURLException ex) {
+           Logger.getLogger(DBOperationsAssignments.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+       
+         
+        //Weight Error Check.
+        if(inbound_assignment.getassignmentWeight()< 0){
+            result = "Error, assingment must not have a weight that is less than 0.";
+            return result;
+        }
+        
+        //Check if Assignment URL works
+        if(urlCheck ||noUrl){
+        /* If the case above passes, persist object into tables as needed.
+           Else false result
+        */
+        
+        String assignmentName = inbound_assignment.getassignmentName();
+        String assignmentDescription = inbound_assignment.getassignmentDescription();
+        String assignmentUrl = inbound_assignment.getassignmentUrl();
+        double assignmentWeight = inbound_assignment.getassignmentWeight();
+                   
+        String sql="INSERT  into ma_assignment (name, description, url, weight)  VALUES (?,?,?,?);";
+               
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, assignmentName);
+            st.setString(2, assignmentDescription);
+            st.setString(3, assignmentUrl);
+            st.setDouble(4, assignmentWeight);
+            st.executeUpdate();
+            //ResultSet rs = st.executeQuery();
+            //System.out.println(rs);
+          
+            result = "Successful entry.";
+            st.close();
+            //rs.close();
+            cp.freeConnection(conn);
+            }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            }
+            
+        }
+
+        return result;
+    }
+    
+    public String getAssignmentID (Assignment assignment){
+        String result = "";
+        String sql = "select assignment_id from ma_assignment where name = ? and description = ? and url = ? and weight = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+          try{
+             
+             Connection conn = cp.getConnection();
+             PreparedStatement st = conn.prepareStatement(sql);
+             st.setString(1,assignment.getassignmentName());
+             st.setString(2,assignment.getassignmentDescription());
+             st.setString(3,assignment.getassignmentUrl());
+             st.setDouble(4,assignment.getassignmentWeight());
+             
+             ResultSet rs = st.executeQuery();
+             
+             while (rs.next()){
+                 result = rs.getString(1);
+             }
+             
+             st.close();
+             rs.close();
+             
+             cp.freeConnection(conn);
+          }
+          catch(SQLException ex){
+              ex.printStackTrace();
+          }
+        
+        
+        
+        return result;
     }
     
 }
