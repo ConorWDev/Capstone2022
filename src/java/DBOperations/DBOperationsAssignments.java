@@ -341,6 +341,9 @@ public class DBOperationsAssignments {
     }
     
     public boolean deleteAssignmentByID (String assignmentID){
+        
+        deleteBridges(assignmentID);
+        
         boolean result = false;
         String sql = "delete from ma_assignment where assignment_id = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -360,6 +363,86 @@ public class DBOperationsAssignments {
             }
          
         return result;
+    }
+    
+    //delete the occurences of assignment ID within the ma_lesson_assignment table and the ma_grades table.
+    //this is required in order to delete from the ma_assignment table
+    public boolean deleteBridges (String assignmentID){
+        
+         boolean result = false;
+        String sql = "delete from ma_lesson_assignment where assignment_id = ?;";
+        String sql2 = "delete from ma_grade where assignment_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            Connection conn = cp.getConnection();
+            
+            PreparedStatement st = conn.prepareStatement(sql);
+            PreparedStatement st2 = conn.prepareStatement(sql2);
+            
+            st.setString(1, assignmentID);
+            st2.setString(1,assignmentID);
+                    
+            int rowsAffected = st.executeUpdate();
+            rowsAffected = st2.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+            }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            }
+         
+        return result;
+        
+    }
+    
+    public boolean brigeAssignmentModule (String moduleID, String assignmentID){
+        boolean result = false;
+        String sql = "insert into ma_lesson_assignment values (?,?);";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, assignmentID);
+            st.setString(2, moduleID);
+            int rowsAffected = st.executeUpdate();
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+            }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            }
+         
+        return result;
+    }
+
+    public boolean severConnection(String moduleID, String assignmentID) {
+        boolean result = false;
+        String sql = "delete from ma_lesson_assignment where lesson_id = ? and assignment_id = ?;";
+         ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, moduleID);
+            st.setString(2, assignmentID);
+            int rowsAffected = st.executeUpdate();
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+            }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            }
+         
+         return result;
     }
     
 }
