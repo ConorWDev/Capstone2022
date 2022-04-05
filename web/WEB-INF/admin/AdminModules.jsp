@@ -41,7 +41,7 @@
                         <div class="row  ">
 
                             <div class="col ">
-                                <form>
+                                <form action="SiteNavigationAdmin?nav=modules&op=2" method="POST">
                                     <div class="row">
                                         <div class="container d-flex justify-content-around mb-1">
                                             <p> </p>
@@ -56,17 +56,23 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <select multiple="multiple" class="form-select border-0 mb-5"  id="select1">
-                                            <option>This needs to be Updated with Logic So this is dynamically created</option>
+                                        <select multiple="multiple" class="form-select border-0 mb-5"  id="select1" name="moduleIDs" onchange="this.form.submit()">
+
+                                                <c:forEach items="${requestScope.modules}" var="module">
+                                                    <option type="checkbox" value="${module.lessonId}">${module.name}</option>
+                                                </c:forEach>   
+                                                    
                                             <!--FOR JSP add loop to build dynamic -->
                                         </select>
                                     </div>
                                 </form>
                             </div>
 
+                            <form action="SiteNavigationAdmin?nav=modules&op=2" method="POST">
+                            
                             <div class="col ">
 
-                                <form action="#">
+                                
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
@@ -76,15 +82,17 @@
                                     </div>
                                     <div class="row">
                                         <div id="infoblock"class="form-control  ">
-                                            <!---->
+                                            
+                                            <input type="hidden" name="modID" value="${requestScope.modID}">
+                                            <!--
                                             <label for="info1" id="label1" class="form-label mb-0 "><b>Modules ID</b></label>
                                             <input type="text" class="form-control mb-3" id="info1" placeholder="ID" name="info1" disabled="true">
                                             <!---->
                                             <label for="info2" id="label2" class="form-label mb-0"><b>Module Name</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="Name" name="info2">
+                                            <input type="text" class="form-control mb-3" id="info2" placeholder="Name" value="${requestScope.modName}" name="info2">
                                             <!---->
                                             <label for="info3" id="label3" class="form-label mb-0"><b>Module Description</b></label>
-                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="Description" name="info3">
+                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="Description" value="${requestScope.modDescription}" name="info3">
                                             <!---->
 <!--                                            <label for="info4" id="label4" class="form-label mb-0"><b>Info 4</b></label>
                                             <input type="text" class="form-control mb-3" id="info4" placeholder="info4" name="info4">
@@ -96,9 +104,9 @@
                                             <input type="text" class="form-control mb-0" id="info6" placeholder="info6" name="info6">-->
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <button type="submit" id="but4" class="btn d-inline  ">Edit Module</button>
+                                                    <button type="submit" id="but4" class="btn d-inline" name="saveChanges" value="save">Save Changes</button>
+                                                    <button type="submit" id="but6" class="btn d-inline" name="deleteModule" value="delete">Delete</button>
                                                     
-                                                    <button type="submit" id="but6" class="btn d-inline  ">Delete Module</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -107,7 +115,7 @@
 
 
 
-                                </form>
+                              <!--   </form> -->
                                 
                                 
                             </div>
@@ -127,13 +135,55 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <select multiple="multiple" class="form-select border-0 mb-5"  id="select1">
-                                            <option>EXTRA COLUMN CAN BE ADDED TO ANY PAGE NEEDED</option>
-                                            <!--FOR JSP add loop to build dynamic -->
-                                        </select>
+                                        ASSIGNMENTS
+                                        <div class="scrollbox" style="overflow-x:scroll;height:400px;background-color: white">
+                                            <c:set var="count" value="${0}"/>
+                                            <c:forEach items="${requestScope.allAssignments}" var="assignment">
+                                                <c:set var="found" value="${0}"/>
+                                                <c:forEach items="${requestScope.relAssignments}" var="relAssignment">
+                                                    <c:if test="${relAssignment.assignmentId == assignment.assignmentId}">
+                                                         <input type="checkbox" value="${assignment.assignmentId}" name="assignmentList${count}" checked>${assignment.assignmentName}<br>
+                                                         <c:set var="count" value="${count + 1}"/>
+                                                         <c:set var="found" value="${found + 1}"/>
+                                                    </c:if>
+                                                </c:forEach>
+                                                         
+                                                <c:if test="${found == 0}">
+                                                   <input type="checkbox" value="${assignment.assignmentId}" name="assignmentList${count}">${assignment.assignmentName}<br>
+                                                   <c:set var="count" value="${count + 1}"/>
+                                                </c:if>
+                                                
+                                            </c:forEach>
+                                                   <input type="hidden" name="count" value="${count}">
+                                            
+                                            
+                                        </div>
+                                        DOCUMENTS
+                                        <div class="scrollbox" style="overflow-x:scroll;height:400px;background-color: white">
+                                            <c:set var="count" value="${0}"/>
+                                            <c:forEach items="${requestScope.allDocuments}" var="document">
+                                                <c:set var="found" value="${0}"/>
+                                                <c:forEach items="${requestScope.relDocuments}" var="relDocument">
+                                                    <c:if test="${relDocument.documentID == document.documentID}">
+                                                         <input type="checkbox" value="${document.documentID}" name="documentList${count}" checked>${document.name}<br>
+                                                         <c:set var="count" value="${count + 1}"/>
+                                                         <c:set var="found" value="${found + 1}"/>
+                                                    </c:if>
+                                                </c:forEach>
+                                                         
+                                                <c:if test="${found == 0}">
+                                                   <input type="checkbox" value="${document.documentID}" name="documentList${count}">${document.name}<br>
+                                                   <c:set var="count" value="${count + 1}"/>
+                                                </c:if>
+                                                   <input type="hidden" name="docCount" value="${count}">
+                                                
+                                            </c:forEach>
+                                            
+                                        </div>
                                     </div>
-                                </form>
+                               
                             </div>
+                                                 </form>
                         </div>
 
 

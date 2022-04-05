@@ -370,6 +370,53 @@ public class DBOperationsDocument {
         return result;
         
     }
+    
+    //when updating documents in module mgmt, dropping all connections between a module and documents is done
+    //enter in a moduleID and all of its associated documents are dropped
+    public boolean clearBridge (String moduleID){
+        boolean result = false;
+        String sql = "delete from ma_lesson_document where lesson_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, moduleID);
+            
+            int rowsAffected = st.executeUpdate();
+            result = (rowsAffected > 0);
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+      
+        }
+        
+        return result;
+        
+    }
+    
+    public boolean bridgeDocumentModule(String moduleID, String documentID){
+        boolean result = false;
+        String sql = "insert into ma_lesson_document values (?,?);";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(2, moduleID);
+            st.setString(1, documentID);
+            
+            int rowsAffected = st.executeUpdate();
+            result = (rowsAffected > 0);
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+      
+        }
+        
+        return result;
+        
+    }
 
     
 }
