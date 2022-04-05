@@ -121,12 +121,22 @@ public class DBOperationsAssignments {
         boolean urlCheck = false;
         URL myUrl;
         
+        //add functionality to leave out URL. In the case that an assignment does not have any doc attached
+        boolean noUrl = false;
+        if (inbound_assignment.getassignmentUrl() == null || inbound_assignment.getassignmentUrl().equals("")){
+            noUrl = true;
+        }
+        
+        
         try {
             myUrl = new URL(inbound_assignment.getassignmentUrl());
             urlCheck = isSiteUp(myUrl);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(DBOperationsAssignments.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (MalformedURLException ex) {
+           Logger.getLogger(DBOperationsAssignments.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+       
          
         //Weight Error Check.
         if(inbound_assignment.getassignmentWeight()< 0){
@@ -135,7 +145,7 @@ public class DBOperationsAssignments {
         }
         
         //Check if Assignment URL works
-        if(urlCheck){
+        if(urlCheck ||noUrl){
         /* If the case above passes, persist object into tables as needed.
            Else false result
         */
@@ -156,12 +166,13 @@ public class DBOperationsAssignments {
             st.setString(2, assignmentDescription);
             st.setString(3, assignmentUrl);
             st.setDouble(4, assignmentWeight);
-            ResultSet rs = st.executeQuery();
-            System.out.println(rs);
+            st.executeUpdate();
+            //ResultSet rs = st.executeQuery();
+            //System.out.println(rs);
           
             result = "Successful entry.";
             st.close();
-            rs.close();
+            //rs.close();
             cp.freeConnection(conn);
             }
         catch(SQLException ex){
@@ -179,6 +190,13 @@ public class DBOperationsAssignments {
         boolean urlCheck = false;
         URL myUrl;
         
+        //add functionality to leave out URL. In the case that an assignment does not have any doc attached
+        boolean noUrl = false;
+        if (inboundUpdated_assignment.getassignmentUrl() == null || inboundUpdated_assignment.getassignmentUrl().equals("")){
+            noUrl = true;
+        }
+        
+        
         try {
             myUrl = new URL(inboundUpdated_assignment.getassignmentUrl());
             urlCheck = isSiteUp(myUrl);
@@ -193,7 +211,7 @@ public class DBOperationsAssignments {
         }
         
         //Check if Assignment URL works
-        if(urlCheck){
+        if(urlCheck || noUrl){
         /* If the case above passes, persist object into tables as needed.
            Else false result
         */
@@ -215,12 +233,14 @@ public class DBOperationsAssignments {
             st.setString(3, assignmentUrl);
             st.setDouble(4, assignmentWeight);
             st.setString(5, assignmentID);
-            ResultSet rs = st.executeQuery();
-            System.out.println(rs);
+            
+            st.executeUpdate();
+            //ResultSet rs = st.executeQuery();
+           // System.out.println(rs);
           
             result = "Successful entry.";
             st.close();
-            rs.close();
+            //rs.close();
             cp.freeConnection(conn);
             }
         catch(SQLException ex){
@@ -248,5 +268,98 @@ public class DBOperationsAssignments {
             return false;
         }
       }
+    
+    
+    public ArrayList<Assignment> getAllAssignments (){
+        ArrayList<Assignment> assignments = new ArrayList<>();
+        String sql = "select * from ma_assignment;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            
+            String assignmentUrl;
+            double assignmentWeight;
+            String assignmentName;
+            String assignmentDescription;
+            String assignmentId;
+            
+            while(rs.next()) {
+                assignmentId = rs.getString(1);
+                assignmentName = rs.getString(2);
+                assignmentDescription = rs.getString(3);
+                assignmentUrl = rs.getString(4);
+                assignmentWeight = rs.getDouble(5);
+                
+                Assignment assignment = new Assignment(assignmentId, assignmentName, assignmentDescription, assignmentUrl, assignmentWeight);
+                
+                assignments.add(assignment);
+            }
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+        } catch (Exception e) {
+            }
+        return assignments;
+    }
+    
+    public Assignment getAssignmentByID (String assignmentID){
+        Assignment assignment = null;
+        String sql = "select * from ma_assignment where assignment_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, assignmentID);
+            ResultSet rs = st.executeQuery();
+            
+            String assignmentUrl;
+            double assignmentWeight;
+            String assignmentName;
+            String assignmentDescription;
+            String assignmentId;
+            
+            while(rs.next()) {
+                assignmentId = rs.getString(1);
+                assignmentName = rs.getString(2);
+                assignmentDescription = rs.getString(3);
+                assignmentUrl = rs.getString(4);
+                assignmentWeight = rs.getDouble(5);
+                
+                assignment = new Assignment(assignmentId, assignmentName, assignmentDescription, assignmentUrl, assignmentWeight);
+            }
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+        } catch (Exception e) {
+            }
+        
+        return assignment;
+    }
+    
+    public boolean deleteAssignmentByID (String assignmentID){
+        boolean result = false;
+        String sql = "delete from ma_assignment where assignment_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, assignmentID);
+            int rowsAffected = st.executeUpdate();
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+            }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            }
+         
+        return result;
+    }
     
 }
