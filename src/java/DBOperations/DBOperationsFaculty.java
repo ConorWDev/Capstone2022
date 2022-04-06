@@ -178,5 +178,39 @@ public class DBOperationsFaculty {
         }
         return name;
     }
+     
+    public ArrayList<Faculty> getFacultyByCohort (String cohortID){
+        ArrayList<Faculty> faculty = new ArrayList<>();
+        String sql = "SELECT f.username \n" +
+                     "FROM ma_faculty f, ma_cohort_faculty cf \n" +
+                     "WHERE f.username = cf.username \n" +
+                     "AND cf.cohort_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                Faculty facultyMember = new Faculty(rs.getString(1));
+                faculty.add(facultyMember);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        
+        
+        return faculty;
+        
+        
+    }
     
 }

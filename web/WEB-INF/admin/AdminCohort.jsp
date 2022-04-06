@@ -41,63 +41,72 @@
                         <div class="row  ">
 
                             <div class="col ">
-                                <form>
+                                <form action="SiteNavigationAdmin?nav=cohort&op=2" method="POST">
                                     <div class="row">
                                         <div class="container d-flex justify-content-around mb-1">
-                                            <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Button 1</button>
-                                            <button type="submit" id="but2"class="btn d-inline-block ">Button 2</button>
-                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Button/Dropdown 3</button>
+                                            <p> </p>
+<!--                                            <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Button 1</button>-->
+<!--                                            <button type="submit" id="but2"class="btn d-inline-block ">.</button>-->
+<!--                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Button/Dropdown 3</button>
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="#">Item 1</a></li>
                                                 <li><a class="dropdown-item" href="#">Item 2</a></li>
                                                 <li><a class="dropdown-item" href="#">Item 3</a></li>
-                                            </ul>
+                                            </ul>-->
                                         </div>
                                     </div>
                                     <div>
-                                        <select multiple="multiple" class="form-select border-0"  id="select1">
-                                            <option>This needs to be Updated with Logic So this is dynamically created</option>
+                                        <select multiple="multiple" class="form-select border-0 mb-5"  id="select1" name="cohortIDs" onchange="this.form.submit()">
+
+                                                <c:forEach items="${requestScope.cohorts}" var="cohort">
+                                                    <option type="checkbox" value="${cohort.cohortID}">${cohort.cohortName}</option>
+                                                </c:forEach>   
+                                                    
                                             <!--FOR JSP add loop to build dynamic -->
                                         </select>
                                     </div>
                                 </form>
                             </div>
 
+                            <form action="SiteNavigationAdmin?nav=cohort&op=2" method="POST">
+                            
                             <div class="col ">
 
-                                <form action="#">
+                                
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic"><b>Cohort Info</b></p>
+                                            <p class="h4 mt-2 mb-3" id="headerdynamic"><b>Module Management</b></p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div id="infoblock"class="form-control  ">
+                                            
+                                            <input type="hidden" name="cohortID" value="${requestScope.cohortID}">
+                                            <!--
+                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Modules ID</b></label>
+                                            <input type="text" class="form-control mb-3" id="info1" placeholder="ID" name="info1" disabled="true">
                                             <!---->
-                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Info 1</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="info1" name="info1">
+                                            <label for="info2" id="label2" class="form-label mb-0"><b>Module Name</b></label>
+                                            <input type="text" class="form-control mb-3" id="info2" placeholder="Name" value="${requestScope.cohortName}" name="info2">
+                                            <!--
+                                            <label for="info3" id="label3" class="form-label mb-0"><b>Module Description</b></label>
+                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="Description" value="${requestScope.modDescription}" name="info3">
                                             <!---->
-                                            <label for="info2" id="label2" class="form-label mb-0"><b>Info 2</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="info2" name="info2">
-                                            <!---->
-                                            <label for="info3" id="label3" class="form-label mb-0"><b>Info 3</b></label>
-                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="info3" name="info3">
-                                            <!---->
-                                            <label for="info4" id="label4" class="form-label mb-0"><b>Info 4</b></label>
+<!--                                            <label for="info4" id="label4" class="form-label mb-0"><b>Info 4</b></label>
                                             <input type="text" class="form-control mb-3" id="info4" placeholder="info4" name="info4">
-                                            <!---->
+                                            
                                             <label for="info5" id="label5"  class="form-label mb-0"><b>Info 5</b></label>
                                             <input type="text" class="form-control mb-3" id="info5" placeholder="info5" name="info5">
-                                            <!---->
+                                            
                                             <label for="info6" id="label6" class="form-label mb-0"><b>Info 6</b></label>
-                                            <input type="text" class="form-control mb-0" id="info6" placeholder="info6" name="info6">
+                                            <input type="text" class="form-control mb-0" id="info6" placeholder="info6" name="info6">-->
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <button type="submit" id="but4" class="btn d-inline  ">Edit $$$$</button>
-                                                    <button type="submit" id="but5" class="btn d-inline  ">Create $$$$</button>
-                                                    <button type="submit" id="but6" class="btn d-inline  ">Delete $$$$</button>
+                                                    <button type="submit" id="but4" class="btn d-inline" name="saveChanges" value="save">Save Changes</button>
+                                                    <button type="submit" id="but6" class="btn d-inline" name="deleteCohort" value="delete">Delete</button>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -106,9 +115,100 @@
 
 
 
-                                </form>
+                              <!--   </form> -->
+                                
+                                
                             </div>
-
+                            <div class="col ">
+                                
+                                    <div class="row">
+                                        <div class="container d-flex justify-content-around mb-1">
+                                            <p> </p>
+<!--                                            <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Button 1</button>-->
+<!--                                            <button type="submit" id="but2"class="btn d-inline-block ">.</button>-->
+<!--                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Button/Dropdown 3</button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Item 1</a></li>
+                                                <li><a class="dropdown-item" href="#">Item 2</a></li>
+                                                <li><a class="dropdown-item" href="#">Item 3</a></li>
+                                            </ul>-->
+                                        </div>
+                                    </div>
+                                    <div>
+                                        COURSES
+                                        <div class="scrollbox" style="overflow-x:scroll;height:400px;background-color: white">
+                                            <c:set var="count" value="${0}"/>
+                                            <c:forEach items="${requestScope.allCourses}" var="course">
+                                                <c:set var="found" value="${0}"/>
+                                                <c:forEach items="${requestScope.relCourses}" var="relCourse">
+                                                    <c:if test="${relCourse.courseID == course.courseID}">
+                                                         <input type="checkbox" value="${course.courseID}" name="courseList${count}" checked>${course.courseName}<br>
+                                                         <c:set var="count" value="${count + 1}"/>
+                                                         <c:set var="found" value="${found + 1}"/>
+                                                    </c:if>
+                                                </c:forEach>
+                                                         
+                                                <c:if test="${found == 0}">
+                                                   <input type="checkbox" value="${course.courseID}" name="courseList${count}">${course.courseName}<br>
+                                                   <c:set var="count" value="${count + 1}"/>
+                                                </c:if>
+                                                
+                                            </c:forEach>
+                                                   <input type="hidden" name="courseCount" value="${count}">
+                                            
+                                            
+                                        </div>
+                                        FACULTY
+                                        <div class="scrollbox" style="overflow-x:scroll;height:400px;background-color: white">
+                                            <c:set var="countFac" value="${0}"/>
+                                            <c:forEach items="${requestScope.allFaculty}" var="faculty">
+                                                <c:set var="found" value="${0}"/>
+                                                <c:forEach items="${requestScope.relFaculty}" var="relFaculty">
+                                                    <c:if test="${relFaculty.userID == faculty.userID}">
+                                                         <input type="checkbox" value="${faculty.userID}" name="facultyList${countFac}" checked>${faculty.fullName}<br>
+                                                         <c:set var="countFac" value="${countFac + 1}"/>
+                                                         <c:set var="found" value="${found + 1}"/>
+                                                    </c:if>
+                                                </c:forEach>
+                                                         
+                                                <c:if test="${found == 0}">
+                                                   <input type="checkbox" value="${faculty.userID}" name="facultyList${countFac}">${faculty.fullName}<br>
+                                                   <c:set var="countFac" value="${countFac + 1}"/>
+                                                </c:if>
+                                                   
+                                                
+                                            </c:forEach>
+                                                   <input type="hidden" name="facultyCount" value="${countFac}">
+                                            
+                                        </div>
+                                            
+                                        STUDENTS
+                                        <div class="scrollbox" style="overflow-x:scroll;height:400px;background-color: white">
+                                            <c:set var="count" value="${0}"/>
+                                            <c:forEach items="${requestScope.allStudents}" var="student">
+                                                <c:set var="found" value="${0}"/>
+                                                <c:forEach items="${requestScope.relStudents}" var="relStudent">
+                                                    <c:if test="${relStudent.userID == student.userID}">
+                                                         <input type="checkbox" value="${student.userID}" name="studentList${count}" checked>${student.fullName}<br>
+                                                         <c:set var="count" value="${count + 1}"/>
+                                                         <c:set var="found" value="${found + 1}"/>
+                                                    </c:if>
+                                                </c:forEach>
+                                                         
+                                                <c:if test="${found == 0}">
+                                                   <input type="checkbox" value="${student.userID}" name="studentList${count}">${student.fullName}<br>
+                                                   <c:set var="count" value="${count + 1}"/>
+                                                </c:if>
+                                                   
+                                                
+                                            </c:forEach>
+                                                   <input type="hidden" name="studentCount" value="${count}">
+                                            
+                                        </div>
+                                    </div>
+                               
+                            </div>
+                            </form>
                         </div>
 
 
