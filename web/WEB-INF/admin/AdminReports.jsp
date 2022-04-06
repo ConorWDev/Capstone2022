@@ -35,33 +35,12 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-1 " id="contentheader">Content Title</p>
+                            <p class="h2 mb-1 " id="contentheader">Reports</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
 
-                            <div class="col ">
-                                <form>
-                                    <div class="row">
-                                        <div class="container d-flex justify-content-around mb-1">
-                                            <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Button 1</button>
-                                            <button type="submit" id="but2"class="btn d-inline-block ">Button 2</button>
-                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-2 " data-bs-toggle="dropdown">Button/Dropdown 3</button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Item 1</a></li>
-                                                <li><a class="dropdown-item" href="#">Item 2</a></li>
-                                                <li><a class="dropdown-item" href="#">Item 3</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <select multiple="multiple" class="form-select border-0"  id="select1">
-                                            <option>This needs to be Updated with Logic So this is dynamically created</option>
-                                            <!--FOR JSP add loop to build dynamic -->
-                                        </select>
-                                    </div>
-                                </form>
-                            </div>
+                            
 
                             <div class="col ">
 
@@ -70,34 +49,40 @@
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic">*User Type* Info</p>
+                                            <p class="h3 mt-2 " id="headerdynamic">Generate Report</p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div id="infoblock"class="form-control  ">
                                             <!---->
-                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Info 1</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="info1" name="info1">
+                                            <label for="sel1" id="label1" class="form-label mb-0 "><b>Report Type</b></label>
+                                            <select  class="form-select mb-3" id="sel1">
+                                                <option value="1">Report Type 1</option>
+                                                <option value="2">Report Type 2</option>
+                                                <option value="3">Report Type 3</option><!-- comment -->
+                                            </select>
                                             <!---->
-                                            <label for="info2" id="label2" class="form-label mb-0"><b>Info 2</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="info2" name="info2">
-                                            <!---->
-                                            <label for="info3" id="label3" class="form-label mb-0"><b>Info 3</b></label>
-                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="info3" name="info3">
-                                            <!---->
-                                            <label for="info4" id="label4" class="form-label mb-0"><b>Info 4</b></label>
-                                            <input type="text" class="form-control mb-3" id="info4" placeholder="info4" name="info4">
-                                            <!---->
-                                            <label for="info5" id="label5"  class="form-label mb-0"><b>Info 5</b></label>
-                                            <input type="text" class="form-control mb-3" id="info5" placeholder="info5" name="info5">
-                                            <!---->
-                                            <label for="info6" id="label6" class="form-label mb-0"><b>Info 6</b></label>
-                                            <input type="text" class="form-control mb-0" id="info6" placeholder="info6" name="info6">
+                                            <label for="sel2" id="label2" class="form-label mb-0 "><b>Filter by?</b></label>
+                                            <select  class="form-select mb-3" id="sel2">
+                                                <option value="1">Filter Type 1</option>
+                                                <option value="2">Filter Type 2</option>
+                                                <option value="3">Filter Type 3</option><!-- comment -->
+                                            </select>
+                                            
+                                            <label for="sel3" id="label3" class="form-label mb-0 "><b>Sort By</b></label>
+                                            <select  class="form-select mb-3" id="sel3">
+                                                <option value="1">Ascending</option>
+                                                <option value="2">Descending</option>
+                                                
+                                            </select>
+                                            <label for="info4" id="label4" class="form-label mb-0"><b>Export Location</b></label>
+                                            <input type="text" class="form-control mb-3" id="info4" placeholder="File Path" name="info4">
+                                            
+                                            
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <button type="submit" id="but4" class="btn d-inline  ">Edit $$$$</button>
-                                                    <button type="submit" id="but5" class="btn d-inline  ">Create $$$$</button>
-                                                    <button type="submit" id="but6" class="btn d-inline  ">Delete $$$$</button>
+                                                    <button type="submit" id="but4" class="btn d-inline  ">Generate Report</button>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -108,7 +93,9 @@
 
                                 </form>
                             </div>
-
+                            <div class="col ">
+                                
+                            </div>
                         </div>
 
 
