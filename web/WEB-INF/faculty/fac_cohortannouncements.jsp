@@ -40,12 +40,12 @@ for the faculty member to add/edit the cohort annoucments
                             <tr>   
                             <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
                                 
-                                <td><p>${announcement.startDate}</p>
+                                <td><p><b>${announcement.startDate}</b></p>
                                     <p>${announcement.text}</p>
                                 </td><!-- comment -->
                                 <td>
                                 <input type="hidden" name="announcementID" value="${announcement.announcementID}">
-                                <button class="btn rounded text-success bg-transparent" type="submit" name="editMenu" value="edit">Edit</button>
+                                <button class="btn rounded text-secondary bg-transparent" type="submit" name="editMenu" value="edit">Edit</button>
                                 </td><!-- comment -->
                                 <td>
                                 <button class="btn rounded text-danger bg-transparent" type="submit" name="deleteButton" value="delete">Delete</button>
