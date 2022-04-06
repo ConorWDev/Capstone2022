@@ -20,12 +20,19 @@ for the faculty member to add/edit the cohort annoucments
     </head>
     <body>
         
-        <div class="row">
-            <div class="col"></div>
-            <div class="col bg-light rounded">
-        <%@include file="fac_headerfragment.jspf" %>
-       <h1>Announcements for ${sessionScope.cohort.cohortName} Cohort</h1>
         
+        <%@include file="fac_headerfragment.jspf" %>
+       <div class="row">
+       <div class="col bg-white rounded">
+       <div class="row">
+           
+       <div class="container ms-2 me-2 mb-2 border-bottom-primary" id="coanheader">    
+       <h1>Announcements for ${sessionScope.cohort.cohortName} Cohort</h1>
+       </div>
+       
+       </div> 
+       <div class="row">
+           <div class="col">
         <c:forEach items="${requestScope.announcements}" var="announcement">
             <form style="border: solid" action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
                 ${announcement.text}
@@ -34,13 +41,11 @@ for the faculty member to add/edit the cohort annoucments
                 <input type="submit" name="deleteButton" value="delete">
             </form>
         </c:forEach>
-
-        </div>
-        <div class="col-1"></div>
-        </div>
+          </div>
         
-      
-       <b>ANNOUNCEMENT CREATION FORM</b>  
+          
+       <div class="col">
+           <b>ANNOUNCEMENT CREATION FORM</b>  
         <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
                     Text:<input type="text" name="textSubmission"> 
                     <input type="submit" value="add">
@@ -57,10 +62,13 @@ for the faculty member to add/edit the cohort annoucments
                 </form>
             </c:if>
                 ${requestScope.editMessage}
-                
-                
-        </div>
-        <div class="col-1"></div>
-        </div>
+        </div>        
+        </div>         
+       </div>
+         
+      
+       
+        
+        
     </body>
 </html>
