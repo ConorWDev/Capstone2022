@@ -69,13 +69,16 @@
     color: #082047;
 }
 
-#but1,#but2,#but3,#but4,#but5{
+#but1,#but2,#but3,#but4,#but5, #but6{
     font-weight: bolder;
+    border: 1px solid black;
+    
+    margin: 15px;
+  text-align: center;
     color: #082047;
 }
 
 #but6{
-    font-weight: bolder;
     color: red;
 
 }
