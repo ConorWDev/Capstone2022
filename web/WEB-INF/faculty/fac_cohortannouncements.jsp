@@ -34,10 +34,10 @@ for the faculty member to add/edit the cohort annoucments
                 </div> 
                 <div class="row">
                     <div class="col">
-                        <table class="table">
+                        <table class="table border-dark">
                         <c:forEach items="${requestScope.announcements}" var="announcement">
                             
-                            <tr>   
+                            <tr class="table-light border-dark border-end-1 ">   
                             <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
                                 
                                 <td><p><b>${announcement.startDate}</b></p>
