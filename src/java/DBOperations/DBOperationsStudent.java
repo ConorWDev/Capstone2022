@@ -287,4 +287,28 @@ public class DBOperationsStudent {
         }
         return name;
     }
+     
+     
+     public boolean deleteGrades (String studentID){
+         boolean result = false;
+         String sql = "delete from ma_grades where username = ?;";
+         ConnectionPool cp = ConnectionPool.getInstance();
+         
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, studentID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+        }
+
+       
+           return result;
+     }
 }
