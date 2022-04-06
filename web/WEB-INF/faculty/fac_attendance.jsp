@@ -22,7 +22,7 @@
         
                 <div class="row">   
                 <p class="h3 d-inline">Attendance</p>
-                <p class="h5 ">${requestScope.attendanceMessage}</p><!-- comment -->
+                <p class="h5 text-capitalize">${requestScope.attendanceMessage}</p><!-- comment -->
                 </div>
                 <div class="row">
                 <div class="col-3">
