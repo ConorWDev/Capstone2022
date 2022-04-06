@@ -34,23 +34,28 @@ for the faculty member to add/edit the cohort annoucments
                 </div> 
                 <div class="row">
                     <div class="col">
-                        
+                        <table class="table">
                         <c:forEach items="${requestScope.announcements}" var="announcement">
-                            <div class="row">
-                            <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
-                                <div class="countainer border-primary">
-                                    <p>${announcement.start_time}</p>
-                                    <p>${announcement.text}</p>
-                                
-                                <input type="hidden" name="announcementID" value="${announcement.announcementID}">
-                                <button class="btn rounded text-white bg-success" type="submit" name="editMenu" value="edit">Edit Announcement</button>
-                                <button class="btn rounded text-white bg-danger" type="submit" name="deleteButton" value="delete">Delete Announcement</button>
-                                </div>
-                                <button
-                            </form>
-                            </div>    
-                        </c:forEach>
                             
+                            <tr>   
+                            <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
+                                
+                                <td><p>${announcement.startDate}</p>
+                                    <p>${announcement.text}</p>
+                                </td><!-- comment -->
+                                <td>
+                                <input type="hidden" name="announcementID" value="${announcement.announcementID}">
+                                <button class="btn rounded text-success bg-transparent" type="submit" name="editMenu" value="edit">Edit</button>
+                                </td><!-- comment -->
+                                <td>
+                                <button class="btn rounded text-danger bg-transparent" type="submit" name="deleteButton" value="delete">Delete</button>
+                                </td>
+                                
+                                
+                            </form>
+                            </tr>     
+                        </c:forEach>
+                        </table>    
                     </div>
 
 
@@ -79,7 +84,7 @@ for the faculty member to add/edit the cohort annoucments
 
 
 
-                    <div class="col-4"></div>        
+                    <div class="col-1"></div>        
         </div><!-- comment -->           
     </body>
 </html>
