@@ -23,12 +23,12 @@ for the faculty member to add/edit the cohort annoucments
 
         <%@include file="fac_headerfragment.jspf" %>
         <div class="row">
-            <div class="col"></div>    
+            <div class="col-1"></div>    
             <div class="col bg-white rounded">
                 <div class="row">
 
-                    <div class="container ms-2 me-2 mb-2 border-bottom-primary" id="coanheader">    
-                        <h1>Announcements for ${sessionScope.cohort.cohortName} Cohort</h1>
+                    <div class="container-fluid border-bottom border-primary" id="coanheader">    
+                        <p class="h2 ms-2 mt-2">Announcements for ${sessionScope.cohort.cohortName} Cohort</p>
                     </div>
 
                 </div> 
@@ -50,7 +50,8 @@ for the faculty member to add/edit the cohort annoucments
                     <div class="col">
                         <b>ANNOUNCEMENT CREATION FORM</b>  
                         <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
-                            Text:<input type="text" name="textSubmission"> 
+                            Text:
+                            <input type="text" name="textSubmission" class=""> 
                             <input type="submit" value="add">
                         </form>
                         ${requestScope.message}
