@@ -7,6 +7,7 @@ package Controller.Navigation;
 
 import DBOperations.DBOperationsAdmin;
 import DBOperations.DBOperationsAssignments;
+import DBOperations.DBOperationsCohort;
 import DBOperations.DBOperationsCourse;
 import DBOperations.DBOperationsDocument;
 import DBOperations.DBOperationsFaculty;
@@ -16,6 +17,7 @@ import Interface.Users.Admin;
 import Interface.Users.Faculty;
 import Interface.Users.Student;
 import Objects.Assignment;
+import Objects.Cohort;
 import Objects.Course;
 import Objects.Document;
 import Objects.Module;
@@ -65,6 +67,7 @@ public class SiteNavigationAdmin extends HttpServlet {
         DBOperationsAssignments dbOpsAss = new DBOperationsAssignments();
         DBOperationsModule dbOpsMod = new DBOperationsModule();
         DBOperationsCourse dbOpsCou = new DBOperationsCourse();
+        DBOperationsCohort dbOpsCoh = new DBOperationsCohort();
         
         
         if(logout!=null&&!logout.equals("")){
@@ -612,9 +615,175 @@ public class SiteNavigationAdmin extends HttpServlet {
             else if (nav.equals("cohort")) {
                 
                 if (op.equals("1")){
+                    
+                    String cohortName = request.getParameter("info2");
+                    if (cohortName != null && !cohortName.equals("")){
+                        boolean result = dbOpsCoh.createCohort(cohortName);
+                        if (result){
+                            request.setAttribute("message", "cohort added");
+                        }
+                        else{
+                            request.setAttribute("message", "something went wrong when adding cohort");
+                        }
+                    }
+                    
+                    
+                    
                 request.getRequestDispatcher("/WEB-INF/admin/AdminCohortCreate.jsp").forward(request, response); 
                 }
-                else {    
+                else {
+                    
+                
+                String cohortID = request.getParameter("cohortIDs");
+                if (cohortID != null && !cohortID.equals("")){
+                    Cohort cohort = dbOpsCoh.getCohort(cohortID);
+                    request.setAttribute("cohortName", cohort.getCohortName());
+                    request.setAttribute("cohortID", cohort.getCohortID());
+                    
+                    
+                    ArrayList<Course> allCourses = dbOpsCou.getAllCourses();
+                    ArrayList<Faculty> allFaculty = dbOpsFac.getAllFaculty();
+                    ArrayList<Student> allStudents = dbOpsStud.getAllStudents();
+                    
+                    ArrayList<Course> relCourses = dbOpsCou.getCoursesByCohort(cohortID);
+                    ArrayList<Faculty> relFaculty = dbOpsFac.getFacultyByCohort(cohortID);
+                    ArrayList<Student> relStudents = dbOpsStud.getStudentsByCohort(cohortID);
+                    
+                    request.setAttribute("allCourses", allCourses);
+                    request.setAttribute("allFaculty", allFaculty);
+                    request.setAttribute("allStudents", allStudents);
+                    
+                    request.setAttribute("relCourses", relCourses);
+                    request.setAttribute("relFaculty", relFaculty);
+                    request.setAttribute("relStudents", relStudents);
+                }
+                
+                String save = request.getParameter("saveChanges");
+                if (save != null && !save.equals("")){
+                    
+                    
+                      /*
+                       in the following code, obtain one lists. A list of all courses that have been checked off within the "courses" form
+                       using this list we will update the database appropriatly, first delete all previous instances in ma_cohort_course
+                       table where cohort_id = x. then add all new occurences in
+                       */
+                        
+                      String ID = request.getParameter("cohortID");
+                      
+                       //obtain list of all documents that are checked off in the document form and store it in array list checkedDocumentIDs
+                       String courseCount = request.getParameter("courseCount");
+                       int countInt = Integer.parseInt(courseCount);
+                       ArrayList<String> checkedCourseIDs = new ArrayList<>();
+                       for (int x = 0; x < countInt; x++){
+                           String check = request.getParameter("courseList" + x);
+                           if (check != null && !check.equals("")){
+                               checkedCourseIDs.add(check);
+                           }
+                       }
+                       
+                       //sever all previous connections between module and documents
+                       dbOpsCoh.clearCohortCourseBridge(ID);
+                       
+                       //add new connections
+                       for (int x = 0; x < checkedCourseIDs.size(); x++){
+                           dbOpsCoh.bridgeCohortCourse(ID, checkedCourseIDs.get(x));
+                       }
+                       
+                       
+                       
+                       /*
+                       in the following code, obtain one list. A list of all faculty that have been checked off within the "faculty" form
+                       using this list we will update the database appropriatly, first delete all previous instances in ma_cohort_faculty
+                       table where cohort_id = x. then add all new occurences in
+                       */
+                       
+                       //obtain list of all faculty that are checked off in the document form and store it in array list checkedDocumentIDs
+                       String facultyCount = request.getParameter("facultyCount");
+                       int countIntFac = Integer.parseInt(facultyCount);
+                       ArrayList<String> checkedFacultyIDs = new ArrayList<>();
+                       for (int x = 0; x < countIntFac; x++){
+                           String check = request.getParameter("facultyList" + x);
+                           if (check != null && !check.equals("")){
+                               checkedFacultyIDs.add(check);
+                           }
+                       }
+                       
+                       //sever all previous connections
+                       dbOpsCoh.clearCohortFacultyBridge(ID);
+                       
+                       //add new connections
+                       for (int x = 0; x < checkedFacultyIDs.size(); x++){
+                           dbOpsCoh.bridgeCohortFaculty(ID, checkedFacultyIDs.get(x));
+                       }
+                       
+                       
+                       /*
+                       in the following code, obtain two lists. A list of all students that have been checked off within the "student" form
+                       using this list we will update the database appropriatly, first delete all previous instances in ma_student_cohort
+                       table where cohort_id = x. then add all new occurences in
+                       */
+                       
+                       //obtain a list of all students currently held in the module and store it in array list previouslyCheckedStudentIDs
+                       ArrayList<Student> relevantStudents = dbOpsStud.getStudentsByCohort(ID);
+                       ArrayList<String> previouslyCheckedStudentIDs = new ArrayList<>();
+                       for (int x = 0; x < relevantStudents.size(); x++){
+                           previouslyCheckedStudentIDs.add(relevantStudents.get(x).getUserID());
+                       }
+                       
+                       //obtain list of all students that are checked off in the document form and store it in array list checkedDocumentIDs
+                       String studentCount = request.getParameter("studentCount");
+                       int countIntStud = Integer.parseInt(studentCount);
+                       ArrayList<String> checkedStudentIDs = new ArrayList<>();
+                       for (int x = 0; x < countIntStud; x++){
+                           String check = request.getParameter("studentList" + x);
+                           if (check != null && !check.equals("")){
+                               checkedStudentIDs.add(check);
+                           }
+                       }
+                       
+                       
+                       
+                       //if a value in the old list is not contained in the new list, delete grade records of that student as they have been removed
+                       //from the cohort
+                       for (int x = 0; x < previouslyCheckedStudentIDs.size(); x++){
+                           if (!checkedStudentIDs.contains(previouslyCheckedStudentIDs.get(x))){
+                               dbOpsStud.deleteGrades(previouslyCheckedStudentIDs.get(x));
+                           }
+                       }
+                       //TODO ABOVE. delete grades may not be working??? bridging table?
+                       
+                       
+                       //sever all previous connections
+                       dbOpsCoh.clearCohortStudentBridge(ID);
+                       
+                       //add new connections
+                       for (int x = 0; x < checkedStudentIDs.size(); x++){
+                           dbOpsCoh.bridgeCohortStudents(ID, checkedStudentIDs.get(x));
+                       }
+                       
+                       
+                       
+                    
+                }
+                
+                String delete = request.getParameter("deleteCohort");
+                if (delete != null && !delete.equals("")){
+                    
+                    String ID = request.getParameter("cohortID");
+                    dbOpsCoh.deleteCohortByID(ID);
+                    
+                }
+                    
+                    
+                    
+                    
+                    
+                ArrayList<Cohort> cohorts = dbOpsCoh.getAllCohorts();  
+                request.setAttribute("cohorts", cohorts);
+                
+                
+                    
+                    
                 request.getRequestDispatcher("/WEB-INF/admin/AdminCohort.jsp").forward(request, response);
                 }
             } 
