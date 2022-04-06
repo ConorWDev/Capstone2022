@@ -25,7 +25,7 @@ for the faculty member to add/edit the cohort annoucments
         <div class="row">
             <div class="col-1"></div>    
             <div class="col bg-white rounded">
-                <div class="row">
+                <div class="row mb-3">
 
                     <div class="container-fluid border-bottom border-primary" id="coanheader">    
                         <p class="h2 ms-2 mt-2">Announcements for ${sessionScope.cohort.cohortName} Cohort</p>
@@ -60,31 +60,45 @@ for the faculty member to add/edit the cohort annoucments
 
 
                     <div class="col">
-                        <b>ANNOUNCEMENT CREATION FORM</b>  
+                        <div class="row ">
+                        <p class="h3 border-bottom-1">Announcement Creation Form</p> 
+                        </div>
+                        <div class="row">
                         <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
-                            Text:
-                            <input type="text" name="textSubmission" class=""> 
-                            <input type="submit" value="add">
-                        </form>
-                        ${requestScope.message}
-
-                        <br>
+                            <p>Enter Announcement Below:</p>
+                            <input type="text" name="textSubmission" class="form-control mb-3"> 
+                            <button type="submit" value="add" class="btn bg-secondary text-white">
+                                Publish Announcement
+                            </button>
+                        </form>    
+                        <p>${requestScope.message}</p>
+                        </div>
+                        
+                        
+                        
+                        
+                        <div class="row">
                         <c:if test="${requestScope.editMenu}">
-                            <b>ANNOUNCEMENT EDIT FORM</b>  
+                            <p class="h3">Announcement Edit Form</p>  
                             <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
-                                Original Text: ${sessionScope.cohortAnnouncement.text}<br>
-                                New Text: <input type="text" name="newText">
-                                <input type="submit" value="update">
+                                <p><b>Original Text:</b></p><p> ${sessionScope.cohortAnnouncement.text}</p><!-- comment -->
+                                <p><b>New Text:</b></p> 
+                                <input type="text" name="newText" class="form-control mb-3">
+                                <button type="submit" value="update"class="btn bg-secondary text-white">
+                                    Update Post
+                                </button>
                             </form>
                         </c:if>
                         ${requestScope.editMessage}
+                        </div>
+                </div>
                     </div>        
                 </div>         
-            </div>
+            
 
 
 
-                    <div class="col-1"></div>        
+            <div class="col-1"></div>        
         </div><!-- comment -->           
     </body>
 </html>
