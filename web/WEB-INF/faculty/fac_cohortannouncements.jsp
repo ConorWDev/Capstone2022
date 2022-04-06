@@ -34,16 +34,23 @@ for the faculty member to add/edit the cohort annoucments
                 </div> 
                 <div class="row">
                     <div class="col">
-                        <div class="row">
+                        
                         <c:forEach items="${requestScope.announcements}" var="announcement">
-                            <form style="border: solid" action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
-                                ${announcement.text}
+                            <div class="row">
+                            <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
+                                <div class="countainer border-primary">
+                                    <p>${announcement.start_time}</p>
+                                    <p>${announcement.text}</p>
+                                
                                 <input type="hidden" name="announcementID" value="${announcement.announcementID}">
-                                <input type="submit" name="editMenu" value="edit">
-                                <input type="submit" name="deleteButton" value="delete">
+                                <button class="btn rounded text-white bg-success" type="submit" name="editMenu" value="edit">Edit Announcement</button>
+                                <button class="btn rounded text-white bg-danger" type="submit" name="deleteButton" value="delete">Delete Announcement</button>
+                                </div>
+                                <button
                             </form>
+                            </div>    
                         </c:forEach>
-                        </div>    
+                            
                     </div>
 
 
