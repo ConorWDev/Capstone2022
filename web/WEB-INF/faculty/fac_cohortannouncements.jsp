@@ -19,56 +19,59 @@ for the faculty member to add/edit the cohort annoucments
         <title>Cohort Announcement</title>
     </head>
     <body>
-        
-        
+
+
         <%@include file="fac_headerfragment.jspf" %>
-       <div class="row">
-       <div class="col bg-white rounded">
-       <div class="row">
-           
-       <div class="container ms-2 me-2 mb-2 border-bottom-primary" id="coanheader">    
-       <h1>Announcements for ${sessionScope.cohort.cohortName} Cohort</h1>
-       </div>
-       
-       </div> 
-       <div class="row">
-           <div class="col">
-        <c:forEach items="${requestScope.announcements}" var="announcement">
-            <form style="border: solid" action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
-                ${announcement.text}
-                <input type="hidden" name="announcementID" value="${announcement.announcementID}">
-                <input type="submit" name="editMenu" value="edit">
-                <input type="submit" name="deleteButton" value="delete">
-            </form>
-        </c:forEach>
-          </div>
-        
-          
-       <div class="col">
-           <b>ANNOUNCEMENT CREATION FORM</b>  
-        <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
-                    Text:<input type="text" name="textSubmission"> 
-                    <input type="submit" value="add">
-        </form>
-        ${requestScope.message}
-        
-        <br>
-            <c:if test="${requestScope.editMenu}">
-                <b>ANNOUNCEMENT EDIT FORM</b>  
-                <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
-                    Original Text: ${sessionScope.cohortAnnouncement.text}<br>
-                    New Text: <input type="text" name="newText">
-                    <input type="submit" value="update">
-                </form>
-            </c:if>
-                ${requestScope.editMessage}
-        </div>        
-        </div>         
-       </div>
-         
-      
-       
-        
-        
+        <div class="row">
+            <div class="col"></div>    
+            <div class="col bg-white rounded">
+                <div class="row">
+
+                    <div class="container ms-2 me-2 mb-2 border-bottom-primary" id="coanheader">    
+                        <h1>Announcements for ${sessionScope.cohort.cohortName} Cohort</h1>
+                    </div>
+
+                </div> 
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                        <c:forEach items="${requestScope.announcements}" var="announcement">
+                            <form style="border: solid" action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
+                                ${announcement.text}
+                                <input type="hidden" name="announcementID" value="${announcement.announcementID}">
+                                <input type="submit" name="editMenu" value="edit">
+                                <input type="submit" name="deleteButton" value="delete">
+                            </form>
+                        </c:forEach>
+                        </div>    
+                    </div>
+
+
+                    <div class="col">
+                        <b>ANNOUNCEMENT CREATION FORM</b>  
+                        <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
+                            Text:<input type="text" name="textSubmission"> 
+                            <input type="submit" value="add">
+                        </form>
+                        ${requestScope.message}
+
+                        <br>
+                        <c:if test="${requestScope.editMenu}">
+                            <b>ANNOUNCEMENT EDIT FORM</b>  
+                            <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
+                                Original Text: ${sessionScope.cohortAnnouncement.text}<br>
+                                New Text: <input type="text" name="newText">
+                                <input type="submit" value="update">
+                            </form>
+                        </c:if>
+                        ${requestScope.editMessage}
+                    </div>        
+                </div>         
+            </div>
+
+
+
+                    <div class="col-4"></div>        
+        </div><!-- comment -->           
     </body>
 </html>
