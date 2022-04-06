@@ -23,8 +23,8 @@
             <div class="col-10 bg-white rounded p-5" >
                 <p class="h3 " style="color: #0069d9">Schedule</p>
                 <div class="row " style="align-content: center">
-                   <img class="img" src="ClassScheduleTemp.png" alt="short"/>
-                    </div>
+                    <p>TBD</p>
+                </div>
                 </div>
             </div>
             <div class="col-1">

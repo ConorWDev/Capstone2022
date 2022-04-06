@@ -122,9 +122,13 @@ public class SiteNavigation extends HttpServlet {
                 request.setAttribute("courseName",courseName);
                 request.setAttribute("courseid", courseid);
                 
-                ArrayList<CourseAnnouncement> courseAnnouncements = dbOpsAn.getCourseAnnouncements(courseid);
+                //Obtain the announcements for the course
+                ArrayList<CourseAnnouncement> courseAnnouncements = dbOpsAn.getCourseAnnouncements(courseid); 
                 request.setAttribute("courseAnnouncements",courseAnnouncements);
                 
+                //Obtain users grades for the course
+                ArrayList<Grade> courseGrades = dbOpsGrade.getCourseGrades(username, courseid);
+                request.setAttribute("courseGrades", courseGrades);
                 request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response);
             }
             /*The announcement else if block requires one variable to dynamically load announcement information

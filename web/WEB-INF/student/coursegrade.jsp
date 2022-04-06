@@ -10,19 +10,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="style.css" rel="stylesheet"/>
         <title>Course Grades</title>
     </head>
     <body>
         <!-- Header -->
-        <div class="container">
-            <div class="row">
+        <div>
                 <%@include file="headerfragment.jspf" %>
-            </div>
         </div>
         
             <!-- Taking out this form. dynamic loading will occur within SiteNavigation, not courseGradeController 
@@ -36,19 +33,19 @@
             -->
             
         <!-- Main -->
-        <div class="container">
+        <div class="container bg-white rounded p-5">
             <div class="row">
-                <div class="col">
-                    <p class="h1">Course Grade</p>
+                <div class="col-10">
+                    <p class="h3">Course Grade</p>
                 </div>
                 <hr>
             </div>
             
-            <div class="row">
-                <div class="col-2">
+            <div class="row bg-light rounded">
+                <div class="col-4">
                     <p class="h5">Module</p>
                 </div>
-                <div class="col-2">
+                <div class="col-4">
                     <p class="h5">Assignment</p>
                 </div>
                 <div class="col-2">
@@ -57,17 +54,16 @@
                 <div class="col-2">
                     <p class="h5">Grade</p>
                 </div>
-                <hr>
             </div>
             <c:set var="gradeXweights" value="0"/>
             <c:set var="weightTotal" value ="0"/>
             <c:forEach var="courseGrade" items="${requestScope.courseGrades}">
                 
             <div class="row">
-                <div class="col-2">
+                <div class="col-4">
                     <p class="h5">${courseGrade.lessonName}</p>
                 </div>
-                <div class="col-2">
+                <div class="col-4">
                     <p class="h5">${courseGrade.assignmentName}</p>
                 </div>
                 <div class="col-2">
@@ -84,25 +80,16 @@
                         </c:if>
                     </p>
                 </div>
-                
-                <hr>
             </div>
             </c:forEach>
             <div class="row">
-                <div class="col-2">
+                <div class="col-8">
                     <p class="h5">Total Weighted Avg:</p>
-                </div>
-                <div class="col-2">
-                    <p class="h5"></p>
-                </div>
-                <div class="col-2">
-                    <p class="h5"></p>
                 </div>
                 <div class="col-2">
                     <p class="h5">
                         <c:set var="result" value="${gradeXweights / weightTotal}"/>
                         ${fn:substring(result,0,5)}
-                       
                     </p>
                 </div>
                 <hr>
@@ -114,10 +101,9 @@
         </div>
         
         <!-- Footer -->
-        <div class="container">
-            <div class="row">
+        <div>
                 <%@include file="footerfragment.jspf" %>
-            </div>
+        </div>
         </div>
     </body>
 </html>
