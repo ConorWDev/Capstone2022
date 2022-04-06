@@ -25,9 +25,6 @@
 
         <!-- Main -->
         <div class="container">
-            
-            
-        
             <div class="row">
                 <div class="col">
                     <p class="h3">Announcements</p>                    
@@ -104,9 +101,9 @@
             <c:forEach items="${requestScope.announcements}" var="announcements">
                 <div class="card">
                     <div class="card-header">
-                        <%--> <p class="h4" style="float:left;">${announcement.title} - ${announcement.courseID}</p> <--%>
+                        <p class="h4" style="float:left;">${announcements.startDate}</p>
                         <span style="float:right;">
-                            <p class="h5">${announcements.startDate}</p>
+                            <p class="h5">${announcements.startDate} - ${announcements.endDate}</p>
                         </span>
                     </div>
                     <div class="card-body">
