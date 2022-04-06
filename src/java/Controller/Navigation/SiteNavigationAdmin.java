@@ -798,7 +798,7 @@ public class SiteNavigationAdmin extends HttpServlet {
             } else if (nav.equals("adminarchive")) {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminArchive.jsp").forward(request, response);
             } else if (nav.equals("adminbr")) {
-                request.getRequestDispatcher("/WEB-INF/admin/AdminRecover.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/admin/AdminRecovery.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminLanding.jsp").forward(request, response);
             }
