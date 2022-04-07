@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : grades
     Created on : Mar. 8, 2022, 8:43:15 p.m.
     Author     : massvm
@@ -17,32 +17,57 @@
     </head>
     <body>
         <%@include file="fac_headerfragment.jspf" %>
-        
-        <div class="row">
-        <div class="col"></div>
-        <div class="col bg-light rounded">
-        <h1>Grades</h1>
-         
-        <form action="SiteNavigationFaculty?nav=grades" method="POST">
-            <input type="text" name="search" onkeyup="">
-            <input type="submit" value="search">
-        </form>
-          
-        
-        <br>
-        <c:set var="count" value="0"/>
-        <c:forEach items="${requestScope.cohorts}" var="cohort">
-            <b>${cohort.cohortName}</b><br>
-            
-            <c:forEach items="${requestScope.studentLists.get(count)}" var="student">
-                <a href="SiteNavigationFaculty?nav=studentgrades&studentid=${student.userID}&cohortid=${cohort.cohortID}">${student.fullName} ${student.userID}</a> <br>
-            </c:forEach>
-            
-            <c:set var="count" value="${count + 1}"/>  
 
-        </c:forEach>
-        </div>
-        <div class="col-1"></div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col bg-light rounded">
+                <div class="row mb-3">
+
+                    <div class="container-fluid border-bottom border-primary" id="announcementheader">
+                        <p class="h2 ms-2 mt-2">Grades</p>
+                    </div>
+
+                </div>
+                <div class="row mb-3">
+                    <div class="col border-end">
+
+                        <p>A descriptor of the Search</p>
+                        <form action="SiteNavigationFaculty?nav=grades" method="POST">
+                            <input type="text" name="search" onkeyup="" class="form-control mb-2">
+
+                            <div class="container d-flex justify-content-end mb-1 ">
+                                <button type="submit" value="search" class="btn bg-secondary text-white d-inline-block">Search Students?
+                                </button>
+                            </div>
+                        </form>
+
+
+                    </div>
+                    <c:set var="count" value="0"/>
+                    <c:forEach items="${requestScope.cohorts}" var="cohort">
+                        <div class="col border-end">
+                            <div class="row">
+                                <p class="h4 ms-3 ">${cohort.cohortName}</p>
+                            </div>
+                            <c:forEach items="${requestScope.studentLists.get(count)}" var="student">
+                                <div class="row  m-3 rounded">
+                                    <a class="text-white p-3 btn bg-primary text-capitalize" href="SiteNavigationFaculty?nav=studentgrades&studentid=${student.userID}&cohortid=${cohort.cohortID}">${student.fullName} ${student.userID}</a>
+                                </div>
+                            </c:forEach>
+
+                            <c:set var="count" value="${count + 1}"/>
+                        </div>
+                    </c:forEach>
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-1"></div>
         </div>
     </body>
 </html>

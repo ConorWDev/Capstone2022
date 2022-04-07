@@ -35,8 +35,8 @@
                         
                         <c:forEach items="${requestScope.assignments}" var="assignment">
                             <div class="row m-1 bg-light">
-                            <p class="mb-0 text-primary"><b>${assignment.assignmentName}</b></p>
-                            <p>${assignment.assignmentDescription}</p>
+                            <p class="mb-0 text-primary text-capitalize"><b>${assignment.assignmentName}</b></p>
+                            <p class="text-capitalize">${assignment.assignmentDescription}</p>
                             </div>  
                         </c:forEach>
                           
@@ -50,8 +50,8 @@
                         
                         <c:forEach items="${requestScope.documents}" var="document">
                             <div class="row bg-light m-1">
-                            <p class="mb-0 text-primary"><b>${document.name}</b></p>
-                            <p>${document.description}</p>
+                            <p class="mb-0 text-primary text-capitalize"><b>${document.name}</b></p>
+                            <p class="text-capitalize">${document.description}</p>
                             </div>     
                         </c:forEach>
                              
