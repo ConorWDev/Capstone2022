@@ -29,7 +29,7 @@
 
                 </div>
                 <div class="row mb-3">
-                    <div class="col border-end">
+<!--                    <div class="col border-end">
 
                         <p>A descriptor of the Search</p>
                         <form action="SiteNavigationFaculty?nav=grades" method="POST">
@@ -42,7 +42,7 @@
                         </form>
 
 
-                    </div>
+                    </div>-->
                     <c:set var="count" value="0"/>
                     <c:forEach items="${requestScope.cohorts}" var="cohort">
                         <div class="col border-end">

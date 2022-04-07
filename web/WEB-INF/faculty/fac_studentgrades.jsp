@@ -43,11 +43,10 @@
 
                 </div> 
                 <div class="row">
-<!--                    <p class="h4 text-capitalize text-success m-0">${requestScope.message}<p>
-                    <p class="h4 text-captialize text-success">${requestScope.count}</p>    -->
+                        
                     
                 <form action ="SiteNavigationFaculty?nav=studentgrades&studentid=${sessionScope.student.userID}&saveGrade=yes&cohortid=${requestScope.cohortid}" method ="POST">
-                    
+                     
                     <c:set var="count" value="0"/>
                     
                     <c:set var="grades" value="${requestScope.studentGrades}"/>
@@ -66,16 +65,17 @@
                                 <input type ="hidden" name="assignment${count}" value="${assignment.assignmentId}">
                             </c:otherwise>
                         </c:choose>
-                        
+                        <br>
                         <%--Increment one for each assignment --%>
                         <c:set var="count" value="${count + 1}"/>
-                    </c:forEach>
-                                </div>
-                    <div class="row mt-2 ps-3 pe-3 mb-2">
+                    </c:forEach>    
                     <%--pass count to controller for a loop that is used--%>
-                  <button type="submit" value="Save" class="btn bg-secondary text-white d-inline" style="width: 100%"><p class="h5 p-1"><b>SAVE</b></p></button> 
+                  
                     
-                        
+                    <button type="submit" value="Save" class="btn bg-secondary text-white d-inline" style="width: 100%"><p class="h5 p-1"><b>SAVE</b></p></button>
+                        <input type ="hidden" name="count" value="${count}">
+                        <p class="h4 text-capitalize text-success m-0">${requestScope.message}<p>
+                        <p class="h4 text-captilize text-success">${requestScope.count}</p>
                              
                    
                 </form>

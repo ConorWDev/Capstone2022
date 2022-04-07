@@ -23,8 +23,24 @@
         <div class="col-1"></div>
         
         <div class="col bg-white rounded" id="containerfac">
-        <h1>${requestScope.studentName}'s Attendance Record</h1>
-        If you wish to change the record for a particular day, click on the Present/Absent button...<br><br>
+        <div class="row mb-3">
+
+                    <div class="container-fluid border-bottom border-primary" id="announcementheader">    
+                        <p class="h2 ms-2 mt-2 text-capitalize">${requestScope.studentName}'s Attendance Record</p>
+                    </div>
+
+                </div> 
+                <div class="row mb-3">
+                    <p class="h6 text-primary">If you wish to change the record for a particular day, click on the Present/Absent button.</p>
+                    
+                </div>    
+            
+            
+            
+            
+            
+        
+        
         
         <c:forEach items="${requestScope.attendanceList}" var="attendance">
             
@@ -42,7 +58,7 @@
             
         </c:forEach>
         </div>
-        <div class="col-1"></div>
+        <div class="col"></div>
         </div>
         
     </body>
