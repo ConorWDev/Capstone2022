@@ -291,7 +291,7 @@ public class DBOperationsStudent {
      
      public boolean deleteGrades (String studentID){
          boolean result = false;
-         String sql = "delete from ma_grades where username = ?;";
+         String sql = "delete from ma_grade where username = ?;";
          ConnectionPool cp = ConnectionPool.getInstance();
          
          try {
