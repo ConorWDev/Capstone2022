@@ -316,8 +316,8 @@ public class DBOperationsCohort {
             PreparedStatement st = conn.prepareStatement(sql);
             PreparedStatement st2 = conn.prepareStatement(sql2);
             PreparedStatement st3 = conn.prepareStatement(sql3);
-            PreparedStatement st4 = conn.prepareStatement(sql3);
-            PreparedStatement st5 = conn.prepareStatement(sql3);
+            PreparedStatement st4 = conn.prepareStatement(sql4);
+            PreparedStatement st5 = conn.prepareStatement(sql5);
             
             st.setString(1, cohortID);
             st2.setString(1, cohortID);
