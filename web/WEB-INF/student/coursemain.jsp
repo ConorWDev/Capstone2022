@@ -27,7 +27,7 @@
         <div class="container bg-white rounded p-5">
             <!-- Course Title -->
             <div class="row">
-                <p class="h3" id="coursemain-card-header">${requestScope.courseName} - ${requestScope.courseid}</p>
+                <p class="h3" id="coursemain-card-header">${requestScope.courseName}</p>
             </div>
             <hr>
             <div class="row">
@@ -114,7 +114,7 @@
                             <div class="card mb-2">
                                 <div class="card-header">
                                         <p class="h5">${announcement.startDate}</p>
-                                        <p class="h6">Date Active: ${announcement.startDate} - ${announcement.endDate}</p>
+                                        
                                 </div>
                                 <div class="card-body">
                                     <p>${announcement.text}</p>
@@ -142,7 +142,7 @@
         </div>
         <!-- Footer Fragment -->
         <div>
-            <%@include file="footerfragment.jspf" %>
+            
         </div>
     </body>
 </html>
