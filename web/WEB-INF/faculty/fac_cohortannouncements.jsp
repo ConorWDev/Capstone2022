@@ -27,7 +27,7 @@ for the faculty member to add/edit the cohort annoucments
             <div class="col bg-white rounded">
                 <div class="row mb-3">
 
-                    <div class="container-fluid border-bottom border-primary" id="coanheader">    
+                    <div class="container-fluid border-bottom border-primary" id="announcementheader">    
                         <p class="h2 ms-2 mt-2">Announcements for ${sessionScope.cohort.cohortName} Cohort</p>
                     </div>
 
