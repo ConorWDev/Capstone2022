@@ -137,6 +137,6 @@
             
         
          
-         <%@include file="footerfragment.jspf" %>
+         
     </body>
 </html>
