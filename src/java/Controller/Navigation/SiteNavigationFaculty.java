@@ -328,6 +328,8 @@ public class SiteNavigationFaculty extends HttpServlet {
                      int id = Integer.parseInt(idtemp);
                      DBOperationsAnnouncement da = new DBOperationsAnnouncement();
                      da.deleteCohortAnnouncement(announcementID);
+                     
+                     request.setAttribute("editMenu", false);
                }
                
                 ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
