@@ -9,6 +9,8 @@ import Objects.Announcement;
 import Objects.CourseAnnouncement;
 import java.util.ArrayList;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -101,15 +103,20 @@ public class DBOperationsAnnouncement {
     public boolean createCourseAnnouncement(String courseID, String text){
         boolean result = false;
         //currently insert dummy values for start/end date
-        String sql = "insert into ma_course_announcement (course_id,start_time,end_time,text) values (?,'2022-02-10','2022-02-10',?);";
+        String sql = "insert into ma_course_announcement (course_id,start_time,end_time,text) values (?,?,?,?);";
        
         ConnectionPool cp = ConnectionPool.getInstance();
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = LocalDate.now().format(formatter);
         
         try {
             Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, courseID);
-            st.setString(2, text);
+            st.setString(2, date);
+            st.setString(3, date);
+            st.setString(4, text);
             
             int rowsAffected = st.executeUpdate();
             
@@ -204,7 +211,10 @@ public class DBOperationsAnnouncement {
      public boolean createCohortAnnouncement(String cohortID, String text){
         boolean result = false;
         //currently insert dummy values for start/end date
-        String sql = "insert into ma_announcement (cohort_id,start_time,end_time,text) values (?,'2022-02-10','2022-02-10',?);";
+        String sql = "insert into ma_announcement (cohort_id,start_time,end_time,text) values (?,?,?,?);";
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = LocalDate.now().format(formatter);
        
         ConnectionPool cp = ConnectionPool.getInstance();
         
@@ -212,7 +222,9 @@ public class DBOperationsAnnouncement {
             Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, cohortID);
-            st.setString(2, text);
+            st.setString(2, date);
+            st.setString(3, date);
+            st.setString(4, text);
             
             int rowsAffected = st.executeUpdate();
             

@@ -27,7 +27,7 @@ Author : Conor W
             <div class="row"> 
                 <div class="col-6 bg-white rounded m-1">
                     <div class="row">
-                        <p class="h3 m-3" id="cohort-card-header">Dynamic Cohort</p>
+                        <p class="h3 m-3" id="cohort-card-header">${sessionScope.cohortNameMain}</p>
                     </div>
                     <hr>
                     <div class="row m-auto">
@@ -56,10 +56,9 @@ Author : Conor W
                     <c:forEach items="${requestScope.announcements}" var="announcement">
                         <div class="card">
                             <div class="card-header">
-                                <p class="h5">${announcement.cohortId}</p>
+                                <p class="h5">${announcement.startDate}</p>
                             </div>
                             <div class="card-body">
-                                <p class="h6">${announcement.startDate} - ${announcement.endDate}</p>
                                 <p>${announcement.text}</p>
                             </div>
                         </div>
@@ -90,6 +89,6 @@ Author : Conor W
             </div>
         -->
         <!-- Footer Fragment -->
-        <%@include file="footerfragment.jspf" %>
+        
     </body>
 </html>

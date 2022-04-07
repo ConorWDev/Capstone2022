@@ -6,6 +6,7 @@
 package Controller.Navigation;
 import DBOperations.DBOperationsAnnouncement;
 import DBOperations.DBOperationsAssignments;
+import DBOperations.DBOperationsCohort;
 import DBOperations.DBOperationsCourse;
 import DBOperations.DBOperationsDocument;
 import DBOperations.DBOperationsGeneral;
@@ -15,6 +16,7 @@ import DBOperations.DBOperationsStudent;
 import Interface.Users.Student;
 import Objects.Announcement;
 import Objects.Assignment;
+import Objects.Cohort;
 import Objects.Course;
 import Objects.CourseAnnouncement;
 import Objects.Document;
@@ -78,6 +80,7 @@ public class SiteNavigation extends HttpServlet {
         DBOperationsCourse dbOpsCor = new DBOperationsCourse();
         DBOperationsAssignments dbOpsAss = new DBOperationsAssignments();
         DBOperationsDocument dbOpsDoc = new DBOperationsDocument();
+        DBOperationsCohort dbOpsCoh = new DBOperationsCohort();
         
         //LogOut Block
         if(logout!=null&&!logout.equals("")){
@@ -179,6 +182,10 @@ public class SiteNavigation extends HttpServlet {
         String cohortID = student.getCohortID();
         ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
         request.setAttribute("announcements", announcements);
+        
+        Cohort cohort = dbOpsCoh.getCohort(cohortID);
+        String cohortNameMain = cohort.getCohortName();
+        session.setAttribute("cohortNameMain", cohortNameMain);
         
         ArrayList<Course> courses = dbOpsCor.getCourses(username);
         request.setAttribute("courses", courses);
