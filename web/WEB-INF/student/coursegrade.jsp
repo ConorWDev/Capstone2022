@@ -48,9 +48,11 @@
                 <div class="col-4">
                     <p class="h5">Assignment</p>
                 </div>
+                <!--
                 <div class="col-2">
                     <p class="h5">Weight</p>
                 </div>
+                -->
                 <div class="col-2">
                     <p class="h5">Grade</p>
                 </div>
@@ -88,8 +90,19 @@
                 </div>
                 <div class="col-2">
                     <p class="h5">
+                        
                         <c:set var="result" value="${gradeXweights / weightTotal}"/>
-                        ${fn:substring(result,0,5)}
+                        <c:choose>
+                            <c:when test="${result != null && result != 'NaN'}">
+                                ${fn:substring(result,0,5)}
+                            </c:when>
+                            <c:otherwise>
+                                <br>
+                                <b>...Looks like you haven't been assigned any grades yet for this course! <br>Check back later</b>
+                            </c:otherwise>
+                        </c:choose>
+                        
+                        
                     </p>
                 </div>
                 <hr>
@@ -102,7 +115,7 @@
         
         <!-- Footer -->
         <div>
-                <%@include file="footerfragment.jspf" %>
+                
         </div>
         </div>
     </body>
