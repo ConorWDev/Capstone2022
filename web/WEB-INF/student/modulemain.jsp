@@ -62,6 +62,11 @@
                     <div class="card-body">
                         <p>${assignment.assignmentDescription}</p>
                     </div>
+                        <c:if test="${assignment.assignmentUrl != '' && assignment.assignmentUrl != null}">
+                    <div class="card-body">
+                         <a href="${assignment.assignmentUrl}"> <button type="button" class="btn btn-primary">View</button></a>
+                    </div>
+                        </c:if>
                 </div>
             </c:forEach>
             <hr>
@@ -89,8 +94,7 @@
                     </div>
                     <div class="card-body">
                         <p>${document.description}</p>
-                        <button type="button" class="btn btn-primary" href="${document.url}">View</button>
-                        <button type="button" class="btn btn-primary" href="${document.url}">Download</button>
+                        <a href="${document.url}"> <button type="button" class="btn btn-primary">View</button></a>
                         <!-- Might need download link in the future -->
                     </div>
                 </div>
