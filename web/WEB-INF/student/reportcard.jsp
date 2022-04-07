@@ -68,10 +68,10 @@
                         </div>
                         <div class="col-2">
                             <c:set var="courseAvg" value="${courseTotal / count}"/>
-                            
+                                
                             <c:choose>
-                            <c:when test="${result != null && result != 'NaN'}">
-                                ${fn:substring(courseAvg,0,5)} 
+                            <c:when test="${result != null || result != 'NaN'}">
+                                <b>${fn:substring(courseAvg,0,5)} </b>
                             </c:when>
                         </c:choose>
                         </div>
