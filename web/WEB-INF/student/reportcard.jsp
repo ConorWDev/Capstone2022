@@ -68,7 +68,12 @@
                         </div>
                         <div class="col-2">
                             <c:set var="courseAvg" value="${courseTotal / count}"/>
-                            ${fn:substring(courseAvg,0,5)}    
+                            
+                            <c:choose>
+                            <c:when test="${result != null && result != 'NaN'}">
+                                ${fn:substring(courseAvg,0,5)} 
+                            </c:when>
+                        </c:choose>
                         </div>
                        
                     </div>
@@ -92,7 +97,7 @@
         </div>
         <div>
             <!-- Footer -->
-            <%@include file="footerfragment.jspf" %>
+            
         </div>
 
     </body>
