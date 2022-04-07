@@ -43,10 +43,10 @@
             
             <div class="row bg-light rounded">
                 <div class="col-4">
-                    <p class="h5">Module</p>
+                    <p class="h5"><b>Module</b></p>
                 </div>
                 <div class="col-4">
-                    <p class="h5">Assignment</p>
+                    <p class="h5"><b>Assignment</b></p>
                 </div>
                 <!--
                 <div class="col-2">
@@ -54,7 +54,7 @@
                 </div>
                 -->
                 <div class="col-2">
-                    <p class="h5">Grade</p>
+                    <p class="h5"><b>Grade</b></p>
                 </div>
             </div>
             <c:set var="gradeXweights" value="0"/>
@@ -68,9 +68,11 @@
                 <div class="col-4">
                     <p class="h5">${courseGrade.assignmentName}</p>
                 </div>
+                <!--
                 <div class="col-2">
                     <p class="h5">${courseGrade.weight}</p>
                 </div>
+                 -->
                 <div class="col-2">
                     <p class="h5">
                         <c:if test="${courseGrade.isVisible}">
@@ -86,11 +88,12 @@
             </c:forEach>
             <div class="row">
                 <div class="col-8">
+                    <br>
                     <p class="h5">Total Weighted Avg:</p>
                 </div>
                 <div class="col-2">
                     <p class="h5">
-                        
+                        <br>
                         <c:set var="result" value="${gradeXweights / weightTotal}"/>
                         <c:choose>
                             <c:when test="${result != null && result != 'NaN'}">
