@@ -33,10 +33,10 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="row">
-                            <p class="h4 ms-3">Course Announcements</p> 
+                            <p class="h4 ms-3">Modules</p> 
                         </div>    
                 <c:forEach items="${requestScope.modules}" var="module">
-                    <div class="row ms-3 p-1">
+                    <div class="row ms-1 p-1">
                     <a class="d-flex btn border-bottom-primary bg-white text-primary" href="SiteNavigationFaculty?nav=modulemain&moduleid=${module.lessonId}">${module.name}</a>
                     </div>
                     </c:forEach>
