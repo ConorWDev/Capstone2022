@@ -38,41 +38,49 @@
                     -->
                     <div class="container-fluid border-bottom border-primary" id="announcementheader">    
                         <p class="h2 ms-2 mt-2 text-capitalize">${sessionScope.student.fullName}'s Grades</p>
+                        
                     </div>
 
                 </div> 
                 <div class="row">
-
+<!--                    <p class="h4 text-capitalize text-success m-0">${requestScope.message}<p>
+                    <p class="h4 text-captialize text-success">${requestScope.count}</p>    -->
                     
                 <form action ="SiteNavigationFaculty?nav=studentgrades&studentid=${sessionScope.student.userID}&saveGrade=yes&cohortid=${requestScope.cohortid}" method ="POST">
+                    
                     <c:set var="count" value="0"/>
+                    
                     <c:set var="grades" value="${requestScope.studentGrades}"/>
                     <c:forEach items="${requestScope.allAssignments}" var="assignment">
 
-                        <p class="mb-0 text-black-50 text-capitalize">${assignment.assignmentName}</p>
+                        <p class="mb-0 text-primary text-capitalize"><b>${assignment.assignmentName}</b></p>
                         <c:choose>
                             <%--student has grade for this assignment --%>
                             <c:when test="${grades.size() > count}">
-                                <input type ="number" name="newGrade${count}" step="0.1" max="100" min="0" value="${grades.get(count).mark}">
+                                <input class="form-control mb-0" type="number" name="newGrade${count}" step="0.1" max="100" min="0" value="${grades.get(count).mark}">
                                 <input type="hidden" name="assignment${count}" value="${assignment.assignmentId}">
                             </c:when>
                             <%--student does not have grade for this assignment fill input field with 0.0--%>    
                             <c:otherwise>
-                                <input type="number" name="newGrade${count}" step="0.1" max="100" min="0" value="0.0">
+                                <input  class="form-control mb-0" type="number" name="newGrade${count}" step="0.1" max="100" min="0" value="0.0">
                                 <input type ="hidden" name="assignment${count}" value="${assignment.assignmentId}">
                             </c:otherwise>
                         </c:choose>
-                        <br>
+                        
                         <%--Increment one for each assignment --%>
                         <c:set var="count" value="${count + 1}"/>
-                    </c:forEach>    
+                    </c:forEach>
+                                </div>
+                    <div class="row mt-2 ps-3 pe-3 mb-2">
                     <%--pass count to controller for a loop that is used--%>
-                    <input type ="hidden" name="count" value="${count}">
-                    <input type ="submit" value="Save"> 
+                  <button type="submit" value="Save" class="btn bg-secondary text-white d-inline" style="width: 100%"><p class="h5 p-1"><b>SAVE</b></p></button> 
+                    
+                        
+                             
+                   
                 </form>
 
-                ${requestScope.message}
-                ${requestScope.count}
+                
                 </div>
             </div>
             <div class="col"></div>
