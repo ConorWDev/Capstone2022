@@ -83,7 +83,7 @@ for the faculty member to add/edit the cohort annoucments
                             <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
                                 <p><b>Original Text:</b></p><p> ${sessionScope.cohortAnnouncement.text}</p><!-- comment -->
                                 <p><b>New Text:</b></p> 
-                                <input type="text" name="newText" class="form-control mb-3">
+                                <input type="text" name="newText" class="form-control mb-3" placeholder="${sessionScope.cohortAnnouncement.text}">
                                 <button type="submit" value="update"class="btn bg-secondary text-white">
                                     Update Post
                                 </button>
