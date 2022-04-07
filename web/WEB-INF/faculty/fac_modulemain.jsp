@@ -79,7 +79,7 @@
                                 <button type="submit" value="submit" class="btn bg-secondary text-white d-inline-block">Submit</button>
                             </div>
                         </form>
-                        ${requestScope.message}
+                        
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@
                                 <button type="submit" value="submit" class="btn bg-secondary text-white d-inline-block">Submit</button>
                             </div>
                         </form>
-                        ${requestScope.message}
+                        
                         </div>
                     </div>
 
