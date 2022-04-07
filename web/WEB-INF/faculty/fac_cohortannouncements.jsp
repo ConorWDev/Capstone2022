@@ -81,7 +81,7 @@ for the faculty member to add/edit the cohort annoucments
                         <c:if test="${requestScope.editMenu}">
                             <p class="h3">Announcement Edit Form</p>  
                             <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
-                                <p><b>Original Text:</b></p><p> ${sessionScope.cohortAnnouncement.text}</p><!-- comment -->
+                                <p><b>Original Text:</b></p><p> ${sessionScope.cohortAnnouncement.text}</p>
                                 <p><b>New Text:</b></p> 
                                 <input type="text" name="newText" class="form-control mb-3" placeholder="${sessionScope.cohortAnnouncement.text}">
                                 <button type="submit" value="update"class="btn bg-secondary text-white">

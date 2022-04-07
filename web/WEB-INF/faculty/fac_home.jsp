@@ -22,9 +22,14 @@
         
         <div class="col bg-white rounded" >
             
-        <div class="row ms-2 me-2  mb-3">
-        <p class="h2 m-3 mb-1">Faculty Landing</p>
-        </div>
+        
+        <div class="row mb-3">
+
+                    <div class="container-fluid border-bottom border-primary" id="announcementheader">    
+                        <p class="h2 ms-2 mt-2">Faculty Hub</p>
+                    </div>
+
+                </div> 
         <!-- 
         The following code dynamically loads all cohort information that is associated with a faculty member. As a faculty
         member may be assigned to one or more cohort it is the case that we need "lists of lists". What I mean by this is
