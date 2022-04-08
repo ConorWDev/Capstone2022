@@ -56,8 +56,9 @@
                                     </div>
                                 </form>
                             </div>
+                            <form action="SiteNavigationAdmin?nav=cohort&op=2" method="POST">
                             <div class="col ms-0">
-                                <form action="SiteNavigationAdmin?nav=cohort&op=2" method="POST">
+                                
                                     <p class="h5 border-bottom border-secondary">Cohort Information</p>
                                     <div id="infoblock"class="form-control border border-light">
 
@@ -79,7 +80,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                
                             </div>
                             <div class="col">
                                 <p class="h5 border-bottom border-secondary">Course List</p>
@@ -157,6 +158,7 @@
 
                                 </div>
                             </div>
+                        </form>
                         </div>
 
 
