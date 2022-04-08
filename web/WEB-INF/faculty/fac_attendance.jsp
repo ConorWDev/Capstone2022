@@ -18,73 +18,98 @@
         <%@include file="fac_headerfragment.jspf" %>
         <div class="row">
             <div class="col-1"></div>
-            <div class="col-10 bg-light rounded">
-        
-                <div class="row">   
-                <p class="h3 d-inline">Attendance</p>
-                <p class="h5 text-capitalize">${requestScope.attendanceMessage}</p><!-- comment -->
-                </div>
-                <div class="row">
-                <div class="col-3">
-                   
-                <button  class="btn d-inline justify-content-end"data-bs-toggle="collapse" data-bs-target="#instruct">View Less</button>
-             
-                <div id="instruct" class=" collapse-show">
-                <p>To take attendance....</p>
-                 <ul class="list-group bg-transparent">
-                    <li class="list-group-item bg-transparent">1. Select the date</li>
-                    <li class="list-group-item bg-transparent">2. Check off the students who were present on that day  </li>
-                    <li class="list-group-item bg-transparent">3. Select save</li>
-                </ul> 
-                <p>Note: if you are teaching more than one cohort you will need to track attendance separately.</p>
+            <div class="col bg-white rounded">
+                <div class="row mb-3">
+
+                    <div class="container-fluid border-bottom border-primary" id="announcementheader">    
+                        <p class="h2 ms-2 mt-2">Attendance</p>
+                        <p class="text-success text-capitalize">${requestScope.attendanceMessage}<p>
+                    </div>
+
                 </div> 
+                <div class="row">
+                    <div class="col border-end">
+                        <p><b>To take attendance:</b></p>
+
+                        <p>1. Select the date.</p>
+                        <p>2. Check off the students who were present on that day.</p>
+                        <p>3. Select save.</p>
+
+                        <p><b class="text-primary">Note:</b> If you are teaching more than one cohort you will need to track attendance separately.</p>
+
+                    </div>
+                    <c:set var="count" value="0"/>
+
+                    <c:forEach items="${requestScope.cohorts}" var="cohort">
+                        <c:set var="countStudent" value="0"/>
+                        <div class="col border-end mb-3">
+
+                            <p class="mb-2"><b>${cohort.cohortName}</b></p>
+
+                            <form action="SiteNavigationFaculty?nav=attendance" method="POST">
+                                <%--print out calendar --%>
+                                <input type="date" name="date" required="" class="form-control text-primary text-center">
+
+                                <%--print out list of students with a checkbox for present vs absent.
+                                each checkbox is given a unique name attendance{count} so that each
+                                individual student checkbox data can be obtained and then persisted
+                                later on into the database
+                                --%>
+                                <table class="table p-2 mb-2">
+                                <c:forEach items="${requestScope.studentLists.get(count)}" var="student">
+                                    <tr class="pt-2">
+                                        <td>    
+                                    <a class="text-primary text-decoration-none text-capitalize mt-2" href="SiteNavigationFaculty?nav=studentattendance&studentName=${student.fullName}&studentID=${student.userID}">${student.fullName}</a> 
+                                        </td>
+                                        <td>
+                                            <p>${student.userID}<p>
+                                    </td>
+                                    <td><input type="checkbox" name="attendanceCheck${countStudent}" value="${student.userID}"></td>
+
+                                    <%--This hidden field is used to capture every student ID within the cohort. this is needed as only the checked
+                                    boxes above will return a student ID. With this in mind we will have two lists. A list of student ids that are marked
+                                    present for a given day. And a list of all ids in the ochort. These two lists will be used to determine who is and isnt
+                                    present for a given day, and that info will be persisted to the DB--%>
+                                    <input type="hidden" name="attendanceHidden${countStudent}" value="${student.userID}">
+
+                                    <%--increase countStudent for each student. This value is used for creating unique attendanceCheck{count} names
+                                    for each checkbox as well as a fincal studentCount parameter within the hidden input below--%>
+                                    <c:set var="countStudent" value="${countStudent + 1}"/>
+                                    </tr>
+                                </c:forEach>
+                                </table>    
+                                <%--hidden form that passes the count --%> 
+                                <input type="hidden" name="studentCount" value="${countStudent}">
+                                <%--submit button--%> 
+                                
+                                
+                                <button type="submit" value="Save ${cohort.cohortName} Attendance"class="btn bg-secondary text-white mb-2">
+                                    Save ${cohort.cohortName} Attendance
+                                </button>
+                            </form>   
+
+                            <c:set var="count" value="${count + 1}"/> 
+                        </div>
+                    </c:forEach>    
+
+
                 </div>
-        <c:set var="count" value="0"/>
-        
-        <c:forEach items="${requestScope.cohorts}" var="cohort">
-            <c:set var="countStudent" value="0"/>
-            <div class="col-2 ">
-                <div class="container border-right">    
-            <b>${cohort.cohortName}</b><br>
-            
-            <form action="SiteNavigationFaculty?nav=attendance" method="POST">
-                <%--print out calendar --%>
-                <input type="date" name="date" required=""> <br><br>
-            
-                <%--print out list of students with a checkbox for present vs absent.
-                each checkbox is given a unique name attendance{count} so that each
-                individual student checkbox data can be obtained and then persisted
-                later on into the database
-                --%>
-                <c:forEach items="${requestScope.studentLists.get(count)}" var="student">
-                    <a href="SiteNavigationFaculty?nav=studentattendance&studentName=${student.fullName}&studentID=${student.userID}">${student.fullName}</a> ${student.userID}<input type="checkbox" name="attendanceCheck${countStudent}" value="${student.userID}">
-                    <br>
-                    <%--This hidden field is used to capture every student ID within the cohort. this is needed as only the checked
-                    boxes above will return a student ID. With this in mind we will have two lists. A list of student ids that are marked
-                    present for a given day. And a list of all ids in the ochort. These two lists will be used to determine who is and isnt
-                    present for a given day, and that info will be persisted to the DB--%>
-                    <input type="hidden" name="attendanceHidden${countStudent}" value="${student.userID}">
-                    
-                    <%--increase countStudent for each student. This value is used for creating unique attendanceCheck{count} names
-                    for each checkbox as well as a fincal studentCount parameter within the hidden input below--%>
-                    <c:set var="countStudent" value="${countStudent + 1}"/>
-                </c:forEach>
-                <%--hidden form that passes the count --%> 
-                <input type="hidden" name="studentCount" value="${countStudent}">
-                <%--submit button--%> 
-                <input type="submit" value="Save ${cohort.cohortName} Attendance">
-                
-            </form>   
-            <br> 
-            <c:set var="count" value="${count + 1}"/> 
             </div>
-            </div>
-        </c:forEach>
-            </div>
-            
-            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="col-1"></div>
-            </div>
-            
-    </body>
+        </div>
+    </div>
+</body>
 </html>
