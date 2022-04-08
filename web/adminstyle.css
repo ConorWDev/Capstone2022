@@ -71,10 +71,10 @@
 
 #but1,#but2,#but3,#but4,#but5, #but6{
     font-weight: bolder;
-    border: 1px solid black;
     
+    background-color: whitesmoke;
     margin: 15px;
-  text-align: center;
+    text-align: center;
     color: #082047;
 }
 
@@ -119,4 +119,7 @@
 }
 #selectann{
     height: 450px;
+}
+#imagefiller{
+    opacity: 75%;
 }
