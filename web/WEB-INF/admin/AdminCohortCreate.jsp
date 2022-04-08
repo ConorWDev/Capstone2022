@@ -42,7 +42,7 @@
 
 
 
-                            <div class="col-4 ps-3">
+                            <div class="col-4 ps-3 ">
 
                                 <form action="SiteNavigationAdmin?nav=cohort&op=1" method="POST">
 
@@ -63,7 +63,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row ">
                                         <div id="infoblock"class="form-control  ">
 
 
@@ -103,43 +103,11 @@
                                 </form>
                             </div>
                                                 <div class="col-3"></div>                    
-                            <div class="col">
+                            <div class="col ">
                                 <img id="imagefiller" class="img m-4" src="MassLogo500px.png" alt="Mass" style="height: 250px;width: 250px"/>
                             </div> 
-                            <!-- 
-                            <div class="col me-3">
-
-                                <div class="row mt-2 " >
-                                    <select multiple="multiple" class="form-select "  id="select2" style="height: 490px" >
-
-
-
-                                    </select>
-                                </div>
-                                <div class="row">
-                                    <div class="container-fluid d-flex justify-content-around ">
-                                        <button href="#" type="submit" id="but1" class="btn d-inline ">Spare Button</button>
-
-
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col me-3">
-
-                                <div class="row mt-2 " >
-                                    <select multiple="multiple" class="form-select "  id="select3" style="height: 490px">
-
-
-
-                                    </select>
-                                </div>
-                                <div class="container-fluid d-flex justify-content-around ">
-                                    <button href="#" type="submit" id="but2" class="btn d-inline ">Select Student</button>
-
-
-                                </div>
-                            </div>
-                            -->
+                            
+                           
                         </div> 
 
                     </div>
