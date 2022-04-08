@@ -23,7 +23,7 @@
         <!--Top of the admin bar-->
         <%@include file="AdminHeaderFragment.jspf" %>
 
-        test: ${requestScope.message}
+       
         
         
         <div class="row">
