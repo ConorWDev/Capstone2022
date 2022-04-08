@@ -6,6 +6,7 @@
 package Controller.Navigation;
 
 import DBOperations.DBOperationsAdmin;
+import DBOperations.DBOperationsAnnouncement;
 import DBOperations.DBOperationsAssignments;
 import DBOperations.DBOperationsCohort;
 import DBOperations.DBOperationsCourse;
@@ -16,6 +17,7 @@ import DBOperations.DBOperationsStudent;
 import Interface.Users.Admin;
 import Interface.Users.Faculty;
 import Interface.Users.Student;
+import Objects.Announcement;
 import Objects.Assignment;
 import Objects.Cohort;
 import Objects.Course;
@@ -68,6 +70,7 @@ public class SiteNavigationAdmin extends HttpServlet {
         DBOperationsModule dbOpsMod = new DBOperationsModule();
         DBOperationsCourse dbOpsCou = new DBOperationsCourse();
         DBOperationsCohort dbOpsCoh = new DBOperationsCohort();
+        DBOperationsAnnouncement dbOpsAnn = new DBOperationsAnnouncement();
         
         
         if(logout!=null&&!logout.equals("")){
@@ -790,7 +793,102 @@ public class SiteNavigationAdmin extends HttpServlet {
             
             
             else if (nav.equals("announcements")) {
-                request.getRequestDispatcher("/WEB-INF/admin/AdminAnnoucements.jsp").forward(request, response);
+                
+                if (op.equals("1")){
+                    
+                    String createCohortAnn = request.getParameter("createCohortAnn");
+                    String cohortText = request.getParameter("cohortText");
+                    if (createCohortAnn != null && !createCohortAnn.equals("") && cohortText != null && !cohortText.equals("")){
+                        String cohortID = request.getParameter("cohorts");
+                        boolean result = dbOpsAnn.createCohortAnnouncement(cohortID, cohortText);
+                        
+                        if (result){
+                            request.setAttribute("message", "success");
+                        }
+                        else{
+                            request.setAttribute("message", "failure");
+                        }
+                    }
+                    
+                    String createCourseAnn = request.getParameter("createCourseAnn");
+                    String courseText = request.getParameter("courseText");
+                    if (createCourseAnn != null && !createCourseAnn.equals("") && courseText != null && !courseText.equals("")){
+                        String courseID = request.getParameter("courses");
+                        boolean result = dbOpsAnn.createCourseAnnouncement(courseID, courseText);
+                        
+                        if (result){
+                            request.setAttribute("message", "success");
+                        }
+                        else{
+                            request.setAttribute("message", "failure");
+                        }
+                    }
+                    
+                    
+                    
+                    //get all cohorts and all courses for selection
+                     ArrayList<Cohort> cohorts = dbOpsCoh.getAllCohorts();
+                     ArrayList<Course> courses = dbOpsCou.getAllCourses();
+                
+                    request.setAttribute("cohorts", cohorts);
+                    request.setAttribute("courses", courses);
+                
+                    request.getRequestDispatcher("/WEB-INF/admin/AdminAnnoucements.jsp").forward(request, response);
+                }
+                else{
+                    
+                    String save = request.getParameter("saveChanges");
+                    if (save != null && !save.equals("")){
+                        
+                        String count = request.getParameter("count");
+                        int countInt = Integer.parseInt(count);
+                            
+                        for(int x = 0; x < countInt; x++){
+                            String cohortText = request.getParameter("cohortText" + x);
+                            String announcementID = request.getParameter("id" + x);
+                            if (cohortText != null && !cohortText.equals("")){
+                                dbOpsAnn.editCohortAnnouncement(announcementID, cohortText);
+                            }
+                            
+                        }
+                    }
+                    
+                    //Delete functionality TODO
+                    String count = request.getParameter("count");
+                    if (count != null && !count.equals("")){
+                        int countInt = Integer.parseInt(count);
+                        for (int x = 0; x < countInt; x++){
+                            String ID = request.getParameter("deleteAnn" + x);
+                            if (ID != null && !ID.equals("")){
+                                dbOpsAnn.deleteCohortAnnouncement(ID);
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    
+                    String cohortID = request.getParameter("cohortIDs");
+                    if (cohortID != null && !cohortID.equals("")){
+                        ArrayList<Announcement> announcements = dbOpsAnn.getAnnouncementsByCohort(cohortID);
+                        request.setAttribute("announcements", announcements);
+                        
+                        
+                    }
+                    
+                    //get all cohorts and all courses for selection
+                    ArrayList<Cohort> cohorts = dbOpsCoh.getAllCohorts();
+                    ArrayList<Course> courses = dbOpsCou.getAllCourses();
+                
+                    request.setAttribute("cohorts", cohorts);
+                    request.setAttribute("courses", courses);
+                    
+                    
+                    request.getRequestDispatcher("/WEB-INF/admin/AdminAnnouncementManagement.jsp").forward(request, response);
+                }
+                
+                
 
             } else if (nav.equals("adminreport")) {
                 request.getRequestDispatcher("/WEB-INF/admin/AdminReports.jsp").forward(request, response);
