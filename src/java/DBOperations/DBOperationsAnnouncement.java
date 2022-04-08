@@ -312,33 +312,43 @@ public class DBOperationsAnnouncement {
         return result;
     }
     
-    
-    
-    /*
-    public String testGetPK (){
-        String result = "";
-        String sql = "select annnouncement_id from ma_course_announcement where annnouncement_id = 1";
-        
+   public ArrayList<Announcement> getAnnouncementsByCohort(String cohortID){
+       ArrayList<Announcement> announcements = new ArrayList<>();
+       String sql = "select * from ma_announcement where cohort_id = ?;";
          ConnectionPool cp = ConnectionPool.getInstance();
         
         try {
             Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
             ResultSet rs = st.executeQuery();
             
+            String announcementId ="";
+            String cohortId = "";
+            String startDate ="";
+            String endDate = "";
+            String text = "";
+            String isVisible = "";
+            
             while (rs.next()) {
+                announcementId = rs.getString(1);
+                cohortId = rs.getString(2);
+                startDate = rs.getString(3);
+                endDate = rs.getString(4);
+                text = rs.getString(5);
+                isVisible = rs.getString(6);
                 
-                result = rs.getString(1);
+                Announcement announcement = new Announcement(announcementId, cohortId,startDate,endDate,text,isVisible);
+                announcements.add(announcement);
                 
             }
             st.close();
             rs.close();
             cp.freeConnection(conn);
         } catch(Exception e){}
-            return result;
-    }
-        
-    */
+        return announcements;
+   } 
+   
     
     
 }
