@@ -29,7 +29,7 @@ public class DBOperationsAnnouncement {
             st.setString(1, cohortId);
             ResultSet rs = st.executeQuery();
             
-          String announcementId ="";
+            String announcementId ="";
             String startDate ="";
             String endDate = "";
             String text = "";

@@ -287,9 +287,7 @@ public class SiteNavigationFaculty extends HttpServlet {
                 
                  String deleteButton = request.getParameter("deleteButton");
                  if (deleteButton != null && deleteButton.equals("delete")){
-            
-                     String idtemp = request.getParameter("announcementID");
-                     int id = Integer.parseInt(idtemp);
+                     
                      DBOperationsAnnouncement da = new DBOperationsAnnouncement();
                      da.deleteCohortAnnouncement(announcementID);
                }
