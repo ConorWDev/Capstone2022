@@ -39,115 +39,78 @@
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
-
-
-
-                            <div class="col-4 ps-3">
-
+                            <div class="col">
                                 <form action="SiteNavigationAdmin?nav=announcements&op=1" method="POST">
-
-                                    <div class="row justify-content-end">
-                                        <div class="container-sm
-                                             d-flex justify-content mt-1">
-                                            <!--
-                                            <p class="h6 me-3 mt-2 d-inline" id="headerdynamic">Select Menu:</p>
-
-                                            
-                                            <select class="form-control-sm  d-inline" id="usercreatetype" name="sellist1">
-                                                <option value="1">Student</option>
-                                                <option value="2">Cohort</option>
+                                    <div id="infoblock"class="form-control  ">
 
 
-                                            </select>
-                                             -->
+                                        <p class="h5 mb-3">Create Cohort Announcement</p>
+                                        <label for="cohorts" id="label2" class="form-label mb-0 h6 ">Select Cohort:</label>
+                                        <select name="cohorts" class="form-select mb-2 text-primary ">
+                                            <c:forEach items="${requestScope.cohorts}" var="cohort">
+                                                <option value="${cohort.cohortID}">${cohort.cohortName}</option>
+                                            </c:forEach>
+                                        </select>
 
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div id="infoblock"class="form-control  ">
+                                        <label for="info2" id="label2" class="form-label mb-0 h6 ">Cohort Annoucement Text</label>
+                                        <textarea rows="4" cols="50" type="text" style="resize:none" class="form-control mb-0 border-secondary" id="info2" placeholder="Announcement" name="cohortText"> </textarea>
 
+                                        <div class="row">
+                                            <div class="container-fluid d-flex justify-content-end mb-0">
+                                                <button type="submit" id="but4" class="btn d-inline text-white bg-secondary" name="createCohortAnn" value="yes">Create Cohort Announcement</button>
 
-                                            <!-- 
-                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Cohort ID</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Cohort ID" name="info1">
-                                            <!-- -->
-                                            <b>Create Cohort Announcement</b><br>
-                                            <select name="cohorts">
-                                                <c:forEach items="${requestScope.cohorts}" var="cohort">
-                                                    <option value="${cohort.cohortID}">${cohort.cohortName}</option>
-                                                </c:forEach>
-                                            </select>
-                                            
-                                            <label for="info2" id="label2" class="form-label mb-0">Cohort Name</label>
-                                            <textarea rows="4" cols="50" type="text" style="resize:none" class="form-control mb-3" id="info2" placeholder="Announcement" name="cohortText"> </textarea>
-                                            
-                                            <div class="row">
-                                                <div class="container-fluid d-flex justify-content-around ">
-                                                    <button type="submit" id="but4" class="btn d-inline text-success" name="createCohortAnn" value="yes">Create Cohort Announcement</button>
-
-                                                </div>
                                             </div>
-                                            
                                         </div>
+
                                     </div>
-
-
-
-
-                                </form>
-                                
-                                <form action="SiteNavigationAdmin?nav=announcements&op=1" method="POST">
-
-                                    <div class="row justify-content-end">
-                                        <div class="container-sm
-                                             d-flex justify-content mt-1">
-                                           
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div id="infoblock"class="form-control  ">
-
-
-                                            <!-- 
-                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Cohort ID</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Cohort ID" name="info1">
-                                            <!-- -->
-                                             <b>Create Cohort Announcement</b><br>
-                                            <select name="courses">
-                                                <c:forEach items="${requestScope.courses}" var="course">
-                                                    <option value="${course.courseID}">${course.courseName}</option>
-                                                </c:forEach>
-                                            </select>
-                                            
-                                            <label for="info2" id="label2" class="form-label mb-0">Course Name</label>
-                                            <textarea rows="4" cols="50" type="text" style="resize:none" class="form-control mb-3" id="info2" placeholder="Announcement" name="courseText"> </textarea>
-                                            
-                                            <div class="row">
-                                                <div class="container-fluid d-flex justify-content-around ">
-                                                    <button type="submit" id="but4" class="btn d-inline text-success" name="createCourseAnn" value="yes">Create Course Announcement</button>
-
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-
-
-
-
                                 </form>
                             </div>
-                           
-                        </div> 
+                            <div class="col">
+                                <form action="SiteNavigationAdmin?nav=announcements&op=1" method="POST">
 
-                    </div>
 
+                                    <div id="infoblock"class="form-control  ">
+
+
+
+                                        <p class="h5 mb-3">Create Course Announcement</p>
+                                        <label for="courses" id="label2" class="form-label mb-0 h6 ">Select Course:</label>
+                                        <select name="courses" class="form-select mb-2 text-primary ">
+                                            <c:forEach items="${requestScope.courses}" var="course">
+                                                <option value="${course.courseID}">${course.courseName}</option>
+                                            </c:forEach>
+                                        </select>
+
+                                        <label for="info2" id="label2" class="form-label mb-0 h6">Course Name</label>
+                                        <textarea rows="4" cols="50" type="text" style="resize:none" class="form-control mb-0 border border-secondary" id="info2" placeholder="Announcement" name="courseText"> </textarea>
+
+                                        <div class="row">
+                                            <div class="container-fluid d-flex justify-content-end mt-0">
+                                                <button type="submit" id="but4" class="btn d-inline text-white bg-secondary" name="createCourseAnn" value="yes">Create Course Announcement</button>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div> 
 
                 </div>
+
+
             </div>
         </div>
     </div>
+</div>
 
 </body>
 </html>

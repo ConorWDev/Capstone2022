@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-1 " id="contentheader">Cohort Announcement Management</p>
+                            <p class="h2 mb-1 " id="contentheader">Course Announcement Management WIP</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
@@ -76,14 +76,14 @@
                                     <c:forEach items="${requestScope.announcements}" var="cohortAnnouncement">
                                         
                                         <div class="row mb-0">
-                                            <div id="infoblock"class="form-control  mb-0 mt-0 border-top border-secondary rounded-0">
+                                            <div id="infoblock"class="form-control  ">
                                                 <input type="hidden" name="id${count}" value="${cohortAnnouncement.announcementID}">
-                                                <label for="info2" id="label2" class="form-label mb-0 mt-0 text-">Announcement Text</label>
-                                                <textarea rows="4" cols="50" type="text" style="resize:none" class="form-control mb-1 mt-0" id="info2" name="cohortText${count}">${cohortAnnouncement.text} </textarea>
-                                                <div class="row mb-1">
-                                                    <div class="container-fluid d-flex justify-content-around mt-0 mb-0">
-                                                        <button type="submit" id="but4" class="btn d-inline mt-0 mb-0" name="saveChanges" value="save">Save Changes</button>
-                                                        <button type="submit" id="but6" class="btn d-inline mt-0 mb-0" name="deleteAnn${count}" value="delete">Delete Annoucement</button>
+                                                <label for="info2" id="label2" class="form-label mb-0 mt-0">Announcement Text</label>
+                                                <textarea rows="4" cols="50" type="text" style="resize:none" class="form-control mb-3" id="info2" name="cohortText${count}">${cohortAnnouncement.text} </textarea>
+                                                <div class="row mb-3">
+                                                    <div class="container-fluid d-flex justify-content-around mt-0">
+                                                        <button type="submit" id="but4" class="btn d-inline m-0" name="saveChanges" value="save">Save Changes</button>
+                                                        <button type="submit" id="but6" class="btn d-inline m-0" name="deleteAnn${count}" value="delete">Delete Annoucement</button>
                                                         <c:set var="count" value="${count + 1}"/>
                                                     </div>
                                                        
