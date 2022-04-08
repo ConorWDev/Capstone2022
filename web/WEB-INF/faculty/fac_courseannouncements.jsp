@@ -65,7 +65,8 @@
                         <div class="row">
                             <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
                                 <p>Enter Announcement Below</p>
-                                <input type="text" name="textSubmission" class="form-control mb-2">
+                                  <textarea rows="5" name="textSubmission" class="form-control mb-3"></textarea>
+                                
                                 </div>
                         <div class="row">
                                 <div class="container d-flex justify-content-end mb-1 ">
@@ -90,7 +91,8 @@
                                 <p><b>Original Text:</b></p> 
                                 <p>${sessionScope.courseAnnouncement.text}</p>
                                 <p><b>New Text:</b></p> 
-                                <input type="text" name="newText" class="form-control mb-2">
+                                <textarea rows="5" name="newText" class="form-control mb-3"></textarea>
+                                
                                 <div class="container d-flex justify-content-end mb-1 ">
                                 <button type="submit" value="update" class="btn bg-secondary text-white d-inline-block">Update</button>
                                 </div>
@@ -104,7 +106,7 @@
                             <div class="row">    
                             <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST" disabled="true">
                                 <p class="text-primary">Press the Edit Button next to Announcement to Activate</p>
-                                <input type="text" name="newText" class="form-control mb-2">
+                               <textarea rows="5" name="newText" class="form-control mb-3"></textarea>
                                 <div class="container d-flex justify-content-end mb-1 ">
                                 <button type="submit" value="update" disabled="true" class="btn bg-secondary text-white d-inline-block">Update</button>
                                 </div>

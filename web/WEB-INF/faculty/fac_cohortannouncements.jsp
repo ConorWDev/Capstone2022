@@ -66,7 +66,7 @@ for the faculty member to add/edit the cohort annoucments
                         <div class="row">
                         <form action="SiteNavigationFaculty?nav=cohortannouncements&cohortid=${sessionScope.cohort.cohortID}" method="POST">
                             <p>Enter Announcement Below:</p>
-                            <input type="text" name="textSubmission" class="form-control mb-3"> 
+                            <textarea rows="5" name="textSubmission" class="form-control mb-3"></textarea>
                             <button type="submit" value="add" class="btn bg-secondary text-white">
                                 Publish Announcement
                             </button>
