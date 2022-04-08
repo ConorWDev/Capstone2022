@@ -51,15 +51,7 @@
                                         <div class="container-sm
                                              d-flex justify-content mt-1">
                                             
-                                            <!--
-                                            <p class="h6 me-3 mt-2 d-inline" id="headerdynamic">Header 2</p>
                                             
-                                            <select class="form-control-sm  d-inline" id="usercreatetype" name="sellist1">
-                                                <option value="1">X</option>
-                                                <option value="2">Y</option>
-                                                <option value="3">Z</option>                 
-                                            </select>
-                                            -->
                                             
                                         </div>
                                     </div>
@@ -69,13 +61,13 @@
                                            
                                             <!-- -->
                                             <label for="info1" id="label1" class="form-label mb-0 "><b>Document Name</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="info1" name="info1" required>
+                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Document Name" name="info1" required>
                                             <!-- -->
                                             <label for="info2" id="label2" class="form-label mb-0"><b>Description</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="info" name="info2" required>
+                                            <input type="text" class="form-control mb-3" id="info2" placeholder="Document Description" name="info2" required>
                                             <!-- -->
                                             <label for="info3" id="label3" class="form-label mb-0"><b>Link</b></label>
-                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="info" name="info3" required>
+                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="Document URL" name="info3" required>
                                             <!-- -->
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
