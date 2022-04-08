@@ -113,7 +113,7 @@
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic"><b>${requestScope.usertype} Info</b></p>
+                                            <p class="h4 mt-2 mb-0" id="headerdynamic">${requestScope.usertype} Info</p>
                                         </div>
                                     </div>
                                     <div class="row">
