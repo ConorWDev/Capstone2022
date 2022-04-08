@@ -38,14 +38,14 @@
                             <p class="h2 mb-1 " id="contentheader">Cohort Management</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
-                        <div class="row mt-2 mb-3 ">
+                        <div class="row mt-2 mb-3 d-flex">
 
-                            <div class="col ">
-                                <p class="h5 border-bottom border-secondary">Cohort List</p>
-                                <form action="SiteNavigationAdmin?nav=cohort&op=2" method="POST">
+                            <div class="col">
+                                <p class="h5 ">Cohort List</p>
+                                <form action="SiteNavigationAdmin?nav=cohort&op=2" method="POST" class="d-flex-inline">
                                     
                                     <div>
-                                        <select multiple="multiple" class="form-select border-secondary mb-5"  id="select1" name="cohortIDs" onchange="this.form.submit()">
+                                        <select multiple="multiple" class="form-select border-secondary mb-1"  id="select1" name="cohortIDs" onchange="this.form.submit()" style="height: 100px">
 
                                             <c:forEach items="${requestScope.cohorts}" var="cohort">
                                                 <option type="checkbox" value="${cohort.cohortID}">${cohort.cohortName}</option>
@@ -55,8 +55,10 @@
                                         </select>
                                     </div>
                                 </form>
+                                
                             </div>
-                            <form action="SiteNavigationAdmin?nav=cohort&op=2" method="POST">
+                            <div class="row">
+                            <form action="SiteNavigationAdmin?nav=cohort&op=2" method="POST" class="d-flex">
                             <div class="col ms-0">
                                 
                                     <p class="h5 border-bottom border-secondary">Cohort Information</p>
@@ -82,9 +84,9 @@
                                     </div>
                                 
                             </div>
-                            <div class="col">
+                            <div class="col ms-1">
                                 <p class="h5 border-bottom border-secondary">Course List</p>
-                                <div class="scrollbox border border-secondary rounded" style="overflow-x:scroll;height:450px;background-color: white">
+                                <div class="scrollbox border border-secondary rounded" style="overflow-x:scroll;height:300px;background-color: white">
                                     <c:set var="count" value="${0}"/>
                                     <c:forEach items="${requestScope.allCourses}" var="course">
                                         <c:set var="found" value="${0}"/>
@@ -107,9 +109,9 @@
 
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col ms-2">
                                 <p class="h5 border-bottom border-secondary">Faculty List</p>
-                                <div class="scrollbox border border-secondary rounded" style="overflow-x:scroll;height:450px;background-color: white">
+                                <div class="scrollbox border border-secondary rounded" style="overflow-x:scroll;height:300px;background-color: white">
                                     <c:set var="countFac" value="${0}"/>
                                     <c:forEach items="${requestScope.allFaculty}" var="faculty">
                                         <c:set var="found" value="${0}"/>
@@ -132,10 +134,10 @@
 
                                 </div>
                             </div>
-                            <div class="col me-3">
+                            <div class="col me-2 ms-2">
 
                                 <p class="h5 border-bottom border-secondary">Student List</p>
-                                <div class="scrollbox border border-secondary rounded" style="overflow-x:scroll;height:450px;background-color: white">
+                                <div class="scrollbox border border-secondary rounded" style="overflow-x:scroll;height:300px;background-color: white">
                                     <c:set var="count" value="${0}"/>
                                     <c:forEach items="${requestScope.allStudents}" var="student">
                                         <c:set var="found" value="${0}"/>
@@ -155,10 +157,12 @@
 
                                     </c:forEach>
                                     <input type="hidden" name="studentCount" value="${count}">
-
+                                      
                                 </div>
                             </div>
-                        </form>
+                                    </form>
+                            </div>        
+                                  
                         </div>
 
 
