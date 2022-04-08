@@ -76,7 +76,10 @@
                                 </form>
                             </div>
                             
-                            <div class="col"></div>
+                                                <div class="col-3"></div>                    
+                            <div class="col">
+                                <img id="imagefiller" class="img m-4" src="MassLogo500px.png" alt="Mass" style="height: 250px;width: 250px"/>
+                            </div> 
                         </div>
 
 

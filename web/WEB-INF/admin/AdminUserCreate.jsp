@@ -97,9 +97,9 @@
 
                                 </form>
                             </div>
-                            <div class="col-6 border-info">
-                                <p class="h1 text-danger">Could Add CVS bulk load for students here if we have time</p>
-                                test: ${requestScope.message}
+                            <div class="col-1"></div>
+                            <div class="col">
+                                <img id="imagefiller" class="img m-4" src="MassLogo500px.png" alt="Mass"/>
                             </div>    
                         </div>
                         

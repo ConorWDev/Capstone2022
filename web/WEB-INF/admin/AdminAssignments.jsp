@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <select multiple="multiple" class="form-select border-0"  id="select1" name="assignmentIDs"  onchange="this.form.submit()">
+                                        <select multiple="multiple" class="form-select border-0 mb-3"  id="select1" name="assignmentIDs"  onchange="this.form.submit()">
                                             <c:forEach items="${requestScope.assignments}" var="assignment">
                                                 <option value="${assignment.assignmentId}">${assignment.assignmentName}</option>
                                             </c:forEach>
@@ -74,7 +74,7 @@
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h4 mt-2 " id="headerdynamic"><b>Assignment Info</b></p>
+                                            <p class="h4 mt-3 " id="headerdynamic"><b>Assignment Info</b></p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -103,7 +103,7 @@
                                                     <button type="submit" id="but4" class="btn d-inline" name="saveChanges" value="save">Save Changes</button>
                                                     <button type="submit" id="but6" class="btn d-inline" name="deleteAss" value="delete">Delete</button>
                                                     
-                                                    test ${requestScope.message}
+                                                    
                                                 </div>
                                             </div>
                                         </div>

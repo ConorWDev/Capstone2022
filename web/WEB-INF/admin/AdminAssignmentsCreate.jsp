@@ -46,15 +46,7 @@
                                  
                                 <form action="SiteNavigationAdmin?nav=assignments&op=1" method="POST">
 
-                                    <div class="row justify-content-end">
-                                        <div class="container-sm
-                                             d-flex justify-content-center mt-1">
-                                            <p class="h6 me-3 mt-2 d-inline" >.</p>
-                                            <p class="h6 me-3 mt-2 d-inline" >.</p>
-                                            <p class="h6 me-3 mt-2 d-inline" >.</p>
-                                            
-                                        </div>
-                                    </div>
+                                    
                                     <div class="row">
                                         <div id="infoblock"class="form-control  ">
                                             
@@ -81,7 +73,7 @@
                                                 <div class="container-fluid d-flex justify-content-around ">
                                                     <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create Assignment</button>
                                                     
-                                                    test: ${requestScope.message}
+                                                    
                                                 </div>
                                             </div>
                                             
@@ -94,18 +86,10 @@
                                 </form>
                             </div>
                             
-                            <!--
-                            <div class="col me-3">
-                                
-                                <div class="row mt-2 " >
-                                     <select multiple="multiple" class="form-select border-0"  id="select2" style="height: 500px;">
-                                     
-                                     
-                                     
-                                     </select>
-                                </div>
+                            <div class="col-3"></div>
+                            <div class="col">
+                                <img id="imagefiller" class="img m-4" src="MassLogo500px.png" alt="Mass" style="height: 250px;width: 250px"/>
                             </div> 
-                             -->
                             
                         </div>
                         

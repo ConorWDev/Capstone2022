@@ -59,7 +59,7 @@
                                         -->
                                     </div>
                                     <div>
-                                        <select multiple="multiple" class="form-select border-0" id="select1" name="documentIDs"  onchange="this.form.submit()">
+                                        <select multiple="multiple" class="form-select border-0 m-3" id="select1" name="documentIDs"  onchange="this.form.submit()">
                                             <c:forEach items="${requestScope.documents}" var="document">
                                                         <option value="${document.documentID}">${document.name}</option>
                                             </c:forEach>
@@ -79,7 +79,7 @@
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic"><b>Document Info</b></p>
+                                            <p class="h6 mt-3 " id="headerdynamic"><b>Document Info</b></p>
                                         </div>
                                     </div>
                                     <div class="row">

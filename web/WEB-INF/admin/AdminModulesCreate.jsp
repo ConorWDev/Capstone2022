@@ -87,7 +87,7 @@
                                                 <div class="container-fluid d-flex justify-content-around ">
                                                     <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create Module</button>
                                                     
-                                                    test ${requestScope.message}
+                                                    
                                                 </div>
                                             </div>
                                             
@@ -100,18 +100,10 @@
                                 </form>
                             </div>
                             
-                            <!-- 
-                            <div class="col me-3">
-                                
-                                <div class="row mt-2 " >
-                                     <select multiple="multiple" class="form-select border-0 mb-3"  id="select2" style="height: 500px;">
-                                     
-                                     
-                                     
-                                     </select>
-                                </div>
+                           <div class="col-3"></div>
+                            <div class="col">
+                                <img id="imagefiller" class="img m-4" src="MassLogo500px.png" alt="Mass" style="height: 250px;width: 250px"/>
                             </div> 
-                             -->
                             
                         </div>
                         

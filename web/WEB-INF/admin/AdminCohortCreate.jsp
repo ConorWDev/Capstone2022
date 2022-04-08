@@ -72,7 +72,7 @@
                                             <input type="text" class="form-control mb-3" id="info1" placeholder="Cohort ID" name="info1">
                                             <!-- -->
                                             <label for="info2" id="label2" class="form-label mb-0"><b>Cohort Name</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="Cohort Name" name="info2">
+                                            <input type="text" class="form-control mb-1" id="info2" placeholder="Cohort Name" name="info2">
                                             <!-- 
                                             <label for="info3" id="label3" class="form-label mb-0"><b>info3</b></label>
                                             <input type="text" class="form-control  mb-3" id="info3" placeholder="info" name="info3">
@@ -87,10 +87,10 @@
                                             <input type="text" class="form-control mb-0" id="info6" placeholder="info" name="info6">
                                             -->
                                             <div class="row">
-                                                <div class="container-fluid d-flex justify-content-around ">
+                                                <div class="container-fluid d-flex justify-content-end ">
                                                     <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create Cohort</button>
 
-                                                    Message: ${requestScope.message}
+                                                   
                                                 </div>
                                             </div>
                                             </form>
@@ -102,6 +102,10 @@
 
                                 </form>
                             </div>
+                                                <div class="col-3"></div>                    
+                            <div class="col">
+                                <img id="imagefiller" class="img m-4" src="MassLogo500px.png" alt="Mass" style="height: 250px;width: 250px"/>
+                            </div> 
                             <!-- 
                             <div class="col me-3">
 

@@ -46,20 +46,8 @@
                                  
                                  <form action="SiteNavigationAdmin?nav=courses&op=1" method="POST">
 
-                                    <div class="row justify-content-end">
-                                        <div class="container-sm
-                                             d-flex justify-content-center mt-1">
-                                            <p class="h6 me-3 mt-2 d-inline " id="headerdynamic">...</p>
-                                            
-<!--                                            <select class="form-control-sm  d-inline" id="usercreatetype" name="sellist1">
-                                                <option value="1">X</option>
-                                                <option value="2">Y</option>
-                                                <option value="3">Z</option>
-                                                                
-                                            </select>
-                                            -->
-                                        </div>
-                                    </div>
+                                    
+                                    
                                     <div class="row">
                                         <div id="infoblock"class="form-control  ">
                                             
@@ -98,7 +86,10 @@
 
                                 </form>
                             </div>
-                            
+                            <div class="col-3"></div>                    
+                            <div class="col">
+                                <img id="imagefiller" class="img m-4" src="MassLogo500px.png" alt="Mass" style="height: 250px;width: 250px"/>
+                            </div> 
                             <!-- 
                             <div class="col me-3">
                                 

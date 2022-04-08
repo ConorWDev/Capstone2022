@@ -95,6 +95,9 @@
                             </div>
                             <div class="col ">
                                 
+                                
+                                <img id="imagefiller" class="img m-4" src="MassLogo500px.png" alt="Mass" style="height: 350px;width: 350px"/>
+                             
                             </div>
                         </div>
 
