@@ -46,19 +46,21 @@
         <c:forEach items="${requestScope.cohorts}" var="cohort">
                 <div class="col-6 ">
                 <div class="row">
-                <p class="h5">${cohort.cohortName}</p>
+                    <p class="h5 ms-3 text-black-50"><b>${cohort.cohortName}</b></p>
                 </div>
            <!-- Print list of courses for that cohort-->
             <c:forEach items="${requestScope.courseLists.get(count)}" var="course">
                 <div class="row  ms-1 me-1 p-1">
-                <a class="d-flex btn border-primary border-top-0 border-start-0 border-end-0 rounded-0 bg-white" href="SiteNavigationFaculty?nav=coursemain&courseid=${course.courseID}">${course.courseName}</a><br>
+                <a class="d-flex btn text-primary text-decoration-none" href="SiteNavigationFaculty?nav=coursemain&courseid=${course.courseID}">${course.courseName}</a><br>
                 </div>
                 </c:forEach>
-                
-                <p class="h5 ">${cohort.cohortName} Announcements</p>
+            <div class="row  mb-3   ">
+                <p class="h5 ms-3 mt-2 text-black-50"><b>${cohort.cohortName} Announcements</b></p>
+            </div>    
              <!-- Print list of announcements for that cohort-->
             <c:forEach items="${requestScope.announcementLists.get(count)}" var="announcement">
-                <div class="row ms-2 me-2 mb-2 ">
+                <div class="row ms-2 me-2 mb-2 border-bottom border-top">
+                    <p class="text-black-50">${announcement.startDate}</p>    
                 <p class="text mb-2 border-primary border-end-0 border-start-0 rounded-0">  ${announcement.text} </p> 
                 </div>
             </c:forEach>
