@@ -13,6 +13,7 @@ import DBOperations.DBOperationsCourse;
 import DBOperations.DBOperationsDocument;
 import DBOperations.DBOperationsFaculty;
 import DBOperations.DBOperationsModule;
+import DBOperations.DBOperationsSchedule;
 import DBOperations.DBOperationsStudent;
 import Interface.Users.Admin;
 import Interface.Users.Faculty;
@@ -24,8 +25,8 @@ import Objects.Course;
 import Objects.CourseAnnouncement;
 import Objects.Document;
 import Objects.Module;
+import Objects.Schedule;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -72,6 +73,7 @@ public class SiteNavigationAdmin extends HttpServlet {
         DBOperationsCourse dbOpsCou = new DBOperationsCourse();
         DBOperationsCohort dbOpsCoh = new DBOperationsCohort();
         DBOperationsAnnouncement dbOpsAnn = new DBOperationsAnnouncement();
+        DBOperationsSchedule dbOpsSch = new DBOperationsSchedule();
         
         
         if(logout!=null&&!logout.equals("")){
@@ -653,6 +655,10 @@ public class SiteNavigationAdmin extends HttpServlet {
                     ArrayList<Faculty> relFaculty = dbOpsFac.getFacultyByCohort(cohortID);
                     ArrayList<Student> relStudents = dbOpsStud.getStudentsByCohort(cohortID);
                     
+                    Schedule schedule = dbOpsSch.getSchedule(cohortID);
+                    
+                    request.setAttribute("schedule", schedule.getUrl());
+                    
                     request.setAttribute("allCourses", allCourses);
                     request.setAttribute("allFaculty", allFaculty);
                     request.setAttribute("allStudents", allStudents);
@@ -665,6 +671,15 @@ public class SiteNavigationAdmin extends HttpServlet {
                 String save = request.getParameter("saveChanges");
                 if (save != null && !save.equals("")){
                     
+                    String ID = request.getParameter("cohortID");
+                    
+                        String img = request.getParameter("imgURL");
+                        if (img != null && ! img.equals("")){
+                                dbOpsSch.deleteSchedule(ID);
+                                dbOpsSch.addSchedule(ID, img);
+                            }
+                        
+                    
                     
                       /*
                        in the following code, obtain one lists. A list of all courses that have been checked off within the "courses" form
@@ -672,7 +687,7 @@ public class SiteNavigationAdmin extends HttpServlet {
                        table where cohort_id = x. then add all new occurences in
                        */
                         
-                      String ID = request.getParameter("cohortID");
+                      
                       
                        //obtain list of all documents that are checked off in the document form and store it in array list checkedDocumentIDs
                        String courseCount = request.getParameter("courseCount");

@@ -78,8 +78,15 @@
                                             <div class="container-fluid d-flex justify-content-end m-0 p-0">
 
                                                 <button type="submit" id="but6" class="btn d-inline ps-3" name="deleteCohort" value="delete">Delete Cohort</button>
+                                                
+                                                
 
                                             </div>
+                                            <b>Schedule URL</b>
+                                            <input type="text" name ="imgURL" value="${requestScope.schedule}"></input>
+                                            
+                                            <!--
+                                                <input type="file" name="img" accept="image/*"> -->
                                         </div>
                                     </div>
                                 
