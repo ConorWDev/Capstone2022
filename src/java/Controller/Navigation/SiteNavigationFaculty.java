@@ -554,9 +554,13 @@ public class SiteNavigationFaculty extends HttpServlet {
                 request.setAttribute("cohorts", cohorts);
                 
                 Schedule schedule = dbOpsSch.getSchedule(cohorts.get(0).getCohortID());
-                String scheduleID = schedule.getScheduleId();
-                String url = dbOpsSch.getUrl(scheduleID);
-                request.setAttribute("url", url);
+                if (schedule != null){
+                    String scheduleID = schedule.getScheduleId();
+                    String url = dbOpsSch.getUrl(scheduleID);
+                    request.setAttribute("url", url);
+                }
+                
+                
                 
                 request.getRequestDispatcher("/WEB-INF/faculty/fac_schedule.jsp").forward(request, response);
             }
