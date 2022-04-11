@@ -130,4 +130,79 @@ public class DBOperationsSchedule {
                 
                 return result;
     }
+    
+    public boolean addSchedule (String cohortID, String url){
+        boolean result = false;
+        String sql = "insert into ma_schedule (cohort_id, url) values (?,?);";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            
+            st.setString(1, cohortID);
+            st.setString(2, url);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+            
+        }
+        return result;
+    }
+
+    public boolean deleteSchedule(String ID) {
+        boolean result = false;
+        String sql = "delete from ma_schedule where cohort_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            
+            st.setString(1, ID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+            
+        }
+        return result;
+    }
+
+    public Schedule getSchedule(String cohortID) {
+        Schedule schedule = null;
+        String sql = "select * from ma_schedule where cohort_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+       try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()) {
+                String scheduleId = rs.getString(1);
+                String cohortId = rs.getString(2);
+                String url = rs.getString(3);
+                
+                schedule = new Schedule(scheduleId, cohortId, url);
+                
+                
+            }
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+        } catch (Exception e) {
+            }
+        return schedule;
+    }
 }
