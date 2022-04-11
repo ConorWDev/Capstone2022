@@ -835,7 +835,8 @@ public class SiteNavigationAdmin extends HttpServlet {
                 
                     request.getRequestDispatcher("/WEB-INF/admin/AdminAnnoucements.jsp").forward(request, response);
                 }
-                else{
+                //navigating to cohort announcement mgmt
+                else if(op.equals("2")){
                     
                     String save = request.getParameter("saveChanges");
                     if (save != null && !save.equals("")){
@@ -863,8 +864,6 @@ public class SiteNavigationAdmin extends HttpServlet {
                                 dbOpsAnn.deleteCohortAnnouncement(ID);
                             }
                         }
-                        
-                        
                     }
                     
                     
