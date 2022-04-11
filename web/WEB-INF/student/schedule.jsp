@@ -24,7 +24,7 @@
                 <p class="h3 " style="color: #0069d9">Schedule</p>
                 <div class="row " style="align-content: center">
                     
-                    <iframe src="https://docs.google.com/document/d/1vIa7f6CXW4N7-YrNxivA8C_jSVeYZmzSEwPt5-2QcEw/edit" height="500"/>
+                    <iframe src="${requestScope.url}" height="500"/>
                 </div>
                 </div>
             </div>
