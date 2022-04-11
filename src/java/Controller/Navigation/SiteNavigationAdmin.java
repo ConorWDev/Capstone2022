@@ -21,6 +21,7 @@ import Objects.Announcement;
 import Objects.Assignment;
 import Objects.Cohort;
 import Objects.Course;
+import Objects.CourseAnnouncement;
 import Objects.Document;
 import Objects.Module;
 import java.io.IOException;
@@ -850,21 +851,33 @@ public class SiteNavigationAdmin extends HttpServlet {
                             if (cohortText != null && !cohortText.equals("")){
                                 dbOpsAnn.editCohortAnnouncement(announcementID, cohortText);
                             }
-                            
                         }
                     }
                     
-                    //Delete functionality TODO
-                    String count = request.getParameter("count");
-                    if (count != null && !count.equals("")){
-                        int countInt = Integer.parseInt(count);
-                        for (int x = 0; x < countInt; x++){
-                            String ID = request.getParameter("deleteAnn" + x);
-                            if (ID != null && !ID.equals("")){
-                                dbOpsAnn.deleteCohortAnnouncement(ID);
-                            }
+                    String delete = null;
+                    for (int x = 0; x < 100; x++){
+                        String deleteTest = request.getParameter("deleteAnn" + x);
+                        if (deleteTest != null){
+                            delete = deleteTest;
                         }
                     }
+                    
+                    if (delete != null && !delete.equals("")){
+                         //Delete functionality TODO
+                        String count = request.getParameter("count");
+                        if (count != null && !count.equals("")){
+                            int countInt = Integer.parseInt(count);
+                                for (int x = 0; x < countInt; x++){
+                                    String ID = request.getParameter("deleteAnn" + x);
+                                    if (ID != null && !ID.equals("")){
+                                         dbOpsAnn.deleteCohortAnnouncement(ID);
+                                     }
+                                }
+                        }
+                    }
+                   
+                    
+                    
                     
                     
                     
@@ -878,13 +891,66 @@ public class SiteNavigationAdmin extends HttpServlet {
                     
                     //get all cohorts and all courses for selection
                     ArrayList<Cohort> cohorts = dbOpsCoh.getAllCohorts();
-                    ArrayList<Course> courses = dbOpsCou.getAllCourses();
+                    
                 
                     request.setAttribute("cohorts", cohorts);
-                    request.setAttribute("courses", courses);
+                    
                     
                     
                     request.getRequestDispatcher("/WEB-INF/admin/AdminAnnouncementManagement.jsp").forward(request, response);
+                }
+                else if (op.equals("3")){
+                    
+                    String save = request.getParameter("saveChanges");
+                    if (save != null && !save.equals("")){
+                        
+                        String count = request.getParameter("count");
+                        int countInt = Integer.parseInt(count);
+                            
+                        for(int x = 0; x < countInt; x++){
+                            String courseText = request.getParameter("cohortText" + x);
+                            String announcementID = request.getParameter("id" + x);
+                            if (courseText != null && !courseText.equals("")){
+                                dbOpsAnn.editCourseAnnouncement(announcementID, courseText);
+                            }
+                        }
+                    }
+                    
+                    String delete = null;
+                    for (int x = 0; x < 100; x++){
+                        String deleteTest = request.getParameter("deleteAnn" + x);
+                        if (deleteTest != null){
+                            delete = deleteTest;
+                        }
+                    }
+                    
+                    if (delete != null && !delete.equals("")){
+                         //Delete functionality TODO
+                        String count = request.getParameter("count");
+                        if (count != null && !count.equals("")){
+                            int countInt = Integer.parseInt(count);
+                                for (int x = 0; x < countInt; x++){
+                                    String ID = request.getParameter("deleteAnn" + x);
+                                    if (ID != null && !ID.equals("")){
+                                         dbOpsAnn.deleteCourseAnnouncement(ID);
+                                     }
+                                }
+                        }
+                    }
+                    
+                    
+                    
+                    String courseID = request.getParameter("courseIDs");
+                    if (courseID != null && !courseID.equals("")){
+                        ArrayList<CourseAnnouncement> announcements = dbOpsAnn.getCourseAnnouncements(courseID);
+                        request.setAttribute("announcements", announcements);
+                    }
+                    
+                    
+                    ArrayList<Course> courses = dbOpsCou.getAllCourses();
+                    request.setAttribute("courses", courses);
+                    
+                    request.getRequestDispatcher("/WEB-INF/admin/AdminAnnouncementManagementCourse.jsp").forward(request, response);
                 }
                 
                 
