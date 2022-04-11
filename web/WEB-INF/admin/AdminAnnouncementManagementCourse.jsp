@@ -35,13 +35,13 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-1 " id="contentheader">Course Announcement Management WIP</p>
+                            <p class="h2 mb-1 " id="contentheader">Course Announcement Management</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
   
                             <div class="col ">
-                                <form action="SiteNavigationAdmin?nav=announcements&op=2" method="POST">
+                                <form action="SiteNavigationAdmin?nav=announcements&op=3" method="POST">
                                     <div class="row">
                                         <div class="container d-flex justify-content-end mb-1">
                                             <p> </p>
@@ -49,13 +49,10 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <select multiple="multiple" class="form-select border border-secondary mb-3"  id="select1" name="cohortIDs"  onchange="this.form.submit()">
-                                            <c:forEach items="${requestScope.cohorts}" var="cohort">
-                                                <option value="${cohort.cohortID}">${cohort.cohortName}</option>
+                                        <select multiple="multiple" class="form-select border border-secondary mb-3"  id="select1" name="courseIDs"  onchange="this.form.submit()">
+                                            <c:forEach items="${requestScope.courses}" var="course">
+                                                <option value="${course.courseID}">${course.courseName}</option>
                                             </c:forEach>
-                                                 
-                                            
-                                           
                                         </select>
                                         
                                     </div>
@@ -64,7 +61,7 @@
 
                             <div class="col ">
 
-                                <form action="SiteNavigationAdmin?nav=announcements&op=2" method="POST">
+                                <form action="SiteNavigationAdmin?nav=announcements&op=3" method="POST">
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
@@ -83,7 +80,7 @@
                                                 <div class="row mb-3">
                                                     <div class="container-fluid d-flex justify-content-around mt-0">
                                                         <button type="submit" id="but4" class="btn d-inline m-0" name="saveChanges" value="save">Save Changes</button>
-                                                        <button type="submit" id="but6" class="btn d-inline m-0" name="deleteAnn${count}" value="delete">Delete Annoucement</button>
+                                                        <button type="submit" id="but6" class="btn d-inline m-0" name="deleteAnn${count}" value="${cohortAnnouncement.announcementID}">Delete Announcement</button>
                                                         <c:set var="count" value="${count + 1}"/>
                                                     </div>
                                                        
