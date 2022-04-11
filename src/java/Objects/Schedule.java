@@ -22,9 +22,15 @@ public class Schedule implements Serializable {
     }
 
     public Schedule(String scheduleId, String cohortId, String url) throws SQLException {
-        this.scheduleId = dbOpsSch.getScheduleId(scheduleId);
-        this.cohortId = dbOpsSch.getCohortId(scheduleId);
-        this.url = dbOpsSch.getUrl(scheduleId);
+        this.scheduleId = scheduleId;
+        this.cohortId = cohortId;
+        this.url = url;
+        
+    }
+    
+    public Schedule(String cohortId, String url) throws SQLException{
+        this.cohortId = cohortId;
+        this.url = url;
         
     }
 
