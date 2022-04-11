@@ -118,9 +118,12 @@ public class SiteNavigation extends HttpServlet {
             else if(nav.equals("schedule")){
                 String cohortID = student.getCohortID();
                 Schedule schedule = dbOpsSch.getSchedule(cohortID);
-                String scheduleID = schedule.getScheduleId();
-                String url = dbOpsSch.getUrl(scheduleID);
-                request.setAttribute("url", url);
+                if (schedule != null){
+                    String scheduleID = schedule.getScheduleId();
+                    String url = dbOpsSch.getUrl(scheduleID);
+                    request.setAttribute("url", url);
+                }
+               
                 
                 request.getRequestDispatcher("/WEB-INF/student/schedule.jsp").forward(request, response); 
             }
