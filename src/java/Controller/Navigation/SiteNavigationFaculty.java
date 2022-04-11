@@ -14,6 +14,7 @@ import DBOperations.DBOperationsDocument;
 import DBOperations.DBOperationsGeneral;
 import DBOperations.DBOperationsGrade;
 import DBOperations.DBOperationsModule;
+import DBOperations.DBOperationsSchedule;
 import DBOperations.DBOperationsStudent;
 import Interface.Users.Faculty;
 import Interface.Users.Student;
@@ -26,6 +27,7 @@ import Objects.CourseAnnouncement;
 import Objects.Document;
 import Objects.Grade;
 import Objects.Module;
+import Objects.Schedule;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -94,6 +96,7 @@ public class SiteNavigationFaculty extends HttpServlet {
         DBOperationsAssignments dbOpsAss = new DBOperationsAssignments();
         DBOperationsDocument dbOpsDoc = new DBOperationsDocument();
         DBOperationsAttendance dbOpsAtt = new DBOperationsAttendance();
+        DBOperationsSchedule dbOpsSch = new DBOperationsSchedule();
         
         if(logout!=null&&!logout.equals("")){
           session.invalidate();
@@ -545,6 +548,17 @@ public class SiteNavigationFaculty extends HttpServlet {
                 request.setAttribute("attendanceList",attendanceList);
                 
                 request.getRequestDispatcher("/WEB-INF/faculty/fac_studentattendance.jsp").forward(request, response);
+            }
+            else if (nav.equals("schedule")){
+                ArrayList<Cohort> cohorts = dbOpsCo.getCohorts(faculty.getUserID());
+                request.setAttribute("cohorts", cohorts);
+                
+                Schedule schedule = dbOpsSch.getSchedule(cohorts.get(0).getCohortID());
+                String scheduleID = schedule.getScheduleId();
+                String url = dbOpsSch.getUrl(scheduleID);
+                request.setAttribute("url", url);
+                
+                request.getRequestDispatcher("/WEB-INF/faculty/fac_schedule.jsp").forward(request, response);
             }
         }
         //if faculty is logging in for first time
