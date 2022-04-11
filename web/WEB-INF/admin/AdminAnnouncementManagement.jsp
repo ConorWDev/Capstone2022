@@ -65,7 +65,7 @@
                             <div class="col ">
 
                                 <form action="SiteNavigationAdmin?nav=announcements&op=2" method="POST">
-
+                                    
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
@@ -83,7 +83,7 @@
                                                 <div class="row mb-1">
                                                     <div class="container-fluid d-flex justify-content-around mt-0 mb-0">
                                                         <button type="submit" id="but4" class="btn d-inline mt-0 mb-0" name="saveChanges" value="save">Save Changes</button>
-                                                        <button type="submit" id="but6" class="btn d-inline mt-0 mb-0" name="deleteAnn${count}" value="delete">Delete Annoucement</button>
+                                                        <button type="submit" id="but6" class="btn d-inline mt-0 mb-0" name="deleteAnn${count}" value="${cohortAnnouncement.announcementID}">Delete Announcement</button>
                                                         <c:set var="count" value="${count + 1}"/>
                                                     </div>
                                                        
@@ -95,6 +95,7 @@
                                         
                                     </c:forEach>
                                     <input type="hidden" name="count" value="${count}"> 
+                                    
 
 
 
