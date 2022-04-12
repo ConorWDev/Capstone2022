@@ -1,8 +1,9 @@
 <%-- 
-    Document   : schedule
-    Created on : Feb. 9, 2022, 8:05:39 a.m.
-    Author     : massvm
+    Document   : fac_schedule
+    Created on : Apr. 11, 2022, 4:12:39 p.m.
+    Author     : ryanc
 --%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,7 +17,7 @@
         <title>Schedule</title>
     </head>
     <body>
-        <%@include file="headerfragment.jspf" %>
+        <%@include file="fac_headerfragment.jspf" %>
         <div class="row">
             <div class="col-1">
             </div>
@@ -31,8 +32,6 @@
             <div class="col-1">
             </div>
         </div>
-        <footer>
-        <%@include file="footerfragment.jspf" %>
-        </footer>
+        
     </body>
 </html>

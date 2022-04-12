@@ -14,6 +14,7 @@ import DBOperations.DBOperationsDocument;
 import DBOperations.DBOperationsGeneral;
 import DBOperations.DBOperationsGrade;
 import DBOperations.DBOperationsModule;
+import DBOperations.DBOperationsSchedule;
 import DBOperations.DBOperationsStudent;
 import Interface.Users.Faculty;
 import Interface.Users.Student;
@@ -26,6 +27,7 @@ import Objects.CourseAnnouncement;
 import Objects.Document;
 import Objects.Grade;
 import Objects.Module;
+import Objects.Schedule;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -94,6 +96,7 @@ public class SiteNavigationFaculty extends HttpServlet {
         DBOperationsAssignments dbOpsAss = new DBOperationsAssignments();
         DBOperationsDocument dbOpsDoc = new DBOperationsDocument();
         DBOperationsAttendance dbOpsAtt = new DBOperationsAttendance();
+        DBOperationsSchedule dbOpsSch = new DBOperationsSchedule();
         
         if(logout!=null&&!logout.equals("")){
           session.invalidate();
@@ -136,9 +139,45 @@ public class SiteNavigationFaculty extends HttpServlet {
                //were all passed individually. This was ineffective. Because all navigation "deeper" into the app (i.e, navigating to further pages
                //from this point in the app onward) will be only relevant to this particular module, the module is set as "module" on the session scope.
                //if a different module is navigated to on fac_coursemain.jsp, that particular module will be assigned to the session scope as "module".
-                
+
                 Module module = dbOpsMod.getModule(moduleID);
                 session.setAttribute("moduleObject", module);
+               
+                
+                String assName = request.getParameter("assignmentName");
+                String assDescription = request.getParameter("assignmentDescription");
+                String assURL = request.getParameter("assignmentURL");
+                if (assName != null && !assName.equals("")){
+                    module = (Module)session.getAttribute("moduleObject");
+                    Assignment assignment = new Assignment(assName,assDescription,assURL);
+                    
+                    //COME BACK TO HERE work on facultys ability to add assignments
+                    dbOpsAss.createAssignmentFac(module.getLessonId(),assignment);
+                    
+                    String id = dbOpsAss.getAssignmentID(assignment);
+                    
+                    if (id != null && !id.equals("")){
+                        request.setAttribute("message", id);
+                    }
+                    else{
+                           request.setAttribute("message", "something went wrong");
+                    }
+                    
+                    dbOpsAss.brigeAssignmentModule(module.getLessonId(), id);
+                    
+                    
+                }
+                
+                String docName = request.getParameter("documentName");
+                String docDescription = request.getParameter("documentDescription");
+                String docURL = request.getParameter("documentURL");
+                if (docName != null && !docName.equals("")){
+                    Document doc = new Document(docName,docDescription,docURL);
+                    dbOpsDoc.submitDocument(doc);
+                    String id = dbOpsDoc.getDocumentID(doc);
+                    dbOpsDoc.bridgeDocumentModule(moduleID, id);
+                }
+                
                 
                 //get list of assignments for particular module
                 ArrayList<Assignment> assignments = dbOpsAss.getModuleAssignments(moduleID);
@@ -290,6 +329,8 @@ public class SiteNavigationFaculty extends HttpServlet {
                      
                      DBOperationsAnnouncement da = new DBOperationsAnnouncement();
                      da.deleteCohortAnnouncement(announcementID);
+                     
+                     request.setAttribute("editMenu", false);
                }
                
                 ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
@@ -302,7 +343,7 @@ public class SiteNavigationFaculty extends HttpServlet {
                 
                //obtain the course object that is storred within the session scope (again, this is done above when navigating to coursemain.jsp)
                Course course = (Course)session.getAttribute("courseObject"); 
-                
+                 
                /*
                 NOTE, at this point in the application, the course object "course" within the session scope has been set (occurs when selecting couse
                 (on fac_home.jsp). As such, course related datafields that are required on courseannouncement.jsp can be passed via the "course" session
@@ -340,6 +381,8 @@ public class SiteNavigationFaculty extends HttpServlet {
                    
                }
                
+               
+               
                //edit menu form submitted, call dbOp to update database
                String newText = request.getParameter("newText");
                if (newText != null && !newText.equals("")){
@@ -358,7 +401,29 @@ public class SiteNavigationFaculty extends HttpServlet {
                        request.setAttribute("editMessage", "An error ocurred during editing. Limit 1000 characters");
                    }
                }
-              
+
+               
+               //delete course announcement, get delete menu
+               String deleteMenu = request.getParameter("deleteMenu");
+               
+               if (deleteMenu != null && !deleteMenu.equals("")){
+                   
+                   //obtain announcementID from get announcement form on fac_courseannouncements.jsp and carry out sql command to delete it from the DB
+                   String announcementID = request.getParameter("announcementID");
+                   
+                   //call dbOp to delete course announcement with announcemnetID
+                   boolean result = dbOpsAn.deleteCourseAnnouncement(announcementID);
+                   
+                   String message = "";
+                   if (result){
+                       message = "The announcement has been deleted";
+                   }
+                  
+         
+                   request.setAttribute("message", message);
+               }
+               
+
                
                //obtain course announcements for display on fac_courseannouncments page 
                ArrayList<CourseAnnouncement> announcements = dbOpsAn.getCourseAnnouncements(course.getCourseID());
@@ -481,6 +546,21 @@ public class SiteNavigationFaculty extends HttpServlet {
                 request.setAttribute("attendanceList",attendanceList);
                 
                 request.getRequestDispatcher("/WEB-INF/faculty/fac_studentattendance.jsp").forward(request, response);
+            }
+            else if (nav.equals("schedule")){
+                ArrayList<Cohort> cohorts = dbOpsCo.getCohorts(faculty.getUserID());
+                request.setAttribute("cohorts", cohorts);
+                
+                Schedule schedule = dbOpsSch.getSchedule(cohorts.get(0).getCohortID());
+                if (schedule != null){
+                    String scheduleID = schedule.getScheduleId();
+                    String url = dbOpsSch.getUrl(scheduleID);
+                    request.setAttribute("url", url);
+                }
+                
+                
+                
+                request.getRequestDispatcher("/WEB-INF/faculty/fac_schedule.jsp").forward(request, response);
             }
         }
         //if faculty is logging in for first time

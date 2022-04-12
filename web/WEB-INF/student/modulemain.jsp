@@ -22,70 +22,83 @@
     <body>
         
         
-         <%@include file="headerfragment.jspf" %>
-         
-         <div class="col-5 bg-white rounded p-2">
-             <div class="container">
-
-
-                    <div class="row">
-                      <div class="col">
-                          <p class="h1">${requestScope.moduleName}</p> 
-                      </div>
-                    </div>  
-                    ${requestScope.moduleDescription}
-                    <br><br>
-
-                        <!-- 
-                             JSTL Assignment loop notes:
-                             Summary:
-                                 Loads every assignment from the module into rows
-                             List Name: assignments
-                             What Will it Call:
-                                 - An ArrayList containing all the assignments the module has
-                             Attributes List:
-                                 assignmentUrl: the URL that will download the assignment file
-                                 assignmentName: name of assignment
-                                 assignmentDescription: description of assignment
-                         --> 
-
-                        <div class="row">
-                            <div class="col">
-                                <p class="h3">Assignments </p> 
-                            </div>
-                            <hr>
-                        </div>
-
-                        <c:forEach items="${requestScope.assignments}" var="assignment">
-                            ${assignment.assignmentName}<br>
-                            ${assignment.assignmentDescription}<br>
-                        </c:forEach>
-
-                            <!-- 
-                          JSTL document loop notes:
-                          Summary:
-                              Loads every document from the module into rows
-                          List Name: documents
-                          What Will it Call:
-                              - An ArrayList containing all the documents the module has
-                          Attributes List:
-                              name     : name of document
-                              description: description of document
-                              url: url of document
-                          -->
-
-                        <div class="row">
-                            <div class="col">
-                                <p class="h3">Documents</p> 
-                            </div>
-                            <hr>
-                        </div>    
-
-                        <c:forEach items="${requestScope.documents}" var="document">
-                             ${document.name}
-                             ${document.description}
-                             ${document.url} <br>
-                        </c:forEach>
+        <%@include file="headerfragment.jspf" %>
+        
+        <div class="container bg-white rounded p-3"> 
+            <!-- Module Overview -->
+            <div class="row">
+                <div class="col">
+                    <p class="h1">${requestScope.moduleName}</p> 
+                </div>
+            </div>
+            <div class="row">
+                <p>${requestScope.moduleDescription}</p>
+                
+            </div>
+            <hr>       
+            
+            <!-- Assignments Section -->
+            <div class="row">
+                <p class="h3">Assignments</p>
+            </div>
+            
+            <!-- 
+                JSTL Assignment loop notes:
+                Summary:
+                    Loads every assignment from the module into rows
+                List Name: assignments
+                What Will it Call:
+                    - An ArrayList containing all the assignments the module has
+                Attributes List:
+                    assignmentUrl: the URL that will download the assignment file
+                    assignmentName: name of assignment
+                    assignmentDescription: description of assignment
+            --> 
+            <c:forEach items="${requestScope.assignments}" var="assignment">
+                <div class="card m-3">
+                    <div class="card-header">
+                        <p class="h5">${assignment.assignmentName}</p>
+                    </div>
+                    <div class="card-body">
+                        <p>${assignment.assignmentDescription}</p>
+                    </div>
+                        <c:if test="${assignment.assignmentUrl != '' && assignment.assignmentUrl != null}">
+                    <div class="card-body">
+                         <a href="${assignment.assignmentUrl}"> <button type="button" class="btn btn-primary">View</button></a>
+                    </div>
+                        </c:if>
+                </div>
+            </c:forEach>
+            <hr>
+            <!-- 
+                JSTL document loop notes:
+                Summary:
+                    Loads every document from the module into rows
+                List Name: documents
+                    What Will it Call:
+                        - An ArrayList containing all the documents the module has
+                    Attributes List:
+                        name     : name of document
+                        description: description of document
+                        url: url of document
+            -->
+            
+            <!-- Documents Section -->
+            <div class="row">
+                <p class="h3">Documents</p> 
+            </div>    
+            <c:forEach items="${requestScope.documents}" var="document">
+                <div class="card m-3">
+                    <div class="card-header">
+                        <p class="h3">${document.name}</p>
+                    </div>
+                    <div class="card-body">
+                        <p>${document.description}</p>
+                        <a href="${document.url}"> <button type="button" class="btn btn-primary">View</button></a>
+                        <!-- Might need download link in the future -->
+                    </div>
+                </div>
+            </c:forEach>
 
 
 
@@ -94,7 +107,6 @@
 
                         </div>
                   </div>
-             </div>
          </div>
          
          
@@ -125,6 +137,6 @@
             
         
          
-         <%@include file="footerfragment.jspf" %>
+         
     </body>
 </html>

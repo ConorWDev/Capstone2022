@@ -23,7 +23,9 @@
         <!--Top of the admin bar-->
         <%@include file="AdminHeaderFragment.jspf" %>
 
-
+       
+        
+        
         <div class="row">
             <!--SideBar Fragment-->   
             <%@include file="AdminSideBarFragment.jspf" %>
@@ -35,14 +37,15 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-1 " id="contentheader">Content Title</p>
+                            <p class="h2 mb-1 " id="contentheader">Document Management</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
-
+                        
                             <div class="col ">
-                                <form>
+                                <form action="SiteNavigationAdmin?nav=documents&op=2" method="POST">
                                     <div class="row">
+                                        <!-- 
                                         <div class="container d-flex justify-content-around mb-1">
                                             <button type="submit" id="but1" class="btn d-inline-block ms-2 ">Button 1</button>
                                             <button type="submit" id="but2"class="btn d-inline-block ">Button 2</button>
@@ -53,60 +56,60 @@
                                                 <li><a class="dropdown-item" href="#">Item 3</a></li>
                                             </ul>
                                         </div>
+                                        -->
                                     </div>
                                     <div>
-                                        <select multiple="multiple" class="form-select border-0"  id="select1">
-                                            <option>This needs to be Updated with Logic So this is dynamically created</option>
-                                            <!--FOR JSP add loop to build dynamic -->
+                                        <select multiple="multiple" class="form-select border-0 m-3" id="select1" name="documentIDs"  onchange="this.form.submit()">
+                                            <c:forEach items="${requestScope.documents}" var="document">
+                                                        <option value="${document.documentID}">${document.name}</option>
+                                            </c:forEach>
+                                            
                                         </select>
+                                        
                                     </div>
                                 </form>
                             </div>
 
                             <div class="col ">
 
-                                <form action="#">
+                                <form action="SiteNavigationAdmin?nav=documents&op=2" method="POST">
+                                    
+                                    
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic"><b>*Topic* Info</b></p>
+                                            <p class="h6 mt-3 " id="headerdynamic"><b>Document Info</b></p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div id="infoblock"class="form-control  ">
+                                            
+                                            <input type="hidden" name="id" value="${requestScope.docID}">
                                             <!---->
-                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Info 1</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="info1" name="info1">
+                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Name</b></label>
+                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Name" value="${requestScope.docName}" name="info1">
                                             <!---->
-                                            <label for="info2" id="label2" class="form-label mb-0"><b>Info 2</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="info2" name="info2">
+                                            <label for="info2" id="label2" class="form-label mb-0"><b>Description</b></label>
+                                            <input type="text" class="form-control mb-3" id="info2" placeholder="Description" value="${requestScope.docDescription}" name="info2">
                                             <!---->
-                                            <label for="info3" id="label3" class="form-label mb-0"><b>Info 3</b></label>
-                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="info3" name="info3">
-                                            <!---->
-                                            <label for="info4" id="label4" class="form-label mb-0"><b>Info 4</b></label>
-                                            <input type="text" class="form-control mb-3" id="info4" placeholder="info4" name="info4">
-                                            <!---->
-                                            <label for="info5" id="label5"  class="form-label mb-0"><b>Info 5</b></label>
-                                            <input type="text" class="form-control mb-3" id="info5" placeholder="info5" name="info5">
-                                            <!---->
-                                            <label for="info6" id="label6" class="form-label mb-0"><b>Info 6</b></label>
-                                            <input type="text" class="form-control mb-0" id="info6" placeholder="info6" name="info6">
-                                            <div class="row">
+                                            <label for="info3" id="label3" class="form-label mb-0"><b>Link</b></label>
+                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="Link" value="${requestScope.docUrl}" name="info3">
+                                            
                                                 <div class="container-fluid d-flex justify-content-around ">
-                                                    <button type="submit" id="but4" class="btn d-inline  ">Edit $$$$</button>
-                                                    <button type="submit" id="but5" class="btn d-inline  ">Create $$$$</button>
-                                                    <button type="submit" id="but6" class="btn d-inline  ">Delete $$$$</button>
+                                                    <button type="submit" id="but4" class="btn d-inline" name="saveChanges" value="save">Save Changes</button>
+                                                    <button type="submit" id="but6" class="btn d-inline" name="deleteDoc" value="delete">Delete</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-
-
-
+                                    
                                 </form>
+                            </div>
+
+
+
+
+                                
                             </div>
 
                         </div>

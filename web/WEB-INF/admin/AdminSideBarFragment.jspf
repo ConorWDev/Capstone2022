@@ -103,7 +103,7 @@
 
                 <a class="dropdown-item" href="SiteNavigationAdmin?nav=cohort&op=1">Create Cohort</a>
                 <a class="dropdown-item" href="SiteNavigationAdmin?nav=cohort&op=2">Edit Cohort</a>
-                <a class="dropdown-item" href="SiteNavigationAdmin?nav=cohort&op=3">Archive Cohort</a>
+                
 
             </div>
         </div>
@@ -117,8 +117,8 @@
                 </button>
             <div class="collapse" id="opcollapse6">
                 <a class="dropdown-item" href="SiteNavigationAdmin?nav=announcements&op=1">Create New Announcement</a>
-                <a class="dropdown-item" href="SiteNavigationAdmin?nav=announcements&op=2">Edit Announcement</a>
-                <!-- Leaving this here just incase <li><a class="dropdown-item" href="#"></a></li>-->
+                <a class="dropdown-item" href="SiteNavigationAdmin?nav=announcements&op=2">Edit Cohort Announcements</a>
+                <a class="dropdown-item" href="SiteNavigationAdmin?nav=announcements&op=3">Edit Course Announcements</a>
 
             </div>
         </div>

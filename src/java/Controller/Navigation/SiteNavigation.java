@@ -6,20 +6,24 @@
 package Controller.Navigation;
 import DBOperations.DBOperationsAnnouncement;
 import DBOperations.DBOperationsAssignments;
+import DBOperations.DBOperationsCohort;
 import DBOperations.DBOperationsCourse;
 import DBOperations.DBOperationsDocument;
 import DBOperations.DBOperationsGeneral;
 import DBOperations.DBOperationsGrade;
 import DBOperations.DBOperationsModule;
+import DBOperations.DBOperationsSchedule;
 import DBOperations.DBOperationsStudent;
 import Interface.Users.Student;
 import Objects.Announcement;
 import Objects.Assignment;
+import Objects.Cohort;
 import Objects.Course;
 import Objects.CourseAnnouncement;
 import Objects.Document;
 import Objects.Grade;
 import Objects.Module;
+import Objects.Schedule;
 import Objects.StudentCourse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -78,6 +82,8 @@ public class SiteNavigation extends HttpServlet {
         DBOperationsCourse dbOpsCor = new DBOperationsCourse();
         DBOperationsAssignments dbOpsAss = new DBOperationsAssignments();
         DBOperationsDocument dbOpsDoc = new DBOperationsDocument();
+        DBOperationsCohort dbOpsCoh = new DBOperationsCohort();
+        DBOperationsSchedule dbOpsSch = new DBOperationsSchedule();
         
         //LogOut Block
         if(logout!=null&&!logout.equals("")){
@@ -110,6 +116,15 @@ public class SiteNavigation extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/student/reportcard.jsp").forward(request, response); 
             }
             else if(nav.equals("schedule")){
+                String cohortID = student.getCohortID();
+                Schedule schedule = dbOpsSch.getSchedule(cohortID);
+                if (schedule != null){
+                    String scheduleID = schedule.getScheduleId();
+                    String url = dbOpsSch.getUrl(scheduleID);
+                    request.setAttribute("url", url);
+                }
+               
+                
                 request.getRequestDispatcher("/WEB-INF/student/schedule.jsp").forward(request, response); 
             }
             /*The coursemain else if block requires one variable to dynamically load all modules for a specific course
@@ -122,9 +137,13 @@ public class SiteNavigation extends HttpServlet {
                 request.setAttribute("courseName",courseName);
                 request.setAttribute("courseid", courseid);
                 
-                ArrayList<CourseAnnouncement> courseAnnouncements = dbOpsAn.getCourseAnnouncements(courseid);
+                //Obtain the announcements for the course
+                ArrayList<CourseAnnouncement> courseAnnouncements = dbOpsAn.getCourseAnnouncements(courseid); 
                 request.setAttribute("courseAnnouncements",courseAnnouncements);
                 
+                //Obtain users grades for the course
+                ArrayList<Grade> courseGrades = dbOpsGrade.getCourseGrades(username, courseid);
+                request.setAttribute("courseGrades", courseGrades);
                 request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response);
             }
             /*The announcement else if block requires one variable to dynamically load announcement information
@@ -175,6 +194,10 @@ public class SiteNavigation extends HttpServlet {
         String cohortID = student.getCohortID();
         ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(cohortID);
         request.setAttribute("announcements", announcements);
+        
+        Cohort cohort = dbOpsCoh.getCohort(cohortID);
+        String cohortNameMain = cohort.getCohortName();
+        session.setAttribute("cohortNameMain", cohortNameMain);
         
         ArrayList<Course> courses = dbOpsCor.getCourses(username);
         request.setAttribute("courses", courses);

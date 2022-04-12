@@ -69,13 +69,16 @@
     color: #082047;
 }
 
-#but1,#but2,#but3,#but4,#but5{
-    font-weight: bolder;
+#but1,#but2,#but3,#but4,#but5, #but6{
+    font-weight: bold;
+    
+    background-color: whitesmoke;
+    margin: 15px;
+    text-align: center;
     color: #082047;
 }
 
 #but6{
-    font-weight: bolder;
     color: red;
 
 }
@@ -109,5 +112,14 @@
 }
 /*Announcement Specifics*/
 #select2{
+    height: 500px;
+}
+#select3{
+   height: 500px;
+}
+#selectann{
     height: 450px;
+}
+#imagefiller{
+    opacity: 75%;
 }

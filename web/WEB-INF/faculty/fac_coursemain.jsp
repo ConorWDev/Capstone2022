@@ -22,16 +22,21 @@
         <div class="row">
             <div class="col-1"></div>
             <div class="col bg-white rounded">
-                <div class="row m-3 p-2 border-bottom">    
-                    <p class="h3">${sessionScope.courseObject.courseName}</p>
-                </div>
+                
+                <div class="row mb-3">
+
+                    <div class="container-fluid border-bottom border-primary" id="announcementheader">    
+                        <p class="h2 ms-2 mt-2">${sessionScope.courseObject.courseName}</p>
+                    </div>
+
+                </div> 
                 <div class="row">
                     <div class="col-4">
                         <div class="row">
-                            <p>Course Modules</p>
+                            <p class="h4 ms-3">Modules</p> 
                         </div>    
                 <c:forEach items="${requestScope.modules}" var="module">
-                    <div class="row ms-3 p-1">
+                    <div class="row ms-1 p-1">
                     <a class="d-flex btn border-bottom-primary bg-white text-primary" href="SiteNavigationFaculty?nav=modulemain&moduleid=${module.lessonId}">${module.name}</a>
                     </div>
                     </c:forEach>

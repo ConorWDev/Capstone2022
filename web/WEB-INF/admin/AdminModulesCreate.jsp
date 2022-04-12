@@ -44,7 +44,7 @@
                             
                             <div class="col-4 ps-3">
                                  
-                                 <form action="action">
+                                <form action="SiteNavigationAdmin?nav=modules&op=1" method="POST">
 
                                     <div class="row justify-content-end">
                                         <div class="container-sm
@@ -64,16 +64,16 @@
                                         <div id="infoblock"class="form-control  ">
                                             
                                            
-                                            <!-- -->
+                                            <!-- 
                                             <label for="info1" id="label1" class="form-label mb-0 "><b>Module ID</b></label>
                                             <input type="text" class="form-control mb-3" id="info1" placeholder="Module ID is automatically created." name="info1" 
                                                    disabled="true">
                                             <!-- -->
                                             <label for="info2" id="label2" class="form-label mb-0"><b>Module Name</b></label>
-                                            <input type="text" class="form-control mb-3" id="info2" placeholder="Name" name="info2">
+                                            <input type="text" class="form-control mb-3" id="info2" placeholder="Name" name="info2" required="true">
                                             <!-- -->
                                             <label for="info3" id="label3" class="form-label mb-0"><b>Module Description</b></label>
-                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="info" name="info3">
+                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="Description" name="info3" required="true">
                                             <!-- -->
 <!--                                            <label for="info4" id="label4" class="form-label mb-0"><b>info4</b></label>
                                             <input type="text" class="form-control mb-3" id="info4" placeholder="info" name="info4">
@@ -90,7 +90,7 @@
                                                     
                                                 </div>
                                             </div>
-                                            </form>
+                                            
                                         </div>
                                     </div>
 
@@ -100,15 +100,9 @@
                                 </form>
                             </div>
                             
-                            <div class="col me-3">
-                                
-                                <div class="row mt-2 " >
-                                     <select multiple="multiple" class="form-select border-0 mb-3"  id="select2" style="height: 500px;">
-                                     
-                                     
-                                     
-                                     </select>
-                                </div>
+                           <div class="col-3"></div>
+                            <div class="col">
+                                <img id="imagefiller" class="img m-4" src="MassLogo500px.png" alt="Mass" style="height: 250px;width: 250px"/>
                             </div> 
                             
                         </div>

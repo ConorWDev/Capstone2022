@@ -87,4 +87,264 @@ public class DBOperationsCohort {
         return cohort;
     }
     
+    public boolean createCohort (String cohortName){
+        boolean result = false;
+        String sql = "insert into ma_cohort (name) values (?);";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortName);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+        }
+         
+         return result;
+    }
+    
+    public ArrayList<Cohort> getAllCohorts (){
+        ArrayList<Cohort> cohorts = new ArrayList<>();
+        String sql = "select * from ma_cohort;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()){
+                String cohortID = rs.getString(1);
+                String cohortName = rs.getString(2);
+                
+                Cohort cohort = new Cohort(cohortID,cohortName);
+                cohorts.add(cohort);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+         return cohorts;
+    }
+    
+    public boolean clearCohortCourseBridge (String cohortID){
+        boolean result = false;
+        String sql = "delete from ma_cohort_course where cohort_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+        }
+         
+         return result;
+    }
+    
+    public boolean bridgeCohortCourse (String cohortID, String courseID){
+        boolean result = false;
+        String sql = "insert into ma_cohort_course values (?,?);";
+         ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            st.setString(2, courseID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+        }
+         
+         return result;
+    }
+    
+     public boolean clearCohortFacultyBridge (String cohortID){
+        boolean result = false;
+        String sql = "delete from ma_cohort_faculty where cohort_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+        }
+         
+         return result;
+    }
+     
+      public boolean bridgeCohortFaculty (String cohortID, String facultyID){
+        boolean result = false;
+        String sql = "insert into ma_cohort_faculty values (?,?);";
+         ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            st.setString(2, facultyID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+        }
+         
+         return result;
+    }
+      
+      
+      public boolean clearCohortStudentBridge (String cohortID){
+        boolean result = false;
+        String sql = "delete from ma_student_cohort where cohort_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+        }
+         
+         return result;
+    }
+      
+       public boolean bridgeCohortStudents (String cohortID, String studentID){
+        boolean result = false;
+        String sql = "insert into ma_student_cohort values (?,?);";
+         ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            st.setString(2, studentID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+        }
+         
+         return result;
+    }
+       
+       public boolean deleteCohortByID (String cohortID){
+           
+           deleteBridges(cohortID);
+           
+           boolean result = false;
+           String sql = "delete from ma_cohort where cohort_id = ?;";
+           ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+        }
+
+       
+           return result;
+       }
+       
+       
+       public boolean deleteBridges (String cohortID){
+           boolean result = false;
+           String sql = "delete from ma_cohort_course where cohort_id = ?;";
+           String sql2 = "delete from ma_cohort_faculty where cohort_id = ?;";
+           String sql3 = "delete from ma_student_cohort where cohort_id = ?;";
+           String sql4 = "delete from ma_announcement where cohort_id = ?;";
+           String sql5 = "delete from ma_schedule where cohort_id = ?;";
+           
+           ConnectionPool cp = ConnectionPool.getInstance();
+           
+            try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            PreparedStatement st2 = conn.prepareStatement(sql2);
+            PreparedStatement st3 = conn.prepareStatement(sql3);
+            PreparedStatement st4 = conn.prepareStatement(sql4);
+            PreparedStatement st5 = conn.prepareStatement(sql5);
+            
+            st.setString(1, cohortID);
+            st2.setString(1, cohortID);
+            st3.setString(1, cohortID);
+            st4.setString(1, cohortID);
+            st5.setString(1, cohortID);
+            
+            int rowsAffected = st.executeUpdate();
+            rowsAffected = st2.executeUpdate();
+            rowsAffected = st3.executeUpdate();
+            rowsAffected = st4.executeUpdate();
+            rowsAffected = st5.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            st2.close();
+            st3.close();
+            st4.close();
+            st5.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+        }
+         
+         return result;
+           
+       }
+       
+    
 }

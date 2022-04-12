@@ -55,10 +55,10 @@
                                     </c:choose>
                                     
                                     <div class="row">
-                                        <div class="container d-flex justify-content-end mb-1 ">
+                                        <div class="container d-flex justify-content-end mb-0 ">
                                             
                                             
-                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-4 " data-bs-toggle="dropdown"></button> 
+                                            <button type="submit" id="but3" class="btn d-inline-block dropdown-toggle me-4 mb-1 mt-1 p-1" data-bs-toggle="dropdown">Switch User Types</button> 
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=1">Student</a></li>
                                                 <li><a class="dropdown-item" href="SiteNavigationAdmin?nav=users&op=2">Faculty</a></li>
@@ -67,7 +67,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <select multiple="multiple" class="form-select border-0"  id="select1" name="userIDs" onchange="this.form.submit()">
+                                        <select multiple="multiple" class="form-select border border-secondary"  id="select1" name="userIDs" onchange="this.form.submit()">
                                             
                                             
                                             <%--Test to find which array list is not null, the list
@@ -75,17 +75,17 @@
                                             <c:choose>
                                                 <c:when test="${requestScope.students != null}">
                                                     <c:forEach items="${requestScope.students}" var="student">
-                                                        <option value="${student.userID}">${student.fullName}</option>
+                                                        <option class="text-capitalize" value="${student.userID}">${student.fullName}</option>
                                                     </c:forEach>
                                                 </c:when>
                                                 <c:when test="${requestScope.faculty != null}">
                                                     <c:forEach items="${requestScope.faculty}" var="faculty">
-                                                        <option value="${faculty.userID}">${faculty.fullName}</option>
+                                                        <option class="text-capitalize" value="${faculty.userID}">${faculty.fullName}</option>
                                                     </c:forEach>    
                                                 </c:when>
                                                 <c:when test="${requestScope.admins != null}">
                                                     <c:forEach items="${requestScope.admins}" var="admin">
-                                                        <option value="${admin.userID}">${admin.fullName}</option>
+                                                        <option class="text-capitalize" value="${admin.userID}">${admin.fullName}</option>
                                                     </c:forEach>   
                                                 </c:when>
                                                 
@@ -113,7 +113,7 @@
                                     <div class="row justify-content-end">
                                         <div class="container-sm
                                              d-flex justify-content ">
-                                            <p class="h6 mt-2 " id="headerdynamic"><b>${requestScope.usertype} Info</b></p>
+                                            <p class="h4 mt-2 mb-0" id="headerdynamic">${requestScope.usertype} Info</p>
                                         </div>
                                     </div>
                                     <div class="row">

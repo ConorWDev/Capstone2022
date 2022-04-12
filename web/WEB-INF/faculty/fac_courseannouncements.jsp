@@ -23,50 +23,101 @@
         <div class="row">
             <div class="col-1"></div>    
             <div class="col bg-white rounded" id="containerfac">
-                <div class="row mb-5">
-                    <p class="h4">${sessionScope.courseObject.courseName}</p>
-                </div>
-                <div class="row mb-5">
-                <div class="col">
-                    <div class="row">
-                        <p class="h4">Announcements</p>
-                    </div>
 
-                    <c:forEach items="${requestScope.announcements}" var="announcement">
+                <div class="row mb-3">
+                    <div class="container-fluid border-bottom border-primary" id="announcementheader">    
+                        <p class="h2 ms-2 mt-2">${sessionScope.courseObject.courseName}</p>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col border-end">
                         <div class="row">
+                        <p class="h4">Course Announcements</p>
+                        </div>
+                        
+                        <table class="table">
+                        <c:forEach items="${requestScope.announcements}" var="announcement">
+                            <tr>
                             <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
+                                <td>
                                 <p class="d-inline-block">${announcement.text}</p>
                                 <input type="hidden" name="announcementID" value="${announcement.announcementID}">
-                                <input class="btn-block d-inline-block" type="submit" name="editMenu" value="edit">
+                                </td>
+                                <td>
+                                    <button class="btn bg-transparent text-secondary" type="submit" name="editMenu" value="edit">Edit</button>
+                                </td>
+                                
+                                <td>
+                                
+                                <button class ="btn bg-transparent text-danger" type="submit" name="deleteMenu" value="delete">Delete</button>
+                               </td>
                             </form>
-                        </div>    
-                    </c:forEach>
+                            </tr>
+                        </c:forEach>
+                        </table>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="row">
+                            <p class="h4">Announcement Creation Form</p>
+                        </div>
+                        <div class="row">
+                            <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
+                                <p>Enter Announcement Below</p>
+                                  <textarea rows="5" name="textSubmission" class="form-control mb-3"></textarea>
+                                
+                                </div>
+                        <div class="row">
+                                <div class="container d-flex justify-content-end mb-1 ">
+                                <button type="submit" value="add" class="btn bg-secondary text-white d-inline-block">Add Announcement</button>
+                                </div>
+                        </div>
+                        </form>
+                        
+                        
+                    </div>
+                    
+                    <div class="col border-start">
+                        
+                        
+                    
+                        <c:if test="${requestScope.editMenu}">
+                            <div class="row">  
+                            <p class="h4">Announcement Edit Form</p>
+                            </div>
+                            <div class="row">    
+                            <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST" disabled="true">
+                                <p><b>Original Text:</b></p> 
+                                <p>${sessionScope.courseAnnouncement.text}</p>
+                                <p><b>New Text:</b></p> 
+                                <textarea rows="5" name="newText" class="form-control mb-3"></textarea>
+                                
+                                <div class="container d-flex justify-content-end mb-1 ">
+                                <button type="submit" value="update" class="btn bg-secondary text-white d-inline-block">Update</button>
+                                </div>
+                            </form>
+                            </div>
+                        </c:if>
+                        <c:if test="${!requestScope.editMenu}">
+                            <div class="row">  
+                            <p class="h4">Announcement Edit Form</p>
+                            </div>
+                            <div class="row">    
+                            <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST" disabled="true">
+                                <p class="text-primary">Press the Edit Button next to Announcement to Activate</p>
+                               <textarea rows="5" name="newText" class="form-control mb-3"></textarea>
+                                <div class="container d-flex justify-content-end mb-1 ">
+                                <button type="submit" value="update" disabled="true" class="btn bg-secondary text-white d-inline-block">Update</button>
+                                </div>
+                            </form>
+                            </div>
+                        </c:if>
+                            
+                    </div>
                 </div>
-                <div class="col">
-                    <div class="row">
-                <p class="h4">Announcement Creation Form</p>  
 
-                <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
-                    Text:<input type="text" name="textSubmission"> 
-                    <input type="submit" value="add">
-                </form>
-                </div>
-                ${requestScope.message}
-                </div>
-                <div class="col">
-                    <div class="row">
-                <c:if test="${requestScope.editMenu}">
-                    <p class="h4">ANNOUNCEMENT EDIT FORM</b>  
-                    <form action="SiteNavigationFaculty?nav=courseannouncements" method="POST">
-                        Original Text: ${sessionScope.courseAnnouncement.text}<br>
-                        New Text: <input type="text" name="newText">
-                        <input type="submit" value="update">
-                    </form>
-                </c:if>
-                </div>    
-            </div> 
-                </div>
-                </div>    
+            </div>    
             <div class="col-1"></div>    
 
         </div>

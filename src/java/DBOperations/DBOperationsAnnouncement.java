@@ -9,6 +9,8 @@ import Objects.Announcement;
 import Objects.CourseAnnouncement;
 import java.util.ArrayList;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -101,15 +103,20 @@ public class DBOperationsAnnouncement {
     public boolean createCourseAnnouncement(String courseID, String text){
         boolean result = false;
         //currently insert dummy values for start/end date
-        String sql = "insert into ma_course_announcement (course_id,start_time,end_time,text) values (?,'2022-02-10','2022-02-10',?);";
+        String sql = "insert into ma_course_announcement (course_id,start_time,end_time,text) values (?,?,?,?);";
        
         ConnectionPool cp = ConnectionPool.getInstance();
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = LocalDate.now().format(formatter);
         
         try {
             Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, courseID);
-            st.setString(2, text);
+            st.setString(2, date);
+            st.setString(3, date);
+            st.setString(4, text);
             
             int rowsAffected = st.executeUpdate();
             
@@ -120,7 +127,7 @@ public class DBOperationsAnnouncement {
         } catch(Exception e){}
             return result;
     }
-    
+        
     //obtain a particular courseannouncment from a given courseannouncementID. This is done to save the
     //course announcement to the session scope when faculty is editing a course announcement
     public CourseAnnouncement getCourseAnnouncement (String courseAnnouncementID){
@@ -179,10 +186,35 @@ public class DBOperationsAnnouncement {
         return result;
     }
     
+    //method used when deleting courseAnnouncements
+    public boolean deleteCourseAnnouncement (String courseAnnouncementID) {
+        boolean result = false;
+        String sql = "delete from ma_course_announcement where annnouncement_id = ?";
+        
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, courseAnnouncementID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);          
+        } catch(Exception e){}
+            return result;
+    }
+    
      public boolean createCohortAnnouncement(String cohortID, String text){
         boolean result = false;
         //currently insert dummy values for start/end date
-        String sql = "insert into ma_announcement (cohort_id,start_time,end_time,text) values (?,'2022-02-10','2022-02-10',?);";
+        String sql = "insert into ma_announcement (cohort_id,start_time,end_time,text) values (?,?,?,?);";
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = LocalDate.now().format(formatter);
        
         ConnectionPool cp = ConnectionPool.getInstance();
         
@@ -190,7 +222,9 @@ public class DBOperationsAnnouncement {
             Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, cohortID);
-            st.setString(2, text);
+            st.setString(2, date);
+            st.setString(3, date);
+            st.setString(4, text);
             
             int rowsAffected = st.executeUpdate();
             
@@ -278,33 +312,43 @@ public class DBOperationsAnnouncement {
         return result;
     }
     
-    
-    
-    /*
-    public String testGetPK (){
-        String result = "";
-        String sql = "select annnouncement_id from ma_course_announcement where annnouncement_id = 1";
-        
+   public ArrayList<Announcement> getAnnouncementsByCohort(String cohortID){
+       ArrayList<Announcement> announcements = new ArrayList<>();
+       String sql = "select * from ma_announcement where cohort_id = ?;";
          ConnectionPool cp = ConnectionPool.getInstance();
         
         try {
             Connection conn = cp.getConnection();
             PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, cohortID);
             ResultSet rs = st.executeQuery();
             
+            String announcementId ="";
+            String cohortId = "";
+            String startDate ="";
+            String endDate = "";
+            String text = "";
+            String isVisible = "";
+            
             while (rs.next()) {
+                announcementId = rs.getString(1);
+                cohortId = rs.getString(2);
+                startDate = rs.getString(3);
+                endDate = rs.getString(4);
+                text = rs.getString(5);
+                isVisible = rs.getString(6);
                 
-                result = rs.getString(1);
+                Announcement announcement = new Announcement(announcementId, cohortId,startDate,endDate,text,isVisible);
+                announcements.add(announcement);
                 
             }
             st.close();
             rs.close();
             cp.freeConnection(conn);
         } catch(Exception e){}
-            return result;
-    }
-        
-    */
+        return announcements;
+   } 
+   
     
     
 }

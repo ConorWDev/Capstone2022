@@ -78,6 +78,11 @@ public class Faculty {
     public String getFullName() {
         return fullName;
     }
+    
+    public String getDisplayName(){
+        
+        return fullName.toUpperCase();
+    }
 
     public void setFullName(String fullName) {
         this.fullName = fullName;

@@ -18,27 +18,68 @@
     </head>
     <body>
         <!-- Header -->
-        <%@include file="headerfragment.jspf" %>
-        <div class="container-fluid ">
-            <!-- Main -->
-            <div class='row' >
-                <div class="countainer col-1"></div>
-                <div class="countainer col-4 bg-white rounded ">
-                    <div class='table-borderless'>
-                    <div class="row ">
-                        <div class="col border-0">
-                            <p class="h1" style="font-weight: bold; color:#0069d9; text-decoration: none">Report Card</p>
+        <div>
+           <%@include file="headerfragment.jspf" %>         
+        </div>
+        
+        <!-- Main -->
+        <div class="container rounded bg-light my-2">
+            
+            <div class="row">
+                <div class="col border-0">
+                    <p class="h1" style="font-weight: bold; color:#0069d9; text-decoration: none">Report Card</p>
+                </div>
+                <hr>
+            </div>
+            <div class="row">
+
+                <div class="col-10">
+                    <p class="h5" style="font-weight: bold; color:  slategrey " >Course</p>
+                </div>
+                <div class="col-2">
+                    <p class="h5" style="font-weight: bold; color: slategrey ">Grade</p>
+                </div>
+                  <c:set var="courseTotal" value="0"/>
+                    <c:set var="count" value="0"/>
+                    
+                    <c:forEach var="courses" items="${requestScope.courses}">
+                        <div class="row">
+                            <div class="col-10">
+                                <!--The link generated will pass two variable back to SiteNavigation
+                                1) nav, which will determine the more general if/else structure within SiteNavigation
+                                2) courseid, this will allow for the dynamic loading of particular course assignments into the courseGrade page-->
+                                <a class=""  href="SiteNavigation?nav=coursegrade&courseid=${courses.courseID}">${courses.courseName}</a>
+                            </div>
+                            <div class="col-2" style='align-content: center'>
+                                <p>${courses.courseAvg!="NaN"?courses.courseAvg:"-"}</p>
+                            </div>
                         </div>
-                        <hr>
-                    </div>
+                            
+                        <c:if test="${courses.courseAvg>=0 && courses.courseAvg<=100}">
+                            <c:set var="courseTotal" value="${courseTotal + courses.courseAvg}"/> 
+                            <c:set var="count" value="${count + 1}"/>
+                        </c:if>
+                    </c:forEach>
+                    
+                           
                     <div class="row ">
                         <div class="col-10">
-                            <p class="h5" style="font-weight: bold; color:  slategrey " >Course</p>
+                            <p class="h5" style="font-weight: bold; color:  slategrey " >Total Course Avg.</p>
                         </div>
                         <div class="col-2">
-                            <p class="h5" style="font-weight: bold; color: slategrey ">Grade</p>
+                            <c:set var="courseAvg" value="${courseTotal / count}"/>
+                                
+                            <c:choose>
+                            <c:when test="${result != null || result != 'NaN'}">
+                                <b>${fn:substring(courseAvg,0,5)} </b>
+                            </c:when>
+                        </c:choose>
                         </div>
+                       
                     </div>
+            </div>                
+                           
+
                     <!-- 
                         JSTL Report Card loop notes:
                         Summary:
@@ -52,49 +93,12 @@
                         Potential Changes:
                             - Variables can be adjusted to fit a common ground.
                             - Potentially could be adding a URL that will take you to the Courses grade page.
-                    -->
-                    
-                    <c:set var="courseTotal" value="0"/>
-                    <c:set var="count" value="0"/>
-                    
-                    <c:forEach var="courses" items="${requestScope.courses}">
-                            <div class="row">
-                                <div class="col-10">
-                                    <!--The link generated will pass two variable back to SiteNavigation
-                                    1) nav, which will determine the more general if/else structure within SiteNavigation
-                                    2) courseid, this will allow for the dynamic loading of particular course assignments into the courseGrade page-->
-                                    <a class=""  href="SiteNavigation?nav=coursegrade&courseid=${courses.courseID}">${courses.courseName}</a>
-                                </div>
-                                <div class="col-2" style='align-content: center'>
-                                    <p>${courses.courseAvg!="NaN"?courses.courseAvg:"-"}</p>
-                                </div>
-                            </div>
-                            
-                            <c:if test="${courses.courseAvg>=0 && courses.courseAvg<=100}">
-                                <c:set var="courseTotal" value="${courseTotal + courses.courseAvg}"/> 
-                                <c:set var="count" value="${count + 1}"/>
-                            </c:if>
-                    </c:forEach>
-                    
-                           
-                            <div class="row ">
-                            <div class="col-10">
-                            <p class="h5" style="font-weight: bold; color:  slategrey " >Total Course Avg.</p>
-                            </div>
-                                
-                            <c:set var="courseAvg" value="${courseTotal / count}"/>
-                            ${fn:substring(courseAvg,0,5)} 
-                            
-                            
-                
-                            </div> 
-                    
-                             
-                </div>
-                <div class="col-7"></div>
-            </div>
-            <!-- Footer -->
-            <%@include file="footerfragment.jspf" %>
+                    -->          
         </div>
+        <div>
+            <!-- Footer -->
+            
+        </div>
+
     </body>
 </html>

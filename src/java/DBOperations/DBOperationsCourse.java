@@ -170,4 +170,192 @@ public class DBOperationsCourse {
         return course;
     }
     
+    public boolean createCourse (String courseName, String courseDescription){
+        boolean result = false;
+        String sql = "insert into ma_course (name, description) values (?,?);";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, courseName);
+            st.setString(2, courseDescription);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+        }
+        return result;
+    }
+    
+    public ArrayList<Course> getAllCourses (){
+        ArrayList<Course> courses = new ArrayList<>();
+        String sql = "select * from ma_course;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try{
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            
+            String courseID = "";
+            String courseName = "";
+            String courseDescription = "";
+            
+            while(rs.next()){
+                courseID = rs.getString(1);
+                courseName = rs.getString(2);
+                courseDescription = rs.getString(3);
+                
+                Course course = new Course (courseID,courseName,courseDescription);
+                
+                courses.add(course);
+            }
+            
+            st.close();
+            rs.close();
+            cp.freeConnection(conn);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+         
+         return courses;
+    }
+    
+    public boolean clearBridge (String courseID){
+        boolean result = false;
+        String sql = "delete from ma_course_lesson where course_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+         try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, courseID);
+            
+            int rowsAffected = st.executeUpdate();
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+            
+        }
+         
+         return result;
+    }
+    
+    public boolean bridgeCourseModule (String courseID, String moduleID){
+        boolean result = false;
+        String sql = "insert into ma_course_lesson values (?,?);";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, courseID);
+            st.setString(2, moduleID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+            
+        }
+        return result;
+    }
+    
+    public boolean updateCourse (String courseID, String courseName, String courseDescription){
+        boolean result = false;
+        String sql = "update ma_course set name = ?, description = ? where course_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+        try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, courseName);
+            st.setString(2, courseDescription);
+            st.setString(3, courseID);
+            
+            int rowsAffected = st.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+            
+        }
+        return result;
+    }
+    
+    public boolean deleteCourseByID (String courseID){
+        
+        deleteBridges(courseID);
+        
+        boolean result = false;
+        String sql = "delete from ma_course where course_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+       try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, courseID);
+            
+            
+            int rowsAffected = st.executeUpdate();
+            result = (rowsAffected > 0);
+            
+            st.close();
+            
+            cp.freeConnection(conn);
+        } catch(Exception e){
+            
+        }
+        
+        return result;
+    }
+    
+    
+    public boolean deleteBridges(String courseID){
+        boolean result = false;
+        String sql = "delete from ma_course_announcement where course_id = ?;";
+        String sql2 = "delete from ma_course_lesson where course_id = ?;";
+        String sql3 = "delete from ma_cohort_course where course_id = ?;";
+        ConnectionPool cp = ConnectionPool.getInstance();
+        
+       try {
+            Connection conn = cp.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            PreparedStatement st2 = conn.prepareStatement(sql2);
+            PreparedStatement st3 = conn.prepareStatement(sql3);
+            
+            st.setString(1, courseID);
+            st2.setString(1, courseID);
+            st3.setString(1, courseID);
+            
+            int rowsAffected = st.executeUpdate();
+            rowsAffected = st2.executeUpdate();
+            rowsAffected = st3.executeUpdate();
+            
+            result = (rowsAffected > 0);
+            
+            st.close();
+            st2.close();
+            st3.close();
+            cp.freeConnection(conn);
+        } catch(Exception e){
+            
+        }
+        
+        return result;
+    }
+    
 }

@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="container pe-2" id="contentcontainer" >
                         <div class="row-cols-1 mt-3" id="contentheaderrow">
-                            <p class="h2 mb-3 " id="contentheader">Assignments Create</p>
+                            <p class="h2 mb-3 " id="contentheader">Assignment Create</p>
                         </div>
                         <!--Content Need Only be changed in this section-->
                         <div class="row  ">
@@ -44,22 +44,14 @@
                             
                             <div class="col-4 ps-3">
                                  
-                                 <form action="action">
+                                <form action="SiteNavigationAdmin?nav=assignments&op=1" method="POST">
 
-                                    <div class="row justify-content-end">
-                                        <div class="container-sm
-                                             d-flex justify-content-center mt-1">
-                                            <p class="h6 me-3 mt-2 d-inline" >.</p>
-                                            <p class="h6 me-3 mt-2 d-inline" >.</p>
-                                            <p class="h6 me-3 mt-2 d-inline" >.</p>
-                                            
-                                        </div>
-                                    </div>
+                                    
                                     <div class="row">
                                         <div id="infoblock"class="form-control  ">
                                             
                                            
-                                            <!-- -->
+                                            <!-- 
                                             <label for="info1" id="label1" class="form-label mb-0 "><b>Assignment ID</b></label>
                                             <input type="text" class="form-control mb-3" id="info1" placeholder="Assignment ID will be created automatically." name="info1" disabled="true">
                                             <!-- -->
@@ -69,12 +61,13 @@
                                             <label for="info3" id="label3" class="form-label mb-0"><b>Assignment Description</b></label>
                                             <input type="text" class="form-control  mb-3" id="info3" placeholder="Description" name="info3">
                                             <!-- -->
-                                            <label for="info4" id="label4" class="form-label mb-0"><b>Assignment URL</b></label>
+                                            <label for="info4" id="label4" class="form-label mb-0"><b>Assignment URL (Optional)</b></label>
                                             <input type="text" class="form-control mb-3" id="info4" placeholder="URL" name="info4">
-                                            <!-- -->
+                                            <!-- weight will have to be assigned when assignments are gathered within a given course as weight
+                                            is relative to the other assignments within the course
                                             <label for="info5" id="label5"  class="form-label mb-0"><b>Assignment Weight</b></label>
                                             <input type="text" class="form-control mb-5" id="info5" placeholder="Weight" name="info5">
-                                            <!-- -->
+                                             -->
                                             
                                             <div class="row mb-5">
                                                 <div class="container-fluid d-flex justify-content-around ">
@@ -83,7 +76,7 @@
                                                     
                                                 </div>
                                             </div>
-                                            </form>
+                                            
                                         </div>
                                     </div>
 
@@ -93,15 +86,9 @@
                                 </form>
                             </div>
                             
-                            <div class="col me-3">
-                                
-                                <div class="row mt-2 " >
-                                     <select multiple="multiple" class="form-select border-0"  id="select2" style="height: 500px;">
-                                     
-                                     
-                                     
-                                     </select>
-                                </div>
+                            <div class="col-3"></div>
+                            <div class="col">
+                                <img id="imagefiller" class="img m-4" src="MassLogo500px.png" alt="Mass" style="height: 250px;width: 250px"/>
                             </div> 
                             
                         </div>
