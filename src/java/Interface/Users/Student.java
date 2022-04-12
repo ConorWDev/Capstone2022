@@ -36,6 +36,11 @@ public class Student implements Serializable {
     Student(){}
     
     //Overloaded Constructor
+
+    /**
+     *
+     * @param userID
+     */
     public Student(String userID){
         this.userID = userID;
         this.fullName = dbOps.getStudentName(userID);
@@ -48,42 +53,82 @@ public class Student implements Serializable {
         
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     *
+     * @param firstName
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMiddleName() {
         return middleName;
     }
 
+    /**
+     *
+     * @param middleName
+     */
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     *
+     * @param lastName
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUserID() {
         return userID;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFullName() {
         return fullName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCohortID() {
         return cohortID;
     }

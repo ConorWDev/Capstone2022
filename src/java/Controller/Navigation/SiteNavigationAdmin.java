@@ -657,7 +657,10 @@ public class SiteNavigationAdmin extends HttpServlet {
                     
                     Schedule schedule = dbOpsSch.getSchedule(cohortID);
                     
-                    request.setAttribute("schedule", schedule.getUrl());
+                    if (schedule != null){
+                        request.setAttribute("schedule", schedule.getUrl());
+                    }
+                    
                     
                     request.setAttribute("allCourses", allCourses);
                     request.setAttribute("allFaculty", allFaculty);

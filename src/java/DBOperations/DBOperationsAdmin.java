@@ -19,6 +19,12 @@ import java.util.ArrayList;
 public class DBOperationsAdmin {
     
     //get faculty name from username
+
+    /**
+     *
+     * @param adminUsername
+     * @return
+     */
      public String getAdminName(String adminUsername){
         String result ="";
         String sql = "select first_name, last_name from ma_admin where username = ?;";
@@ -47,6 +53,12 @@ public class DBOperationsAdmin {
     }
      
        //get the faculty email from the facultyUsername
+
+    /**
+     *
+     * @param adminUsername
+     * @return
+     */
     public String getAdminEmail(String adminUsername){
         String result = "";
         String sql = "select email from ma_faculty where username =?;";
@@ -74,7 +86,11 @@ public class DBOperationsAdmin {
         return result;
     }
     
-     public ArrayList<Admin> getAllAdmins(){
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Admin> getAllAdmins(){
         ArrayList<Admin> admins = new ArrayList<Admin>();
         
          String sql = "select username from ma_admin;";
@@ -104,6 +120,12 @@ public class DBOperationsAdmin {
     }
     
      //get password from ma_student table. Password is not held withn student object for added security
+
+    /**
+     *
+     * @param userID
+     * @return
+     */
     public String getStudentPass(String userID){
         String result = "";
         String sql = "select password from ma_student where username = ?;";
@@ -130,6 +152,12 @@ public class DBOperationsAdmin {
     }
     
      //get password from ma_student table. Password is not held withn student object for added security
+
+    /**
+     *
+     * @param userID
+     * @return
+     */
     public String getFacultyPass(String userID){
         String result = "";
         String sql = "select password from ma_faculty where username = ?;";
@@ -155,6 +183,11 @@ public class DBOperationsAdmin {
          return result;
     }
     
+    /**
+     *
+     * @param userID
+     * @return
+     */
     public String getAdminPass(String userID){
         String result = "";
         String sql = "select password from ma_admin where username = ?;";
@@ -180,6 +213,11 @@ public class DBOperationsAdmin {
          return result;
     }
     
+    /**
+     *
+     * @param studentID
+     * @return
+     */
     public String getFirstname (String studentID){
         String name = "";
         String sql = "select first_name from ma_admin where username = ?;";
@@ -205,7 +243,12 @@ public class DBOperationsAdmin {
         return name;
     }
     
-     public String getMiddlename (String studentID){
+    /**
+     *
+     * @param studentID
+     * @return
+     */
+    public String getMiddlename (String studentID){
         String name = "";
         String sql = "select middle_name from  ma_admin where username = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -230,7 +273,12 @@ public class DBOperationsAdmin {
         return name;
     }
      
-     public String getLastname (String studentID){
+    /**
+     *
+     * @param studentID
+     * @return
+     */
+    public String getLastname (String studentID){
         String name = "";
         String sql = "select last_name from  ma_admin where username = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -255,7 +303,17 @@ public class DBOperationsAdmin {
         return name;
     }
      
-     public boolean editStudent (String user, String first, String middle, String last, String email, String pass){
+    /**
+     *
+     * @param user
+     * @param first
+     * @param middle
+     * @param last
+     * @param email
+     * @param pass
+     * @return
+     */
+    public boolean editStudent (String user, String first, String middle, String last, String email, String pass){
          boolean result = false;
          String sql = "update ma_student set username= ?, first_name=?, middle_name=?,last_name=?,email=?,password=? where username=?";
          ConnectionPool cp = ConnectionPool.getInstance();
@@ -284,7 +342,17 @@ public class DBOperationsAdmin {
          return result;
      }
      
-     public boolean editFaculty (String user, String first, String middle, String last, String email, String pass){
+    /**
+     *
+     * @param user
+     * @param first
+     * @param middle
+     * @param last
+     * @param email
+     * @param pass
+     * @return
+     */
+    public boolean editFaculty (String user, String first, String middle, String last, String email, String pass){
          boolean result = false;
          String sql = "update ma_faculty set username= ?, first_name=?, middle_name=?,last_name=?,email=?,password=? where username=?";
          ConnectionPool cp = ConnectionPool.getInstance();
@@ -313,7 +381,17 @@ public class DBOperationsAdmin {
          return result;
      }
      
-     public boolean editAdmin (String user, String first, String middle, String last, String email, String pass){
+    /**
+     *
+     * @param user
+     * @param first
+     * @param middle
+     * @param last
+     * @param email
+     * @param pass
+     * @return
+     */
+    public boolean editAdmin (String user, String first, String middle, String last, String email, String pass){
          boolean result = false;
          String sql = "update ma_admin set username= ?, first_name=?, middle_name=?,last_name=?,email=?,password=? where username=?";
          ConnectionPool cp = ConnectionPool.getInstance();
@@ -345,6 +423,12 @@ public class DBOperationsAdmin {
      //to delete a student we must remove them from all adjacent tables. This includes
      //the ma_attendance table, the ma_grade table, and the ma_student cohort table.
      //once the student has been deleted from these tables, the row in ma_student can be deleted
+
+    /**
+     *
+     * @param user
+     * @return
+     */
      public boolean deleteStudent (String user){
          //right now this method only returns true
          //if a user say does not have any grades and is deleted, this could spur a false negative
@@ -389,6 +473,12 @@ public class DBOperationsAdmin {
      
      //to delete a faculty member, the adjacent ma_cohort_faculty table must also
      //be cleared of reference to that faculty member
+
+    /**
+     *
+     * @param user
+     * @return
+     */
      public boolean deleteFaculty (String user){
          //right now this method only returns true
          //if a user say does not have a cohort association this could spur a false negative
@@ -423,6 +513,12 @@ public class DBOperationsAdmin {
      }
      
      //need a check here to ensure that there is always at least one admin
+
+    /**
+     *
+     * @param user
+     * @return
+     */
      public boolean deleteAdmin (String user){
          
          boolean result = false;
@@ -447,7 +543,17 @@ public class DBOperationsAdmin {
          return result;
      }
      
-     public boolean createStudent (String username, String first, String middle, String last, String pass, String email){
+    /**
+     *
+     * @param username
+     * @param first
+     * @param middle
+     * @param last
+     * @param pass
+     * @param email
+     * @return
+     */
+    public boolean createStudent (String username, String first, String middle, String last, String pass, String email){
          boolean result = false;
          String sql = "insert into ma_student (username, first_name, middle_name, last_name, password, email) values (?,?,?,?,?,?);";
          ConnectionPool cp = ConnectionPool.getInstance();
@@ -474,7 +580,17 @@ public class DBOperationsAdmin {
          return result;
      }
      
-      public boolean createFaculty (String username, String first, String middle, String last, String pass, String email){
+    /**
+     *
+     * @param username
+     * @param first
+     * @param middle
+     * @param last
+     * @param pass
+     * @param email
+     * @return
+     */
+    public boolean createFaculty (String username, String first, String middle, String last, String pass, String email){
          boolean result = false;
          String sql = "insert into ma_faculty (username, first_name, middle_name, last_name, password, email) values (?,?,?,?,?,?);";
          ConnectionPool cp = ConnectionPool.getInstance();
@@ -501,7 +617,17 @@ public class DBOperationsAdmin {
          return result;
      }
       
-      public boolean createAdmin (String username, String first, String middle, String last, String pass, String email){
+    /**
+     *
+     * @param username
+     * @param first
+     * @param middle
+     * @param last
+     * @param pass
+     * @param email
+     * @return
+     */
+    public boolean createAdmin (String username, String first, String middle, String last, String pass, String email){
          boolean result = false;
          String sql = "insert into ma_admin (username, first_name, middle_name, last_name, password, email) values (?,?,?,?,?,?);";
          ConnectionPool cp = ConnectionPool.getInstance();

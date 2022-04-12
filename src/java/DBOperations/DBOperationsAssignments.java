@@ -23,6 +23,12 @@ import java.util.logging.Logger;
 public class DBOperationsAssignments {
     
     //return all assignments for a given course
+
+    /**
+     *
+     * @param courseID
+     * @return
+     */
     public ArrayList<Assignment> getCourseAssignments(String courseID){
         
         ArrayList<Assignment> assignments = new ArrayList<>();
@@ -70,6 +76,11 @@ public class DBOperationsAssignments {
         return assignments;
     }
     
+    /**
+     *
+     * @param moduleID
+     * @return
+     */
     public ArrayList<Assignment> getModuleAssignments(String moduleID){
         
         ArrayList<Assignment> assignments = new ArrayList<>();
@@ -115,6 +126,12 @@ public class DBOperationsAssignments {
 
     //Submit a new assignment Obj
     //Author: Altamish Lalani
+
+    /**
+     *
+     * @param inbound_assignment
+     * @return
+     */
      public String submitAssignment(Assignment inbound_assignment){
        
         String result = "URL failed - Please check your link and try again.";
@@ -185,6 +202,12 @@ public class DBOperationsAssignments {
     }
     //Update an updated assignment Obj
     //Author: Altamish Lalani
+
+    /**
+     *
+     * @param inboundUpdated_assignment
+     * @return
+     */
     public String editAssignment(Assignment inboundUpdated_assignment){
         String result = "URL failed - Please check your link and try again.";
         boolean urlCheck = false;
@@ -252,7 +275,11 @@ public class DBOperationsAssignments {
         return result;
     }
     
-    
+    /**
+     *
+     * @param site
+     * @return
+     */
     public static boolean isSiteUp(URL site) {
         try {
             HttpURLConnection conn = (HttpURLConnection) site.openConnection();
@@ -269,7 +296,10 @@ public class DBOperationsAssignments {
         }
       }
     
-    
+    /**
+     *
+     * @return
+     */
     public ArrayList<Assignment> getAllAssignments (){
         ArrayList<Assignment> assignments = new ArrayList<>();
         String sql = "select * from ma_assignment;";
@@ -305,6 +335,11 @@ public class DBOperationsAssignments {
         return assignments;
     }
     
+    /**
+     *
+     * @param assignmentID
+     * @return
+     */
     public Assignment getAssignmentByID (String assignmentID){
         Assignment assignment = null;
         String sql = "select * from ma_assignment where assignment_id = ?;";
@@ -340,6 +375,11 @@ public class DBOperationsAssignments {
         return assignment;
     }
     
+    /**
+     *
+     * @param assignmentID
+     * @return
+     */
     public boolean deleteAssignmentByID (String assignmentID){
         
         deleteBridges(assignmentID);
@@ -367,6 +407,12 @@ public class DBOperationsAssignments {
     
     //delete the occurences of assignment ID within the ma_lesson_assignment table and the ma_grades table.
     //this is required in order to delete from the ma_assignment table
+
+    /**
+     *
+     * @param assignmentID
+     * @return
+     */
     public boolean deleteBridges (String assignmentID){
         
          boolean result = false;
@@ -399,6 +445,12 @@ public class DBOperationsAssignments {
         
     }
     
+    /**
+     *
+     * @param moduleID
+     * @param assignmentID
+     * @return
+     */
     public boolean brigeAssignmentModule (String moduleID, String assignmentID){
         boolean result = false;
         String sql = "insert into ma_lesson_assignment values (?,?);";
@@ -422,6 +474,12 @@ public class DBOperationsAssignments {
         return result;
     }
 
+    /**
+     *
+     * @param moduleID
+     * @param assignmentID
+     * @return
+     */
     public boolean severConnection(String moduleID, String assignmentID) {
         boolean result = false;
         String sql = "delete from ma_lesson_assignment where lesson_id = ? and assignment_id = ?;";
@@ -451,6 +509,12 @@ public class DBOperationsAssignments {
          return result;
     }
     
+    /**
+     *
+     * @param moduleID
+     * @param inbound_assignment
+     * @return
+     */
     public String createAssignmentFac (String moduleID, Assignment inbound_assignment){
         String result = "URL failed - Please check your link and try again.";
         boolean urlCheck = false;
@@ -519,6 +583,11 @@ public class DBOperationsAssignments {
         return result;
     }
     
+    /**
+     *
+     * @param assignment
+     * @return
+     */
     public String getAssignmentID (Assignment assignment){
         String result = "";
         String sql = "select assignment_id from ma_assignment where name = ? and description = ? and url = ? and weight = ?;";

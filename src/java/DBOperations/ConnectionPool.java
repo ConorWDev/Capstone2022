@@ -34,6 +34,10 @@ public class ConnectionPool {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public static synchronized ConnectionPool getInstance() {
         if (pool==null) {
             pool = new ConnectionPool();
@@ -42,6 +46,10 @@ public class ConnectionPool {
         return pool;
     } 
     
+    /**
+     *
+     * @return
+     */
     public Connection getConnection() {
         try {
             return dataSource.getConnection();
@@ -52,6 +60,10 @@ public class ConnectionPool {
         }
     }
     
+    /**
+     *
+     * @param conn
+     */
     public void freeConnection(Connection conn) {
         try {
             conn.close();

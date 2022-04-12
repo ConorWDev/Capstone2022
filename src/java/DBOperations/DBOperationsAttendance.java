@@ -18,6 +18,13 @@ import java.util.ArrayList;
 public class DBOperationsAttendance {
    
     //add an attendance record that is marked present
+
+    /**
+     *
+     * @param studentID
+     * @param date
+     * @return
+     */
     public boolean addAttendancePresent(String studentID, String date){
         boolean result = false;
         String sql = "insert into ma_attendance (username,present,date) values (?, 'Y', ?);";
@@ -64,6 +71,13 @@ public class DBOperationsAttendance {
     }
     
     //add an attendance record that is marked not present
+
+    /**
+     *
+     * @param studentID
+     * @param date
+     * @return
+     */
     public boolean addAttendanceNotPresent(String studentID, String date){
         boolean result = false;
         String sql = "insert into ma_attendance (username,present,date) values (?, 'N', ?);";
@@ -111,6 +125,13 @@ public class DBOperationsAttendance {
     
     //method used internally within DBOperationsAttendance to check if an entered attendance record
     //already exists within the DB. if it does, return true. This will be used within the above methods
+
+    /**
+     *
+     * @param studentID
+     * @param date
+     * @return
+     */
     public boolean attendanceAlreadyInDatabase (String studentID, String date){
         boolean result =false;
         String sql = "select attendance_id from ma_attendance where username = ? and date = ?;";
@@ -137,6 +158,11 @@ public class DBOperationsAttendance {
         return result;
     }
     
+    /**
+     *
+     * @param studentID
+     * @return
+     */
     public ArrayList<Attendance> getAttendanceRecords (String studentID){
         ArrayList<Attendance> attendanceList = new ArrayList<>();
         String sql = "select * from ma_attendance where username = ? order by date;";

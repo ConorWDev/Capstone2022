@@ -20,6 +20,12 @@ import java.util.ArrayList;
 public class DBOperationsFaculty {
     
     //get faculty name from username
+
+    /**
+     *
+     * @param facultyUsername
+     * @return
+     */
      public String getFacultyName(String facultyUsername){
         String result ="";
         String sql = "select first_name, last_name from ma_faculty where username = ?;";
@@ -48,6 +54,12 @@ public class DBOperationsFaculty {
     }
      
      //get the faculty email from the facultyUsername
+
+    /**
+     *
+     * @param facultyUsername
+     * @return
+     */
     public String getFacultyEmail(String facultyUsername){
         String result = "";
         String sql = "select email from ma_faculty where username =?;";
@@ -75,6 +87,10 @@ public class DBOperationsFaculty {
         return result;
     }
     
+    /**
+     *
+     * @return
+     */
     public ArrayList<Faculty> getAllFaculty(){
         ArrayList<Faculty> faculty = new ArrayList<Faculty>();
         
@@ -104,7 +120,12 @@ public class DBOperationsFaculty {
         return faculty;
     }
     
-     public String getFirstname (String studentID){
+    /**
+     *
+     * @param studentID
+     * @return
+     */
+    public String getFirstname (String studentID){
         String name = "";
         String sql = "select first_name from ma_faculty where username = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -129,7 +150,12 @@ public class DBOperationsFaculty {
         return name;
     }
     
-     public String getMiddlename (String studentID){
+    /**
+     *
+     * @param studentID
+     * @return
+     */
+    public String getMiddlename (String studentID){
         String name = "";
         String sql = "select middle_name from ma_faculty where username = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -154,7 +180,12 @@ public class DBOperationsFaculty {
         return name;
     }
      
-     public String getLastname (String studentID){
+    /**
+     *
+     * @param studentID
+     * @return
+     */
+    public String getLastname (String studentID){
         String name = "";
         String sql = "select last_name from ma_faculty where username = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -179,6 +210,11 @@ public class DBOperationsFaculty {
         return name;
     }
      
+    /**
+     *
+     * @param cohortID
+     * @return
+     */
     public ArrayList<Faculty> getFacultyByCohort (String cohortID){
         ArrayList<Faculty> faculty = new ArrayList<>();
         String sql = "SELECT f.username \n" +

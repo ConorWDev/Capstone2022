@@ -16,6 +16,13 @@ public class Attendance {
     Boolean present;
     String date;
 
+    /**
+     *
+     * @param attendance_id
+     * @param student_username
+     * @param present
+     * @param date
+     */
     public Attendance(String attendance_id, String student_username, String present, String date) {
         this.attendance_id = attendance_id;
         this.student_username = student_username;
@@ -29,34 +36,66 @@ public class Attendance {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAttendance_id() {
         return attendance_id;
     }
 
+    /**
+     *
+     * @param attendance_id
+     */
     public void setAttendance_id(String attendance_id) {
         this.attendance_id = attendance_id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getStudent_username() {
         return student_username;
     }
 
+    /**
+     *
+     * @param student_username
+     */
     public void setStudent_username(String student_username) {
         this.student_username = student_username;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getPresent() {
         return present;
     }
 
+    /**
+     *
+     * @param present
+     */
     public void setPresent(Boolean present) {
         this.present = present;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDate() {
         return date;
     }
 
+    /**
+     *
+     * @param date
+     */
     public void setDate(String date) {
         this.date = date;
     }
