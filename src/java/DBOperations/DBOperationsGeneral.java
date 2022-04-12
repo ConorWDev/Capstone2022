@@ -54,6 +54,13 @@ public class DBOperationsGeneral {
     *This method returns an assignment name from a given assignmentID
     
     */
+
+    /**
+     *
+     * @param assignmentID
+     * @return
+     */
+
       public String getAssignmentName(String assignmentID){
         String result ="";
         String sql = "select name from ma_assignment where assignment_id = ?;";
@@ -87,6 +94,13 @@ public class DBOperationsGeneral {
         getLessonName
         This method obtains the lesson name associated with a given assignment
         */
+
+    /**
+     *
+     * @param assignmentID
+     * @return
+     */
+
         public String getLessonName(String assignmentID){
             String lessonName = "";
             String sql = "select l.name from " +

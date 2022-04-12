@@ -28,6 +28,14 @@ public class DBOperationsLogin {
     This method takes the username and password input by the user and queries the ma_student table
     for a matching result. If there is a match found, the SQL statement will return a string "1".
     */
+
+    /**
+     *
+     * @param webUsername
+     * @param webPassword
+     * @return
+     */
+
     public boolean isStudent(String webUsername,String webPassword) {
         
         Boolean isStudent = false;
@@ -61,6 +69,12 @@ public class DBOperationsLogin {
             return isStudent;     
     }
     
+    /**
+     *
+     * @param webUsername
+     * @param webPassword
+     * @return
+     */
     public boolean isFaculty(String webUsername,String webPassword) {
         
         //TODO implement isFaculty method. Query the ma_faculty table in a similar fashion to the isStudent method above. return a boolean
@@ -97,7 +111,13 @@ public class DBOperationsLogin {
          
     }
     
-     public boolean isAdmin(String webUsername,String webPassword) {
+    /**
+     *
+     * @param webUsername
+     * @param webPassword
+     * @return
+     */
+    public boolean isAdmin(String webUsername,String webPassword) {
          
         //TODO implement isAdmin method. Query the ma_faculty table in a similar fashion to the isStudent method above. return a boolean
         //for use in LogonCon.java

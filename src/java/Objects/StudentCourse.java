@@ -24,6 +24,12 @@ public class StudentCourse {
     private String courseName;
     private double courseAvg;
     
+    /**
+     *
+     * @param studentUsername
+     * @param courseName
+     * @param courseID
+     */
     public StudentCourse(String studentUsername, String courseName, String courseID){
         this.courseName = courseName;
         this.courseAvg = caclculateCourseAvg(studentUsername,courseID);
@@ -56,26 +62,50 @@ public class StudentCourse {
         return courseAvg;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCourseID() {
         return courseID;
     }
 
+    /**
+     *
+     * @param courseID
+     */
     public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCourseName() {
         return courseName;
     }
 
+    /**
+     *
+     * @param courseName
+     */
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getCourseAvg() {
         return courseAvg;
     }
 
+    /**
+     *
+     * @param courseAvg
+     */
     public void setCourseAvg(double courseAvg) {
         this.courseAvg = courseAvg;
     }

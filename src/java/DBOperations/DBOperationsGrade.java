@@ -28,6 +28,13 @@ public class DBOperationsGrade {
     This method returns all grades of a given student, regarless of
     *course. This is used for the faculty studentGrades.jsp page
     */
+
+    /**
+     *
+     * @param username
+     * @return
+     */
+
     
       public ArrayList<Grade> getGrades(String username){
         
@@ -78,8 +85,13 @@ public class DBOperationsGrade {
       *This method is used for functionality in the course grade page.
       */
       
-      
-      public ArrayList<Grade> getCourseGrades (String studentUsername, String courseID){
+    /**
+     *
+     * @param studentUsername
+     * @param courseID
+     * @return
+     */
+    public ArrayList<Grade> getCourseGrades (String studentUsername, String courseID){
           ArrayList<Grade> courseGrades = new ArrayList<>();
           String sql = "select g.assignment_id, g.mark, g.is_visible\n" +
                         "from ma_grade g, ma_assignment a, ma_lesson_assignment la, ma_lesson l, ma_course_lesson cl\n" +
@@ -131,6 +143,13 @@ public class DBOperationsGrade {
       returns the weight of that assignment as it is held within
       the database
       */
+
+    /**
+     *
+     * @param assignmentID
+     * @return
+     */
+
       
       public String getWeight (String assignmentID){
           String weight = "";
@@ -168,6 +187,13 @@ public class DBOperationsGrade {
       student. This is useful for calculating student averages for entire
       courses.
       */
+
+    /**
+     *
+     * @param studentUsername
+     * @return
+     */
+
       
       public ArrayList<StudentCourse> getStudentCourses (String studentUsername){
           ArrayList<StudentCourse> courses = new ArrayList<>();
@@ -214,6 +240,15 @@ public class DBOperationsGrade {
       in the database, it will populate the database with new data. Otherwise the data identified by the composite
       key will be updated.
       */
+
+    /**
+     *
+     * @param assignmentID
+     * @param studentUsername
+     * @param newGrade
+     * @return
+     */
+
       public boolean updateGrade (String assignmentID, String studentUsername, String newGrade) {
           boolean result = false;
           
@@ -267,7 +302,13 @@ public class DBOperationsGrade {
  
       }
       
-      public boolean gradeInDatabase (String assignmentID, String studentUsername){
+    /**
+     *
+     * @param assignmentID
+     * @param studentUsername
+     * @return
+     */
+    public boolean gradeInDatabase (String assignmentID, String studentUsername){
           boolean result = false;
           String sql = "select * from ma_grade where assignment_id = ? and username = ?;";
           ConnectionPool cp = ConnectionPool.getInstance();

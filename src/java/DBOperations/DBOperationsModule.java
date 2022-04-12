@@ -12,9 +12,19 @@ import java.util.ArrayList;
 import Objects.Module;
 import java.sql.SQLException;
 
+/**
+ *
+ * @author Administrator
+ */
 public class DBOperationsModule {
 
     //return all modules for a given course
+
+    /**
+     *
+     * @param courseID
+     * @return
+     */
     public ArrayList<Module> getCourseModules(String courseID){
         
         ArrayList<Module> modules = new ArrayList<>();
@@ -56,6 +66,12 @@ public class DBOperationsModule {
     }
     
     //parameter moduleId. return module name
+
+    /**
+     *
+     * @param moduleID
+     * @return
+     */
     public String getModuleName(String moduleID){
         
         String moduleName = "";
@@ -84,6 +100,12 @@ public class DBOperationsModule {
     
     
     //parameter moduleId. return module description
+
+    /**
+     *
+     * @param moduleID
+     * @return
+     */
     public String getModuleDescription(String moduleID){
         
         String moduleName = "";
@@ -118,6 +140,13 @@ public class DBOperationsModule {
     
     Also used during admin module mgmt
     */
+
+    /**
+     *
+     * @param moduleID
+     * @return
+     */
+
     public Module getModule (String moduleID){
         Module module = null;
         String sql = "select * from ma_lesson where lesson_id = ?";
@@ -143,6 +172,12 @@ public class DBOperationsModule {
         return module;
     }
     
+    /**
+     *
+     * @param name
+     * @param description
+     * @return
+     */
     public boolean createModule (String name, String description){
         boolean result = false;
         String sql = "insert into ma_lesson (name,description) values(?,?);";
@@ -166,6 +201,10 @@ public class DBOperationsModule {
         return result;
     }
     
+    /**
+     *
+     * @return
+     */
     public ArrayList<Module> getAllModules (){
         ArrayList<Module> modules = new ArrayList<>();
         String sql = "select * from ma_lesson;";
@@ -200,6 +239,13 @@ public class DBOperationsModule {
         return modules;
     }
     
+    /**
+     *
+     * @param moduleID
+     * @param moduleName
+     * @param moduleDescription
+     * @return
+     */
     public boolean updateModule (String moduleID, String moduleName, String moduleDescription){
         boolean result = false;
         String sql = "update ma_lesson set name = ?, description = ? where lesson_id = ?;";
@@ -226,6 +272,11 @@ public class DBOperationsModule {
         
     }
     
+    /**
+     *
+     * @param moduleID
+     * @return
+     */
     public boolean deleteModuleByID (String moduleID){
         
         deleteBridges(moduleID);

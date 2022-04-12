@@ -29,6 +29,13 @@ public class DBOperationsDocument {
     /*
     get all documents that are associated with the given module within the database
     */
+
+    /**
+     *
+     * @param moduleID
+     * @return
+     */
+
     public ArrayList<Document> getModuleDocument (String moduleID){
         ArrayList<Document> documents= new ArrayList<>();
         String sql="select d.document_id, d.name, d.description, d.url\n" +
@@ -73,6 +80,12 @@ public class DBOperationsDocument {
 
     //Submit a new Document Obj
     //Author: Altamish Lalani
+
+    /**
+     *
+     * @param inbound_Doc
+     * @return
+     */
     public String submitDocument(Document inbound_Doc){
         String result = "URL failed - Please check your link and try again.";
         boolean urlCheck = false;
@@ -125,6 +138,12 @@ public class DBOperationsDocument {
     }
     //Submit an updated Document Obj
     //Author: Altamish Lalani
+
+    /**
+     *
+     * @param inboundUpdated_Doc
+     * @return
+     */
     public String editDocument(Document inboundUpdated_Doc){
         
        String result = "URL failed - Please check your link and try again.";
@@ -180,7 +199,10 @@ public class DBOperationsDocument {
         return result;
     }
    
-    
+    /**
+     *
+     * @return
+     */
     public ArrayList<Document> getAllDocuments (){
         ArrayList<Document> documents = new ArrayList<>();
         String sql = "select * from ma_document;";
@@ -219,6 +241,11 @@ public class DBOperationsDocument {
         return documents;
     }
     
+    /**
+     *
+     * @param documentID
+     * @return
+     */
     public Document getDocumentByID(String documentID){
         Document document = null;
         String sql = "select * from ma_document where document_id = ?;";
@@ -254,7 +281,11 @@ public class DBOperationsDocument {
         return document;
     }
     
-
+    /**
+     *
+     * @param site
+     * @return
+     */
     public static boolean isSiteUp(URL site) {
         try {
             HttpURLConnection conn = (HttpURLConnection) site.openConnection();
@@ -271,7 +302,14 @@ public class DBOperationsDocument {
         }
       }
     
-     public boolean createDocument (String name, String description, String url){
+    /**
+     *
+     * @param name
+     * @param description
+     * @param url
+     * @return
+     */
+    public boolean createDocument (String name, String description, String url){
         boolean result = false;
         String sql = "insert into ma_document (name,description,url) values (?,?,?);";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -297,8 +335,15 @@ public class DBOperationsDocument {
         return result;
     }
     
-    
-      public boolean updateDoc (String id, String name, String description, String url){
+    /**
+     *
+     * @param id
+     * @param name
+     * @param description
+     * @param url
+     * @return
+     */
+    public boolean updateDoc (String id, String name, String description, String url){
         boolean result = false;
         String sql = "update ma_document set name = ?, description = ?, url = ? where document_id = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -324,6 +369,11 @@ public class DBOperationsDocument {
         return result;
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public boolean deleteDoc (String id){
         
         deleteBridge(id);
@@ -349,6 +399,12 @@ public class DBOperationsDocument {
     }
     
     //called within deleteDoc. delete bridge table row
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     public boolean deleteBridge(String id){
         boolean result = false;
         String sql = "delete from ma_lesson_document where document_id = ?;";
@@ -373,6 +429,12 @@ public class DBOperationsDocument {
     
     //when updating documents in module mgmt, dropping all connections between a module and documents is done
     //enter in a moduleID and all of its associated documents are dropped
+
+    /**
+     *
+     * @param moduleID
+     * @return
+     */
     public boolean clearBridge (String moduleID){
         boolean result = false;
         String sql = "delete from ma_lesson_document where lesson_id = ?;";
@@ -395,6 +457,12 @@ public class DBOperationsDocument {
         
     }
     
+    /**
+     *
+     * @param moduleID
+     * @param documentID
+     * @return
+     */
     public boolean bridgeDocumentModule(String moduleID, String documentID){
         boolean result = false;
         String sql = "insert into ma_lesson_document values (?,?);";
@@ -418,6 +486,11 @@ public class DBOperationsDocument {
         
     }
     
+    /**
+     *
+     * @param doc
+     * @return
+     */
     public String getDocumentID (Document doc){
         String docID = "";
         String sql ="select document_id from ma_document where name = ? and description = ? and url = ?;";

@@ -19,6 +19,12 @@ import java.util.ArrayList;
 public class DBOperationsStudent {
     
     //get the student name from the studentUsername
+
+    /**
+     *
+     * @param studentUsername
+     * @return
+     */
    
     public String getStudentName(String studentUsername){
         String result ="";
@@ -50,6 +56,12 @@ public class DBOperationsStudent {
     
     
     //get the student email from the studentUsername
+
+    /**
+     *
+     * @param studentUsername
+     * @return
+     */
     public String getStudentEmail(String studentUsername){
         String result = "";
         String sql = "select email from ma_student where username =?;";
@@ -80,6 +92,12 @@ public class DBOperationsStudent {
     }
     
      //get the cohortCode from the studentUsername
+
+    /**
+     *
+     * @param studentUsername
+     * @return
+     */
     public String getCohortID(String studentUsername){
         
         String result = "";
@@ -111,6 +129,11 @@ public class DBOperationsStudent {
         return result;
     }
     
+    /**
+     *
+     * @param cohortID
+     * @return
+     */
     public ArrayList<Student> getStudentsByCohort(String cohortID){
         ArrayList<Student> students = new ArrayList<>();
         String sql = "select s.username from ma_student s, ma_student_cohort sc\n" +
@@ -145,6 +168,13 @@ public class DBOperationsStudent {
     }
     
     //search student name functionality used in fac_grades.jsp page. enter the search name and cohort
+
+    /**
+     *
+     * @param search
+     * @param cohortID
+     * @return
+     */
     public ArrayList<Student> searchStudents (String search, String cohortID){
         ArrayList<Student> students = new ArrayList<>();
         String sql = "SELECT s.username, sc.cohort_id\n" +
@@ -185,6 +215,11 @@ public class DBOperationsStudent {
     }
     
     //get all students method used within the SiteNavigationAdmin controller
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<Student> getAllStudents (){
         ArrayList<Student> students = new ArrayList<>();
         String sql = "select username from ma_student;";
@@ -212,7 +247,11 @@ public class DBOperationsStudent {
         return students;
     }
     
-    
+    /**
+     *
+     * @param studentID
+     * @return
+     */
     public String getFirstname (String studentID){
         String name = "";
         String sql = "select first_name from ma_student where username = ?;";
@@ -238,7 +277,12 @@ public class DBOperationsStudent {
         return name;
     }
     
-     public String getMiddlename (String studentID){
+    /**
+     *
+     * @param studentID
+     * @return
+     */
+    public String getMiddlename (String studentID){
         String name = "";
         String sql = "select middle_name from ma_student where username = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -263,7 +307,12 @@ public class DBOperationsStudent {
         return name;
     }
      
-     public String getLastname (String studentID){
+    /**
+     *
+     * @param studentID
+     * @return
+     */
+    public String getLastname (String studentID){
         String name = "";
         String sql = "select last_name from ma_student where username = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -288,8 +337,12 @@ public class DBOperationsStudent {
         return name;
     }
      
-     
-     public boolean deleteGrades (String studentID){
+    /**
+     *
+     * @param studentID
+     * @return
+     */
+    public boolean deleteGrades (String studentID){
          boolean result = false;
          String sql = "delete from ma_grade where username = ?;";
          ConnectionPool cp = ConnectionPool.getInstance();

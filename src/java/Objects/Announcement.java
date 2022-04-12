@@ -26,7 +26,17 @@ public class Announcement {
     private String endDate;
     private boolean isVisible;
     
-     public Announcement (String announcementID, String cohortId,String startDate,String endDate,String text,String isVisible) throws SQLException{
+    /**
+     *
+     * @param announcementID
+     * @param cohortId
+     * @param startDate
+     * @param endDate
+     * @param text
+     * @param isVisible
+     * @throws SQLException
+     */
+    public Announcement (String announcementID, String cohortId,String startDate,String endDate,String text,String isVisible) throws SQLException{
         this.announcementID = announcementID;
         this.cohortId = cohortId;
         this.startDate = startDate;
@@ -40,51 +50,98 @@ public class Announcement {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAnnouncementID() {
         return announcementID;
     }
 
+    /**
+     *
+     * @param announcementID
+     */
     public void setAnnouncementID(String announcementID) {
         this.announcementID = announcementID;
     }
         
+    /**
+     *
+     * @return
+     */
     public String getcohortId(){
     return cohortId;
     }
 
+    /**
+     *
+     * @param cohortId
+     */
     public void setcohortId(String cohortId){
         this.cohortId = cohortId;
     }    
     
-    
+    /**
+     *
+     * @return
+     */
     public String getStartDate(){
     return startDate;
     }
 
+    /**
+     *
+     * @param startDate
+     */
     public void setStartDate(String startDate){
         this.startDate = startDate;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getEndDate(){
     return endDate;
     }
 
+    /**
+     *
+     * @param endDate
+     */
     public void setEndDate(String endDate){
         this.endDate = endDate;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getText(){
     return text;
     }
 
+    /**
+     *
+     * @param text
+     */
     public void setText(String text){
         this.text = text;
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean getIsVisible(){
         return isVisible;
     }
     
+    /**
+     *
+     * @param isVisible
+     */
     public void setIsVisible(boolean isVisible) {
         this.isVisible = isVisible;
     }

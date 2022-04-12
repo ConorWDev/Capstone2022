@@ -23,6 +23,13 @@ public class DBOperationsCohort {
     obtain the cohorts that are associated with a particular faculty member. As a faculty member
     can teach more than one cohort, return an arraylist of cohort objects
     */
+
+    /**
+     *
+     * @param facultyUsername
+     * @return
+     */
+
     
     public ArrayList<Cohort> getCohorts(String facultyUsername){
         ArrayList<Cohort> cohorts = new ArrayList<>();
@@ -60,6 +67,11 @@ public class DBOperationsCohort {
         return cohorts;
     }
     
+    /**
+     *
+     * @param cohortID
+     * @return
+     */
     public Cohort getCohort (String cohortID){
         Cohort cohort = null;
         String sql= "select * from ma_cohort where cohort_id = ?;";
@@ -87,6 +99,11 @@ public class DBOperationsCohort {
         return cohort;
     }
     
+    /**
+     *
+     * @param cohortName
+     * @return
+     */
     public boolean createCohort (String cohortName){
         boolean result = false;
         String sql = "insert into ma_cohort (name) values (?);";
@@ -109,6 +126,10 @@ public class DBOperationsCohort {
          return result;
     }
     
+    /**
+     *
+     * @return
+     */
     public ArrayList<Cohort> getAllCohorts (){
         ArrayList<Cohort> cohorts = new ArrayList<>();
         String sql = "select * from ma_cohort;";
@@ -138,6 +159,11 @@ public class DBOperationsCohort {
          return cohorts;
     }
     
+    /**
+     *
+     * @param cohortID
+     * @return
+     */
     public boolean clearCohortCourseBridge (String cohortID){
         boolean result = false;
         String sql = "delete from ma_cohort_course where cohort_id = ?;";
@@ -160,6 +186,12 @@ public class DBOperationsCohort {
          return result;
     }
     
+    /**
+     *
+     * @param cohortID
+     * @param courseID
+     * @return
+     */
     public boolean bridgeCohortCourse (String cohortID, String courseID){
         boolean result = false;
         String sql = "insert into ma_cohort_course values (?,?);";
@@ -183,7 +215,12 @@ public class DBOperationsCohort {
          return result;
     }
     
-     public boolean clearCohortFacultyBridge (String cohortID){
+    /**
+     *
+     * @param cohortID
+     * @return
+     */
+    public boolean clearCohortFacultyBridge (String cohortID){
         boolean result = false;
         String sql = "delete from ma_cohort_faculty where cohort_id = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -205,7 +242,13 @@ public class DBOperationsCohort {
          return result;
     }
      
-      public boolean bridgeCohortFaculty (String cohortID, String facultyID){
+    /**
+     *
+     * @param cohortID
+     * @param facultyID
+     * @return
+     */
+    public boolean bridgeCohortFaculty (String cohortID, String facultyID){
         boolean result = false;
         String sql = "insert into ma_cohort_faculty values (?,?);";
          ConnectionPool cp = ConnectionPool.getInstance();
@@ -228,8 +271,12 @@ public class DBOperationsCohort {
          return result;
     }
       
-      
-      public boolean clearCohortStudentBridge (String cohortID){
+    /**
+     *
+     * @param cohortID
+     * @return
+     */
+    public boolean clearCohortStudentBridge (String cohortID){
         boolean result = false;
         String sql = "delete from ma_student_cohort where cohort_id = ?;";
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -251,7 +298,13 @@ public class DBOperationsCohort {
          return result;
     }
       
-       public boolean bridgeCohortStudents (String cohortID, String studentID){
+    /**
+     *
+     * @param cohortID
+     * @param studentID
+     * @return
+     */
+    public boolean bridgeCohortStudents (String cohortID, String studentID){
         boolean result = false;
         String sql = "insert into ma_student_cohort values (?,?);";
          ConnectionPool cp = ConnectionPool.getInstance();
@@ -274,7 +327,12 @@ public class DBOperationsCohort {
          return result;
     }
        
-       public boolean deleteCohortByID (String cohortID){
+    /**
+     *
+     * @param cohortID
+     * @return
+     */
+    public boolean deleteCohortByID (String cohortID){
            
            deleteBridges(cohortID);
            
@@ -300,8 +358,12 @@ public class DBOperationsCohort {
            return result;
        }
        
-       
-       public boolean deleteBridges (String cohortID){
+    /**
+     *
+     * @param cohortID
+     * @return
+     */
+    public boolean deleteBridges (String cohortID){
            boolean result = false;
            String sql = "delete from ma_cohort_course where cohort_id = ?;";
            String sql2 = "delete from ma_cohort_faculty where cohort_id = ?;";

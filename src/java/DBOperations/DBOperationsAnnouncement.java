@@ -18,6 +18,11 @@ import java.time.format.DateTimeFormatter;
  */
 public class DBOperationsAnnouncement {
     
+    /**
+     *
+     * @param cohortId
+     * @return
+     */
     public ArrayList<Announcement> getCohortAnnouncements (String cohortId){
         
         ArrayList<Announcement> cohortAnnouncements = new ArrayList<>();
@@ -56,7 +61,11 @@ public class DBOperationsAnnouncement {
             return cohortAnnouncements;
     }
     
-    
+    /**
+     *
+     * @param courseId
+     * @return
+     */
     public ArrayList<CourseAnnouncement> getCourseAnnouncements (String courseId){
         
         ArrayList<CourseAnnouncement> courseAnnouncements = new ArrayList<>();
@@ -100,6 +109,14 @@ public class DBOperationsAnnouncement {
     Right now we are inserting dummy data into the start/end time columns. The db has been updated to auto increment the primary key. The pk is
     changed to an int to achieve this
     */
+
+    /**
+     *
+     * @param courseID
+     * @param text
+     * @return
+     */
+
     public boolean createCourseAnnouncement(String courseID, String text){
         boolean result = false;
         //currently insert dummy values for start/end date
@@ -130,6 +147,12 @@ public class DBOperationsAnnouncement {
         
     //obtain a particular courseannouncment from a given courseannouncementID. This is done to save the
     //course announcement to the session scope when faculty is editing a course announcement
+
+    /**
+     *
+     * @param courseAnnouncementID
+     * @return
+     */
     public CourseAnnouncement getCourseAnnouncement (String courseAnnouncementID){
         CourseAnnouncement announcement = null;
         String sql = "select * from ma_course_announcement where annnouncement_id = ?;";
@@ -164,6 +187,13 @@ public class DBOperationsAnnouncement {
     }
     
     //method used when editing courseAnnouncements. Input courseAnnouncementID and new text that will replace it
+
+    /**
+     *
+     * @param courseAnnouncementID
+     * @param newText
+     * @return
+     */
     public boolean editCourseAnnouncement (String courseAnnouncementID, String newText){
         boolean result = false;
         String sql = "update ma_course_announcement set text = ? where annnouncement_id = ?;";
@@ -187,6 +217,12 @@ public class DBOperationsAnnouncement {
     }
     
     //method used when deleting courseAnnouncements
+
+    /**
+     *
+     * @param courseAnnouncementID
+     * @return
+     */
     public boolean deleteCourseAnnouncement (String courseAnnouncementID) {
         boolean result = false;
         String sql = "delete from ma_course_announcement where annnouncement_id = ?";
@@ -208,7 +244,13 @@ public class DBOperationsAnnouncement {
             return result;
     }
     
-     public boolean createCohortAnnouncement(String cohortID, String text){
+    /**
+     *
+     * @param cohortID
+     * @param text
+     * @return
+     */
+    public boolean createCohortAnnouncement(String cohortID, String text){
         boolean result = false;
         //currently insert dummy values for start/end date
         String sql = "insert into ma_announcement (cohort_id,start_time,end_time,text) values (?,?,?,?);";
@@ -236,6 +278,11 @@ public class DBOperationsAnnouncement {
             return result;
     }
      
+    /**
+     *
+     * @param announcementID
+     * @return
+     */
     public Announcement getCohortAnnouncement (String announcementID){
         Announcement announcement = null;
         String sql = "select * from ma_announcement where announcement_id = ?;";
@@ -268,6 +315,13 @@ public class DBOperationsAnnouncement {
     }
     
     //method used when editing courseAnnouncements. Input courseAnnouncementID and new text that will replace it
+
+    /**
+     *
+     * @param cohortAnnouncementID
+     * @param newText
+     * @return
+     */
     public boolean editCohortAnnouncement (String cohortAnnouncementID, String newText){
         boolean result = false;
         String sql = "update ma_announcement set text = ? where announcement_id = ?;";
@@ -291,6 +345,12 @@ public class DBOperationsAnnouncement {
     }
     
     //method used when deleting cohortAnnouncements. Input courseAnnouncementID and new text that will be deletec
+
+    /**
+     *
+     * @param cohortAnnouncementID
+     * @return
+     */
     public boolean deleteCohortAnnouncement (String cohortAnnouncementID){
         boolean result = false;
         String sql = "DELETE from ma_announcement where announcement_id = ?;";
@@ -312,7 +372,12 @@ public class DBOperationsAnnouncement {
         return result;
     }
     
-   public ArrayList<Announcement> getAnnouncementsByCohort(String cohortID){
+    /**
+     *
+     * @param cohortID
+     * @return
+     */
+    public ArrayList<Announcement> getAnnouncementsByCohort(String cohortID){
        ArrayList<Announcement> announcements = new ArrayList<>();
        String sql = "select * from ma_announcement where cohort_id = ?;";
          ConnectionPool cp = ConnectionPool.getInstance();

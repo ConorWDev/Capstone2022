@@ -12,8 +12,17 @@ import java.util.ArrayList;
 import Objects.Schedule;
 import java.sql.SQLException;
 
+/**
+ *
+ * @author Administrator
+ */
 public class DBOperationsSchedule {
 
+    /**
+     *
+     * @param scheduleId
+     * @return
+     */
     public ArrayList<Schedule> getSchedules(String scheduleId){
         
         ArrayList<Schedule> schedules = new ArrayList<>();
@@ -51,8 +60,12 @@ public class DBOperationsSchedule {
         return schedules;
     }    
 
-    
-    
+    /**
+     *
+     * @param scheduleId
+     * @return
+     * @throws SQLException
+     */
     public String getScheduleId (String scheduleId) throws SQLException{
         String result = "";
         String sql = "select schedule_id from ma_schedule where cohort_id=?;";
@@ -77,6 +90,12 @@ public class DBOperationsSchedule {
                 return result;
     }
     
+    /**
+     *
+     * @param scheduleId
+     * @return
+     * @throws SQLException
+     */
     public String getCohortId (String scheduleId) throws SQLException{
         String result = "";
         String sql = "select cohort_id from ma_schedule where schedule_id = ?;";
@@ -126,6 +145,13 @@ public class DBOperationsSchedule {
                 return result;
     }
     */
+
+    /**
+     *
+     * @param scheduleID
+     * @return
+     */
+
      public String getUrl (String scheduleID){
           String url = "";
           String sql = "select url from ma_schedule where schedule_id = ?;";
@@ -153,8 +179,12 @@ public class DBOperationsSchedule {
           return url;
       }
       
-    
-    
+    /**
+     *
+     * @param cohortID
+     * @param url
+     * @return
+     */
     public boolean addSchedule (String cohortID, String url){
         boolean result = false;
         String sql = "insert into ma_schedule (cohort_id, url) values (?,?);";
@@ -179,6 +209,11 @@ public class DBOperationsSchedule {
         return result;
     }
 
+    /**
+     *
+     * @param ID
+     * @return
+     */
     public boolean deleteSchedule(String ID) {
         boolean result = false;
         String sql = "delete from ma_schedule where cohort_id = ?;";
@@ -202,6 +237,11 @@ public class DBOperationsSchedule {
         return result;
     }
 
+    /**
+     *
+     * @param cohortID
+     * @return
+     */
     public Schedule getSchedule(String cohortID) {
         Schedule schedule = null;
         String sql = "select * from ma_schedule where cohort_id = ?;";

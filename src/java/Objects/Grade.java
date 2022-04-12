@@ -32,7 +32,13 @@ public class Grade {
     
     private boolean isVisible;
     
-    
+    /**
+     *
+     * @param studentUsername
+     * @param assignmentID
+     * @param mark
+     * @param isVisible
+     */
     public Grade(String studentUsername, String assignmentID, String mark, String isVisible){
         
         this.studentName =  dbOpsStud.getStudentName(studentUsername);
@@ -52,50 +58,98 @@ public class Grade {
         }
     }
     
-     public double getWeight() {
+    /**
+     *
+     * @return
+     */
+    public double getWeight() {
         return weight;
     }
 
+    /**
+     *
+     * @param weight
+     */
     public void setWeight(double weight) {
         this.weight = weight;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLessonName() {
         return lessonName;
     }
 
+    /**
+     *
+     * @param lessonName
+     */
     public void setLessonName(String lessonName) {
         this.lessonName = lessonName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getStudentName() {
         return studentName;
     }
 
+    /**
+     *
+     * @param studentName
+     */
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAssignmentName() {
         return assignmentName;
     }
 
+    /**
+     *
+     * @param assignmentName
+     */
     public void setAssignmentName(String assignmentName) {
         this.assignmentName = assignmentName;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getMark() {
         return mark;
     }
 
+    /**
+     *
+     * @param mark
+     */
     public void setMark(double mark) {
         this.mark = mark;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isIsVisible() {
         return isVisible;
     }
 
+    /**
+     *
+     * @param isVisible
+     */
     public void setIsVisible(boolean isVisible) {
         this.isVisible = isVisible;
     }
