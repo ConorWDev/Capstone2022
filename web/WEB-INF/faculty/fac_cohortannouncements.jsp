@@ -84,7 +84,7 @@ for the faculty member to add/edit the cohort annoucments
                                 <p><b>Original Text:</b></p><p> ${sessionScope.cohortAnnouncement.text}</p>
                                 <p><b>New Text:</b></p> 
                                 <input type="text" name="newText" class="form-control mb-3" placeholder="${sessionScope.cohortAnnouncement.text}">
-                                <button type="submit" value="update"class="btn bg-secondary text-white">
+                                <button type="submit" value="update"class="btn bg-secondary text-white mb-3">
                                     Update Post
                                 </button>
                             </form>
