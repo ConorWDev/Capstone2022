@@ -8,10 +8,12 @@ package Controller.Navigation;
 import DBOperations.DBOperationsAdmin;
 import DBOperations.DBOperationsAnnouncement;
 import DBOperations.DBOperationsAssignments;
+import DBOperations.DBOperationsAttendance;
 import DBOperations.DBOperationsCohort;
 import DBOperations.DBOperationsCourse;
 import DBOperations.DBOperationsDocument;
 import DBOperations.DBOperationsFaculty;
+import DBOperations.DBOperationsGrade;
 import DBOperations.DBOperationsModule;
 import DBOperations.DBOperationsSchedule;
 import DBOperations.DBOperationsStudent;
@@ -20,10 +22,12 @@ import Interface.Users.Faculty;
 import Interface.Users.Student;
 import Objects.Announcement;
 import Objects.Assignment;
+import Objects.Attendance;
 import Objects.Cohort;
 import Objects.Course;
 import Objects.CourseAnnouncement;
 import Objects.Document;
+import Objects.Grade;
 import Objects.Module;
 import Objects.Schedule;
 import java.io.IOException;
@@ -74,7 +78,8 @@ public class SiteNavigationAdmin extends HttpServlet {
         DBOperationsCohort dbOpsCoh = new DBOperationsCohort();
         DBOperationsAnnouncement dbOpsAnn = new DBOperationsAnnouncement();
         DBOperationsSchedule dbOpsSch = new DBOperationsSchedule();
-        
+        DBOperationsAttendance dbOpsAtt = new DBOperationsAttendance();
+        DBOperationsGrade dbOpsGra = new DBOperationsGrade();
         
         if(logout!=null&&!logout.equals("")){
           session.invalidate();
@@ -974,6 +979,33 @@ public class SiteNavigationAdmin extends HttpServlet {
                 
 
             } else if (nav.equals("adminreport")) {
+                
+                
+                
+                
+                
+                
+                
+                ArrayList<Student> students = dbOpsStud.getAllStudents();
+                ArrayList<ArrayList> attendanceLists = new ArrayList<>();
+                
+                for (int x = 0; x < students.size(); x++){
+                    ArrayList<Attendance> attendanceForStudent = dbOpsAtt.getAttendanceRecords(students.get(x).getUserID());
+                    attendanceLists.add(attendanceForStudent);
+                }
+                
+                ArrayList<ArrayList> gradeLists = new ArrayList<>();
+                
+                for (int x = 0; x < students.size(); x++){
+                    ArrayList<Grade> grades = dbOpsGra.getGrades(students.get(x).getUserID());
+                    gradeLists.add(grades);
+                }
+                
+                request.setAttribute("gradeLists", gradeLists);
+                request.setAttribute("students", students);
+                request.setAttribute("attendanceLists", attendanceLists);
+                
+                
                 request.getRequestDispatcher("/WEB-INF/admin/AdminReports.jsp").forward(request, response);
 
             } else if (nav.equals("adminarchive")) {
