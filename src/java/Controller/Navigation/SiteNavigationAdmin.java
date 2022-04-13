@@ -148,9 +148,27 @@ public class SiteNavigationAdmin extends HttpServlet {
                         String pass = request.getParameter("infoPass");
                         
                         switch(op){
-                            case "1": boolean resultStud = dbOpsAd.editStudent(user, first, middle, last, email, pass);break;
-                            case "2": boolean resultFac = dbOpsAd.editFaculty(user, first, middle, last, email, pass);break;
-                            case "3": boolean resultAdmin = dbOpsAd.editAdmin(user, first, middle, last, email, pass);break;
+                            case "1": boolean resultStud = dbOpsAd.editStudent(user, first, middle, last, email, pass);
+                            if(!resultStud){
+                                request.setAttribute("message", "Something went wrong when editing the user. \nEnsure that "
+                                        + "1. The username is unique\n"
+                                        + "2. The username does not exceed 11 characters\n");
+                            }
+                            break;
+                            case "2": boolean resultFac = dbOpsAd.editFaculty(user, first, middle, last, email, pass);
+                            if(!resultFac){
+                                request.setAttribute("message", "Something went wrong when editing the user. \nEnsure that "
+                                        + "1. The username is unique\n"
+                                        + "2. The username does not exceed 11 characters\n");
+                            }
+                            break;
+                            case "3": boolean resultAdmin = dbOpsAd.editAdmin(user, first, middle, last, email, pass);
+                            if(!resultAdmin){
+                                request.setAttribute("message", "Something went wrong when editing the user. \nEnsure that "
+                                        + "1. The username is unique\n"
+                                        + "2. The username does not exceed 11 characters\n");
+                            }
+                            break;
                         }
                     }
                     //user has selected to delete users
