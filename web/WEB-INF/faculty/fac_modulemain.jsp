@@ -35,7 +35,7 @@
                         
                         <c:forEach items="${requestScope.assignments}" var="assignment">
                             <div class="row m-1 bg-light">
-                            <p class="mb-0 text-primary text-capitalize"><b>${assignment.assignmentName}</b></p>
+                            <a href="${assignment.assignmentUrl}" class="mb-0 text-primary text-capitalize"><b>${assignment.assignmentName}</b></a>
                             <p class="text-capitalize">${assignment.assignmentDescription}</p>
                             </div>  
                         </c:forEach>
@@ -50,7 +50,7 @@
                         
                         <c:forEach items="${requestScope.documents}" var="document">
                             <div class="row bg-light m-1">
-                            <p class="mb-0 text-primary text-capitalize"><b>${document.name}</b></p>
+                            <a href="${document.url}" class="mb-0 text-primary text-capitalize"><b>${document.name}</b></a>
                             <p class="text-capitalize">${document.description}</p>
                             </div>     
                         </c:forEach>
@@ -70,8 +70,8 @@
                             <input type="text" name="assignmentName" required="true" class="form-control mb-3"> 
                             <p class="mb-0"><b>Assignment Description</b></p>
                             <input type="text" name="assignmentDescription" required="true" class="form-control mb-3"> 
-                            <p class="mb-0"><b>Assignment URL (Optional)</b></p>
-                            <input type="text" name="assignmentURL" class="form-control mb-3"> 
+                            <p class="mb-0"><b>Assignment URL (Optional)</b> - Enter URL as Shown Below</p>
+                            <input type="text" name="assignmentURL" class="form-control mb-3" placeholder="EX: https://mtghealthcare.com/"> 
                             <input type="hidden" name="moduleid" value="${sessionScope.moduleObject.lessonId}"> 
                             
                             
@@ -95,8 +95,8 @@
                             <input type="text" name="documentName" required="true" class="form-control mb-3">
                             <p class="mb-0"><b>Document Description</b></p>
                             <input type="text" name="documentDescription" required="true" class="form-control mb-3"> 
-                            <p class="mb-0"><b>Document URL</b></p>
-                            <input type="text" name="documentURL" required="true" class="form-control mb-3"> 
+                            <p class="mb-0"><b>Document URL</b> - Enter URL as Shown Below</p>
+                            <input type="text" name="documentURL" required="true" class="form-control mb-3" placeholder="EX: https://mtghealthcare.com/"> 
                             <input type="hidden" name="moduleid" value="${sessionScope.moduleObject.lessonId}"> 
                             
                             <div class="container d-flex justify-content-end mb-1 ">
