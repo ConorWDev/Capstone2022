@@ -40,8 +40,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * 
  * @author ryanc
+ * 
+ * The SiteNavigationAdmin is to help admin user to navigate each admin jsp page.
+ * Similarly as faculty and student, 'nav' variable functions as to navigate different jsp page
+ * but there is 'op' variable as well which trigger different action in the page.
+ * Each else if block requires specific variable to load related information.
+ * 
  */
 @WebServlet(name = "SiteNavigationAdmin", urlPatterns = {"/SiteNavigationAdmin"})
 public class SiteNavigationAdmin extends HttpServlet {
@@ -454,12 +460,12 @@ public class SiteNavigationAdmin extends HttpServlet {
                    String save = request.getParameter("saveChanges");
                    if (save != null && !save.equals("")){
                        
-                       /*
-                       in the following code, obtain two lists. One list is of all assignments currently connected to the
-                       given module. The second is a list of all assignments that have been checked off within the "assignments" form
-                       using these two lists we will update the database appropriatly, either adding or deleteing the connections of assignments from
-                       a given module
-                       */
+                       /**
+                        * in the following code, obtain two lists. One list is of all assignments currently connected to the
+                        * given module. The second is a list of all assignments that have been checked off within the "assignments" form
+                        * using these two lists we will update the database appropriately, either adding or deleteing the connections of assignments from
+                        * a given module
+                        */
                        
                        //obtain a list of all assignments currently held in the module and stor it in array list previouslyCheckedAssignmentIDs
                        moduleID = request.getParameter("modID"); 
@@ -498,11 +504,11 @@ public class SiteNavigationAdmin extends HttpServlet {
                        //drop all entries in ma_less_document table where module_id = x. then add in as necessary
                        
                        
-                       /*
-                       in the following code, obtain one lists. A list of all documents that have been checked off within the "documents" form
-                       using this list we will update the database appropriatly, first delete all previous instances in ma_lesson_document
-                       table where module_id = x. then add all new occurences in
-                       */
+                       /**
+                        * in the following code, obtain one lists. A list of all documents that have been checked off within the "documents" form
+                        * using this list we will update the database appropriately, first delete all previous instances in ma_lesson_document
+                        * table where module_id = x. then add all new occurrences in
+                        */
                        
                        //obtain list of all documents that are checked off in the document form and store it in array list checkedDocumentIDs
                        String docCount = request.getParameter("docCount");
@@ -707,10 +713,10 @@ public class SiteNavigationAdmin extends HttpServlet {
                         
                     
                     
-                      /*
-                       in the following code, obtain one lists. A list of all courses that have been checked off within the "courses" form
-                       using this list we will update the database appropriatly, first delete all previous instances in ma_cohort_course
-                       table where cohort_id = x. then add all new occurences in
+                      /**
+                       * in the following code, obtain one lists. A list of all courses that have been checked off within the "courses" form
+                       * using this list we will update the database appropriately, first delete all previous instances in ma_cohort_course
+                       * table where cohort_id = x. then add all new occurrences in
                        */
                         
                       
@@ -736,11 +742,11 @@ public class SiteNavigationAdmin extends HttpServlet {
                        
                        
                        
-                       /*
-                       in the following code, obtain one list. A list of all faculty that have been checked off within the "faculty" form
-                       using this list we will update the database appropriatly, first delete all previous instances in ma_cohort_faculty
-                       table where cohort_id = x. then add all new occurences in
-                       */
+                       /**
+                        * in the following code, obtain one list. A list of all faculty that have been checked off within the "faculty" form
+                        * using this list we will update the database appropriately, first delete all previous instances in ma_cohort_faculty
+                        * table where cohort_id = x. then add all new occurrences in
+                        */
                        
                        //obtain list of all faculty that are checked off in the document form and store it in array list checkedDocumentIDs
                        String facultyCount = request.getParameter("facultyCount");
@@ -762,11 +768,11 @@ public class SiteNavigationAdmin extends HttpServlet {
                        }
                        
                        
-                       /*
-                       in the following code, obtain two lists. A list of all students that have been checked off within the "student" form
-                       using this list we will update the database appropriatly, first delete all previous instances in ma_student_cohort
-                       table where cohort_id = x. then add all new occurences in
-                       */
+                       /**
+                        * in the following code, obtain two lists. A list of all students that have been checked off within the "student" form
+                        * using this list we will update the database appropriately, first delete all previous instances in ma_student_cohort
+                        * table where cohort_id = x. then add all new occurrences in
+                        */
                        
                        //obtain a list of all students currently held in the module and store it in array list previouslyCheckedStudentIDs
                        ArrayList<Student> relevantStudents = dbOpsStud.getStudentsByCohort(ID);

@@ -40,6 +40,11 @@ import javax.servlet.http.HttpSession;
 /**
  *
  * @author massvm
+ * 
+ * The SiteNavigation is to help student user to navigate each student jsp page.
+ * 'nav' functions as feeding to navigate different jsp page depending on the requests.
+ * Each else if block requires specific variable to load related information
+ * 
  */
 @WebServlet(name = "SiteNavigation", urlPatterns = {"/SiteNavigation"})
 public class SiteNavigation extends HttpServlet {
@@ -57,10 +62,11 @@ public class SiteNavigation extends HttpServlet {
         
         //Getting Any Data We Need from the page
         
-        /*Here we obtain from the HttpSession object...
-        *  1) the username of the student ex.cmc21-00001
-        *  2) a Student object called student which hold information about the student object created at login
-        */
+        /**
+         * Here we obtain from the HttpSession object...
+         * 1) the username of the student ex.cmc21-00001
+         * 2) a Student object called student which hold information about the student object created at login
+         */
         HttpSession session = request.getSession();
         String username = (String)(session.getAttribute("username"));
         Student student = (Student)session.getAttribute("student");
@@ -104,12 +110,13 @@ public class SiteNavigation extends HttpServlet {
                 
                 request.getRequestDispatcher("/WEB-INF/student/home.jsp").forward(request, response); 
             }
-            /*The reportcard else if block requires one variables to dynamically load reportcard information
-            1) the username of the student (which is obtained above from the session scope)
-            
-            This variable is used within the getStudentCourses method to obtain an arraylist of studentCourse objects that
-            is then fed via an attribute to the reportcard page
-            */
+            /**
+             * The reportcard else if block requires one variables to dynamically load reportcard information
+             * 1) the username of the student (which is obtained above from the session scope)
+             *
+             * This variable is used within the getStudentCourses method to obtain an arraylist of studentCourse objects that
+             * is then fed via an attribute to the reportcard page
+             */
             else if(nav.equals("reportcard")){
                 ArrayList<StudentCourse> courses = dbOpsGrade.getStudentCourses(username);
                 request.setAttribute("courses", courses);
@@ -127,9 +134,10 @@ public class SiteNavigation extends HttpServlet {
                 
                 request.getRequestDispatcher("/WEB-INF/student/schedule.jsp").forward(request, response); 
             }
-            /*The coursemain else if block requires one variable to dynamically load all modules for a specific course
-            1) the courseID (this is passed through an href redirect on the home page) is used as an argument for getCourseModules
-            */
+            /** 
+             * The coursemain else if block requires one variable to dynamically load all modules for a specific course
+             * 1) the courseID (this is passed through an href redirect on the home page) is used as an argument for getCourseModules
+             */
             else if(nav.equals("coursemain")){
                 ArrayList<Module> modules = dbOpsMod.getCourseModules(courseid);
                 request.setAttribute("modules",modules);
@@ -146,21 +154,23 @@ public class SiteNavigation extends HttpServlet {
                 request.setAttribute("courseGrades", courseGrades);
                 request.getRequestDispatcher("/WEB-INF/student/coursemain.jsp").forward(request, response);
             }
-            /*The announcement else if block requires one variable to dynamically load announcement information
-            1) the cohortID of the student (which is obtained above from the session scope)
-            */
+            /**
+             * The announcement else if block requires one variable to dynamically load announcement information
+             * 1) the cohortID of the student (which is obtained above from the session scope)
+             */
             else if(nav.equals("announcements")){
                 ArrayList<Announcement> announcements = dbOpsAn.getCohortAnnouncements(student.getCohortID());
                 request.setAttribute("announcements", announcements);
                 request.getRequestDispatcher("/WEB-INF/student/announcements.jsp").forward(request, response); 
             }
-            /*The coursegrade else if block requires two variables to dynamically load courseGrade information
-            1) the username of the student (which is obtained above from the session scope)
-            2) the courseid (which is passed via an href variable in reportcard TODO as well as eventually from courseMain link)
-            
-            These two variables are used within the getCourseGrade method to obtain an arraylist of courseGrade objects that
-            is then fed via an attribute to the courseGrade page
-            */
+            /**
+             * The coursegrade else if block requires two variables to dynamically load courseGrade information
+             * 1) the username of the student (which is obtained above from the session scope)
+             * 2) the courseid (which is passed via an href variable in reportcard TODO as well as eventually from courseMain link)
+             *
+             * These two variables are used within the getCourseGrade method to obtain an arraylist of courseGrade objects that
+             * is then fed via an attribute to the courseGrade page
+             */
             else if(nav.equals("coursegrade")){
                 ArrayList<Grade> courseGrades = dbOpsGrade.getCourseGrades(username, courseid);
                 request.setAttribute("courseGrades", courseGrades);

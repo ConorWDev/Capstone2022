@@ -41,6 +41,10 @@ import javax.servlet.http.HttpSession;
 /**
  *
  * @author massvm
+ * 
+ * The SiteNavigationFaculty is to help faculty user to navigate each faculty jsp page.
+ * 'nav' functions as feeding to navigate different jsp page depending on the requests.
+ *  
  */
 @WebServlet(name = "SiteNavigationFaculty", urlPatterns = {"/SiteNavigationFaculty"})
 public class SiteNavigationFaculty extends HttpServlet {
@@ -107,13 +111,14 @@ public class SiteNavigationFaculty extends HttpServlet {
            //navigating to course main
             if (nav.equals("coursemain")){
                 
-               //ADDING GIVEN COURSE TO SESSION SCOPE "courseObject" 
+               /**ADDING GIVEN COURSE TO SESSION SCOPE "courseObject" 
                
-               //create a course object from the given course ID and then set it within the session scope for use later.
-               //this is a new model. Prior to this, no course was held in session scope. Rather, the required values (name, id description)
-               //were all passed individually. This was ineffective. Because all navigation "deeper" into the app (i.e, navigating to further pages
-               //from this point onward) will be only relevant to this particular course, the course is set as "course" on the session scope.
-               //if a different course is navigated to on fac_home.jsp, that particular course will be assigned to the session scope as "course".
+                * create a course object from the given course ID and then set it within the session scope for use later.
+                * this is a new model. Prior to this, no course was held in session scope. Rather, the required values (name, id description)
+                * were all passed individually. This was ineffective. Because all navigation "deeper" into the app (i.e, navigating to further pages
+                * from this point onward) will be only relevant to this particular course, the course is set as "course" on the session scope.
+                * if a different course is navigated to on fac_home.jsp, that particular course will be assigned to the session scope as "course".
+                */
                Course course = dbOpsCor.getCourse(courseID);
                session.setAttribute("courseObject", course);
                
@@ -131,15 +136,15 @@ public class SiteNavigationFaculty extends HttpServlet {
             //navigating to modulemain
             else if (nav.equals("modulemain")){
                 
-                //ADDING GIVEN MODULE TO SESSION SCOPE "moduleObject"
-                
-                
-                 //create a module object from the given module ID and then set it within the session scope for use later.
-               //this is a new model. Prior to this, no module was held in session scope. Rather, the required values (name, id description)
-               //were all passed individually. This was ineffective. Because all navigation "deeper" into the app (i.e, navigating to further pages
-               //from this point in the app onward) will be only relevant to this particular module, the module is set as "module" on the session scope.
-               //if a different module is navigated to on fac_coursemain.jsp, that particular module will be assigned to the session scope as "module".
-
+                /** 
+                 * ADDING GIVEN MODULE TO SESSION SCOPE "moduleObject"
+                 * 
+                 * create a module object from the given module ID and then set it within the session scope for use later.
+                 * this is a new model. Prior to this, no module was held in session scope. Rather, the required values (name, id description)
+                 * were all passed individually. This was ineffective. Because all navigation "deeper" into the app (i.e, navigating to further pages
+                 * from this point in the app onward) will be only relevant to this particular module, the module is set as "module" on the session scope.
+                 * if a different module is navigated to on fac_coursemain.jsp, that particular module will be assigned to the session scope as "module".
+                 */ 
                 Module module = dbOpsMod.getModule(moduleID);
                 session.setAttribute("moduleObject", module);
                
@@ -231,13 +236,13 @@ public class SiteNavigationFaculty extends HttpServlet {
                     }
                 } 
                 
-                /*
-                If grades are being saved...
-                get the variable count from form on studengrades page. this is the number of assignments, it will be used
-                for the for loop.
-                Obtain the unique grade value and assignment_id from the form on studentgrades page.
-                Feed these two values along with the student ID obtained from session scope into the DBoperation update grades
-                */
+                /**
+                 * If grades are being saved...
+                 * get the variable count from form on studengrades page. this is the number of assignments, it will be used
+                 * for the for loop.
+                 * Obtain the unique grade value and assignment_id from the form on studentgrades page.
+                 * Feed these two values along with the student ID obtained from session scope into the DBoperation update grades
+                 */
                 String count = request.getParameter("count");
                 String saveGrade = request.getParameter("saveGrade");
                 if (saveGrade != null && !saveGrade.equals("")){
@@ -344,10 +349,10 @@ public class SiteNavigationFaculty extends HttpServlet {
                //obtain the course object that is storred within the session scope (again, this is done above when navigating to coursemain.jsp)
                Course course = (Course)session.getAttribute("courseObject"); 
                  
-               /*
-                NOTE, at this point in the application, the course object "course" within the session scope has been set (occurs when selecting couse
-                (on fac_home.jsp). As such, course related datafields that are required on courseannouncement.jsp can be passed via the "course" session
-                scope variable
+               /**
+                * NOTE, at this point in the application, the course object "course" within the session scope has been set (occurs when selecting couse
+                * (on fac_home.jsp). As such, course related datafields that are required on courseannouncement.jsp can be passed via the "course" session
+                * scope variable
                 */
                
                //obtain text from add announcement form on fac_courseannouncements.jsp and carry out sql command to add it to the DB
