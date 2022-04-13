@@ -70,8 +70,8 @@
                             <input type="text" name="assignmentName" required="true" class="form-control mb-3"> 
                             <p class="mb-0"><b>Assignment Description</b></p>
                             <input type="text" name="assignmentDescription" required="true" class="form-control mb-3"> 
-                            <p class="mb-0"><b>Assignment URL (Optional)</b> - Enter URL as Shown Below</p>
-                            <input type="text" name="assignmentURL" class="form-control mb-3" placeholder="EX: https://mtghealthcare.com/"> 
+                            <p class="mb-0"><b>Assignment URL (Optional)</b></p>
+                            <input type="text" name="assignmentURL" class="form-control mb-3" placeholder="URL - EX: https://mtghealthcare.com/"> 
                             <input type="hidden" name="moduleid" value="${sessionScope.moduleObject.lessonId}"> 
                             
                             
@@ -95,8 +95,8 @@
                             <input type="text" name="documentName" required="true" class="form-control mb-3">
                             <p class="mb-0"><b>Document Description</b></p>
                             <input type="text" name="documentDescription" required="true" class="form-control mb-3"> 
-                            <p class="mb-0"><b>Document URL</b> - Enter URL as Shown Below</p>
-                            <input type="text" name="documentURL" required="true" class="form-control mb-3" placeholder="EX: https://mtghealthcare.com/"> 
+                            <p class="mb-0"><b>Document URL</b></p>
+                            <input type="text" name="documentURL" required="true" class="form-control mb-3" placeholder="URL - EX: https://mtghealthcare.com/"> 
                             <input type="hidden" name="moduleid" value="${sessionScope.moduleObject.lessonId}"> 
                             
                             <div class="container d-flex justify-content-end mb-1 ">
