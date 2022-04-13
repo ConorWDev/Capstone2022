@@ -15,7 +15,8 @@ import java.util.ArrayList;
  * Student.java
  * 
  * The student object is a transitory Java Bean object that helps 
- * a user call specific information based on their unique identity.
+ * a user call specific information based on their unique identity. In this
+ * case, its a student.
  */
 public class Student implements Serializable {
     
@@ -38,8 +39,8 @@ public class Student implements Serializable {
     //Overloaded Constructor
 
     /**
-     *
-     * @param userID
+     * gets the student information based on user id
+     * @param userID String
      */
     public Student(String userID){
         this.userID = userID;
@@ -54,80 +55,80 @@ public class Student implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * gets the first name of the particular student
+     * @return firstName String
      */
     public String getFirstName() {
         return firstName;
     }
 
     /**
-     *
-     * @param firstName
+     * sets the first name of the particular student
+     * @param firstName String
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     /**
-     *
-     * @return
+     * gets the middle name of the particular student
+     * @return middleName String
      */
     public String getMiddleName() {
         return middleName;
     }
 
     /**
-     *
-     * @param middleName
+     * sets the middle name of the particular student
+     * @param middleName String
      */
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
 
     /**
-     *
-     * @return
+     * gets the last name of the particular student
+     * @return lastName String
      */
     public String getLastName() {
         return lastName;
     }
 
     /**
-     *
-     * @param lastName
+     * sets the last name of the particular student
+     * @param lastName String
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
     /**
-     *
-     * @return
+     * gets the user id of the particular student
+     * @return userID String
      */
     public String getUserID() {
         return userID;
     }
 
     /**
-     *
-     * @return
+     * gets the email of the particular student
+     * @return email String
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     *
-     * @return
+     * gets the full name of the particular student
+     * @return fullName String
      */
     public String getFullName() {
         return fullName;
     }
 
     /**
-     *
-     * @return
+     * gets the cohort id of the particular student
+     * @return cohortID String
      */
     public String getCohortID() {
         return cohortID;

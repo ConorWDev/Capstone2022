@@ -10,8 +10,8 @@ import DBOperations.DBOperationsGrade;
 import DBOperations.DBOperationsStudent;
 
 /**
- *
- * @author This object holds the grade of a particular asignment for a particular student
+ * This Grade object holds the grades of a particular assignment for a particular student
+ * @author Administrator
  */
 public class Grade {
     
@@ -33,11 +33,11 @@ public class Grade {
     private boolean isVisible;
     
     /**
-     *
-     * @param studentUsername
-     * @param assignmentID
-     * @param mark
-     * @param isVisible
+     * Constructor
+     * @param studentUsername String
+     * @param assignmentID String
+     * @param mark String
+     * @param isVisible String
      */
     public Grade(String studentUsername, String assignmentID, String mark, String isVisible){
         
@@ -59,96 +59,96 @@ public class Grade {
     }
     
     /**
-     *
-     * @return
+     * gets how much weight an assignment has for the student
+     * @return weight double
      */
     public double getWeight() {
         return weight;
     }
 
     /**
-     *
-     * @param weight
+     * sets how much weight an assignment has for the student
+     * @param weight double
      */
     public void setWeight(double weight) {
         this.weight = weight;
     }
 
     /**
-     *
-     * @return
+     * gets the name of the lesson for the student
+     * @return lessonName String
      */
     public String getLessonName() {
         return lessonName;
     }
 
     /**
-     *
-     * @param lessonName
+     * sets the name of the lesson for the student
+     * @param lessonName String
      */
     public void setLessonName(String lessonName) {
         this.lessonName = lessonName;
     }
 
     /**
-     *
-     * @return
+     * gets the name of the particular student
+     * @return studentName String
      */
     public String getStudentName() {
         return studentName;
     }
 
     /**
-     *
-     * @param studentName
+     * sets the name of the particular student
+     * @param studentName String
      */
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
 
     /**
-     *
-     * @return
+     * gets the name of the assignment fo the student
+     * @return assignmentName String
      */
     public String getAssignmentName() {
         return assignmentName;
     }
 
     /**
-     *
-     * @param assignmentName
+     * sets the name of the assignment fo the student
+     * @param assignmentName String
      */
     public void setAssignmentName(String assignmentName) {
         this.assignmentName = assignmentName;
     }
 
     /**
-     *
-     * @return
+     * gets the mark the student got for the assignment
+     * @return mark double
      */
     public double getMark() {
         return mark;
     }
 
     /**
-     *
-     * @param mark
+     * sets the mark the student got for the assignment
+     * @param mark double
      */
     public void setMark(double mark) {
         this.mark = mark;
     }
 
     /**
-     *
-     * @return
+     * checks and gets whether the mark is visible or not for the student
+     * @return isVisible Boolean
      */
     public boolean isIsVisible() {
         return isVisible;
     }
 
     /**
-     *
-     * @param isVisible
+     * checks and sets whether the mark is visible or not for the student
+     * @param isVisible Boolean
      */
     public void setIsVisible(boolean isVisible) {
         this.isVisible = isVisible;

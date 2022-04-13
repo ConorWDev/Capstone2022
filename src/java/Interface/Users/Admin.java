@@ -8,7 +8,11 @@ package Interface.Users;
 import DBOperations.DBOperationsAdmin;
 
 /**
- *
+ * Admin.java
+ * 
+ * The Admin object is a transitory Java Bean object that helps 
+ * a user call specific information based on their unique identity. In this
+ * case, its admin.
  * @author ryanc
  */
 public class Admin {
@@ -26,8 +30,9 @@ public class Admin {
     private String lastName = "";
     
     /**
-     *
-     * @param userID
+     * Constructor
+     * gets the admin information based on user id
+     * @param userID String
      */
     public Admin(String userID){
         this.userID = userID;
@@ -40,112 +45,112 @@ public class Admin {
     }
 
     /**
-     *
-     * @return
+     * gets the first name of the particular admin
+     * @return firstName String
      */
     public String getFirstName() {
         return firstName;
     }
 
     /**
-     *
-     * @param firstName
+     * sets the first name of the particular admin
+     * @param firstName String
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     /**
-     *
-     * @return
+     * gets the middle name of the particular admin
+     * @return middleName String
      */
     public String getMiddleName() {
         return middleName;
     }
 
     /**
-     *
-     * @param middleName
+     * sets the middle name of the particular admin
+     * @param middleName String
      */
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
 
     /**
-     *
-     * @return
+     * gets the last name of the particular admin
+     * @return lastName String
      */
     public String getLastName() {
         return lastName;
     }
 
     /**
-     *
-     * @param lastName
+     * sets the last name of the particular admin
+     * @param lastName String
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
     /**
-     *
-     * @return
+     * gets the particular admin contained in the database
+     * @return dbOps DBOperationsAdmin
      */
     public DBOperationsAdmin getDbOps() {
         return dbOps;
     }
 
     /**
-     *
-     * @param dbOps
+     * sets the particular admin contained in the database
+     * @param dbOps DBOperationsAdmin
      */
     public void setDbOps(DBOperationsAdmin dbOps) {
         this.dbOps = dbOps;
     }
 
     /**
-     *
-     * @return
+     * gets the user id of the particular admin
+     * @return userID String
      */
     public String getUserID() {
         return userID;
     }
 
     /**
-     *
-     * @param userID
+     * sets the user id of the particular admin
+     * @param userID String
      */
     public void setUserID(String userID) {
         this.userID = userID;
     }
 
     /**
-     *
-     * @return
+     * gets the email of the particular admin
+     * @return email String
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     *
-     * @param email
+     * sets the email of the particular admin
+     * @param email String
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     *
-     * @return
+     * gets the full name of the particular admin
+     * @return fullName String
      */
     public String getFullName() {
         return fullName;
     }
 
     /**
-     *
-     * @param fullName
+     * sets the full name of the particular admin
+     * @param fullName String
      */
     public void setFullName(String fullName) {
         this.fullName = fullName;

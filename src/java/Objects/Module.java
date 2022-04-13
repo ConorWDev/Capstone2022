@@ -6,7 +6,8 @@
 package Objects;
 
 /**
- *
+ * A Module object is a module that is related to a particular lesson. This object
+ * holds the module of a particular lesson for a particular student
  * @author Administrator
  */
 public class Module {
@@ -16,13 +17,13 @@ public class Module {
     private String description;
 
     /**
-     *
+     * empty constructor
      */
     public Module() {
     }
 
     /**
-     *
+     * Constructor Overloading 
      * @param lessonId
      * @param name
      * @param description
@@ -35,48 +36,48 @@ public class Module {
     }
 
     /**
-     *
-     * @return
+     * gets the lesson id for the particular module
+     * @return lessonId String
      */
     public String getLessonId() {
         return lessonId;
     }
 
     /**
-     *
-     * @param lessonId
+     * sets the lesson id for the particular module
+     * @param lessonId String
      */
     public void setLessonId(String lessonId) {
         this.lessonId = lessonId;
     }
     
     /**
-     *
-     * @return
+     * gets the name of the lesson for the particular module
+     * @return name String
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
-     * @param name
+     * sets the name of the lesson for the particular module
+     * @param name String
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     *
-     * @return
+     * gets the description of the lesson for the particular module
+     * @return description String
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     *
-     * @param description
+     * sets the description of the lesson for the particular module
+     * @param description String
      */
     public void setDescription(String description) {
         this.description = description;

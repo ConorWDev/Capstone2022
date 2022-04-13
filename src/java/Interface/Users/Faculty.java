@@ -8,7 +8,11 @@ package Interface.Users;
 import DBOperations.DBOperationsFaculty;
 
 /**
- *
+ * Faculty.java
+ * 
+ * The faculty object is a transitory Java Bean object that helps 
+ * a user call specific information based on their unique identity. In this
+ * case, its faculty member.
  * @author massvm
  */
 public class Faculty {
@@ -26,8 +30,9 @@ public class Faculty {
     private String lastName = "";
     
     /**
-     *
-     * @param userID
+     * Constructor
+     * gets the faculty information based on their user id
+     * @param userID String
      */
     public Faculty(String userID){
         this.userID = userID;
@@ -40,96 +45,96 @@ public class Faculty {
     }
 
     /**
-     *
-     * @return
+     * gets the first name of the particular faculty member
+     * @return firstName String
      */
     public String getFirstName() {
         return firstName;
     }
 
     /**
-     *
-     * @param firstName
+     * sets the first name of the particular faculty member
+     * @param firstName String
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     /**
-     *
-     * @return
+     * gets the middle name of the particular faculty member
+     * @return middleName String
      */
     public String getMiddleName() {
         return middleName;
     }
 
     /**
-     *
-     * @param middleName
+     * sets the middle name of the particular faculty member
+     * @param middleName String
      */
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
 
     /**
-     *
-     * @return
+     * gets the last name of the particular faculty member
+     * @return lastName String
      */
     public String getLastName() {
         return lastName;
     }
 
     /**
-     *
-     * @param lastName
+     * sets the last name of the particular faculty member
+     * @param lastName String
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
     /**
-     *
-     * @return
+     * gets the user id of the particular faculty member
+     * @return userID String
      */
     public String getUserID() {
         return userID;
     }
 
     /**
-     *
-     * @param userID
+     * sets the userID of the particular faculty member
+     * @param userID String
      */
     public void setUserID(String userID) {
         this.userID = userID;
     }
 
     /**
-     *
-     * @return
+     * gets the email of the particular faculty member
+     * @return email String
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     *
-     * @param email
+     * sets the email of the particular faculty member
+     * @param email String
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     *
-     * @return
+     * gets the full name of the particular faculty member
+     * @return fullName String
      */
     public String getFullName() {
         return fullName;
     }
     
     /**
-     *
-     * @return
+     * gets the name to be displayed of the particular faculty member
+     * @return fullName String
      */
     public String getDisplayName(){
         
@@ -137,8 +142,8 @@ public class Faculty {
     }
 
     /**
-     *
-     * @param fullName
+     * sets the full name of the particular faculty member
+     * @param fullName String
      */
     public void setFullName(String fullName) {
         this.fullName = fullName;

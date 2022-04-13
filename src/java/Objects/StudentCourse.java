@@ -25,10 +25,12 @@ public class StudentCourse {
     private double courseAvg;
     
     /**
-     *
-     * @param studentUsername
-     * @param courseName
-     * @param courseID
+     * Constructor
+     * 
+     * @param studentUsername String
+     * @param courseName String
+     * @param courseID String
+     * 
      */
     public StudentCourse(String studentUsername, String courseName, String courseID){
         this.courseName = courseName;
@@ -36,6 +38,14 @@ public class StudentCourse {
         this.courseID = courseID;
     }
     
+     /**
+     * gets course grades from database, calculates and formats the 
+     * average for the course of the student
+     * 
+     * @param studentUsername String
+     * @param courseID String
+     * @return courseAvg double
+     */
     private double caclculateCourseAvg(String studentUsername, String courseID){
         double courseAvg = 0;
         
@@ -63,48 +73,48 @@ public class StudentCourse {
     }
 
     /**
-     *
-     * @return
+     * gets the course id of the course
+     * @return courseID String
      */
     public String getCourseID() {
         return courseID;
     }
 
     /**
-     *
-     * @param courseID
+     * sets the course id of the course
+     * @param courseID String
      */
     public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
 
     /**
-     *
-     * @return
+     * gets the course name of the course
+     * @return courseName String
      */
     public String getCourseName() {
         return courseName;
     }
 
     /**
-     *
-     * @param courseName
+     * sets the course name of the course
+     * @param courseName String
      */
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
     /**
-     *
-     * @return
+     * gets the course average of the students course
+     * @return courseAvg double
      */
     public double getCourseAvg() {
         return courseAvg;
     }
 
     /**
-     *
-     * @param courseAvg
+     * sets the course average of the students course
+     * @param courseAvg double
      */
     public void setCourseAvg(double courseAvg) {
         this.courseAvg = courseAvg;

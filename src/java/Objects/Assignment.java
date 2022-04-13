@@ -6,7 +6,7 @@
 package Objects;
 
 /**
- *
+ * This Assignment object holds all of the information for a particular assignment.
  * @author Administrator
  */
 public class Assignment {
@@ -19,12 +19,12 @@ public class Assignment {
     private double assignmentWeight;
     
     /**
-     *
-     * @param assignmentId
-     * @param assignmentName
-     * @param assignmentDescription
-     * @param assignmentUrl
-     * @param assignmentWeight
+     * Constructor
+     * @param assignmentId String
+     * @param assignmentName String
+     * @param assignmentDescription String
+     * @param assignmentUrl String
+     * @param assignmentWeight double
      */
     public Assignment (String assignmentId, String assignmentName, String assignmentDescription, String assignmentUrl, double assignmentWeight){
         this.assignmentId = assignmentId;
@@ -37,7 +37,7 @@ public class Assignment {
     //when assignment is first created within admin assignment page, weight is not entered. URL is optional
 
     /**
-     *
+     * Constructor Overloading
      * @param assignmentName
      * @param assignmentDescription
      * @param assignmentUrl
@@ -51,80 +51,80 @@ public class Assignment {
     }
 
     /**
-     *
-     * @return
+     * gets the id of the particular assignment
+     * @return assignmentId String
      */
     public String getassignmentId() {
         return assignmentId;
     }
 
     /**
-     *
-     * @param assignmentId
+     * sets the id of the particular assignment
+     * @param assignmentId String
      */
     public void setassignmentId(String assignmentId) {
         this.assignmentId = assignmentId;
     }
 
     /**
-     *
-     * @return
+     * gets the name of the particular assignment
+     * @return assignmentName String
      */
     public String getassignmentName() {
         return assignmentName;
     }
 
     /**
-     *
-     * @param assignmentName
+     * sets the name of the particular assignment
+     * @param assignmentName String
      */
     public void setassignmentName(String assignmentName) {
         this.assignmentName = assignmentName;
     }
 
     /**
-     *
-     * @return
+     * gets the description of the particular assignment
+     * @return assignmentDescription String
      */
     public String getassignmentDescription() {
         return assignmentDescription;
     }
 
     /**
-     *
-     * @param assignmentDescription
+     * sets the description of the particular assignment
+     * @param assignmentDescription String
      */
     public void setassignmentDescription(String assignmentDescription) {
         this.assignmentDescription = assignmentDescription;
     }
     
     /**
-     *
-     * @return
+     * gets the url of the particular assignment
+     * @return assignmentUrl String
      */
     public String getassignmentUrl() {
         return assignmentUrl;
     }
     
     /**
-     *
-     * @param assignmentUrl
+     * sets the url of the particular assignment
+     * @param assignmentUrl String
      */
     public void setassignmentUrl(String assignmentUrl) {
         this.assignmentUrl = assignmentUrl;
     }
     
     /**
-     *
-     * @return
+     * gets the weight of the particular assignment
+     * @return assignmentWeight double
      */
     public double getassignmentWeight() {
         return assignmentWeight;
     }
     
     /**
-     *
-     * @param assignmentWeight
+     * sets the weight of the particular assignment
+     * @param assignmentWeight double
      */
     public void setassignmentWeight(double assignmentWeight) {
         this.assignmentWeight = assignmentWeight;

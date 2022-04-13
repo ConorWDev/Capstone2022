@@ -6,8 +6,8 @@
 package Objects;
 
 /**
- *
- * @author 816601
+ * This Document object holds the document for a particular student
+ * @author massvm
  */
 public class Document {
     
@@ -17,11 +17,11 @@ public class Document {
     String url="";
             
     /**
-     *
-     * @param documentID
-     * @param name
-     * @param description
-     * @param url
+     * Constructor
+     * @param documentID String
+     * @param name String
+     * @param description String
+     * @param url String
      */
     public Document(String documentID, String name, String description, String url){
         this.documentID = documentID;
@@ -31,10 +31,10 @@ public class Document {
     }
     
     /**
-     *
-     * @param name
-     * @param description
-     * @param url
+     * Constructor Overloading
+     * @param name String
+     * @param description String
+     * @param url String
      */
     public Document(String name, String description, String url){
         this.documentID = "null";
@@ -44,64 +44,64 @@ public class Document {
     }
 
     /**
-     *
-     * @return
+     * gets the document id of the document
+     * @return documentID String
      */
     public String getDocumentID() {
         return documentID;
     }
 
     /**
-     *
-     * @param documentID
+     * sets the document id of the document
+     * @param documentID String
      */
     public void setDocumentID(String documentID) {
         this.documentID = documentID;
     }
 
     /**
-     *
-     * @return
+     * gets the name of the document
+     * @return name String
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
-     * @param name
+     * sets the name of the document
+     * @param name String
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     *
-     * @return
+     * gets the description of the document
+     * @return description String
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     *
-     * @param description
+     * sets the description of the document
+     * @param description String
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     *
-     * @return
+     * gets the url of the document
+     * @return url String
      */
     public String getUrl() {
         return url;
     }
 
     /**
-     *
-     * @param url
+     * sets the url of the document
+     * @param url String
      */
     public void setUrl(String url) {
         this.url = url;

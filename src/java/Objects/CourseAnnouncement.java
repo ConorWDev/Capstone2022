@@ -6,7 +6,7 @@
 package Objects;
 
 /**
- *
+ * This CourseAnnouncement object holds the announcements for a particular course
  * @author massvm
  */
 public class CourseAnnouncement {
@@ -19,13 +19,13 @@ public class CourseAnnouncement {
     Boolean isVisible;
 
     /**
-     *
-     * @param announcementID
-     * @param courseID
-     * @param startDate
-     * @param endDate
-     * @param text
-     * @param isVisible
+     * Constructor
+     * @param announcementID String
+     * @param courseID String
+     * @param startDate String
+     * @param endDate String
+     * @param text String
+     * @param isVisible String
      */
     public CourseAnnouncement(String announcementID, String courseID, String startDate, String endDate, String text, String isVisible) {
         this.announcementID = announcementID;
@@ -42,96 +42,96 @@ public class CourseAnnouncement {
     }
 
     /**
-     *
-     * @return
+     * gets the id of the announcement
+     * @return announcementID String
      */
     public String getAnnouncementID() {
         return announcementID;
     }
 
     /**
-     *
-     * @param announcementID
+     * sets the id of the announcement
+     * @param announcementID String
      */
     public void setAnnouncementID(String announcementID) {
         this.announcementID = announcementID;
     }
 
     /**
-     *
-     * @return
+     * gets the id of the course
+     * @return courseID String
      */
     public String getCourseID() {
         return courseID;
     }
 
     /**
-     *
-     * @param courseID
+     * sets the id of the course
+     * @param courseID String
      */
     public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
 
     /**
-     *
-     * @return
+     * gets the start date of the announcement
+     * @return startDate String
      */
     public String getStartDate() {
         return startDate;
     }
 
     /**
-     *
-     * @param startDate
+     * sets the start date of the announcement
+     * @param startDate String
      */
     public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
     /**
-     *
-     * @return
+     * gets the end date of the announcement
+     * @return endDate String
      */
     public String getEndDate() {
         return endDate;
     }
 
     /**
-     *
-     * @param endDate
+     * sets the end date of the announcement
+     * @param endDate String
      */
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
     /**
-     *
-     * @return
+     * gets the text of the announcement
+     * @return text String
      */
     public String getText() {
         return text;
     }
 
     /**
-     *
-     * @param text
+     * sets the text of the announcement
+     * @param text String
      */
     public void setText(String text) {
         this.text = text;
     }
 
     /**
-     *
-     * @return
+     * checks and gets whether the announcement is visible or not
+     * @return isVisible Boolean
      */
     public Boolean getIsVisible() {
         return isVisible;
     }
 
     /**
-     *
-     * @param isVisible
+     * checks and sets whether the announcement is visible or not
+     * @param isVisible Boolean
      */
     public void setIsVisible(Boolean isVisible) {
         this.isVisible = isVisible;

@@ -11,7 +11,9 @@ import java.io.Serializable;
 import java.sql.SQLException;
 
 /**
- *
+ * A Schedule object is the schedule that is related to a particular student. This object
+ * holds the schedule for a particular student
+ * 
  * @author Administrator
  */
 public class Schedule implements Serializable {
@@ -23,13 +25,13 @@ public class Schedule implements Serializable {
     private String url;
 
     /**
-     *
+     * empty constructor
      */
     public Schedule() {
     }
 
     /**
-     *
+     * Constructor
      * @param scheduleId
      * @param cohortId
      * @param url
@@ -43,7 +45,7 @@ public class Schedule implements Serializable {
     }
     
     /**
-     *
+     * Constructor Overloading
      * @param cohortId
      * @param url
      * @throws SQLException
@@ -55,48 +57,48 @@ public class Schedule implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * gets the schedule id of the student
+     * @return scheduleId String
      */
     public String getScheduleId() {
         return scheduleId;
     }
 
     /**
-     *
-     * @param scheduleId
+     * sets the schedule id of the student
+     * @param scheduleId String
      */
     public void setScheduleId(String scheduleId) {
         this.scheduleId = scheduleId;
     }
     
     /**
-     *
-     * @return
+     * gets the cohort id of the student
+     * @return cohortId String
      */
     public String getCohortId() {
         return cohortId;
     }
 
     /**
-     *
-     * @param cohortId
+     * sets the cohort id of the student
+     * @param cohortId String
      */
     public void setCohortId(String cohortId) {
         this.cohortId = cohortId;
     }
 
     /**
-     *
-     * @return
+     * gets the url of the schedule for the student
+     * @return url String
      */
     public String getUrl() {
         return url;
     }
 
     /**
-     *
-     * @param url
+     * sets the url of the schedule for the student
+     * @param url String
      */
     public void setUrl(String url) {
         this.url = url;
