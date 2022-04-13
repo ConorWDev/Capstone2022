@@ -21,9 +21,15 @@
         <div class="row">
             <div class="col-1">
             </div>
-            <div class="col-10 bg-white rounded p-5" >
-                <p class="h3 " style="color: #0069d9">Schedule</p>
-                <div class="row " style="align-content: center">
+            <div class="col-10 bg-white rounded " >
+                <div class="row mb-3">
+
+                    <div class="container-fluid border-bottom border-primary" id="announcementheader">    
+                        <p class="h2 ms-2 mt-2">Schedule</p>
+                    </div>
+
+                </div> 
+                <div class="row p-5" style="align-content: center">
                     
                     <iframe src="${requestScope.url}" height="500"/>
                 </div>
