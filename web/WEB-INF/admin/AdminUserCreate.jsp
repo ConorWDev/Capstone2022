@@ -84,18 +84,18 @@
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
                                                     <button type="submit" id="but4" class="btn d-inline text-success">Create User</button>
-                                                    
-                                                    
                                                 </div>
                                             </div>
                                             
                                         </div>
+                                        <b>${requestScope.message}</b>
                                     </div>
-
+                                     
 
 
 
                                 </form>
+                                
                             </div>
                             <div class="col-1"></div>
                             <div class="col">
