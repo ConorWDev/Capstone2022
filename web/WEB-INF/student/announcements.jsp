@@ -21,9 +21,10 @@
         <!-- Header -->
         
                 <%@include file="headerfragment.jspf" %>
-        
-
-        <!-- Main -->
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-6 bg-white rounded p-3">
+                      <!-- Main -->
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -97,7 +98,7 @@
                     - Could also do a maximum word count, could be weird to shorten the body.
                     - Instead of leading to a URL of just a single announcement, we could have announcements in their full on this page.
             -->
-            <p class="h4">Polishing Not Complete</p>
+            
             <c:forEach items="${requestScope.announcements}" var="announcements">
                 <div class="card">
                     <div class="card-header">
@@ -119,8 +120,15 @@
         
         <!-- Footer -->
         
-                <%@include file="footerfragment.jspf" %>
-            
+                
+              
+                        
+                    </div>
+                        <div class="col"></div>
+                    
+                </div>
+
+        
         
         
     </body>
