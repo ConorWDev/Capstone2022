@@ -50,11 +50,11 @@ Author : Conor W
                 </div>
                 <div class="col-5 bg-white rounded m-1">
                     <div class="row">
-                        <p class="h3" id="cohort-card-header">Announcements</p>
+                        <p class="h3 m-3" id="cohort-card-header">Announcements</p>
                     </div>
                     <hr>
                     <c:forEach items="${requestScope.announcements}" var="announcement">
-                        <div class="card">
+                        <div class="card m-3">
                             <div class="card-header">
                                 <p class="h5">${announcement.startDate}</p>
                             </div>
