@@ -67,7 +67,7 @@
                                             <input type="text" class="form-control mb-3" id="info2" placeholder="Document Description" name="info2" required>
                                             <!-- -->
                                             <label for="info3" id="label3" class="form-label mb-0"><b>Link</b></label>
-                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="Document URL" name="info3" required>
+                                            <input type="text" class="form-control  mb-3" id="info3" placeholder="Document URL - EX: https://mtghealthcare.com/"  name="info3" required>
                                             <!-- -->
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
