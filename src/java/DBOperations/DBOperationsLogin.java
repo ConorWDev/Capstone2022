@@ -79,8 +79,7 @@ public class DBOperationsLogin {
      */
     public boolean isFaculty(String webUsername,String webPassword) {
         
-        //TODO implement isFaculty method. Query the ma_faculty table in a similar fashion to the isStudent method above. return a boolean
-        //for use in LogonCon.java
+      
         Boolean isFaculty = false;
         String result = "";
             String sql = "SELECT COUNT(username) FROM ma_faculty WHERE username = ? AND password = ? ;";
@@ -122,8 +121,7 @@ public class DBOperationsLogin {
      */
     public boolean isAdmin(String webUsername,String webPassword) {
          
-        //TODO implement isAdmin method. Query the ma_faculty table in a similar fashion to the isStudent method above. return a boolean
-        //for use in LogonCon.java
+       
         Boolean isAdmin = false;
         String result = "";
             String sql = "SELECT COUNT(username) FROM ma_admin WHERE username = ? AND password = ? ;";
