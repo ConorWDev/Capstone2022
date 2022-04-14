@@ -13,7 +13,7 @@ import Objects.Module;
 import java.sql.SQLException;
 
 /**
- *
+ *This class handles database operations involving module objects
  * @author Administrator
  */
 public class DBOperationsModule {
