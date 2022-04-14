@@ -25,14 +25,15 @@ public class DBOperationsGrade {
     
     /*
     *getGrades
-    This method returns all grades of a given student, regarless of
-    *course. This is used for the faculty studentGrades.jsp page
+    
     */
 
     /**
      *
+     * This method returns all grades of a given student, regarless of
+     * course. This is used for the faculty studentGrades.jsp page
      * @param username
-     * @return
+     * @return grades ArrayList
      */
 
     
@@ -76,20 +77,18 @@ public class DBOperationsGrade {
         return grades;
     }
       
-      /*
-      *getCourseGrades
-      *This method takes two parameters. A student username and a courseID. These parameters
-      *are used to query the database for all grade information of a particular student and a
-      *particular course. The resulting grade information is used to construct grade objects.
-      *These objects are placed within an arrayList of grade objects which are then returned.
-      *This method is used for functionality in the course grade page.
-      */
+     
       
     /**
-     *
+     * getCourseGrades
+     * This method takes two parameters. A student username and a courseID. These parameters
+     * are used to query the database for all grade information of a particular student and a
+     * particular course. The resulting grade information is used to construct grade objects.
+     * These objects are placed within an arrayList of grade objects which are then returned.
+     * This method is used for functionality in the course grade page.
      * @param studentUsername
      * @param courseID
-     * @return
+     * @return courseGrade ArrayList
      */
     public ArrayList<Grade> getCourseGrades (String studentUsername, String courseID){
           ArrayList<Grade> courseGrades = new ArrayList<>();
@@ -137,17 +136,15 @@ public class DBOperationsGrade {
           return courseGrades;
       }
       
-      /*
-      *getWeight
-      This method takes the assignmentID of any assignment and
-      returns the weight of that assignment as it is held within
-      the database
-      */
+      
 
     /**
-     *
+     * getWeight
+     * This method takes the assignmentID of any assignment and
+     * returns the weight of that assignment as it is held within
+     * the database
      * @param assignmentID
-     * @return
+     * @return weight String
      */
 
       
@@ -179,17 +176,16 @@ public class DBOperationsGrade {
           return weight;
       }
       
-      /*
-      getStudentCourses
-      This method takes as input the student username.
-      It returns an arrayList of StudentCourse objects. Student course objects
-      are objects that link together a particular course with a particular
-      student. This is useful for calculating student averages for entire
-      courses.
-      */
+     
 
     /**
      *
+     * getStudentCourses
+     * This method takes as input the student username.
+     * It returns an arrayList of StudentCourse objects. Student course objects
+     * are objects that link together a particular course with a particular
+     * student. This is useful for calculating student averages for entire
+     * courses.
      * @param studentUsername
      * @return
      */
@@ -235,14 +231,12 @@ public class DBOperationsGrade {
           return courses;
       }
       
-      /*
-      this method updates the ma_grade table. If a studentUsername / assignmentID composite key is not currently
-      in the database, it will populate the database with new data. Otherwise the data identified by the composite
-      key will be updated.
-      */
+      
 
     /**
-     *
+     * this method updates the ma_grade table. If a studentUsername / assignmentID composite key is not currently
+     *  in the database, it will populate the database with new data. Otherwise the data identified by the composite
+     *  key will be updated.
      * @param assignmentID
      * @param studentUsername
      * @param newGrade
@@ -303,10 +297,12 @@ public class DBOperationsGrade {
       }
       
     /**
-     *
+     * Enter an assignmentID and a student Username
+     * If a record exists in the ma_grade table where assignmentID = assignmentID and username = username
+     * return true
      * @param assignmentID
      * @param studentUsername
-     * @return
+     * @return result Boolean
      */
     public boolean gradeInDatabase (String assignmentID, String studentUsername){
           boolean result = false;

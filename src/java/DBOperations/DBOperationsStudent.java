@@ -21,9 +21,9 @@ public class DBOperationsStudent {
     //get the student name from the studentUsername
 
     /**
-     *
+     *Enter the username of a student and get the student name in return
      * @param studentUsername
-     * @return
+     * @return result String
      */
    
     public String getStudentName(String studentUsername){
@@ -58,9 +58,9 @@ public class DBOperationsStudent {
     //get the student email from the studentUsername
 
     /**
-     *
+     *Enter the student username and get the student email in return
      * @param studentUsername
-     * @return
+     * @return result String
      */
     public String getStudentEmail(String studentUsername){
         String result = "";
@@ -94,9 +94,9 @@ public class DBOperationsStudent {
      //get the cohortCode from the studentUsername
 
     /**
-     *
+     *Enter the student username and get their CohortID in return
      * @param studentUsername
-     * @return
+     * @return result String
      */
     public String getCohortID(String studentUsername){
         
@@ -130,9 +130,9 @@ public class DBOperationsStudent {
     }
     
     /**
-     *
+     *Enter a cohortID and return an ArrayList of corresponding Student objects
      * @param cohortID
-     * @return
+     * @return ArrayList students 
      */
     public ArrayList<Student> getStudentsByCohort(String cohortID){
         ArrayList<Student> students = new ArrayList<>();
@@ -171,9 +171,11 @@ public class DBOperationsStudent {
 
     /**
      *
+     * Enter a partial string and cohort ID and return an arrayList of students that
+     * match that partial string deprecated
      * @param search
      * @param cohortID
-     * @return
+     * @return ArrayList students
      */
     public ArrayList<Student> searchStudents (String search, String cohortID){
         ArrayList<Student> students = new ArrayList<>();
@@ -217,8 +219,8 @@ public class DBOperationsStudent {
     //get all students method used within the SiteNavigationAdmin controller
 
     /**
-     *
-     * @return
+     *Return an arrayList of all students within the ma_student table
+     * @return ArrayList students
      */
     public ArrayList<Student> getAllStudents (){
         ArrayList<Student> students = new ArrayList<>();
@@ -248,9 +250,9 @@ public class DBOperationsStudent {
     }
     
     /**
-     *
+     *Enter a studentID and return the firstname of the student
      * @param studentID
-     * @return
+     * @return name String 
      */
     public String getFirstname (String studentID){
         String name = "";
@@ -278,9 +280,9 @@ public class DBOperationsStudent {
     }
     
     /**
-     *
+     *Enter the studentID and return the middle name of the student
      * @param studentID
-     * @return
+     * @return name String
      */
     public String getMiddlename (String studentID){
         String name = "";
@@ -308,9 +310,9 @@ public class DBOperationsStudent {
     }
      
     /**
-     *
+     **Enter the studentID and return the last name of the student
      * @param studentID
-     * @return
+     * @return name String
      */
     public String getLastname (String studentID){
         String name = "";
@@ -339,6 +341,8 @@ public class DBOperationsStudent {
      
     /**
      *
+     * Enter a studentID and delete from the ma_grade table where
+     * the studentID exists
      * @param studentID
      * @return
      */
