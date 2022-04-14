@@ -13,7 +13,7 @@ import Objects.Schedule;
 import java.sql.SQLException;
 
 /**
- *
+ * This class handles database operations involving schedule objects
  * @author Administrator
  */
 public class DBOperationsSchedule {
