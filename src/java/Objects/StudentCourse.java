@@ -10,11 +10,11 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
- *
- * @author Ryan Checora
  * A StudentCourse object is a course that is related to a particular student. This
  * has been done so that a given student's average of all assignments within a course
  * can be calculated
+ * @author Ryan Checora
+ *
  */
 public class StudentCourse {
     
