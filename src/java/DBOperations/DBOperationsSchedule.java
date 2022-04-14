@@ -120,32 +120,7 @@ public class DBOperationsSchedule {
                 
                 return result;
     }
-    /*
-    public String getUrl (String scheduleId){
-        String result = "";
-        String sql = "select url from ma_schedule where schedule_id = ?;";
-        ConnectionPool cp = ConnectionPool.getInstance();
-        
-                try{
-                    Connection conn = cp.getConnection();
-                    PreparedStatement st = conn.prepareStatement(sql);
-                    st.setString(1, scheduleId);
-                    ResultSet rs = st.executeQuery(sql);
-                    
-                    while (rs.next()) {
-                        result = rs.getString(1);
-                    }
-                    
-                    st.close();
-                    rs.close();
-                    cp.freeConnection(conn);
-                    
-                } catch(Exception e){}
-                
-                return result;
-    }
-    */
-
+    
     /**
      **Enter a scheduleID and return a corresponding url
      * @param scheduleID
