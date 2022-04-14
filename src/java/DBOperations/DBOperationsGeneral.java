@@ -56,9 +56,9 @@ public class DBOperationsGeneral {
     */
 
     /**
-     *
+     *Enter an assignmentID and get a corresponding assignment name in return
      * @param assignmentID
-     * @return
+     * @return result String
      */
 
       public String getAssignmentName(String assignmentID){
@@ -96,9 +96,9 @@ public class DBOperationsGeneral {
         */
 
     /**
-     *
+     * Enter an assignmentID and get the corresponding lesson name in return
      * @param assignmentID
-     * @return
+     * @return lessonName String
      */
 
         public String getLessonName(String assignmentID){

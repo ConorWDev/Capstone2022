@@ -22,8 +22,9 @@ public class DBOperationsModule {
 
     /**
      *
+     * Enter a courseID return an ArrayList of corresponding module objects
      * @param courseID
-     * @return
+     * @return modules ArrayList
      */
     public ArrayList<Module> getCourseModules(String courseID){
         
@@ -68,9 +69,9 @@ public class DBOperationsModule {
     //parameter moduleId. return module name
 
     /**
-     *
+     *Enter a moduleID return a corresponding module name
      * @param moduleID
-     * @return
+     * @return moduleName String
      */
     public String getModuleName(String moduleID){
         
@@ -102,9 +103,9 @@ public class DBOperationsModule {
     //parameter moduleId. return module description
 
     /**
-     *
+     *Enter a moduleID and return a corresponding module description
      * @param moduleID
-     * @return
+     * @return moduleName String
      */
     public String getModuleDescription(String moduleID){
         
@@ -132,19 +133,17 @@ public class DBOperationsModule {
         return moduleName;
     }
     
-    /*
-    This method returns a module object for a given module id entered. This is used when navigating to the
-    module main page and setting the particular module object as "module" within the session scope of the application. This may
-    depreicate the above methods, as this one method can be called, and from the resulting object, all datafields of the module can be retrieved
     
-    
-    Also used during admin module mgmt
-    */
 
     /**
+     * This method returns a module object for a given module id entered. This is used when navigating to the
+     * module main page and setting the particular module object as "module" within the session scope of the application. This may
+     * deprecate the above methods, as this one method can be called, and from the resulting object, all datafields of the module can be retrieved
      *
+     *
+     * Also used during admin module mgmt
      * @param moduleID
-     * @return
+     * @return module Module
      */
 
     public Module getModule (String moduleID){
@@ -173,10 +172,10 @@ public class DBOperationsModule {
     }
     
     /**
-     *
+     * Enter a name and description. This creates a new module within the database
      * @param name
      * @param description
-     * @return
+     * @return result Boolean
      */
     public boolean createModule (String name, String description){
         boolean result = false;
@@ -202,8 +201,8 @@ public class DBOperationsModule {
     }
     
     /**
-     *
-     * @return
+     * Return an arrayList of all modules that exist within the database
+     * @return modules ArrayList
      */
     public ArrayList<Module> getAllModules (){
         ArrayList<Module> modules = new ArrayList<>();
@@ -240,11 +239,12 @@ public class DBOperationsModule {
     }
     
     /**
-     *
+     *Enter a module ID, moduleName, and moduleDescription. This will update the module
+     * where moduleID = moduleID.
      * @param moduleID
      * @param moduleName
      * @param moduleDescription
-     * @return
+     * @return result Boolean
      */
     public boolean updateModule (String moduleID, String moduleName, String moduleDescription){
         boolean result = false;
@@ -273,9 +273,10 @@ public class DBOperationsModule {
     }
     
     /**
-     *
+     *Enter a moduleID. The module within the database with 
+     * a corresponding ID is deleted
      * @param moduleID
-     * @return
+     * @return result Boolean
      */
     public boolean deleteModuleByID (String moduleID){
         
@@ -301,6 +302,13 @@ public class DBOperationsModule {
         return result;
     }
 
+    
+    /**
+     *Delete the bridges necessary for deleting a module from the database
+     * this method is called from within deleteModuleByID()
+     * @param moduleID
+     * @return result Boolean
+     */
     private boolean deleteBridges(String moduleID) {
         boolean result = false;
         String sql = "delete from ma_lesson_document where lesson_id = ?;";

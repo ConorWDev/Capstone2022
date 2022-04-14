@@ -64,25 +64,13 @@
                                         <div id="infoblock"class="form-control  ">
                                             
                                            
-                                            <!-- 
-                                            <label for="info1" id="label1" class="form-label mb-0 "><b>Module ID</b></label>
-                                            <input type="text" class="form-control mb-3" id="info1" placeholder="Module ID is automatically created." name="info1" 
-                                                   disabled="true">
-                                            <!-- -->
+                                          
                                             <label for="info2" id="label2" class="form-label mb-0"><b>Module Name</b></label>
                                             <input type="text" class="form-control mb-3" id="info2" placeholder="Name" name="info2" required="true">
                                             <!-- -->
                                             <label for="info3" id="label3" class="form-label mb-0"><b>Module Description</b></label>
                                             <input type="text" class="form-control  mb-3" id="info3" placeholder="Description" name="info3" required="true">
-                                            <!-- -->
-<!--                                            <label for="info4" id="label4" class="form-label mb-0"><b>info4</b></label>
-                                            <input type="text" class="form-control mb-3" id="info4" placeholder="info" name="info4">
-                                             
-                                            <label for="info5" id="label5"  class="form-label mb-0"><b>info5</b></label>
-                                            <input type="text" class="form-control mb-3" id="info5" placeholder="info" name="info5">
-                                             
-                                            <label for="info6" id="label6" class="form-label mb-0"><b>info6</b></label>
-                                            <input type="text" class="form-control mb-0" id="info6" placeholder="info" name="info6">-->
+ 
                                             <div class="row">
                                                 <div class="container-fluid d-flex justify-content-around ">
                                                     <button href="#" type="submit" id="but4" class="btn d-inline text-success">Create Module</button>

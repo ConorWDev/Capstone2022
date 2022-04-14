@@ -19,9 +19,9 @@ import java.sql.SQLException;
 public class DBOperationsSchedule {
 
     /**
-     *
+     *Enter a scheduleID and get an arrayList of schedules with the matching ID
      * @param scheduleId
-     * @return
+     * @return schedules ArrayList
      */
     public ArrayList<Schedule> getSchedules(String scheduleId){
         
@@ -61,9 +61,9 @@ public class DBOperationsSchedule {
     }    
 
     /**
-     *
+     *Enter a scheduleId and return a scheduleID
      * @param scheduleId
-     * @return
+     * @return result String
      * @throws SQLException
      */
     public String getScheduleId (String scheduleId) throws SQLException{
@@ -91,9 +91,9 @@ public class DBOperationsSchedule {
     }
     
     /**
-     *
+     *Enter a scheduleID and return a corresponding cohortID
      * @param scheduleId
-     * @return
+     * @return result String
      * @throws SQLException
      */
     public String getCohortId (String scheduleId) throws SQLException{
@@ -120,36 +120,11 @@ public class DBOperationsSchedule {
                 
                 return result;
     }
-    /*
-    public String getUrl (String scheduleId){
-        String result = "";
-        String sql = "select url from ma_schedule where schedule_id = ?;";
-        ConnectionPool cp = ConnectionPool.getInstance();
-        
-                try{
-                    Connection conn = cp.getConnection();
-                    PreparedStatement st = conn.prepareStatement(sql);
-                    st.setString(1, scheduleId);
-                    ResultSet rs = st.executeQuery(sql);
-                    
-                    while (rs.next()) {
-                        result = rs.getString(1);
-                    }
-                    
-                    st.close();
-                    rs.close();
-                    cp.freeConnection(conn);
-                    
-                } catch(Exception e){}
-                
-                return result;
-    }
-    */
-
+    
     /**
-     *
+     **Enter a scheduleID and return a corresponding url
      * @param scheduleID
-     * @return
+     * @return url String
      */
 
      public String getUrl (String scheduleID){
@@ -180,10 +155,11 @@ public class DBOperationsSchedule {
       }
       
     /**
-     *
+     * Enter a cohortID and url. This adds a new schedule record to
+     * the database
      * @param cohortID
      * @param url
-     * @return
+     * @return result boolean
      */
     public boolean addSchedule (String cohortID, String url){
         boolean result = false;
@@ -211,8 +187,10 @@ public class DBOperationsSchedule {
 
     /**
      *
+     * Enter a schedule ID. Delete from the database wherever
+     * this ID is present
      * @param ID
-     * @return
+     * @return result boolean
      */
     public boolean deleteSchedule(String ID) {
         boolean result = false;
@@ -239,8 +217,9 @@ public class DBOperationsSchedule {
 
     /**
      *
+     * Enter a cohortID return a corresponding Schedule object
      * @param cohortID
-     * @return
+     * @return schedule Schedule
      */
     public Schedule getSchedule(String cohortID) {
         Schedule schedule = null;

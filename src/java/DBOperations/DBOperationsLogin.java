@@ -30,10 +30,11 @@ public class DBOperationsLogin {
     */
 
     /**
-     *
+     * Enter username and password. If the the username and password exists within
+     * the ma_student table, a Boolean true is returned
      * @param webUsername
      * @param webPassword
-     * @return
+     * @return isStudent Boolean
      */
 
     public boolean isStudent(String webUsername,String webPassword) {
@@ -70,15 +71,15 @@ public class DBOperationsLogin {
     }
     
     /**
-     *
+     *Enter username and password. If the the username and password exists within
+     * the ma_faculty table, a Boolean true is returned
      * @param webUsername
      * @param webPassword
-     * @return
+     * @return isFaculty Boolean
      */
     public boolean isFaculty(String webUsername,String webPassword) {
         
-        //TODO implement isFaculty method. Query the ma_faculty table in a similar fashion to the isStudent method above. return a boolean
-        //for use in LogonCon.java
+      
         Boolean isFaculty = false;
         String result = "";
             String sql = "SELECT COUNT(username) FROM ma_faculty WHERE username = ? AND password = ? ;";
@@ -112,15 +113,15 @@ public class DBOperationsLogin {
     }
     
     /**
-     *
+     *Enter username and password. If the the username and password exists within
+     * the ma_admin table, a Boolean true is returned
      * @param webUsername
      * @param webPassword
-     * @return
+     * @return isAdmin Boolean
      */
     public boolean isAdmin(String webUsername,String webPassword) {
          
-        //TODO implement isAdmin method. Query the ma_faculty table in a similar fashion to the isStudent method above. return a boolean
-        //for use in LogonCon.java
+       
         Boolean isAdmin = false;
         String result = "";
             String sql = "SELECT COUNT(username) FROM ma_admin WHERE username = ? AND password = ? ;";
