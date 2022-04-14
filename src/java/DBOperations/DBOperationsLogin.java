@@ -11,14 +11,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author Ryan Checora. The DBOperationsLogin class is used to query the database in order to find the user-type of a given
+ * The DBOperationsLogin class is used to query the database in order to find the user-type of a given
  * user who is attempting to login. The following methods isStudent, isFaculty, and isAdmin will attempt to find a matching username
  * and password within their respective DB tables and return a boolean. 
  * 
  * A possible error to look into is that, in the rare case that a matching username and password is found within MORE THAN ONE of the
  * database tables (ex, a faculty and admin have the same username and password) then some unexpected behavior will occur as a result of
  * the logic layed out within LogonCon.java. This will be looked into further in the future --written Feb.19
+ * @author Ryan Checora
  */
 public class DBOperationsLogin {
     
