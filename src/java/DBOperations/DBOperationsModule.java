@@ -133,17 +133,15 @@ public class DBOperationsModule {
         return moduleName;
     }
     
-    /*
-    This method returns a module object for a given module id entered. This is used when navigating to the
-    module main page and setting the particular module object as "module" within the session scope of the application. This may
-    depreicate the above methods, as this one method can be called, and from the resulting object, all datafields of the module can be retrieved
     
-    
-    Also used during admin module mgmt
-    */
 
     /**
-     *Enter a moduleID and get a corresponding module object in return
+     * This method returns a module object for a given module id entered. This is used when navigating to the
+     * module main page and setting the particular module object as "module" within the session scope of the application. This may
+     * deprecate the above methods, as this one method can be called, and from the resulting object, all datafields of the module can be retrieved
+     *
+     *
+     * Also used during admin module mgmt
      * @param moduleID
      * @return module Module
      */
@@ -174,10 +172,10 @@ public class DBOperationsModule {
     }
     
     /**
-     *Enter a name and description. This creates a new module within the database
+     * Enter a name and description. This creates a new module within the database
      * @param name
      * @param description
-     * @return result boolean
+     * @return result Boolean
      */
     public boolean createModule (String name, String description){
         boolean result = false;
@@ -203,7 +201,7 @@ public class DBOperationsModule {
     }
     
     /**
-     *Return an arrayList of all modules that exist within the database
+     * Return an arrayList of all modules that exist within the database
      * @return modules ArrayList
      */
     public ArrayList<Module> getAllModules (){
