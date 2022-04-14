@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 /**
  *
- * connection pool allows for multiple instances to access the database at one time.
+ * Connection pool allows for multiple instances to access the database at one time.
  * All DBOperations should make connections to the database through the use of the ConnectionPool class
  */
 public class ConnectionPool {
