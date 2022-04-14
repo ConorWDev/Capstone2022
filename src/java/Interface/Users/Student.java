@@ -10,13 +10,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
+ *The student object is a transitory Java Bean object that helps a user call specific information based on their unique identity. 
+ * In this case, its a student.
  * @author Altamish Lalani
  * Student.java
  * 
- * The student object is a transitory Java Bean object that helps 
- * a user call specific information based on their unique identity. In this
- * case, its a student.
+ * 
  */
 public class Student implements Serializable {
     
