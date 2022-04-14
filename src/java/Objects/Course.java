@@ -6,11 +6,11 @@
 package Objects;
 
 /**
- *
- * @author Ryan Checora
  * The course class will hold the course_id, course name, and course description
  * This is useful for pulling information about a particular course and displaying it
  * on the screen.
+ * @author Ryan Checora
+ * 
  */
 public class Course {
     
