@@ -14,7 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- *
+ * This DBOperationsFaculty class handles all of the database operations for the
+ * faculty members
  * @author massvm
  */
 public class DBOperationsFaculty {
@@ -22,9 +23,9 @@ public class DBOperationsFaculty {
     //get faculty name from username
 
     /**
-     *
-     * @param facultyUsername
-     * @return
+     * gets the name of the faculty member based on their username via db query
+     * @param facultyUsername String
+     * @return result Boolean
      */
      public String getFacultyName(String facultyUsername){
         String result ="";
@@ -56,9 +57,9 @@ public class DBOperationsFaculty {
      //get the faculty email from the facultyUsername
 
     /**
-     *
-     * @param facultyUsername
-     * @return
+     * gets the email of the faculty member based on their username via db query
+     * @param facultyUsername String
+     * @return result Boolean
      */
     public String getFacultyEmail(String facultyUsername){
         String result = "";
@@ -88,8 +89,8 @@ public class DBOperationsFaculty {
     }
     
     /**
-     *
-     * @return
+     * gets all of the faculty members via db query
+     * @return faculty ArrayList
      */
     public ArrayList<Faculty> getAllFaculty(){
         ArrayList<Faculty> faculty = new ArrayList<Faculty>();
@@ -121,9 +122,9 @@ public class DBOperationsFaculty {
     }
     
     /**
-     *
-     * @param studentID
-     * @return
+     * gets the first name of the faculty member via db query
+     * @param studentID String
+     * @return name String
      */
     public String getFirstname (String studentID){
         String name = "";
@@ -151,9 +152,9 @@ public class DBOperationsFaculty {
     }
     
     /**
-     *
-     * @param studentID
-     * @return
+     * gets the middle name of the faculty member via db query
+     * @param studentID String
+     * @return name String
      */
     public String getMiddlename (String studentID){
         String name = "";
@@ -181,9 +182,9 @@ public class DBOperationsFaculty {
     }
      
     /**
-     *
-     * @param studentID
-     * @return
+     * gets the last name of the faculty member via db query
+     * @param studentID String
+     * @return name String
      */
     public String getLastname (String studentID){
         String name = "";
@@ -211,9 +212,9 @@ public class DBOperationsFaculty {
     }
      
     /**
-     *
-     * @param cohortID
-     * @return
+     * gets all of the faculty members based on a particular cohort via db query
+     * @param cohortID String
+     * @return faculty ArrayList
      */
     public ArrayList<Faculty> getFacultyByCohort (String cohortID){
         ArrayList<Faculty> faculty = new ArrayList<>();

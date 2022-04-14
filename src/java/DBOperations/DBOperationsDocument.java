@@ -21,7 +21,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * This DBOperationsDocument class handles all of the database operations for 
+ * the documents
+ * 
  * @author massvm
  */
 public class DBOperationsDocument {
@@ -31,9 +33,10 @@ public class DBOperationsDocument {
     */
 
     /**
-     *
-     * @param moduleID
-     * @return
+     * gets all of the documents for the particular module based on its id via
+     * db query
+     * @param moduleID String
+     * @return documents ArrayList
      */
 
     public ArrayList<Document> getModuleDocument (String moduleID){
@@ -82,9 +85,9 @@ public class DBOperationsDocument {
     //Author: Altamish Lalani
 
     /**
-     *
-     * @param inbound_Doc
-     * @return
+     * Method for submitting a new document object
+     * @param inbound_Doc Document
+     * @return result String
      */
     public String submitDocument(Document inbound_Doc){
         String result = "URL failed - Please check your link and try again.";
@@ -140,9 +143,9 @@ public class DBOperationsDocument {
     //Author: Altamish Lalani
 
     /**
-     *
-     * @param inboundUpdated_Doc
-     * @return
+     * Method for editing and submitting the updated document object
+     * @param inboundUpdated_Doc Document
+     * @return result String
      */
     public String editDocument(Document inboundUpdated_Doc){
         
@@ -200,8 +203,8 @@ public class DBOperationsDocument {
     }
    
     /**
-     *
-     * @return
+     * gets all of the documents via database query
+     * @return documents ArrayList
      */
     public ArrayList<Document> getAllDocuments (){
         ArrayList<Document> documents = new ArrayList<>();
@@ -242,9 +245,9 @@ public class DBOperationsDocument {
     }
     
     /**
-     *
-     * @param documentID
-     * @return
+     * gets the document object based its id via db query
+     * @param documentID String
+     * @return document Document
      */
     public Document getDocumentByID(String documentID){
         Document document = null;
@@ -282,9 +285,9 @@ public class DBOperationsDocument {
     }
     
     /**
-     *
-     * @param site
-     * @return
+     * Method for checking whether the site is up and working or not
+     * @param site URL
+     * @return true or false
      */
     public static boolean isSiteUp(URL site) {
         try {
@@ -303,11 +306,11 @@ public class DBOperationsDocument {
       }
     
     /**
-     *
-     * @param name
-     * @param description
-     * @param url
-     * @return
+     * Method for creating/adding a new document via db query
+     * @param name String
+     * @param description String
+     * @param url String
+     * @return result Boolean
      */
     public boolean createDocument (String name, String description, String url){
         boolean result = false;
@@ -336,12 +339,12 @@ public class DBOperationsDocument {
     }
     
     /**
-     *
-     * @param id
-     * @param name
-     * @param description
-     * @param url
-     * @return
+     * Method for updating/changing a particular document via db query
+     * @param id String
+     * @param name String
+     * @param description String
+     * @param url String
+     * @return result Boolean
      */
     public boolean updateDoc (String id, String name, String description, String url){
         boolean result = false;
@@ -370,8 +373,9 @@ public class DBOperationsDocument {
     }
     
     /**
-     *
-     * @param id
+     * Method for deleting the particular document
+     * via db query
+     * @param id 
      * @return
      */
     public boolean deleteDoc (String id){
@@ -401,9 +405,10 @@ public class DBOperationsDocument {
     //called within deleteDoc. delete bridge table row
 
     /**
-     *
-     * @param id
-     * @return
+     * Method for deleting/clearing the bridge table row for module/lesson
+     * and document based of document id via db query
+     * @param id String
+     * @return result Boolean
      */
     public boolean deleteBridge(String id){
         boolean result = false;
@@ -431,9 +436,10 @@ public class DBOperationsDocument {
     //enter in a moduleID and all of its associated documents are dropped
 
     /**
-     *
-     * @param moduleID
-     * @return
+     * Method for deleting/clearing the bridge table row for module/lesson
+     * and document based of module id via db query
+     * @param moduleID String
+     * @return result Boolean
      */
     public boolean clearBridge (String moduleID){
         boolean result = false;
@@ -458,10 +464,11 @@ public class DBOperationsDocument {
     }
     
     /**
-     *
-     * @param moduleID
-     * @param documentID
-     * @return
+     * Method for creating/adding a bridge table row between module and document
+     * via db query
+     * @param moduleID String
+     * @param documentID String
+     * @return result Boolean
      */
     public boolean bridgeDocumentModule(String moduleID, String documentID){
         boolean result = false;
@@ -487,9 +494,9 @@ public class DBOperationsDocument {
     }
     
     /**
-     *
-     * @param doc
-     * @return
+     * gets the id of the document via db query
+     * @param doc Document
+     * @return docID String
      */
     public String getDocumentID (Document doc){
         String docID = "";

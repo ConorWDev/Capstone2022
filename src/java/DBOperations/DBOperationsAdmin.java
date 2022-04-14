@@ -13,7 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- *
+ * This DPOperationsAdmin class handles the information going to and coming 
+ * from the database for the admin
  * @author ryanc
  */
 public class DBOperationsAdmin {
@@ -21,9 +22,10 @@ public class DBOperationsAdmin {
     //get faculty name from username
 
     /**
-     *
-     * @param adminUsername
-     * @return
+     * gets the name of the particular admin using their username via database
+     * query
+     * @param adminUsername String
+     * @return result String
      */
      public String getAdminName(String adminUsername){
         String result ="";
@@ -55,9 +57,10 @@ public class DBOperationsAdmin {
        //get the faculty email from the facultyUsername
 
     /**
-     *
-     * @param adminUsername
-     * @return
+     * gets the email of the particular admin using their username via database
+     * query
+     * @param adminUsername String
+     * @return result String
      */
     public String getAdminEmail(String adminUsername){
         String result = "";
@@ -87,8 +90,8 @@ public class DBOperationsAdmin {
     }
     
     /**
-     *
-     * @return
+     * gets all of the admin contained in the database via query
+     * @return admins ArrayList
      */
     public ArrayList<Admin> getAllAdmins(){
         ArrayList<Admin> admins = new ArrayList<Admin>();
@@ -122,9 +125,10 @@ public class DBOperationsAdmin {
      //get password from ma_student table. Password is not held withn student object for added security
 
     /**
-     *
-     * @param userID
-     * @return
+     * gets the password of the particular student using userID via 
+     * database query
+     * @param userID String
+     * @return result String
      */
     public String getStudentPass(String userID){
         String result = "";
@@ -154,9 +158,10 @@ public class DBOperationsAdmin {
      //get password from ma_student table. Password is not held withn student object for added security
 
     /**
-     *
-     * @param userID
-     * @return
+     * gets the password for the particular faculty member  using userID via
+     * database query
+     * @param userID String
+     * @return result String
      */
     public String getFacultyPass(String userID){
         String result = "";
@@ -184,9 +189,10 @@ public class DBOperationsAdmin {
     }
     
     /**
-     *
-     * @param userID
-     * @return
+     * gets the password for the particular admin using userID via
+     * database query
+     * @param userID String
+     * @return result String
      */
     public String getAdminPass(String userID){
         String result = "";
@@ -214,9 +220,10 @@ public class DBOperationsAdmin {
     }
     
     /**
-     *
-     * @param studentID
-     * @return
+     * gets the first name of the particular student using studentID via
+     * database query
+     * @param studentID String
+     * @return name String
      */
     public String getFirstname (String studentID){
         String name = "";
@@ -244,9 +251,10 @@ public class DBOperationsAdmin {
     }
     
     /**
-     *
-     * @param studentID
-     * @return
+     * gets the middle name of the particular student using studentID via
+     * database query
+     * @param studentID String
+     * @return name String
      */
     public String getMiddlename (String studentID){
         String name = "";
@@ -274,9 +282,10 @@ public class DBOperationsAdmin {
     }
      
     /**
-     *
-     * @param studentID
-     * @return
+     * gets the last name of the particular student using studentID via
+     * database query
+     * @param studentID String
+     * @return name String
      */
     public String getLastname (String studentID){
         String name = "";
@@ -304,14 +313,15 @@ public class DBOperationsAdmin {
     }
      
     /**
-     *
-     * @param user
-     * @param first
-     * @param middle
-     * @param last
-     * @param email
-     * @param pass
-     * @return
+     * method to edit all of the particular student's information via database 
+     * query
+     * @param user String
+     * @param first String
+     * @param middle String
+     * @param last String
+     * @param email String
+     * @param pass String
+     * @return result Boolean
      */
     public boolean editStudent (String user, String first, String middle, String last, String email, String pass){
          boolean result = false;
@@ -343,14 +353,16 @@ public class DBOperationsAdmin {
      }
      
     /**
+     * Method to edit all of the particular faculty member's information via database 
+     * query
+     * @param user String
+     * @param first String
+     * @param middle String
+     * @param last String
+     * @param email String
+     * @param pass String
+     * @return result Boolean
      *
-     * @param user
-     * @param first
-     * @param middle
-     * @param last
-     * @param email
-     * @param pass
-     * @return
      */
     public boolean editFaculty (String user, String first, String middle, String last, String email, String pass){
          boolean result = false;
@@ -382,14 +394,15 @@ public class DBOperationsAdmin {
      }
      
     /**
-     *
-     * @param user
-     * @param first
-     * @param middle
-     * @param last
-     * @param email
-     * @param pass
-     * @return
+     * Method to edit all of the particular admin's information via database 
+     * query
+     * @param user String
+     * @param first String
+     * @param middle String
+     * @param last String
+     * @param email String
+     * @param pass String
+     * @return result Boolean
      */
     public boolean editAdmin (String user, String first, String middle, String last, String email, String pass){
          boolean result = false;
@@ -425,9 +438,10 @@ public class DBOperationsAdmin {
      //once the student has been deleted from these tables, the row in ma_student can be deleted
 
     /**
-     *
-     * @param user
-     * @return
+     * Method to delete all of the particular student's information via
+     * database query
+     * @param user String
+     * @return result Boolean
      */
      public boolean deleteStudent (String user){
          //right now this method only returns true
@@ -475,9 +489,10 @@ public class DBOperationsAdmin {
      //be cleared of reference to that faculty member
 
     /**
-     *
-     * @param user
-     * @return
+     * Method to delete all of the particular faculty member's information via
+     * database query
+     * @param user String
+     * @return result Boolean
      */
      public boolean deleteFaculty (String user){
          //right now this method only returns true
@@ -515,9 +530,10 @@ public class DBOperationsAdmin {
      //need a check here to ensure that there is always at least one admin
 
     /**
-     *
-     * @param user
-     * @return
+     * Method to delete all of the particular admin's information via
+     * database query
+     * @param user String
+     * @return result Boolean
      */
      public boolean deleteAdmin (String user){
          
@@ -544,14 +560,15 @@ public class DBOperationsAdmin {
      }
      
     /**
-     *
-     * @param username
-     * @param first
-     * @param middle
-     * @param last
-     * @param pass
-     * @param email
-     * @return
+     * Method to create/add a new student to the database via
+     * db query
+     * @param username String
+     * @param first String
+     * @param middle String
+     * @param last String
+     * @param pass String
+     * @param email String
+     * @return result Boolean
      */
     public boolean createStudent (String username, String first, String middle, String last, String pass, String email){
          boolean result = false;
@@ -581,14 +598,16 @@ public class DBOperationsAdmin {
      }
      
     /**
-     *
-     * @param username
-     * @param first
-     * @param middle
-     * @param last
-     * @param pass
-     * @param email
-     * @return
+     * Method to create/add a new faculty member to the database via
+     * db query
+     * @param username String
+     * @param first String
+     * @param middle String
+     * @param last String
+     * @param pass String
+     * @param email String
+     * @return result Boolean
+     * 
      */
     public boolean createFaculty (String username, String first, String middle, String last, String pass, String email){
          boolean result = false;
@@ -618,14 +637,15 @@ public class DBOperationsAdmin {
      }
       
     /**
-     *
-     * @param username
-     * @param first
-     * @param middle
-     * @param last
-     * @param pass
-     * @param email
-     * @return
+     * Method to create/add a new admin to the database via
+     * db query
+     * @param username String
+     * @param first String
+     * @param middle String
+     * @param last String
+     * @param pass String
+     * @param email String
+     * @return result Boolean
      */
     public boolean createAdmin (String username, String first, String middle, String last, String pass, String email){
          boolean result = false;

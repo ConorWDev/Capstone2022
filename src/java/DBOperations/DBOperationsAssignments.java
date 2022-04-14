@@ -17,17 +17,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author 816601
+ * This DBOperationsAssignments class handles all database operations for the 
+ * assignments aspect of the application
+ * 
+ * @author massvm
  */
 public class DBOperationsAssignments {
     
     //return all assignments for a given course
 
     /**
-     *
-     * @param courseID
-     * @return
+     * gets all of the assignments for a particular course via
+     * database query
+     * @param courseID String
+     * @return assignments ArrayList
      */
     public ArrayList<Assignment> getCourseAssignments(String courseID){
         
@@ -77,9 +80,10 @@ public class DBOperationsAssignments {
     }
     
     /**
-     *
-     * @param moduleID
-     * @return
+     * gets all of the assignments for a particular module via
+     * database query
+     * @param moduleID String
+     * @return assignments ArrayList
      */
     public ArrayList<Assignment> getModuleAssignments(String moduleID){
         
@@ -128,9 +132,10 @@ public class DBOperationsAssignments {
     //Author: Altamish Lalani
 
     /**
-     *
-     * @param inbound_assignment
-     * @return
+     * Method that allows for the submission of a particular assignment via
+     * database query
+     * @param inbound_assignment Assignment
+     * @return result String
      */
      public String submitAssignment(Assignment inbound_assignment){
        
@@ -204,9 +209,10 @@ public class DBOperationsAssignments {
     //Author: Altamish Lalani
 
     /**
-     *
-     * @param inboundUpdated_assignment
-     * @return
+     * Method that allows for the editing/updating a particular assignment via
+     * database query
+     * @param inboundUpdated_assignment Assignment
+     * @return result String
      */
     public String editAssignment(Assignment inboundUpdated_assignment){
         String result = "URL failed - Please check your link and try again.";
@@ -276,9 +282,9 @@ public class DBOperationsAssignments {
     }
     
     /**
-     *
-     * @param site
-     * @return
+     * Method that makes sure whether the site is up and working or not
+     * @param site URL
+     * @return true or false
      */
     public static boolean isSiteUp(URL site) {
         try {
@@ -297,8 +303,9 @@ public class DBOperationsAssignments {
       }
     
     /**
-     *
-     * @return
+     * gets all of the assignments for a particular student via
+     * database query
+     * @return assignments ArrayList
      */
     public ArrayList<Assignment> getAllAssignments (){
         ArrayList<Assignment> assignments = new ArrayList<>();
@@ -336,9 +343,10 @@ public class DBOperationsAssignments {
     }
     
     /**
-     *
-     * @param assignmentID
-     * @return
+     * gets a particular assignment using assignmentID for a particular student
+     * via database query
+     * @param assignmentID String
+     * @return assignment Assignment
      */
     public Assignment getAssignmentByID (String assignmentID){
         Assignment assignment = null;
@@ -376,9 +384,10 @@ public class DBOperationsAssignments {
     }
     
     /**
-     *
-     * @param assignmentID
-     * @return
+     * Method that deletes the particular assignment based on its id via
+     * database query
+     * @param assignmentID String
+     * @return result Boolean
      */
     public boolean deleteAssignmentByID (String assignmentID){
         
@@ -409,9 +418,10 @@ public class DBOperationsAssignments {
     //this is required in order to delete from the ma_assignment table
 
     /**
-     *
-     * @param assignmentID
-     * @return
+     * Method that deletes the occurrences of assignment ID within the 
+     * ma_lesson_assignment table and the ma_grades table via database query
+     * @param assignmentID String
+     * @return result Boolean
      */
     public boolean deleteBridges (String assignmentID){
         
@@ -446,10 +456,11 @@ public class DBOperationsAssignments {
     }
     
     /**
-     *
-     * @param moduleID
-     * @param assignmentID
-     * @return
+     * Method that edits the occurrences of assignment ID and module ID within the 
+     * ma_lesson_assignment table via database query
+     * @param moduleID String
+     * @param assignmentID String
+     * @return result Boolean
      */
     public boolean brigeAssignmentModule (String moduleID, String assignmentID){
         boolean result = false;
@@ -475,10 +486,11 @@ public class DBOperationsAssignments {
     }
 
     /**
-     *
-     * @param moduleID
-     * @param assignmentID
-     * @return
+     * Method that deletes the occurrences of assignment ID and lesson ID within the 
+     * ma_lesson_assignment table and the ma_grades table via database query
+     * @param moduleID String
+     * @param assignmentID String
+     * @return result Boolean
      */
     public boolean severConnection(String moduleID, String assignmentID) {
         boolean result = false;
@@ -510,10 +522,11 @@ public class DBOperationsAssignments {
     }
     
     /**
-     *
-     * @param moduleID
-     * @param inbound_assignment
-     * @return
+     * Method for creating/adding a particular assignment for a particular 
+     * faculty member via database query
+     * @param moduleID String
+     * @param inbound_assignment Assignment
+     * @return result String
      */
     public String createAssignmentFac (String moduleID, Assignment inbound_assignment){
         String result = "URL failed - Please check your link and try again.";
@@ -584,9 +597,9 @@ public class DBOperationsAssignments {
     }
     
     /**
-     *
-     * @param assignment
-     * @return
+     * gets the assignment id for the particular assignment via database query
+     * @param assignment Assignment
+     * @return result String
      */
     public String getAssignmentID (Assignment assignment){
         String result = "";

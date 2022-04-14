@@ -13,7 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- *
+ * This DBOperationsCourse class handles all of the database operations for the 
+ * courses
  * @author massvm
  */
 public class DBOperationsCourse {
@@ -27,9 +28,10 @@ public class DBOperationsCourse {
     */
 
     /**
-     *
-     * @param studentUsername
-     * @return
+     * gets the courses for a particular student based on their username via
+     * db query
+     * @param studentUsername String
+     * @return courses ArrayList
      */
 
     public ArrayList<Course> getCourses (String studentUsername){
@@ -80,9 +82,10 @@ public class DBOperationsCourse {
     */
 
     /**
-     *
-     * @param cohortID
-     * @return
+     * get the courses for the particular cohort based on its id via
+     * db query
+     * @param cohortID String
+     * @return courses ArrayList
      */
 
     public ArrayList<Course> getCoursesByCohort (String cohortID){
@@ -128,9 +131,10 @@ public class DBOperationsCourse {
     //enter the courseId and get the courseName in return
 
     /**
-     *
-     * @param courseID
-     * @return
+     * gets name of the particular course based on course id via
+     * db query
+     * @param courseID String
+     * @return courseName String
      */
     public String getCourseName (String courseID){
         String courseName = "";
@@ -166,7 +170,8 @@ public class DBOperationsCourse {
     */
 
     /**
-     *
+     * gets the course object based on course id via
+     * db query
      * @param courseID
      * @return
      */
@@ -198,10 +203,11 @@ public class DBOperationsCourse {
     }
     
     /**
-     *
-     * @param courseName
-     * @param courseDescription
-     * @return
+     * Method for creating/adding a particular course via
+     * db query
+     * @param courseName String
+     * @param courseDescription String
+     * @return result Boolean
      */
     public boolean createCourse (String courseName, String courseDescription){
         boolean result = false;
@@ -226,8 +232,8 @@ public class DBOperationsCourse {
     }
     
     /**
-     *
-     * @return
+     * gets all of the courses via db query
+     * @return courses ArrayList
      */
     public ArrayList<Course> getAllCourses (){
         ArrayList<Course> courses = new ArrayList<>();
@@ -265,9 +271,10 @@ public class DBOperationsCourse {
     }
     
     /**
-     *
-     * @param courseID
-     * @return
+     * Method for deleting/clearing the bridge between course and module/lesson based on
+     * course id
+     * @param courseID String
+     * @return result Boolean
      */
     public boolean clearBridge (String courseID){
         boolean result = false;
@@ -292,10 +299,11 @@ public class DBOperationsCourse {
     }
     
     /**
-     *
-     * @param courseID
-     * @param moduleID
-     * @return
+     * Method for creating/adding a bridge between course and module/lesson based
+     * on their ids via db query
+     * @param courseID String
+     * @param moduleID String
+     * @return result Boolean
      */
     public boolean bridgeCourseModule (String courseID, String moduleID){
         boolean result = false;
@@ -321,11 +329,11 @@ public class DBOperationsCourse {
     }
     
     /**
-     *
-     * @param courseID
-     * @param courseName
-     * @param courseDescription
-     * @return
+     * Method for updating the particular course via db query
+     * @param courseID String
+     * @param courseName String
+     * @param courseDescription String
+     * @return result Boolean
      */
     public boolean updateCourse (String courseID, String courseName, String courseDescription){
         boolean result = false;
@@ -352,9 +360,10 @@ public class DBOperationsCourse {
     }
     
     /**
-     *
-     * @param courseID
-     * @return
+     * Method for the deleting the particular course based on its id via
+     * db query
+     * @param courseID String
+     * @return result Boolean
      */
     public boolean deleteCourseByID (String courseID){
         
@@ -384,9 +393,10 @@ public class DBOperationsCourse {
     }
     
     /**
-     *
-     * @param courseID
-     * @return
+     * Method for deleting/clearing the bridges between course and announcement,
+     * course and module, cohort and course based on course id via db queries
+     * @param courseID String
+     * @return result Boolean
      */
     public boolean deleteBridges(String courseID){
         boolean result = false;

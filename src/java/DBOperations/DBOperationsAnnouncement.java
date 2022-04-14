@@ -14,14 +14,17 @@ import java.time.format.DateTimeFormatter;
 
 /**
  *
- * This class handles any DBOperations for cohort and course announcements. 
+ * This class handles any DBOperations for cohort and course announcements.
+ * @author massvm
+ * 
  */
 public class DBOperationsAnnouncement {
     
     /**
-     *
-     * @param cohortId
-     * @return
+     * gets all of the announcements for the particular cohort using cohortId via
+     * database query
+     * @param cohortId String
+     * @return cohortAnnouncements ArrayList
      */
     public ArrayList<Announcement> getCohortAnnouncements (String cohortId){
         
@@ -62,9 +65,10 @@ public class DBOperationsAnnouncement {
     }
     
     /**
-     *
-     * @param courseId
-     * @return
+     * gets all of the announcements for the particular course using courseId via
+     * database query
+     * @param courseId String
+     * @return courseAnnouncements ArrayList
      */
     public ArrayList<CourseAnnouncement> getCourseAnnouncements (String courseId){
         
@@ -111,10 +115,11 @@ public class DBOperationsAnnouncement {
     */
 
     /**
-     *
-     * @param courseID
-     * @param text
-     * @return
+     * Method to create/add a new announcement for the particular course via
+     * database query
+     * @param courseID String
+     * @param text String
+     * @return result Boolean
      */
 
     public boolean createCourseAnnouncement(String courseID, String text){
@@ -149,9 +154,10 @@ public class DBOperationsAnnouncement {
     //course announcement to the session scope when faculty is editing a course announcement
 
     /**
-     *
-     * @param courseAnnouncementID
-     * @return
+     * gets a particular announcement for the particular course via
+     * database query
+     * @param courseAnnouncementID String
+     * @return announcement CourseAnnouncement
      */
     public CourseAnnouncement getCourseAnnouncement (String courseAnnouncementID){
         CourseAnnouncement announcement = null;
@@ -189,10 +195,11 @@ public class DBOperationsAnnouncement {
     //method used when editing courseAnnouncements. Input courseAnnouncementID and new text that will replace it
 
     /**
-     *
-     * @param courseAnnouncementID
-     * @param newText
-     * @return
+     * Method to edit/update the particular announcement for a particular course
+     * via database query
+     * @param courseAnnouncementID String
+     * @param newText String
+     * @return result Boolean
      */
     public boolean editCourseAnnouncement (String courseAnnouncementID, String newText){
         boolean result = false;
@@ -219,9 +226,10 @@ public class DBOperationsAnnouncement {
     //method used when deleting courseAnnouncements
 
     /**
-     *
-     * @param courseAnnouncementID
-     * @return
+     * Method to delete the particular announcement for a particular course via
+     * database query
+     * @param courseAnnouncementID String
+     * @return result String
      */
     public boolean deleteCourseAnnouncement (String courseAnnouncementID) {
         boolean result = false;
@@ -245,10 +253,11 @@ public class DBOperationsAnnouncement {
     }
     
     /**
-     *
-     * @param cohortID
-     * @param text
-     * @return
+     * Method to create/add a new announcement for the particular cohort via
+     * database query
+     * @param cohortID String
+     * @param text String
+     * @return result Boolean
      */
     public boolean createCohortAnnouncement(String cohortID, String text){
         boolean result = false;
@@ -279,9 +288,10 @@ public class DBOperationsAnnouncement {
     }
      
     /**
-     *
-     * @param announcementID
-     * @return
+     * gets the particular announcement for a particular course via
+     * database query
+     * @param announcementID String
+     * @return announcement Announcement
      */
     public Announcement getCohortAnnouncement (String announcementID){
         Announcement announcement = null;
@@ -317,10 +327,11 @@ public class DBOperationsAnnouncement {
     //method used when editing courseAnnouncements. Input courseAnnouncementID and new text that will replace it
 
     /**
-     *
-     * @param cohortAnnouncementID
-     * @param newText
-     * @return
+     * Method to edit/update the particular announcement for a particular cohort
+     * via database query
+     * @param cohortAnnouncementID String
+     * @param newText String
+     * @return result Boolean
      */
     public boolean editCohortAnnouncement (String cohortAnnouncementID, String newText){
         boolean result = false;
@@ -347,9 +358,10 @@ public class DBOperationsAnnouncement {
     //method used when deleting cohortAnnouncements. Input courseAnnouncementID and new text that will be deletec
 
     /**
-     *
-     * @param cohortAnnouncementID
-     * @return
+     * Method for deleting a particular announcement for a particular cohort via
+     * database query
+     * @param cohortAnnouncementID String
+     * @return result Boolean
      */
     public boolean deleteCohortAnnouncement (String cohortAnnouncementID){
         boolean result = false;
@@ -373,9 +385,10 @@ public class DBOperationsAnnouncement {
     }
     
     /**
-     *
-     * @param cohortID
-     * @return
+     * gets all of the announcements for a particular cohort via
+     * database query
+     * @param cohortID String
+     * @return announcements ArrayList
      */
     public ArrayList<Announcement> getAnnouncementsByCohort(String cohortID){
        ArrayList<Announcement> announcements = new ArrayList<>();

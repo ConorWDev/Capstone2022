@@ -12,7 +12,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
- *
+ * This DBOperationsAttendance handles all of the database operations for the 
+ * attendance aspect of the application for the student
  * @author ryanc
  */
 public class DBOperationsAttendance {
@@ -20,10 +21,11 @@ public class DBOperationsAttendance {
     //add an attendance record that is marked present
 
     /**
-     *
-     * @param studentID
-     * @param date
-     * @return
+     * Method to create/adds the student attendance record that is marked present
+     * via database query
+     * @param studentID String
+     * @param date String
+     * @return result Boolean
      */
     public boolean addAttendancePresent(String studentID, String date){
         boolean result = false;
@@ -73,10 +75,11 @@ public class DBOperationsAttendance {
     //add an attendance record that is marked not present
 
     /**
-     *
-     * @param studentID
-     * @param date
-     * @return
+     * Method to create/adds the student attendance record that is marked not present
+     * via database query
+     * @param studentID String
+     * @param date String
+     * @return result Boolean
      */
     public boolean addAttendanceNotPresent(String studentID, String date){
         boolean result = false;
@@ -127,10 +130,11 @@ public class DBOperationsAttendance {
     //already exists within the DB. if it does, return true. This will be used within the above methods
 
     /**
-     *
-     * @param studentID
-     * @param date
-     * @return
+     * Internal method to check if an entered attendance record
+     * already exists within the DB via database query
+     * @param studentID String
+     * @param date String
+     * @return result Boolean
      */
     public boolean attendanceAlreadyInDatabase (String studentID, String date){
         boolean result =false;
@@ -159,9 +163,11 @@ public class DBOperationsAttendance {
     }
     
     /**
-     *
-     * @param studentID
-     * @return
+     * gets all of the attendance record for the particular student using their id
+     * via database query
+     * 
+     * @param studentID String
+     * @return attendanceList ArrayList
      */
     public ArrayList<Attendance> getAttendanceRecords (String studentID){
         ArrayList<Attendance> attendanceList = new ArrayList<>();

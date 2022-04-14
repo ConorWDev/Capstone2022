@@ -14,7 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- *
+ * This DBOperationsCohort class handles all of the database operations for 
+ * cohorts aspect of the application
  * @author massvm
  */
 public class DBOperationsCohort {
@@ -25,9 +26,10 @@ public class DBOperationsCohort {
     */
 
     /**
-     *
-     * @param facultyUsername
-     * @return
+     * gets all of the cohort based on a particular faculty member (username) via
+     * database query
+     * @param facultyUsername String
+     * @return cohorts ArrayList
      */
 
     
@@ -68,9 +70,9 @@ public class DBOperationsCohort {
     }
     
     /**
-     *
-     * @param cohortID
-     * @return
+     * gets the particular cohort object based on its id via database query
+     * @param cohortID String
+     * @return cohort Cohort
      */
     public Cohort getCohort (String cohortID){
         Cohort cohort = null;
@@ -100,9 +102,10 @@ public class DBOperationsCohort {
     }
     
     /**
-     *
-     * @param cohortName
-     * @return
+     * Method to create/add a particular cohort to database via
+     * query
+     * @param cohortName String
+     * @return result Boolean
      */
     public boolean createCohort (String cohortName){
         boolean result = false;
@@ -127,8 +130,8 @@ public class DBOperationsCohort {
     }
     
     /**
-     *
-     * @return
+     * gets all of the cohorts from the database via query
+     * @return cohorts ArrayList
      */
     public ArrayList<Cohort> getAllCohorts (){
         ArrayList<Cohort> cohorts = new ArrayList<>();
@@ -160,9 +163,10 @@ public class DBOperationsCohort {
     }
     
     /**
-     *
-     * @param cohortID
-     * @return
+     * Method for deleting/ clearing the bridge between cohorts and courses via
+     * database query
+     * @param cohortID String
+     * @return result Boolean
      */
     public boolean clearCohortCourseBridge (String cohortID){
         boolean result = false;
@@ -187,10 +191,11 @@ public class DBOperationsCohort {
     }
     
     /**
-     *
-     * @param cohortID
-     * @param courseID
-     * @return
+     * Method for bridging/connecting the cohorts with their corresponding courses
+     * via database query
+     * @param cohortID String
+     * @param courseID String
+     * @return result Boolean
      */
     public boolean bridgeCohortCourse (String cohortID, String courseID){
         boolean result = false;
@@ -216,9 +221,10 @@ public class DBOperationsCohort {
     }
     
     /**
-     *
-     * @param cohortID
-     * @return
+     * Method for deleting/clearing the bridge between cohorts and faculty via
+     * database query
+     * @param cohortID String
+     * @return result Boolean
      */
     public boolean clearCohortFacultyBridge (String cohortID){
         boolean result = false;
@@ -243,10 +249,11 @@ public class DBOperationsCohort {
     }
      
     /**
-     *
-     * @param cohortID
-     * @param facultyID
-     * @return
+     * Method for creating/adding a bridge between cohort and faculty via
+     * database query
+     * @param cohortID String
+     * @param facultyID String
+     * @return result Boolean
      */
     public boolean bridgeCohortFaculty (String cohortID, String facultyID){
         boolean result = false;
@@ -272,9 +279,10 @@ public class DBOperationsCohort {
     }
       
     /**
-     *
-     * @param cohortID
-     * @return
+     * Method for deleting/clearing the bridge between cohorts and student via
+     * database query
+     * @param cohortID String
+     * @return result Boolean
      */
     public boolean clearCohortStudentBridge (String cohortID){
         boolean result = false;
@@ -299,10 +307,11 @@ public class DBOperationsCohort {
     }
       
     /**
-     *
-     * @param cohortID
-     * @param studentID
-     * @return
+     * Method for creating/adding a bridge between cohort and students via
+     * database query
+     * @param cohortID String
+     * @param studentID String
+     * @return result Boolean
      */
     public boolean bridgeCohortStudents (String cohortID, String studentID){
         boolean result = false;
@@ -328,9 +337,9 @@ public class DBOperationsCohort {
     }
        
     /**
-     *
-     * @param cohortID
-     * @return
+     * Method for deleting a particular cohort based on its id via db query
+     * @param cohortID String
+     * @return result Boolean
      */
     public boolean deleteCohortByID (String cohortID){
            
@@ -359,9 +368,10 @@ public class DBOperationsCohort {
        }
        
     /**
-     *
-     * @param cohortID
-     * @return
+     * Method for deleting/clearing all of the bridges between cohort and courses,
+     * cohorts and faculty, student and cohort, announcement, schedule via db queries
+     * @param cohortID String
+     * @return result Boolean
      */
     public boolean deleteBridges (String cohortID){
            boolean result = false;

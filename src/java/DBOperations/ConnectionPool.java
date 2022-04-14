@@ -35,8 +35,8 @@ public class ConnectionPool {
     }
     
     /**
-     *
-     * @return
+     * gets the connection pool's instance 
+     * @return pool ConnectionPool
      */
     public static synchronized ConnectionPool getInstance() {
         if (pool==null) {
@@ -47,8 +47,8 @@ public class ConnectionPool {
     } 
     
     /**
-     *
-     * @return
+     * gets the connection from the data source
+     * @return dataSource
      */
     public Connection getConnection() {
         try {
@@ -61,8 +61,8 @@ public class ConnectionPool {
     }
     
     /**
-     *
-     * @param conn
+     * method that frees the connection
+     * @param conn Connection
      */
     public void freeConnection(Connection conn) {
         try {
