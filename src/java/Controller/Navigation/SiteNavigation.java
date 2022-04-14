@@ -38,12 +38,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 /**
- *
- * @author massvm
- * 
- * The SiteNavigation is to help student user to navigate each student jsp page.
+ *The SiteNavigation is to help student user to navigate each student jsp page.
  * 'nav' functions as feeding to navigate different jsp page depending on the requests.
  * Each else if block requires specific variable to load related information
+ * @author massvm
  * 
  */
 @WebServlet(name = "SiteNavigation", urlPatterns = {"/SiteNavigation"})

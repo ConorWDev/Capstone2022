@@ -41,12 +41,13 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 
- * @author ryanc
+ * 
  * 
  * The SiteNavigationAdmin is to help admin user to navigate each admin jsp page.
  * Similarly as faculty and student, 'nav' variable functions as to navigate different jsp page
  * but there is 'op' variable as well which trigger different action in the page.
  * Each else if block requires specific variable to load related information.
+ * @author ryanc
  * 
  */
 @WebServlet(name = "SiteNavigationAdmin", urlPatterns = {"/SiteNavigationAdmin"})
