@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- *
+ *This class handles database operations involving grade objects
  * @author massvm
  */
 public class DBOperationsGrade {
