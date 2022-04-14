@@ -239,7 +239,7 @@ public class DBOperationsModule {
     }
     
     /**
-     *Enter a module ID, moduleName, and moduleDescription. This will update the module
+     * Enter a module ID, moduleName, and moduleDescription. This will update the module
      * where moduleID = moduleID.
      * @param moduleID
      * @param moduleName
@@ -273,7 +273,7 @@ public class DBOperationsModule {
     }
     
     /**
-     *Enter a moduleID. The module within the database with 
+     * Enter a moduleID. The module within the database with 
      * a corresponding ID is deleted
      * @param moduleID
      * @return result Boolean
