@@ -13,8 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- *
- * @author Ryan Checora. This class contains methods that are specific to obtaining student information
+ * This class contains methods that are specific to obtaining student information
+ * @author Ryan Checora. 
  */
 public class DBOperationsStudent {
     
