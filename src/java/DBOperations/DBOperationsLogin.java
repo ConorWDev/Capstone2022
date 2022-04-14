@@ -30,10 +30,11 @@ public class DBOperationsLogin {
     */
 
     /**
-     *
+     * Enter username and password. If the the username and password exists within
+     * the ma_student table, a Boolean true is returned
      * @param webUsername
      * @param webPassword
-     * @return
+     * @return isStudent Boolean
      */
 
     public boolean isStudent(String webUsername,String webPassword) {
@@ -70,10 +71,11 @@ public class DBOperationsLogin {
     }
     
     /**
-     *
+     *Enter username and password. If the the username and password exists within
+     * the ma_faculty table, a Boolean true is returned
      * @param webUsername
      * @param webPassword
-     * @return
+     * @return isFaculty Boolean
      */
     public boolean isFaculty(String webUsername,String webPassword) {
         
@@ -112,10 +114,11 @@ public class DBOperationsLogin {
     }
     
     /**
-     *
+     *Enter username and password. If the the username and password exists within
+     * the ma_admin table, a Boolean true is returned
      * @param webUsername
      * @param webPassword
-     * @return
+     * @return isAdmin Boolean
      */
     public boolean isAdmin(String webUsername,String webPassword) {
          
