@@ -39,11 +39,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author massvm
- * 
  * The SiteNavigationFaculty is to help faculty user to navigate each faculty jsp page.
  * 'nav' functions as feeding to navigate different jsp page depending on the requests.
+ * @author massvm
  *  
  */
 @WebServlet(name = "SiteNavigationFaculty", urlPatterns = {"/SiteNavigationFaculty"})

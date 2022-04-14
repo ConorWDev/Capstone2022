@@ -20,12 +20,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Altamish Lalani
- *
- *
- * To use LogonService class, a user must enter credentials with the following
- * prerequisites in mind. 1) webUsername from login.jsp 2) webPassword from login.jsp
+ * To use LogonService class, a user must enter credentials with the following prerequisites in mind. 
+ * 1) webUsername from login.jsp 2) webPassword from login.jsp
  * The class will transact with the database and point the user in the right direction.
+ * @author Altamish Lalani
  * 
  */
 @WebServlet(name = "LogonCon", urlPatterns = {"/LogonCon"})

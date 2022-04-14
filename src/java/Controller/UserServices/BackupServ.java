@@ -19,11 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Backup Servlet is designed to let Admin's perform both backup and export functions within MASS, left in the project as a prototype for future improvement as approved by Nermine Aladdin.
  * @author Altamish Lalani
- *
- *
- * Backup Servlet is designed to let Admin's perform both backup and export functions within MASS.
+ * 
  * 
  */
 @WebServlet(name = "BackupServ", urlPatterns = {"/BackupServ"})
