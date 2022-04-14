@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author RyanChecora
+ * 
  * I have created the DBOperationsGeneral class to handle all general database operations. At this point i believe  that we will
  * create other more specific dbOperations within other specific db classes (i.e. grade db operations, announcement db operations)
  * to allow for greater organization.
@@ -26,6 +26,8 @@ import java.sql.SQLException;
  * UPDATE MARCH 2ND: the DBOperationsGeneral class may soon be deprecated. No longer a need for the
  * getConnection method due to the newly added connection pool. Further, methods within this class can be
  * placed elsewhere to have things more organized into individual use cases
+ * @author RyanChecora
+ * 
  * 
  */
 public class DBOperationsGeneral {
