@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/LMS">
+
+    <Resource name="jdbc/massupdated" auth="container"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/massupdated?serverTimezone=UTC"
+        username="root" password="password"
+        maxActive="100" maxIdle="10" maxWait="10000"
+        logAbandoned="true" removeAbandoned="true"
+        removeAbandonedTimeout="60" type="javax.sql.DataSource"/>
+    
+    
+</Context>
+

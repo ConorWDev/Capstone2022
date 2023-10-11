@@ -1,0 +1,44 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar. 18, 2022, 1:19:30 p.m.
+    Author     : massvm
+*/
+body {
+    background-color: #e2e6ea;
+    color: #082047;
+    font-family: 'Roboto', sans-serif;
+}
+#navbottom {
+    background-color: #0069d9;
+}
+#navtop{
+    
+    background-color: ghostwhite;
+    color: #9c9c9c;
+    
+    
+}
+
+#navbottomlinks a{
+    color: white;
+    text-decoration: none;
+}
+#containerfac{
+    color: #082047;
+    font-family: 'Roboto', sans-serif;
+    
+}
+#annselect {
+    height: 150px;
+}
+#coanheader{
+    
+  
+}
+textarea{
+    resize: none;
+}

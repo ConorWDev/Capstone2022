@@ -1,0 +1,125 @@
+
+/* 
+    Created on : Mar. 10, 2022, 12:39:26 p.m.
+    Author     : Conor Welch
+*/
+
+/*Universal Elements*/
+
+#adminnavbottom{
+    background-color: #082047;
+}
+#adminnavtop{
+    background-color: ghostwhite;
+
+    color: #9c9c9c;
+    font-weight: bold;
+}
+#adminview{
+    text-decoration: none;
+    color: #082047;
+}
+#control-bar {
+    background-color: #E2E6EA;
+    height: 100%;
+    font-weight: bold;
+    text-align: left;
+    align-content: flex-start;
+
+
+}
+
+#control-bar button{
+    color: #082047;
+    text-align: left;
+
+}
+/*Possibly Deprecated*/
+#cbbutton1 {}
+#cbbutton2 {}
+#cbbutton3 {}
+#cbbutton4 {}
+#cbbutton5 {}
+#cbbutton6 {}
+#cbbutton7 {}
+#cbbutton8 {
+    height:300px;
+}
+
+#contentpage {
+    background-color:white;
+    font-family: 'Roboto', sans-serif;
+    color: #082047;
+}
+#contentcontainer{
+    
+    background: #E2E6EA;
+    box-shadow: 1px 1px 1px #c5c9cd;
+    border-radius: 3px;
+    
+}
+#contentcontainerann{
+    height: 550px;
+    background: #E2E6EA;
+    box-shadow: 1px 1px 1px #c5c9cd;
+    border-radius: 3px;
+    border-style: groove;
+}
+#contentheader{
+    color: #082047;
+}
+
+#but1,#but2,#but3,#but4,#but5, #but6{
+    font-weight: bold;
+    
+    background-color: whitesmoke;
+    margin: 15px;
+    text-align: center;
+    color: #082047;
+}
+
+#but6{
+    color: red;
+
+}
+#contentheaderrow{
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #082047;
+}
+
+
+#select1{
+    height:450px;
+
+}
+#infoblock{
+    width: 97%;
+    border-style: none;
+    background: inherit;
+
+}
+
+#typedynamic{
+    font-weight: bold;
+}
+
+#info1,#info2,#info3,#info4, #info5, #info6 {
+
+}
+#label1,#label2,#label3,#label4,#label5,#label6{
+
+}
+/*Announcement Specifics*/
+#select2{
+    height: 500px;
+}
+#select3{
+   height: 500px;
+}
+#selectann{
+    height: 450px;
+}
+#imagefiller{
+    opacity: 75%;
+}

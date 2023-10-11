@@ -1,0 +1,22 @@
+<%-- Author: Conor Welch--%>
+<%@ page pageEncoding="UTF-8" %>
+<nav class="navbar navbar-expand-m navbar-light bg-white p-0 me-0" id="adminnavtop">
+    <div class="container-fluid">
+        <a class="navbar-brand text-black" href="#" id="mgtlogo"><img alt="MGTLOGO" height="25px" src="MGTLOGO.png"/>
+            MGT</a>
+        <div class="navbar-nav">
+            <a aria-current="page" class="nav-item nav-link active " href="#" id="adminview">Admin</a>
+        </div>
+    </div>
+</nav>
+<!--Bottom of dual tone nav bar-->
+<nav class="navbar navbar-dark p-0 mb-0" id="adminnavbottom">
+    <div class="container-fluid pr-5">
+        <div class="align-self-left" id="navbottomlinks">
+            <a class="navbar-item" href="#"></a>
+        </div>
+        <div class="navbar-nav">
+            <a aria-current="page" class="nav-item nav-link active" href="SiteNavigationAdmin?logout=yes">Log Out?</a>
+        </div>
+    </div>
+</nav>

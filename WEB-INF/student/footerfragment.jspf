@@ -1,0 +1,43 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="container-fluid" style="background-color: #e2e6ea;height: 100px">
+</div>
+<div class="row" style="height: 150px"></div>
+<div class="row ">
+    <div class="col-4">
+    </div>
+    <div class="col-4 bg-white rounded align-self-center align-content-center">
+        <table class="table table-borderless align-content-center" style="">
+            <tr style="text-align: center">
+                <td class=>
+                    <a href="#">Link</a>
+                </td>
+                <td>
+                    <a href="#">Link</a>
+                </td>
+                <td>
+                    <a href="#">Link</a>
+                </td>
+                <td>
+                    <a href="#">Link</a>
+                </td>
+            </tr>
+            <tr style="text-align: center;text-decoration: none">
+                <td>
+                    <a href="#">Link</a>
+                </td>
+                <td>
+                    <a href="#">Link</a>
+                </td>
+                <td>
+                    <a href="#">Link</a>
+                </td>
+                <td>
+                    <a href="#">Link</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-4">
+    </div>
+</div>
