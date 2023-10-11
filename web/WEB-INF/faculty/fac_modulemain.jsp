@@ -35,7 +35,7 @@
                         
                         <c:forEach items="${requestScope.assignments}" var="assignment">
                             <div class="row m-1 bg-light">
-                            <a href="${assignment.assignmentUrl}" class="mb-0 text-primary text-capitalize"><b>${assignment.assignmentName}</b></a>
+                            <a href="${assignment.assignmentUrl}"  target="_blank" rel="noopener noreferrer" class="mb-0 text-primary text-capitalize"><b>${assignment.assignmentName}</b></a>
                             <p class="text-capitalize">${assignment.assignmentDescription}</p>
                             </div>  
                         </c:forEach>
@@ -50,7 +50,7 @@
                         
                         <c:forEach items="${requestScope.documents}" var="document">
                             <div class="row bg-light m-1">
-                            <a href="${document.url}" class="mb-0 text-primary text-capitalize"><b>${document.name}</b></a>
+                            <a href="${document.url}" target="_blank" rel="noopener noreferrer" class="mb-0 text-primary text-capitalize"><b>${document.name}</b></a>
                             <p class="text-capitalize">${document.description}</p>
                             </div>     
                         </c:forEach>

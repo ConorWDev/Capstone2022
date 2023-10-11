@@ -64,7 +64,7 @@
                     </div>
                         <c:if test="${assignment.assignmentUrl != '' && assignment.assignmentUrl != null}">
                     <div class="card-body">
-                         <a href="${assignment.assignmentUrl}"> <button type="button" class="btn btn-primary">View</button></a>
+                         <a href="${assignment.assignmentUrl}" target="_blank" rel="noopener noreferrer"> <button type="button" class="btn btn-primary">View</button></a>
                     </div>
                         </c:if>
                 </div>
@@ -94,7 +94,7 @@
                     </div>
                     <div class="card-body">
                         <p>${document.description}</p>
-                        <a href="${document.url}"> <button type="button" class="btn btn-primary">View</button></a>
+                        <a href="${document.url}" target="_blank" rel="noopener noreferrer"> <button type="button" class="btn btn-primary">View</button></a>
                         <!-- Might need download link in the future -->
                     </div>
                 </div>
